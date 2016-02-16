@@ -76,7 +76,7 @@ public class LoginWith extends Drivers {
             new IOSElements().more_button().click();
             try {
             	//name(account);
-            	if (new WebDriverWait(driver, 2).until(ExpectedConditions.elementToBeClickable(By.name(account))).isDisplayed()) {
+            	if ((driver.findElement(By.name(account)).getAttribute("name")).equals(account)) {
             		already_logged_in = true;
             	}
             } catch (Exception e) {

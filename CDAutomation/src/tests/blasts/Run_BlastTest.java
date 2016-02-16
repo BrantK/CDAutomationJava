@@ -8,6 +8,7 @@ import elements.Drivers;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Run_BlastTest extends Drivers {
 	
+	/*
 	@Test
 	public void test01_createBlastList() throws Exception {
 		log("[Start] Starting blast test");
@@ -25,7 +26,7 @@ public class Run_BlastTest extends Drivers {
 			relaunch();
 			throw e;
 		}
-	}
+	}*/
 	
 	@Test
 	public void test02_sendTextBlasts() throws Exception {

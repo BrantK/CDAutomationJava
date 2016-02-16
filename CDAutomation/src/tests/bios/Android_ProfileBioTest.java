@@ -12,7 +12,7 @@ public class Android_ProfileBioTest extends AndroidElements {
 	///////////////////////////////////////////////
 	String account_name = "testProfilebio";
 	String account_pw = "password";
-	String text_bio = "CyberdustText ";
+	String text_bio = "Cyberdust1 ";
 	//////////////////////////////////////////////
 	
 	LoginWith loginAs = new LoginWith();

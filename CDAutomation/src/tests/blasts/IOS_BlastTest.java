@@ -1,5 +1,7 @@
 package tests.blasts;
 
+import org.openqa.selenium.By;
+
 import elements.IOSElements;
 import elements.LoginWith;
 
@@ -27,41 +29,32 @@ public class IOS_BlastTest extends IOSElements {
 
 		// Creates a blast list
 		blast_lists().click();
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		log("Creating a blast list");
-		try {
-			if (driver.findElementById("com.radicalapps.cyberdust:id/blast_groups_list_item_group_indicator").isDisplayed()) {
-				blast_list_expand(); // Doesn't need .click() attribute
-				blast_list_edit().click();
-				blast_list_more().click();
-				log("Deleting pre-existing blast list first");
-				delete_list().click();
-				confirm().click();
-				blast_lists().click();
-			}
-		} catch (Exception e) {
-			
-		}
-		blast_list_field().sendKeys("List from Blasts tab");
+		
 		OK_button().click();
+		driver.getKeyboard().sendKeys("QA blast\n");	
 		username(account02).click();
 		username(account03).click();
-		OK_button().click();
+		Thread.sleep(500);
+		action.press(driver.findElement(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableGroup[1]/UIAButton[1]"))).release().perform();
+		Thread.sleep(500);
+		action.press(driver.findElement(By.xpath("//UIAApplication[1]/UIAWindow[4]/UIAAlert[1]/UIACollectionView[1]/UIACollectionCell[1]/UIAButton[1]"))).release().perform();
+		
 	}
 	
 	public void test02_send_text_blasts() throws Exception {
 		// Sends text blast with +username, URL, and location to blast list
 		log("Sending text blast to blast list");
-		blasts_tab();
+		//blasts_tab();
 		action_menu().click();
-		Thread.sleep(500);
+		//Thread.sleep(500);
 		action_menu_text().click();
 		dust_blast_field().sendKeys(blast_username + " " + blast_url);
-		text_location_button().click();
-		current_location().click();
-		OK_button().click();
-		send_to_blast_list().click();
-		blast_Ok_button().click();
+		next_button().click();
+		select_blast_list().click();
+		Thread.sleep(800);
+		send_to_blast_list();
 
 		// Edits participants and renames blast list
 		log("Editing blast list");
@@ -113,7 +106,7 @@ public class IOS_BlastTest extends IOSElements {
 		done_button().click();
 		next_button().click();
 		make_public().click();
-		send_to_blast_list().click();
+		//send_to_blast_list().click();
 		blast_Ok_button().click();
 
 		// Deletes blast list
@@ -159,7 +152,7 @@ public class IOS_BlastTest extends IOSElements {
 		username(account02).click();
 		username(account03).click();
 		OK_button().click();
-		send_to_blast_list().click();
+		//send_to_blast_list().click();
 		blast_Ok_button().click();
 	}
 

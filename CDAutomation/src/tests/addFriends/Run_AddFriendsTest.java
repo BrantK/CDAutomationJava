@@ -64,7 +64,7 @@ public class Run_AddFriendsTest extends Drivers {
 	}
 	
 	@Test
-	public void test04_AddFriendFromFollowers() throws Exception {
+	public void test04_Follow_From_AddFriends() throws Exception {
 		try {
 			log("Test04: add a user by searching username in AddFriends");
 
@@ -82,7 +82,7 @@ public class Run_AddFriendsTest extends Drivers {
 	}
 	
 	@Test
-	public void test05_AddFriendFromFollowers() throws Exception {
+	public void test05_AddFriendFromHome() throws Exception {
 		try {
 			log("Test05: add a user by searching username in HomeScreen");
 
@@ -98,7 +98,7 @@ public class Run_AddFriendsTest extends Drivers {
 			throw e;
 		}
 	}
-	
+	/*
 	@Test
 	public void test06_AddFriendFromPopular() throws Exception {
 		try {
@@ -151,5 +151,5 @@ public class Run_AddFriendsTest extends Drivers {
 			relaunch();
 			throw e;
 		}
-	}
+	}*/
 }

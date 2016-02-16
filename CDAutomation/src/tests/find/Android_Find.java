@@ -70,7 +70,7 @@ public class Android_Find extends AndroidElements {
 	
 	public void test03_followfeedlist() throws Exception {
 		
-		//follows a Feed
+		//follows a Feed acct
 		System.out.println("Checking feed categories...");
 		open_chatter_category_menu();
 		feed_list().click();
@@ -83,7 +83,7 @@ public class Android_Find extends AndroidElements {
 		System.out.println("Followed acct from Feed stream: " + followed);
 		profile_following().click();
 		okay_button().click();
-		System.out.println("Feed unfollowed.");
+		System.out.println("Feed acct unfollowed.");
 		other_user_prof_pic().click();	
 		
 	}

@@ -18,7 +18,7 @@ public class IOS_AddFriendsTest extends IOSElements {
 	WebDriverWait wait = new WebDriverWait(driver, 20);
 	///////////////////////////////////////////////
 	String account_name = "existingtest02";
-	String account_short = "existingtest0";
+	String account_short = "existingtest02";
 	String account_pw = "password";
 	String account_email = "existing02@cyberdust.com";
 	String text_message = "cyber dust";
@@ -40,28 +40,25 @@ public class IOS_AddFriendsTest extends IOSElements {
 	}
 	
 	public void test01_addFriend_fromChat() throws Exception {
-		loginAs.user(friend_username + "\n", account_pw + "\n");
+		loginAs.user(friend_username, account_pw);
 		action_menu().click();
 		action_menu_dust().click();
 		
 		driver.getKeyboard().sendKeys(account_short);
 		WebElement user = wait.until(ExpectedConditions.elementToBeClickable(By.name(account_name)));
 		user.click();
-		chat_room_text_box().click();
+		chat_room_text_box();
+		dust_text_box();
 		driver.getKeyboard().sendKeys(text_message);
-		chat_room_send_button().click();
+		send_dust().click();
 		back_button().click();
 		System.out.println("Sent a dust");
-		logoutAccount();
-		//relaunch();
+		
 		loginAs.user(account_name + "\n", account_pw + "\n");
 		dusts_tab().click();
-		
 		first_friend().click();
 		group_three_dotted_menu().click();
 		follow_from_chat_room().click();
-		//unfollow_from_chat_room().click();
-		//yes_button().click();
 		OK_button().click();
 		group_three_dotted_menu().click();
 		try{
@@ -72,134 +69,60 @@ public class IOS_AddFriendsTest extends IOSElements {
 			yes_button().click();
 		}
 		finally {}
-		}
+	}
 
-	/*
-	public void test01_addFriend_fromChat() throws Exception {
-		loginAs.user(friend_username, account_pw);
-		Thread.sleep(5000);
-		action_menu().click();
-		Thread.sleep(1000);
-		action_menu_dust().click();
-		Thread.sleep(5000);
-
-		search_friends().sendKeys(account_short);
-		WebElement user = wait.until(ExpectedConditions.elementToBeClickable(By.name(account_name)));
-		user.click();
-		chat_room_text_box().click();
-		chat_room_text_box().sendKeys(text_message);
-		chat_room_send_button().click();
-		System.out.println("Sent a dust");
-		logout_account();
-		//relaunch();
-		loginAs.user(account_name, account_pw);
-		dusts_tab().click();
-		
-		
-		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(friend_username)));
-		first_friend.click();
-		group_three_dotted_menu().click();
-		follow_from_chat_room().click();
-		back_button().click();
-		first_friend.click();
-		group_three_dotted_menu().click();
-		try{
-			if(unfollow_from_chat_room().isDisplayed())
-				System.out.println("Followed from chat room");
-			unfollow_from_chat_room().click();
-
-			
-		}
-		catch(Exception e)
-		{
-			System.out.println("Unable to follow from chat menu");
-		}
-	}*/
 
 	public void test02_AddFriend_from_DustsTab() throws Exception
 	{
-		//temp start
-		loginAs.user(account_name + "\n", account_pw + "\n");
-		dusts_tab().click();
-		//temp end
-		
+		Thread.sleep(800);
 		action.press(45, 105).release().perform();//try to click unlabeled prof pic button
 				
 		WebElement follow_firstFriend = wait.until(ExpectedConditions.elementToBeClickable(By.name("Follow" )));
 		follow_firstFriend.click();
-		wait.until(ExpectedConditions.elementToBeClickable(By.name("closeButtonRed" )));
+		close_profile_view();
 		first_friend().click();
-		group_three_dotted_menu().click();
+		
+		Thread.sleep(800);
+		action.press(45, 105).release().perform();//try to click unlabeled prof pic button
+		follow_firstFriend = wait.until(ExpectedConditions.elementToBeClickable(By.name("Following")));
+		
 		
 		try{
-			if(unfollow_from_chat_room().getAttribute("name").equals("unfollow"))
+			if((driver.findElement(By.name("Following"))).getAttribute("name").equals("Following"))
 				System.out.println("Followed from dusts tab");
-			unfollow_from_chat_room().click();
+			follow_firstFriend.click();
 			yes_button().click();
+			close_profile_view();
 		}
 		finally{}
 	}
 			
 			
-	public void logout_account() throws Exception
 
-	{
-		back_button().click();
-		back_button().click();
-		more_button().click();
-		logoutAccount();
-	}
-
-	public void _test02_AddFriend_from_DustsTab() throws Exception
-	{
-
-		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(friend_username)));
-		action.longPress(first_friend, 4000).release().perform();
-		WebElement follow_firstFriend = wait.until(ExpectedConditions.elementToBeClickable(By.name("follow aaaaa2" )));
-		follow_firstFriend.click();
-		first_friend.click();
-		group_three_dotted_menu().click();
-		
-		try{
-			if(unfollow_from_chat_room().isDisplayed())
-				System.out.println("Followed from dusts tab");
-			unfollow_from_chat_room().click();
-			okay_button().click();
-
-		}
-		catch(Exception e)
-		{
-			System.out.println("Unable to follow from dust room");
-		}
-		
-	}
 
 	public void test03_chat_from_search_bar() throws Exception
 
 	{
-
-		back_button().click();
-
+		
 		more_button().click();
 		browse_followers().click();
 		add_friend().click();
+		OK_button().click();
 		back_button().click();
 		browse_friends().click();
 
-		//WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(friend_username)));
-		action.longPress(first_friend(), 4000).release().perform();
-
 		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(friend_username)));
-		action.longPress(first_friend, 4000).release().perform();
-
+		action.longPress(first_friend()).release().perform();
+		group_three_dotted_menu().click();
+		
 		try{
 			
 			if(unfollow_button().isDisplayed())
 				System.out.println("Added a friend from search bar");
 			unfollow_button().click();
-			okay_button().click();
-			
-			
+			yes_button().click();
+			close_profile_view();
+			back_button().click();
 		}
 
 		catch (Exception e) {
@@ -211,40 +134,28 @@ public class IOS_AddFriendsTest extends IOSElements {
 	}
 	public void test04_Follow_from_AddFriends() throws Exception{
 		
-		back_button().click();
-		back_button().click();
-
-		//WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(friend_username)));
-		action.longPress(first_friend(), 4000).release().perform();
-
-		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(friend_username)));
-		action.longPress(first_friend, 4000).release().perform();
-
-		delete_dust().click();
-		//okay_button().click();
 		more_button().click();
-		action.press(friends()).moveTo(followers()).release().perform();
-		add_friends().click();
-		add_friends_search_button_text().click();
-		friends_search().sendKeys(friend_username);
-
-		//driver.pressKeyCode(66);
-		
+		browse_friends().click();
+		Thread.sleep(1500);
+		action.longPress(75, 85).release().perform();//clicks in search bar
+		driver.getKeyboard().sendKeys(friend_username);	
 		add_friends_button_inBrowseFriends().click();
-		back_button().click();
+		clear_friends_searchbar().click();
 		back_button().click();
 		browse_friends().click();
 
-		action.longPress(first_friend(), 4000).release().perform();
-
-		action.longPress(first_friend, 4000).release().perform();
+		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(friend_username)));
+		action.longPress(first_friend()).release().perform();
+		group_three_dotted_menu().click();
 
 		try{
 			
 			if(unfollow_button().isDisplayed())
 				System.out.println("Added a friend from search bar");
 			unfollow_button().click();
-			okay_button().click();
+			yes_button().click();
+			close_profile_view();
+			
 			
 		}
 		catch (Exception e) {
@@ -259,33 +170,27 @@ public class IOS_AddFriendsTest extends IOSElements {
 
 	{
 
-		back_button().click();
-		back_button().click();
 		action_menu().click();
 		Thread.sleep(2000);
 		action_menu_search().click();
-		friends_search().click();
-		friends_search().sendKeys(friend_username);
-		//driver.pressKeyCode(66);
+		//friends_search().click();
+		driver.getKeyboard().sendKeys(friend_username);
 		add_friends_button_inBrowseFriends().click();
-		back_button().click();
-		browse_friends().click();
-		//WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(friend_username)));
-		action.longPress(first_friend(), 4000).release().perform();
-
-		//driver.pressKeyCode(66);
-		add_friends_button_inBrowseFriends().click();
-		back_button().click();
+		clear_friends_searchbar().click();
+		more_button().click();
 		browse_friends().click();
 		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(friend_username)));
-		action.longPress(first_friend, 4000).release().perform();
+		action.longPress(first_friend(), 4000).release().perform();
+		group_three_dotted_menu().click();
+		
 
 		try{
 			
 			if(unfollow_button().isDisplayed())
 				System.out.println("Added a friend from search bar");
 			unfollow_button().click();
-			okay_button().click();
+			yes_button().click();
+			close_profile_view();
 			
 		}
 
@@ -302,7 +207,7 @@ public class IOS_AddFriendsTest extends IOSElements {
 
 		
 		action_menu().click();
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		action_menu_discover().click();
 		Thread.sleep(4000);
 	
@@ -314,7 +219,7 @@ public class IOS_AddFriendsTest extends IOSElements {
 
 		catch (Exception e) {
 
-			System.out.println("Discover tab is not accessible");
+			System.out.println("Popular tab is not accessible");
 
 		}
 		
@@ -328,7 +233,7 @@ public class IOS_AddFriendsTest extends IOSElements {
 		}
 
 		catch (Exception e) {
-			System.out.println("Discover tab is not accessible");
+			System.out.println("Chatters tab is not accessible");
 
 		}
 		
@@ -362,5 +267,13 @@ public class IOS_AddFriendsTest extends IOSElements {
 			System.out.println("Discover tab is not accessible");
 		
 		}
+	}	
+	
+	public void logout_account() throws Exception {
+		back_button().click();
+		back_button().click();
+		more_button().click();
+		logoutAccount();
 	}
+	
 }
