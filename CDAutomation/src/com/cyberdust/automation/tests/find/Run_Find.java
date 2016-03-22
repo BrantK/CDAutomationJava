@@ -16,7 +16,7 @@ public class Run_Find extends Drivers {
 			if (Android()) {
 				new Android_Find().test01_followChatter();
 			} else if (IOS()) {
-				//new IOS_Find().xxx();
+				new IOS_Find().test01_followChatter();
 			}
 			
 		} catch (Exception e) {

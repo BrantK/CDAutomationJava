@@ -72,13 +72,15 @@ public class IOSElements extends Drivers {
 	 * Home page elements *  	
 	 **********************/
 	public WebElement login_button() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("login")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Log In")));
 	}
+
 	public WebElement login_username() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("  username")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("Username")));
 	}
+
 	public WebElement login_password() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("  password")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIASecureTextField[1]/UIASecureTextField[1]")));
 	}
 	public WebElement login_OK() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("next arrow grey btn")));

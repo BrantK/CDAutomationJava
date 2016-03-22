@@ -110,7 +110,7 @@ public class IOS_SignUpTest extends IOSElements {
         logout().click();
         confirm().click();
         login_button().click();
-        login_username().sendKeys(signup_account.toUpperCase());
+        //login_username().sendKeys(signup_account.toUpperCase());
         login_password().sendKeys(signup_password);
         login_OK().click();
         log("Username is not case sensitive");

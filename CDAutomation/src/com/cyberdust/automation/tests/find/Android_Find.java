@@ -18,10 +18,10 @@ public class Android_Find extends AndroidElements {
 		
 		//follow user from chatter stream
 		System.out.println("Following user from chatter stream.");		
-		Thread.sleep(300);
-		action.press(650, 510).release().perform();//follows first user
-		Thread.sleep(300);
-		action.press(50, 600).release().perform();//opens profile view
+		//Thread.sleep(300);
+		//action.press(650, 510).release().perform();//follows first user
+		//Thread.sleep(300);
+		//action.press(50, 600).release().perform();//opens profile view
 		boolean followed = (profile_following().isDisplayed());
 		System.out.println("Followed from chatter stream: " + followed);
 		profile_following().click();
