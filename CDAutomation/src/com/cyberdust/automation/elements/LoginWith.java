@@ -69,7 +69,7 @@ public class LoginWith extends Drivers {
 
         try {
         	//login_button();
-        	if (new WebDriverWait(driver, 4).until(ExpectedConditions.elementToBeClickable(By.id("login"))).isDisplayed()) {
+        	if  ((driver.findElement(By.name("Log In")).getAttribute("name")).equals("Log In")){
             	logged_out = true;
             	already_logged_in = false;
         	}
@@ -91,7 +91,8 @@ public class LoginWith extends Drivers {
 
         if (already_logged_in && !logged_out) {
         	ios.close_button().click();
-        } else if (!already_logged_in && !logged_out) {
+
+        } /*else if (!already_logged_in && !logged_out) {
             logged_out = true;
             action.press(ios.followers()).moveTo(ios.close_button()).release().perform();
             try {
@@ -103,7 +104,7 @@ public class LoginWith extends Drivers {
             ios.logout().click();
             ios.confirm().click();
             logged_out = true;
-        }
+        }*/
 
         if (logged_out) {
             ios.login_button().click();

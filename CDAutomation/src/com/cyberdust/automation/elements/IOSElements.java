@@ -74,11 +74,9 @@ public class IOSElements extends Drivers {
 	public WebElement login_button() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Log In")));
 	}
-
 	public WebElement login_username() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("Username")));
 	}
-
 	public WebElement login_password() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIASecureTextField[1]/UIASecureTextField[1]")));
 	}
