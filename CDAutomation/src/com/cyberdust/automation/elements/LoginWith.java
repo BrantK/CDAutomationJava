@@ -1,9 +1,5 @@
 package com.cyberdust.automation.elements;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 public class LoginWith extends Drivers {
 	
 	public void user(String account, String password) {
@@ -22,10 +18,9 @@ public class LoginWith extends Drivers {
         boolean logged_out = false;
 
         try {
-        	//login_button();
-        	if (new WebDriverWait(driver, 4).until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/splash_login_button"))).isDisplayed()) {
+            android.waitTime(4);
+        	if (android.login_button().isDisplayed()) {
             	logged_out = true;
-            	already_logged_in = false;
         	}
         } catch (Exception e) {
             logged_out = false;
@@ -34,19 +29,21 @@ public class LoginWith extends Drivers {
         if (!logged_out) {
             android.more_button().click();
             try {
-            	//name(account);
-            	if (new WebDriverWait(driver, 2).until(ExpectedConditions.elementToBeClickable(By.name(account))).isDisplayed()) {
+                android.waitTime(2);
+            	if (android.name(account).isDisplayed()) {
             		already_logged_in = true;
             	}
             } catch (Exception e) {
                 already_logged_in = false;
             }
+            android.waitTime(10);
         }
         
-        if (already_logged_in && !logged_out) {
+        if (!logged_out && already_logged_in) {
         	android.back_button().click();
-        } else if (!already_logged_in && !logged_out) {
-            logged_out = true;
+        }
+
+        if (!already_logged_in && !logged_out) {
             action.press(android.build_a_following()).moveTo(android.back_button()).release().perform();
             android.logout().click();
             android.confirm().click();
@@ -68,8 +65,8 @@ public class LoginWith extends Drivers {
         boolean logged_out = false;
 
         try {
-        	//login_button();
-        	if  ((driver.findElement(By.name("Log In")).getAttribute("name")).equals("Log In")){
+        	ios.waitTime(4);
+        	if (ios.login_button().isDisplayed()) {
             	logged_out = true;
             	already_logged_in = false;
         	}
@@ -80,36 +77,39 @@ public class LoginWith extends Drivers {
         if (!logged_out) {
             ios.more_button().click();
             try {
-            	//name(account);
-            	if ((driver.findElement(By.name(account)).getAttribute("name")).equals(account)) {
+            	ios.waitTime(2);
+            	if (ios.name(account).isDisplayed()) {
             		already_logged_in = true;
             	}
             } catch (Exception e) {
                 already_logged_in = false;
             }
+            ios.waitTime(10);
+        }
+        
+        if (!logged_out && already_logged_in) {
+        	ios.close_button().click();
         }
 
-        if (already_logged_in && !logged_out) {
-        	ios.close_button().click();
-
-        } /*else if (!already_logged_in && !logged_out) {
-            logged_out = true;
+        if (!already_logged_in && !logged_out) {
             action.press(ios.followers()).moveTo(ios.close_button()).release().perform();
+
             try {
 				Thread.sleep(1000);
-			} catch (InterruptedException e) {
+			} catch (InterruptedException ignored) {
 				
 			}
 
             ios.logout().click();
             ios.confirm().click();
             logged_out = true;
-        }*/
-
+        }
+        
         if (logged_out) {
-            ios.login_button().click();
+        	ios.login_button().click();
             ios.login_username().click();
-            driver.getKeyboard().sendKeys(account + "\n" + password + "\n");
+          	driver.getKeyboard().sendKeys(account+"\n"+password);
+          	ios.login_OK().click();
         }
     }
 }
