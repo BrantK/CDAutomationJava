@@ -65,7 +65,7 @@ public class IOS_TimestampTest extends IOSElements {
         group_text_field().sendKeys(text_message);
         group_text_send().click();
 		back_button().click();
-		groups_tab().click();
+		dusts_tab().click();
 		try{
 			
 			//if(dust_info_text().getText().contains("you sent")&&(dust_info_text().getText().contains("minute ago")||dust_info_text().getText().contains("minute ago")))
@@ -114,7 +114,7 @@ public class IOS_TimestampTest extends IOSElements {
 	}
 	public void test04_received_group_timestamp() throws Exception {
 	
-		groups_tab().click();
+		dusts_tab().click();
 		try{
 			if(dust_info_text().getText().contains("You received")&&(dust_info_text().getText().contains("minute ago")))
 			{

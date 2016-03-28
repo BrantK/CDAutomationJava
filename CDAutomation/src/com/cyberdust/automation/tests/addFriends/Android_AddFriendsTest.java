@@ -10,7 +10,6 @@ import com.cyberdust.automation.elements.LoginWith;
 public class Android_AddFriendsTest extends AndroidElements {
 
 	String text_message = "cyberdust";
-
 	LoginWith loginAs = new LoginWith();
 	
 	public void test01_addFriend_fromChat() throws Exception {

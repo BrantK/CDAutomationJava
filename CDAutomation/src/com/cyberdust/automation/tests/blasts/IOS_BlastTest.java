@@ -1,67 +1,69 @@
 package com.cyberdust.automation.tests.blasts;
 
-import org.openqa.selenium.By;
-
 import com.cyberdust.automation.elements.IOSElements;
 import com.cyberdust.automation.elements.LoginWith;
 
 public class IOS_BlastTest extends IOSElements {
 
-	String account03 = "blasttest03";
-	String password03 = account03;
-
 	String blast_url = "www.cyberdust.com";
 	String blast_username = "+" + blasts_account01;
-	////////////////////////////////////////
-
 	LoginWith loginAs = new LoginWith();
-	
+
 	public void test01_create_blast_list() throws Exception {
 		// Logs into blast testing account
 		loginAs.user(blasts_account01, blasts_password01);
 
 		// Creates a blast list
 		blast_lists().click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		log("Creating a blast list");
-		
-		OK_button().click();
-		driver.getKeyboard().sendKeys("QA blast\n");	
+		try {
+			if (driver.findElementById("com.radicalapps.cyberdust:id/blast_groups_list_item_group_indicator").isDisplayed()) {
+				blast_list_expand().click();
+				blast_list_edit().click();
+				log("Deleting pre-existing blast list first");
+				delete_list().click();
+				confirm().click();
+				create_blast_list().click();
+			}
+		} catch (Exception ignored) {
+
+		}
+		blast_list_field().sendKeys("List from Blasts tab");
+		next_arrow().click();
 		username(blasts_account02).click();
-		username(account03).click();
-		Thread.sleep(500);
-		action.press(driver.findElement(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableGroup[1]/UIAButton[1]"))).release().perform();
-		Thread.sleep(500);
-		action.press(driver.findElement(By.xpath("//UIAApplication[1]/UIAWindow[4]/UIAAlert[1]/UIACollectionView[1]/UIACollectionCell[1]/UIAButton[1]"))).release().perform();
-		
+		username(blasts_account03).click();
+		OK_button().click();
+		pop_up_ok().click();
+		back_arrow().click();
 	}
-	
+
 	public void test02_send_text_blasts() throws Exception {
 		// Sends text blast with +username, URL, and location to blast list
 		log("Sending text blast to blast list");
-		//blasts_tab();
+		blasts_tab();
 		action_menu().click();
-		//Thread.sleep(500);
+		Thread.sleep(500);
 		action_menu_text().click();
-		dust_blast_field().sendKeys(blast_username + " " + blast_url);
-		next_button().click();
-		select_blast_list().click();
-		Thread.sleep(800);
-		send_to_blast_list();
+		text_blast_field().sendKeys(blast_username + " " + blast_url);
+		text_location_button().click();
+		current_location().click();
+		OK_button().click();
+		send_to_blast_list().click();
+		blast_Ok_button().click();
 
 		// Edits participants and renames blast list
 		log("Editing blast list");
 		blast_lists().click();
-		blast_list_expand(); // Doesn't need .click(); attribute
+		blast_list_expand().click();
 		blast_list_edit().click();
-		username(account03).click();
-		blast_list_more().click();
-		rename_list().click();
+		username(blasts_account03).click();
+		rename_blast_list().clear();
 		rename_blast_list().sendKeys("Edited blast list");
 		OK_button().click();
 		Thread.sleep(1000);
-		OK_button().click();
-		back_button().click();
+		pop_up_ok().click();
+		back_arrow().click();
 	}
 
 	public void test03_send_photo_blast_01() throws Exception {
@@ -99,7 +101,7 @@ public class IOS_BlastTest extends IOSElements {
 		done_button().click();
 		next_button().click();
 		make_public().click();
-		//send_to_blast_list().click();
+		send_to_blast_list().click();
 		blast_Ok_button().click();
 
 		// Deletes blast list
@@ -107,9 +109,9 @@ public class IOS_BlastTest extends IOSElements {
 		blast_lists().click();
 		blast_list_expand();
 		blast_list_edit().click();
-		blast_list_more().click();
 		delete_list().click();
 		confirm().click();
+		back_arrow().click();
 	}
 
 	public void test05_send_giphy_blast() throws Exception {
@@ -119,7 +121,7 @@ public class IOS_BlastTest extends IOSElements {
 		action_menu().click();
 		Thread.sleep(1000);
 		action_menu_text().click();
-		dust_blast_field().sendKeys(":giphy cats");
+		text_blast_field().sendKeys(":giphy cats");
 		OK_button().click();
 		blast_friends().click();
 		username(blasts_account02).click();
@@ -143,9 +145,9 @@ public class IOS_BlastTest extends IOSElements {
 		blast_list_field().sendKeys("My Test List");
 		OK_button().click();
 		username(blasts_account02).click();
-		username(account03).click();
+		username(blasts_account03).click();
 		OK_button().click();
-		//send_to_blast_list().click();
+		send_to_blast_list().click();
 		blast_Ok_button().click();
 	}
 
@@ -174,7 +176,7 @@ public class IOS_BlastTest extends IOSElements {
 		action_menu().click();
 		Thread.sleep(1000);
 		action_menu_text().click();
-		dust_blast_field().sendKeys("Reply test");
+		text_blast_field().sendKeys("Reply test");
 		OK_button().click();
 		blast_friends().click();
 		username(blasts_account02).click();
@@ -185,9 +187,9 @@ public class IOS_BlastTest extends IOSElements {
 		blast_lists().click();
 		blast_list_expand();
 		blast_list_edit().click();
-		blast_list_more().click();
 		delete_list().click();
 		confirm().click();
+		back_arrow().click();
 	}
 
 	public void test09_open_text_blast() throws Exception {
@@ -197,11 +199,11 @@ public class IOS_BlastTest extends IOSElements {
 		log("Opening text blast and checking +username, URL, and location");
 		blasts_tab();
 		name(blasts_account01).click(); Thread.sleep(2000);
-		
+
 		swipe_view_location().click(); Thread.sleep(3000);
-		//driver.pressKeyCode(4); Thread.sleep(2000);
+		aDriver().pressKeyCode(4); Thread.sleep(2000);
 		action.press(screenWidth/10*2, screenHeight/10*2).release().perform(); // taps +username
-		
+
 		try {
 			Thread.sleep(1000);
 			if (profile_follow_button().isDisplayed()) {
@@ -210,15 +212,15 @@ public class IOS_BlastTest extends IOSElements {
 		} catch (Exception e) {
 			log ("[Warning] +username did not open profile!");
 		}
-		
-		//driver.pressKeyCode(4);
+
+		aDriver().pressKeyCode(4);
 		Thread.sleep(2000);
 		action.press(screenWidth/10*2, (int)(screenHeight/10*2.9)).release().perform(); // Taps on URL
 		// swipe_view_url_card().click(); currently not working over Wifi
 		Thread.sleep(4000);
 		back_button().click(); Thread.sleep(1000);
-		
-		driver.swipe((screenWidth/10*8), (screenHeight/10*3), (screenWidth/10*1), (screenHeight/10*3), 300);
+
+		driver.swipe((screenWidth/10*8), (screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
 	}
 
 	public void test10_open_photo_blast() throws Exception {
@@ -236,7 +238,7 @@ public class IOS_BlastTest extends IOSElements {
 		back_button().click();
 		Thread.sleep(1000);
 
-		driver.swipe((screenWidth/10*8), (screenHeight/10*3), (screenWidth/10*1), (screenHeight/10*3), 300);
+		driver.swipe((screenWidth/10*8), (screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
 	}
 
 	public void test11_open_non_public_blast() throws Exception {
@@ -250,7 +252,7 @@ public class IOS_BlastTest extends IOSElements {
 			log("Not able to reblast non public blast");
 		}
 		swipe_view_text().click();
-		
+
 		try {
 			Thread.sleep(1000);
 			if (profile_follow_button().isDisplayed()) {
@@ -259,18 +261,18 @@ public class IOS_BlastTest extends IOSElements {
 		} catch (Exception e) {
 			log ("[Warning] +username did not open profile!");
 		}
-		
+
 		action.press(screenWidth/10*2, screenHeight/10*2).release().perform();
 		Thread.sleep(1000);
 
-		driver.swipe((screenWidth/10*8), (screenHeight/10*3), (screenWidth/10*1), (screenHeight/10*3), 300);
+		driver.swipe((screenWidth/10*8), (screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
 	}
 
 	public void test12_open_giphy_blast() throws Exception {
 		// Checks if giphy was received
 		try {
 			Thread.sleep(3000);
-			if (driver.findElementById("com.radicalapps.cyberdust:id/page_frag_gif_view").isDisplayed() 
+			if (driver.findElementById("com.radicalapps.cyberdust:id/page_frag_gif_view").isDisplayed()
 					&& driver.findElementById("com.radicalapps.cyberdust:id/text_overlay").isDisplayed()) {
 				log("Giphy loaded successfully");
 			}
@@ -278,7 +280,7 @@ public class IOS_BlastTest extends IOSElements {
 			log("Giphy was not found");
 		}
 		Thread.sleep(1000);
-		driver.swipe((screenWidth/10*8), (screenHeight/10*3), (screenWidth/10*1), (screenHeight/10*3), 300);
+		driver.swipe((screenWidth/10*8), (screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
 	}
 
 	public void test13_open_video_blast() throws Exception {
@@ -292,7 +294,7 @@ public class IOS_BlastTest extends IOSElements {
 			log("Video did not load");
 		}
 		swipe_view_text().click();
-		
+
 		try {
 			Thread.sleep(1000);
 			if (profile_follow_button().isDisplayed()) {
@@ -301,11 +303,11 @@ public class IOS_BlastTest extends IOSElements {
 		} catch (Exception e) {
 			log ("[Warning] +username did not open profile!");
 		}
-		
+
 		action.press(screenWidth/10*2, screenHeight/10*2).release().perform();
 		Thread.sleep(1000);
 
-		driver.swipe((screenWidth/10*8), (screenHeight/10*3), (screenWidth/10*1), (screenHeight/10*3), 300);
+		driver.swipe((screenWidth/10*8), (screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
 
 		// Opens video with URL
 		swipe_view_text().click();
@@ -313,7 +315,7 @@ public class IOS_BlastTest extends IOSElements {
 		back_button().click();
 		Thread.sleep(1000);
 
-		driver.swipe((screenWidth/10*8), (screenHeight/10*3), (screenWidth/10*1), (screenHeight/10*3), 300);
+		driver.swipe((screenWidth/10*8), (screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
 	}
 
 	public void test14_reply_to_blast() throws Exception {
@@ -324,7 +326,7 @@ public class IOS_BlastTest extends IOSElements {
 		swipe_view_reply_send().click();
 		swipe_view_reply().click();
 		swipe_view_reply().sendKeys("+blasttest");
-		
+
 		log("Testing if +usernames can be tapped");
 		swipe_view_reblast().click();
 		swipe_view_reply_send().click();
@@ -332,7 +334,7 @@ public class IOS_BlastTest extends IOSElements {
 		swipe_view_monkey().click();
 		swipe_view_emoji_cancel().click();
 		swipe_view_reply_media().click();
-		
+
 		log("Testing photo and video replies");
 		photo_button().click();
 		photo_pen().click();
@@ -348,11 +350,11 @@ public class IOS_BlastTest extends IOSElements {
 		} catch (Exception e) {
 			action.press(100, 1000).release().perform();
 			swipe_view_exit().click();
-		}	
+		}
 	}
 
 	public void test15_check_replies() throws Exception {
-		// Login with blasts_account01 to check replies
+		// Login with account01 to check replies
 		loginAs.user(blasts_account01, blasts_password01);
 
 		// Opens replies from blasts_account02 and does a check to see if they were all received

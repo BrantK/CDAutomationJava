@@ -80,7 +80,7 @@ public class IOS_FriendsTest extends IOSElements {
     	
 		log("Sending blasts to "+recipient1+" and "+recipient2);
     	action_menu_text().click();
-       	dust_blast_field().sendKeys("Test");
+       	text_blast_field().sendKeys("Test");
     	OK_button().click();
     	blast_friends().click();
     	username(recipient1).click();
@@ -95,7 +95,7 @@ public class IOS_FriendsTest extends IOSElements {
 		action_menu().click();
     	Thread.sleep(500);
     	action_menu_text().click();
-       	dust_blast_field().sendKeys("Test");
+       	text_blast_field().sendKeys("Test");
     	OK_button().click();
     	blast_friends().click();
     	checkForFriend(checkForAccount);
@@ -112,7 +112,7 @@ public class IOS_FriendsTest extends IOSElements {
     	Thread.sleep(500);
     	log("Sending blasts to account01 and 02");
     	action_menu_text().click();
-    	dust_blast_field().sendKeys("Block/mute from blasts tab");
+    	text_blast_field().sendKeys("Block/mute from blasts tab");
     	OK_button().click();
     	blast_friends().click();
     	username(friends_account01).click();
@@ -127,7 +127,7 @@ public class IOS_FriendsTest extends IOSElements {
     	Thread.sleep(500);
     	log("Sending blasts to account01, 02, and 03");
     	action_menu_text().click();
-    	dust_blast_field().sendKeys("Block/mute from swipe view");
+    	text_blast_field().sendKeys("Block/mute from swipe view");
     	OK_button().click();
     	blast_friends().click();
     	username(friends_account01).click();
@@ -146,7 +146,7 @@ public class IOS_FriendsTest extends IOSElements {
     	Thread.sleep(500);
     	log("Sending blast to account02 for testing later");
     	action_menu_text().click();
-    	dust_blast_field().sendKeys("Before blocking/muting");
+    	text_blast_field().sendKeys("Before blocking/muting");
     	OK_button().click();
     	blast_friends().click();
     	username(friends_account02).click();
@@ -241,7 +241,7 @@ public class IOS_FriendsTest extends IOSElements {
     	Thread.sleep(500);
     	log("Sending blast to blocked accounts");
     	action_menu_text().click();
-    	dust_blast_field().sendKeys("Test");
+    	text_blast_field().sendKeys("Test");
     	OK_button().click();
     	blast_all_followers().click();
     	blast_Ok_button().click();
@@ -330,7 +330,7 @@ public class IOS_FriendsTest extends IOSElements {
     	Thread.sleep(500);
     	log("Sending blasts to "+friends_account01);
     	action_menu_text().click();
-       	dust_blast_field().sendKeys("Test");
+       	text_blast_field().sendKeys("Test");
     	OK_button().click();
     	blast_friends().click();
     	username(friends_account01).click();
