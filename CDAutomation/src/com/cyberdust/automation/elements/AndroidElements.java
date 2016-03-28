@@ -216,19 +216,19 @@ public class AndroidElements extends Drivers {
 	}
 	public WebElement action_menu_dust() throws InterruptedException {
 		Thread.sleep(500);
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.FrameLayout[@index='4'][android.widget.ImageView[@index='1']]")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.FrameLayout[@index='3'][android.widget.ImageView[@index='1']]")));
 	}
 	public WebElement action_menu_group() throws InterruptedException {
 		Thread.sleep(500);
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.FrameLayout[@index='2'][android.widget.ImageView[@index='1']]")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.FrameLayout[@index='1'][android.widget.ImageView[@index='1']]")));
 	}
 	public WebElement action_menu_text() throws InterruptedException {
 		Thread.sleep(500);
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.FrameLayout[@index='3'][android.widget.ImageView[@index='1']]")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.FrameLayout[@index='2'][android.widget.ImageView[@index='1']]")));
 	}
 	public WebElement action_menu_media() throws InterruptedException {
 		Thread.sleep(500);
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.FrameLayout[@index='5'][android.widget.ImageView[@index='1']]")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.FrameLayout[@index='4'][android.widget.ImageView[@index='1']]")));
 	}
 	public WebElement action_menu_close() throws InterruptedException {
 		Thread.sleep(500);
@@ -355,7 +355,7 @@ public class AndroidElements extends Drivers {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/mute_blast_icon")));
 	}
 	public WebElement blast_Ok_button() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Ok")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/spinner_button_text_view")));
 	}
 	public WebElement dust_three_dotted_menu() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.LinearLayout[@index='2'][android.widget.ImageButton[@index='0']]")));
