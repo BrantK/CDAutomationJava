@@ -61,9 +61,9 @@ public class IOSElements extends Drivers {
 	public WebElement cancel() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("android:id/button2")));
 	}
-	public WebElement profile_follow_button() {
+	/*public WebElement profile_follow_button() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/add_button")));
-	}
+	}*/
 	public WebElement close_button() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("close")));
 	}
@@ -130,10 +130,10 @@ public class IOSElements extends Drivers {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("MY BLASTS")));
 	}
 	public WebElement my_blasts_views(String viewCount) {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.TextView[@text='"+viewCount+"' and @resource-id='com.radicalapps.cyberdust:id/view_count']")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.TextView[@text='" + viewCount + "' and @resource-id='com.radicalapps.cyberdust:id/view_count']")));
 	}
 	public WebElement my_blasts_screenshots(String screenshotCount) {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.TextView[@text='"+screenshotCount+"' and @resource-id='com.radicalapps.cyberdust:id/screenshot_count']")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.TextView[@text='" + screenshotCount + "' and @resource-id='com.radicalapps.cyberdust:id/screenshot_count']")));
 	}
 	public WebElement my_blasts_trash_can() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/action_delete")));
@@ -440,6 +440,9 @@ public class IOSElements extends Drivers {
 	public WebElement yes_button() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Yes")));
 	}
+	public WebElement no_button() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.name("No")));
+	}
 	public WebElement Friend_already_added() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Friend Already Added")));
 	}
@@ -461,7 +464,105 @@ public class IOSElements extends Drivers {
     public WebElement dust_info_text() { //text like you sent x minutes ago
     	return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/info_text")));
     }
-	
+
+	/**********************
+	 * Find Tab elements *
+	 **********************/
+	public WebElement find_tab() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.name("FIND")));
+	}
+	public WebElement first_chatter_add() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[2]/UIACollectionView[1]/UIACollectionCell[1]/UIAButton[1]")));
+	}
+	public WebElement first_chatter_open_profile() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[2]/UIACollectionView[1]/UIACollectionCell[1]")));
+	}
+	public WebElement profile_follow_button() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.name("followButton")));
+	}
+	public WebElement confirm_unfollow_button() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("Yes")));
+	}
+	public WebElement close_profile() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAImage[1]")));
+	}
+	public WebElement featured_people_banner() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.name("FEATURED PEOPLE")));
+	}
+	public WebElement first_publisher_add() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[3]/UIACollectionView[1]/UIACollectionCell[1]/UIAButton[1]")));
+	}
+	public WebElement first_publisher_open_profile() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[3]/UIACollectionView[1]/UIACollectionCell[1]")));
+	}
+	public WebElement categories_banner() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.name("CATEGORIES")));
+	}
+	public WebElement build_a_following_button() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.name("BUILD A FOLLOWING")));
+	}
+	public WebElement select_a_category_button() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAButton[1]")));
+	}
+	public WebElement build_a_following_description() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATextView[1]")));
+	}
+	public WebElement previous_screen_button() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.name("back arrow red btn")));
+	}
+	public WebElement error_message() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.name("Error")));
+	}
+	public WebElement closeButton () {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.name("closeButton")));
+	}
+	public WebElement temp_tutorial_placeholder() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.name("progress")));
+	}
+	public WebElement build_following_lower_keyboard() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath(" //UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAStaticText[4]")));
+	}
+	public WebElement contact_banner() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.name("CONTACTS")));
+	}
+	public WebElement searchbar() throws Exception {
+		Thread.sleep(500);
+		return driver.findElement(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIAImage[1]"));
+	}
+	public WebElement follow_fourth_search_result() throws Exception {
+		Thread.sleep(500);
+		return driver.findElement(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[4]/UIAButton[2]"));
+	}
+	public WebElement open_fourth_search_result() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[4]")));
+	}
+	public WebElement close_search() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.name("dismiss search")));
+	}
+
+	///////////////Find Tab Categories///////////////
+	public WebElement category_advertising() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.name("Advertising")));
+	}
+	public WebElement category_advertising_marketing() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.name("Marketing")));
+	}
+	public WebElement category_arts() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.name("Arts")));
+	}
+	public WebElement category_arts_dancing() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.name("Dance")));
+	}
+	public WebElement category_business() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.name("Business")));
+	}
+	public WebElement category_business_finance() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.name("Finance")));
+	}
+	public WebElement first_chatter_category() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIACollectionView[1]/UIACollectionCell[1]/UIAStaticText[2]")));
+	}
+
 	/**********************
 	 * More page elements *
 	 **********************/
