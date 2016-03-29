@@ -35,7 +35,7 @@ public class IOS_AutoBlast extends IOSElements {
     public void text_blast() throws Exception {
         action_menu().click();
         action_menu_text().click();
-        dust_blast_field().sendKeys(blast_text);
+        text_blast_field().sendKeys(blast_text);
         OK_button().click();
         blast_friends().click();
         username(blast_recipient).click();

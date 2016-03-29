@@ -108,7 +108,7 @@ public class IOS_DeleteGroupChatTests extends IOSElements{
 		back_button().click();
 		log("Fifth group created");
 		
-		groups_tab().click();
+		dusts_tab().click();
 		WebElement Group1 = wait.until(ExpectedConditions.elementToBeClickable(By.name(" Group 1")));
 		log("Got group 1");
 		

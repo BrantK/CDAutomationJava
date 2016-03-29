@@ -84,7 +84,7 @@ public class IOS_dustTest extends IOSElements {
 
 		action_menu().click();
 
-		action_menu_search().click();
+		//action_menu_search().click();
 
 		friends_search().click();
 
@@ -130,7 +130,7 @@ public class IOS_dustTest extends IOSElements {
 
 		action_menu().click();
 
-		action_menu_search().click();
+		//action_menu_search().click();
 
 		friends_search().click();
 

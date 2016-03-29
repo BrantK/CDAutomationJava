@@ -4,6 +4,7 @@ import com.cyberdust.automation.elements.AndroidElements;
 import com.cyberdust.automation.elements.LoginWith;
 
 public class Android_BlastTest extends AndroidElements {
+
 	String blast_url = "www.cyberdust.com";
 	String blast_username = "+" + blasts_account01;
 	LoginWith loginAs = new LoginWith();

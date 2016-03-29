@@ -8,7 +8,7 @@ public class IOS_MyBlastsTest extends IOSElements {
 	LoginWith loginAs = new LoginWith();
 	
 	public void swipeThroughBlasts() throws Exception {
-		screenshot_button().click();
+		// use iPhone screenshot // screenshot_button().click();
 		Thread.sleep(1000);
 		driver.swipe((screenWidth/10*8), (screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
 		Thread.sleep(1000);
@@ -23,7 +23,7 @@ public class IOS_MyBlastsTest extends IOSElements {
 		blasts_tab();
 		action_menu().click();
 		action_menu_text().click();
-		dust_blast_field().sendKeys("Test");
+		text_blast_field().sendKeys("Test");
 		OK_button().click();
 		blast_friends().click();
 		username(myblasts_account02).click();

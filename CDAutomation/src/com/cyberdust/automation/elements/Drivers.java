@@ -53,33 +53,34 @@ public abstract class Drivers extends TestAccounts {
 				.withArgument(GeneralServerFlag.LOG_NO_COLORS)
 				.withIPAddress(appiumServerAddress)
 				.usingPort(Integer.parseInt(appiumServerPort)));
-		
+
+        if ((IOSEnabled && (DeviceReader.IOSDevice || DeviceReader.AndroidDevice)) || (!DeviceReader.IOSDevice && !DeviceReader.AndroidDevice)) {
+            if (IOSEnabled) {
+                System.out.println("Using iOS simulator");
+            } else {
+                System.out.println("No devices detected, using iOS simulator");
+            }
+
+            capabilities.setCapability("platformName", "IOS");
+            capabilities.setCapability("platformVersion", "");
+            capabilities.setCapability("deviceName", "");
+            capabilities.setCapability("noReset", true);
+            capabilities.setCapability("nativeInstrumentsLib", true);
+            capabilities.setCapability("bundleId", "com.mentionmobile.cyberdust");
+            capabilities.setCapability("app", AppPath.localAppPath);
+            System.out.println("\n------ Starting Appium Server ------");
+            driver = new IOSDriver<>(service, capabilities);
+        }
+
 		if (!IOSEnabled && DeviceReader.IOSDevice && !DeviceReader.AndroidDevice) {
 			System.out.println("iOS device detected");
 			capabilities.setCapability("platformName", "IOS");
 			capabilities.setCapability("platformVersion", "");
 			capabilities.setCapability("deviceName", "");
 			capabilities.setCapability("noReset", true);
-			capabilities.setCapability("app", "com.mentionmobile.cyberdust");
-			capabilities.setCapability("udid", DeviceReader.IOS_UDID);
-			System.out.println("\n------ Starting Appium Server ------");
-			driver = new IOSDriver<>(service, capabilities);
-		}
-			
-		if ((IOSEnabled && (DeviceReader.IOSDevice || DeviceReader.AndroidDevice)) || (!DeviceReader.IOSDevice && !DeviceReader.AndroidDevice)) {
-			if (IOSEnabled) {
-				System.out.println("Using iOS simulator");
-			} else {
-				System.out.println("No devices detected, using iOS simulator");
-			}
-			
-			capabilities.setCapability("platformName", "IOS");
-			capabilities.setCapability("platformVersion", "");
-			capabilities.setCapability("deviceName", "");
-			capabilities.setCapability("noReset", true);
-			capabilities.setCapability("nativeInstrumentsLib", true);
+            capabilities.setCapability("nativeInstrumentsLib", true);
 			capabilities.setCapability("bundleId", "com.mentionmobile.cyberdust");
-			capabilities.setCapability("app", AppPath.localAppPath);
+			capabilities.setCapability("udid", DeviceReader.IOS_UDID);
 			System.out.println("\n------ Starting Appium Server ------");
 			driver = new IOSDriver<>(service, capabilities);
 		}

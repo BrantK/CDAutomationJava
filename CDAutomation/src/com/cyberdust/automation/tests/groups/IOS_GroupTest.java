@@ -19,9 +19,8 @@ public class IOS_GroupTest extends IOSElements {
         username(groups_account03).click();
         OK_button().click();
         Thread.sleep(500);
-        action.press((int)(screenWidth/10*4.86), (int)(screenHeight/10*5.07)).release().perform();
         groups_title_field().sendKeys("Test Group");
-        confirm().click();
+        next_arrow().click();
 	}
 	 
      public void test02_add_blocked_user() throws Exception {
@@ -29,7 +28,7 @@ public class IOS_GroupTest extends IOSElements {
         group_three_dotted_menu().click();
         name("add friends to room").click();
         name(groups_blocked_account).click();
-        OK_button().click();
+        back_arrow().click();
         
 		try {
 			waitTime(2);
@@ -129,7 +128,7 @@ public class IOS_GroupTest extends IOSElements {
 		loginAs.user(groups_account02, groups_password02);
 		
 		// Check if all group messages were received from groups_account01
-		groups_tab().click();
+		dusts_tab().click();
 		group1().click();
 		
 		try {
