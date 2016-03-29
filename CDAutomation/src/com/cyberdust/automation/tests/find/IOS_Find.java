@@ -16,7 +16,7 @@ public class IOS_Find extends IOSElements{
         first_chatter_add().click();
         first_chatter_open_profile().click();
         if ( !profile_follow_button().getAttribute("value").equals("1")) {
-            throw new InterruptedException("Publisher not followed");
+            throw new InterruptedException("Chatter not followed");
         }
         System.out.println("Account followed.");
         profile_follow_button().click();
@@ -27,7 +27,12 @@ public class IOS_Find extends IOSElements{
 
     public void test02_follow_publisher() throws Exception {
 
-        //to add robustness: if (not on find tab) {go to find tab}
+        //corrects screen state if previous test failed or app crashed
+        try {
+            if (empty_dust_tab_text().getAttribute("name").equals("You have no Dusts")) {
+                find_tab().click();
+            }
+        } catch (Exception e) {}
 
         System.out.println("Following Publisher from publisher stream.");
         action.press(featured_people_banner()).moveTo(dusts_tab()).waitAction(1000).release().perform();
@@ -45,7 +50,12 @@ public class IOS_Find extends IOSElements{
 
     public void test03_category_titles() throws Exception {
 
-        //to add robustness: if (not on find tab) {go to find tab}
+        //corrects screen state if previous test crashed or app crashed
+        try {
+            if (empty_dust_tab_text().getAttribute("name").equals("You have no Dusts")) {
+                find_tab().click();
+            }
+        } catch (Exception e) {}
 
         System.out.println("Testing chatter categories match descriptions");
         action.press(categories_banner()).moveTo(dusts_tab()).waitAction(1000).release().perform();
@@ -88,9 +98,17 @@ public class IOS_Find extends IOSElements{
 
     public void test04_build_a_following() throws Exception {
 
-        //to add robustness: if (not on find tab) {go to find tab}
+        //corrects screen state if previous test crashed or app crashed
+        try {
+            if (empty_dust_tab_text().getAttribute("name").equals("You have no Dusts")) {
+                find_tab().click();
+            }
+        } catch (Exception e) {}
 
-        action.press(category_advertising()).moveTo(temp_tutorial_placeholder()).release().perform();
+        try {
+            action.press(category_advertising()).moveTo(temp_tutorial_placeholder()).release().perform();
+        } catch (Exception e) {}
+
 
         //Cleans up form from last test
         System.out.print("Cleaning up fields from last test... ");
@@ -132,7 +150,12 @@ public class IOS_Find extends IOSElements{
 
     public void test05_searchbar() throws Exception {
 
-        //to add robustness: if (not on find tab) {go to find tab}
+        //corrects screen state if previous test crashed or app crashed
+        try {
+            if (empty_dust_tab_text().getAttribute("name").equals("You have no Dusts")) {
+                find_tab().click();
+            }
+        } catch (Exception e) {}
 
         action.press(contact_banner()).moveTo(featured_people_banner()).release().perform();
         System.out.println("Trying to follow user in search results...");

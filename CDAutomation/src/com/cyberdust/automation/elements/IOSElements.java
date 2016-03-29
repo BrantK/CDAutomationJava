@@ -104,8 +104,8 @@ public class IOSElements extends Drivers {
 	public WebElement dusts_tab() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("DUSTS")));
 	}
-	public TouchAction dust_text_box() {
-	    	return action.longPress(150, 640).release().perform();
+	public WebElement empty_dust_tab_text() {
+	    	return driver.findElement(By.name("You have no Dusts"));
 	}
 	public WebElement send_dust() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("send")));
