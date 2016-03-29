@@ -67,9 +67,6 @@ public class IOSElements extends Drivers {
 	public WebElement cancel() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
 	}
-	public WebElement profile_follow_button() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
-	}
 	public WebElement close_button() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("close")));
 	}
