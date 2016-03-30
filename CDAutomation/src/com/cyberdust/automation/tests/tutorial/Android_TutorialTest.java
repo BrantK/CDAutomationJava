@@ -16,49 +16,22 @@ public class Android_TutorialTest extends AndroidElements {
 	
 	public void test01_tutorialUI() throws Exception
 	{
-		int x =0 ;
+		
 		loginAs.user(tutorial_account, tutorial_password);
 		Thread.sleep(5000);
+		if(!tutorial_icon().isDisplayed())
+		{
+			more_button().click();
+			action.press(followers()).moveTo(back_button()).release().perform();
+		}
 		
-		more_button().click();
-		 action.press(followers()).moveTo(back_button()).release().perform();
-		 tutorial_button().click();
-		 Thread.sleep(1000);
-		 WebElement replay = wait.until(ExpectedConditions.elementToBeClickable(By.name("replay")));
-		 WebElement exit = wait.until(ExpectedConditions.elementToBeClickable(By.name("exit")));
-		 try{
-			 if((replay.isDisplayed())&&((exit.isDisplayed())))
-			 {
-				 log("Tutorial UI is displayed");
-			 }
-		 }
-		 catch(Exception e)
-		 {
-			 log("Tutorial UI is not displayed properly");
-		 }
+		
 		
 	}
 	
 	public void test02_tutorialFunctionality() throws Exception
 	{
-		WebElement replay = wait.until(ExpectedConditions.elementToBeClickable(By.name("replay")));
-		 WebElement exit = wait.until(ExpectedConditions.elementToBeClickable(By.name("exit")));
 		
-		 replay.click();
-		 exit.click();
-		 
-		 try{
-			 if((!replay.isDisplayed())&&((!exit.isDisplayed())))
-			 {
-				 log("Tutorial UI is displayed");
-			 }
-		 }
-		 catch(Exception e)
-		 {
-			 log("Tutorial UI is not displayed properly");
-		 }
-	
-	
 	}
 	
 }

@@ -208,7 +208,7 @@ public class AndroidElements extends Drivers {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/card_view")));
 	}
 	public WebElement more_button() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.FrameLayout[@index='2'][android.widget.ImageView[@index='0']]")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/floating_button_more")));
 	}
 	public WebElement action_menu() throws InterruptedException {
 		Thread.sleep(500);
