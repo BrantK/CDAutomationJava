@@ -713,9 +713,14 @@ public class AndroidElements extends Drivers {
 	 * New Tutorial elements *
 	 *************************/
 	public WebElement tutorial_icon() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.FrameLayout[@index='0'][android.widget.FrameLayout[@index='1'][android.widget.FrameLayout[@index='']")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.FrameLayout[@index='0'][android.widget.FrameLayout[@index='1'][android.widget.FrameLayout[@index='1']")));
 	}
-
+	public WebElement tutorial_switch() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tutorial_settings_switch")));
+	}
+	public WebElement tutorial_back_button() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.name("TUTORIAL")));
+	}
 	public WebElement tutorial_private_messaging() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.name("Private messaging with Cyber Dust")));
 	}
@@ -740,7 +745,7 @@ public class AndroidElements extends Drivers {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.name("Find contacts with Cyber Dust")));
 	}
 
-	public WebElement tutorial_leart_to_dust() {
+	public WebElement tutorial_learn_to_dust() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.name("Learn to Dust")));
 	}
 
