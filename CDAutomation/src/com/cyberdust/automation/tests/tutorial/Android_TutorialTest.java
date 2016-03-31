@@ -14,51 +14,44 @@ public class Android_TutorialTest extends AndroidElements {
 	LoginWith loginAs = new LoginWith();
 	
 	
-	public void test01_tutorialUI() throws Exception
+	public void test01_newAccount() throws Exception
 	{
-		int x =0 ;
+		log("needs to be implemented");
+	}
+		
+	public void test02_enable_tutorial() throws Exception
+	{
 		loginAs.user(tutorial_account, tutorial_password);
-		Thread.sleep(5000);
-		
+		Thread.sleep(4000);
 		more_button().click();
-		 action.press(followers()).moveTo(back_button()).release().perform();
-		 tutorial_button().click();
-		 Thread.sleep(1000);
-		 WebElement replay = wait.until(ExpectedConditions.elementToBeClickable(By.name("replay")));
-		 WebElement exit = wait.until(ExpectedConditions.elementToBeClickable(By.name("exit")));
-		 try{
-			 if((replay.isDisplayed())&&((exit.isDisplayed())))
-			 {
-				 log("Tutorial UI is displayed");
-			 }
-		 }
-		 catch(Exception e)
-		 {
-			 log("Tutorial UI is not displayed properly");
-		 }
+		action.press(followers()).moveTo(back_button()).release().perform();
+		tutorial().click();
+		if(tutorial_switch().getText().contains("OFF"))
+		{
+			tutorial_switch().click();
+		}
+			tutorial_back_button().click();
+			back_button().click();
+			Thread.sleep(1000);
+		action.tap(90, 1750).perform();
+		Thread.sleep(1000);
 		
+		try
+		{
+			if(tutorial_getStarted_Button().isDisplayed())
+				System.out.println(tutorial_getStarted_Button().getText());
+			log("Tutorial enabled");
+		}
+		catch (Exception e)
+		{
+			log("Tutorial is not enabled");
+		}
+	
 	}
 	
 	public void test02_tutorialFunctionality() throws Exception
 	{
-		WebElement replay = wait.until(ExpectedConditions.elementToBeClickable(By.name("replay")));
-		 WebElement exit = wait.until(ExpectedConditions.elementToBeClickable(By.name("exit")));
 		
-		 replay.click();
-		 exit.click();
-		 
-		 try{
-			 if((!replay.isDisplayed())&&((!exit.isDisplayed())))
-			 {
-				 log("Tutorial UI is displayed");
-			 }
-		 }
-		 catch(Exception e)
-		 {
-			 log("Tutorial UI is not displayed properly");
-		 }
-	
-	
 	}
 	
 }
