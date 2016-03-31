@@ -715,6 +715,9 @@ public class AndroidElements extends Drivers {
 	public WebElement tutorial_icon() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.FrameLayout[@index='0'][android.widget.FrameLayout[@index='1'][android.widget.FrameLayout[@index='1']")));
 	}
+	public WebElement tutorial_main_page() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tutorial_container")));
+	}
 	public WebElement tutorial_switch() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tutorial_settings_switch")));
 	}
