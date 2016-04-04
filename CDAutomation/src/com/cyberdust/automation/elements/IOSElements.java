@@ -41,8 +41,11 @@ public class IOSElements extends Drivers {
 	 * Common elements *
 	 *******************/
     public WebElement name(String name) {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.name(name)));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id(name)));
     }
+	public WebElement username(String user) {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id(user)));
+	}
     public WebElement next_arrow() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("btn signup rightred")));
     }
@@ -64,14 +67,11 @@ public class IOSElements extends Drivers {
 	public WebElement confirm() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("Okay")));
 	}
-	public WebElement cancel() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
-	}
 	public WebElement close_button() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("close")));
 	}
     public WebElement next_button() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.name("next")));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("next")));
     }
     public WebElement pop_up_ok() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[4]/UIAAlert[1]/UIACollectionView[1]/UIACollectionCell[1]/UIAButton[1]")));
@@ -92,9 +92,6 @@ public class IOSElements extends Drivers {
 	public WebElement login_OK() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("Log In")));
 	}
-	public WebElement sign_up() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("next arrow grey btn")));
-	}
 	public WebElement push_notifications_OK() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[7]/UIAAlert[1]/UIACollectionView[1]/UIACollectionCell[2]/UIAButton[1]")));
 	}
@@ -107,6 +104,9 @@ public class IOSElements extends Drivers {
 	public WebElement empty_dust_tab_text() {
 	    	return driver.findElement(By.name("You have no Dusts"));
 	}
+    public WebElement dust1() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIACollectionView[1]/UIACollectionCell[1]")));
+    }
 	public WebElement send_dust() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("send")));
 	}
@@ -237,8 +237,8 @@ public class IOSElements extends Drivers {
 	public WebElement more_button() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("profileMore")));
 	}
-	public WebElement action_menu() {
-		//Thread.sleep(500);
+	public WebElement action_menu() throws Exception {
+		Thread.sleep(500);
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("floatingMenuCompose")));
 	}
 	public WebElement action_menu_dust() {
@@ -364,14 +364,11 @@ public class IOSElements extends Drivers {
 	public WebElement swipe_view_exit() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("Close Button (Shadow)")));
 	}
-	public WebElement username(String user) {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name(user)));
-	}
 	public WebElement mute_blast_icon() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
 	}
 	public WebElement blast_Ok_button() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("SEND")));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableGroup[1]/UIAButton[2]")));
 	}
 	public WebElement dust_three_dotted_menu() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIACollectionView[1]/UIACollectionCell[1]/UIAButton[1]")));
@@ -604,26 +601,26 @@ public class IOSElements extends Drivers {
 	public WebElement account_settings() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[14]/UIAStaticText[1]")));
 	}
+	public WebElement tutorial() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[17]")));
+	}
 	public WebElement change_email_address() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("Change Email Address")));
 	}
 	public WebElement change_password() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("Change Password")));
 	}
 	public WebElement validate_mobile() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[3]")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("Update Mobile #")));
 	}
-    public WebElement tutorial() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[17]")));
-    }
     public WebElement delete_account() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[6]")));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("Delete Account")));
     }
 	public WebElement confirm_delete() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("Delete")));
 	}
 	public WebElement confirm_delete_again() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.id("Delete Account")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[4]/UIAAlert[1]/UIACollectionView[1]/UIACollectionCell[1]")));
 	}
     public WebElement enter_old_password() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("current password")));
@@ -667,7 +664,6 @@ public class IOSElements extends Drivers {
     public WebElement add_friend() { // from followers
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("+")));
 	}
-
 	public WebElement switch_emoji_keyboard() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("99 13 emoji red btn")));
 	}
@@ -698,27 +694,12 @@ public class IOSElements extends Drivers {
     public WebElement add_friends_button_inBrowseFriends() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("btn addfriends plus")));
 	}
-    public WebElement discover_tab() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id(" Chatters")));
-	}
-    public WebElement chatters_tab() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id(" Chatters")));
-	}
     
     /********************
      * Sign up elements *
      ********************/
     public WebElement sign_up_button() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("btn addfriends plus")));
-    }
-    public WebElement pick_username() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("  pick a unique username")));
-    }
-    public WebElement create_password() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("  create a password")));
-    }
-    public WebElement confirm_password() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("  confirm password")));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAButton[4]")));
     }
     public WebElement birthday() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAPicker[1]/UIAPickerWheel[3]")));
@@ -729,31 +710,25 @@ public class IOSElements extends Drivers {
     public WebElement email() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("enter your email address")));
     }
-    public WebElement sign_up_profile_pic() {
-    	return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAButton[1]")));
+    public WebElement choose_username() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATextField[1]")));
     }
-    public WebElement sign_up_OK() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("next arrow grey btn")));
+    public WebElement username_OK() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAButton[2]")));
     }
     public WebElement password_OK() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("next arrow grey btn")));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAButton[1]")));
     }
     public WebElement birthday_OK() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("next arrow grey btn")));
-    }
-    public WebElement date_year() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAPicker[1]/UIAPickerWheel[3]")));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAButton[1]")));
     }
     public WebElement email_OK() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("OK")));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAButton[1]")));
     }
     public WebElement skip_button() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("skip")));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("Skip")));
     }
-    public WebElement date() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.NumberPicker[@index='2'][android.widget.Button]")));
-    }
-    public WebElement tutorial_video() {
-    	return wait.until(ExpectedConditions.elementToBeClickable(By.id("replay")));
+    public WebElement tutorial_close() {
+    	return wait.until(ExpectedConditions.elementToBeClickable(By.id("onboardingDownButton")));
     }
 }
