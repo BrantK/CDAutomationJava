@@ -190,8 +190,8 @@ public abstract class TestAccounts {
 		acctmgnt_account01 = "accountmanagement";
 		acctmgnt_password01 = "password";
 		accmgnt_new_password = "new password";
-		accmgnt_email = "testuser_02@cyberdust.com";
-		accmgnt_new_email = "new_testuser_02@cyberdust.com";
+		accmgnt_email = "testuser_03@cyberdust.com";
+		accmgnt_new_email = "new_testuser_03@cyberdust.com";
 
 		// AddFriends //
 		addfriend_account01 = "addfriends";
@@ -355,9 +355,9 @@ public abstract class TestAccounts {
 		// AccountManagement //
 		acctmgnt_account01 = "accountmanagement";
 		acctmgnt_password01 = "password";
-		
-		accmgnt_email = "testuser_02@cyberdust.com";
-		accmgnt_new_email = "new_testuser_02@cyberdust.com";
+		accmgnt_new_password = "new password";
+		accmgnt_email = "testuser_04@cyberdust.com";
+		accmgnt_new_email = "new_testuser_04@cyberdust.com";
 		
 		// AddFriends //
 		addfriend_account01 = "addfriends";
