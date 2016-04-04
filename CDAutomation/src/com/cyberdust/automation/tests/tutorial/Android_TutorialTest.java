@@ -34,13 +34,15 @@ public class Android_TutorialTest extends AndroidElements {
 			back_button().click();
 			Thread.sleep(1000);
 		action.tap(90, 1750).perform();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		
 		try
 		{
-			if(tutorial_getStarted_Button().isDisplayed())
-				System.out.println(tutorial_getStarted_Button().getText());
-			log("Tutorial enabled");
+			if(tutorial_main_page().isDisplayed())
+			{
+				
+				log("Tutorial enabled");
+			}
 		}
 		catch (Exception e)
 		{
@@ -49,8 +51,38 @@ public class Android_TutorialTest extends AndroidElements {
 	
 	}
 	
-	public void test02_tutorialFunctionality() throws Exception
+	public void test02_main_page() throws Exception
 	{
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 	}
 	
