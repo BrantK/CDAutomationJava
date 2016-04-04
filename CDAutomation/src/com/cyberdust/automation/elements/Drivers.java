@@ -157,7 +157,7 @@ public abstract class Drivers extends TestAccounts {
 		
 		String dateTime = LocalDateTime.now().format(formatter)+" ";
 		String logName = getClass().getPackage().toString().substring(33, getClass().getPackage().toString().length());
-		String testName = ("["+getClass().getSimpleName()+"]: ").replace("Run_", "").replace("Run", "").replace("Android_", "").replace("iOS_", "");
+		String testName = ("["+getClass().getSimpleName()+"]: ").replace("Run_", "").replace("Run", "").replace("Android_", "").replace("IOS_", "");
 		
 		if (projectPath.contains("/")) {
 			new File(projectPath+"/testlogs/").mkdir();
