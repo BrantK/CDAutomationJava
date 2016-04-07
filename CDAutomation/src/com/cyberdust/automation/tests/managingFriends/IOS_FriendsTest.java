@@ -85,7 +85,7 @@ public class IOS_FriendsTest extends IOSElements {
     	blast_friends().click();
     	username(recipient1).click();
     	username(recipient2).click();
-    	blast_Ok_button().click();
+    	blast_Ok_button().perform();
 	}
 	
 	// Checks for friend in friends list then sends blast
@@ -101,7 +101,7 @@ public class IOS_FriendsTest extends IOSElements {
     	checkForFriend(checkForAccount);
     	username(recipient1).click();
     	username(recipient2).click();
-    	blast_Ok_button().click();
+    	blast_Ok_button().perform();
 	}
 
 	// Start of test //
@@ -117,7 +117,7 @@ public class IOS_FriendsTest extends IOSElements {
     	blast_friends().click();
     	username(friends_account01).click();
     	username(friends_account02).click();
-    	blast_Ok_button().click();
+    	blast_Ok_button().perform();
     }
     
     public void test02_blast_for_swipe_view() throws Exception {
@@ -133,7 +133,7 @@ public class IOS_FriendsTest extends IOSElements {
     	username(friends_account01).click();
     	username(friends_account02).click();
     	username(friends_account03).click();
-    	blast_Ok_button().click();
+    	blast_Ok_button().perform();
     	
     }
     
@@ -150,7 +150,7 @@ public class IOS_FriendsTest extends IOSElements {
     	OK_button().click();
     	blast_friends().click();
     	username(friends_account02).click();
-    	blast_Ok_button().click();
+    	blast_Ok_button().perform();
     	
     	// Send account02 dust before blocking
     	blasts_tab();
@@ -244,7 +244,7 @@ public class IOS_FriendsTest extends IOSElements {
     	text_blast_field().sendKeys("Test");
     	OK_button().click();
     	blast_all_followers().click();
-    	blast_Ok_button().click();
+    	blast_Ok_button().perform();
     }
     
     public void test05_mute_all_accounts() throws Exception {
@@ -334,7 +334,7 @@ public class IOS_FriendsTest extends IOSElements {
     	OK_button().click();
     	blast_friends().click();
     	username(friends_account01).click();
-    	blast_Ok_button().click();
+    	blast_Ok_button().perform();
     }
     
     public void test07_unfollow_accounts() throws Exception {

@@ -27,7 +27,7 @@ public class IOS_MyBlastsTest extends IOSElements {
 		OK_button().click();
 		blast_friends().click();
 		username(myblasts_account02).click();
-		blast_Ok_button().click();
+		blast_Ok_button().perform();
 	}
 	
 	public void test02_send_photo_blast() throws Exception {
@@ -45,7 +45,7 @@ public class IOS_MyBlastsTest extends IOSElements {
 		next_button().click();
 		blast_friends().click();
 		username(myblasts_account02).click();
-		blast_Ok_button().click();
+		blast_Ok_button().perform();
 	}
 	
 	public void test03_send_video_blast() throws Exception {
@@ -58,7 +58,7 @@ public class IOS_MyBlastsTest extends IOSElements {
 		next_button().click();
 		blast_friends().click();
 		username(myblasts_account02).click();
-		blast_Ok_button().click();
+		blast_Ok_button().perform();
 	}
 	
 	public void test04_view_blasts_from_homepage() throws Exception {
