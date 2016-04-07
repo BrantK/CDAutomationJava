@@ -51,28 +51,16 @@ public class Android_SignUpTest extends AndroidElements {
         action.longPress(date().getLocation().x, date().getLocation().y, 2000).release().perform();
         birthday_done().click();
         birthday_confirm().click();
-	}
-	
-	public void test03_take_profile_pic() throws Exception {
-		// Takes a picture with camera and sets as profile picture
+
+        // Skips rest of on boarding and tutorial
         skip_button().click();
         skip_button().click();
+        skip_button().click();
+
+        tutorial_close().click();
 	}
 	
-	public void test04_check_for_tutorial() throws Exception {
-		try {
-			waitTime(5);
-			if (tutorial_window().isDisplayed()) {
-				Thread.sleep(1000);
-				log("Backing out of tutorial screen");
-				tutorial_close().click();
-			}
-		} catch (Exception e) {
-			log("No tutorial screen");
-		}
-	}
-	
-    public void test05_update_profile_pic() throws Exception {
+    public void test03_update_profile_pic() throws Exception {
         // Changes profile picture
         more_button().click();
         profile_picture().click();
@@ -80,9 +68,31 @@ public class Android_SignUpTest extends AndroidElements {
         camera_button().click(); Thread.sleep(3000);
         androidCamera.takePhoto();
         log("Profile picture updated");
+    }
+
+	public void test04_update_bio_and_website() throws Exception {
+        enter_bio().click();
+		driver.getKeyboard().sendKeys("My awesome test bio");
+		save_button().click();
+        enter_website().click();
+		driver.getKeyboard().sendKeys("www.cyberdust.com");
+		save_button().click();
+		Thread.sleep(2000);
+
+		try {
+			if (name("My awesome test bio").isDisplayed()) {
+				log("Bio successfully updated");
+			}
+
+			if (name("www.cyberdust.com").isDisplayed()) {
+				log("Website successfully updated");
+			}
+		} catch (Exception e) {
+			log("[Warning] Bio or website not updated");
+		}
 	}
 	
-    public void test06_login_logout() throws Exception {
+    public void test05_login_logout() throws Exception {
         // Logout and login test
         log("Logging out then logging in");
         action.press(build_a_following()).moveTo(back_button()).release().perform();
@@ -107,8 +117,19 @@ public class Android_SignUpTest extends AndroidElements {
         }
         waitTime(20);
 
-        // Deletes account
         more_button().click(); Thread.sleep(1000);
+
+		// Checks if bio and website saved after logging out
+		try {
+			waitTime(2);
+			name("My awesome test bio").isDisplayed();
+			name("www.cyberdust.com").isDisplayed();
+
+		} catch (Exception e) {
+			log("[Warning] Bio or website did not save");
+		}
+
+		// Deletes account
         action.press(followers()).moveTo(enter_bio()).release().perform();
         account_settings().click();
         delete_account().click();

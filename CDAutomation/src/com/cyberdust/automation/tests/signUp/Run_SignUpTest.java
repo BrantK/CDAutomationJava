@@ -46,69 +46,66 @@ public class Run_SignUpTest extends Drivers {
 	}
 	
 	@Test
-	public void test03_takeProfilePic() throws Exception {
-		try {
-			log("[Test03]");
-
-			if (Android()) {
-				new Android_SignUpTest().test03_take_profile_pic();
-			} else if (IOS()) {
-				new IOS_SignUpTest().test03_take_profile_pic();
-			}
-			
-		} catch (Exception e) {
-			log("[Fail] Got exception " + e);
-			relaunch();
-			throw e;
-		}
-	}
-	
-	@Test
-	public void test04_checkForTutorial() throws Exception {
-		try {
-			log("[Test04]");
-
-			if (Android()) {
-				new Android_SignUpTest().test04_check_for_tutorial();
-			} else if (IOS()) {
-				new IOS_SignUpTest().test04_check_for_tutorial();
-			}
-			
-		} catch (Exception e) {
-			log("[Fail] Got exception " + e);
-			relaunch();
-			throw e;
-		}
-	}
-	
-	@Test
-	public void test05_updateProfilePic() throws Exception {
+	public void test03_updateProfilePic() throws Exception {
 		try {
 			log("[Test05]");
 
 			if (Android()) {
-				new Android_SignUpTest().test05_update_profile_pic();
+				new Android_SignUpTest().test03_update_profile_pic();
 			} else if (IOS()) {
-				new IOS_SignUpTest().test05_update_profile_pic();
+				new IOS_SignUpTest().test03_update_profile_pic();
 			}
 			
 		} catch (Exception e) {
 			log("[Fail] Got exception " + e);
 			relaunch();
-			//more_button().click();
+
+            if (Android()) {
+                new Android_SignUpTest().more_button().click();
+            }
+            if (IOS()) {
+                new IOS_SignUpTest().more_button().click();
+            }
+
+			throw e;
+		}
+	}
+
+	@Test
+	public void test04_updateBio() throws Exception {
+		try {
+			log("[Test05]");
+
+			if (Android()) {
+				new Android_SignUpTest().test04_update_bio_and_website();
+			} else if (IOS()) {
+				new IOS_SignUpTest().test04_update_bio_and_website();
+			}
+
+		} catch (Exception e) {
+			log("[Fail] Got exception " + e);
+			relaunch();
+
+            if (Android()) {
+                new Android_SignUpTest().more_button().click();
+            }
+            if (IOS()) {
+                new IOS_SignUpTest().more_button().click();
+            }
+
 			throw e;
 		}
 	}
 	
 	@Test
-	public void test06_loginLogout() throws Exception {
+	public void test05_loginLogout() throws Exception {
 		try {
 			log("[Test06]");
 
 			if (Android()) {
-				new Android_SignUpTest().test06_login_logout();
+				new Android_SignUpTest().test05_login_logout();
 			} else if (IOS()) {
-				new IOS_SignUpTest().test06_login_logout();
+				new IOS_SignUpTest().test05_login_logout();
 			}
 			
 		} catch (Exception e) {
