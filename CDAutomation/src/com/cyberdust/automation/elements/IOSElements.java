@@ -9,7 +9,7 @@ import io.appium.java_client.TouchAction;
 
 public class IOSElements extends Drivers {
 
-	public WebDriverWait wait = new WebDriverWait(driver, 20);
+	public WebDriverWait wait = new WebDriverWait(driver, 15);
 	
 	// For changing the WebDriverWait time from in a test
 	public WebDriverWait waitTime(int x) {
@@ -62,7 +62,10 @@ public class IOSElements extends Drivers {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("Done")));
     }
 	public WebElement back_button() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("close")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("Back")));
+	}
+	public WebElement x_button() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("Stop")));
 	}
 	public WebElement confirm() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("Okay")));
@@ -75,6 +78,9 @@ public class IOSElements extends Drivers {
     }
     public WebElement pop_up_ok() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[4]/UIAAlert[1]/UIACollectionView[1]/UIACollectionCell[1]/UIAButton[1]")));
+    }
+    public WebElement autocorrect_popup() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATextView[1]/UIAButton[1]")));
     }
 	
 	/**********************
@@ -163,10 +169,10 @@ public class IOSElements extends Drivers {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("report")));
 	}
 	public WebElement blast01() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIACollectionView[1]/UIACollectionCell[2]/UIAStaticText[1]")));
 	}
 	public WebElement blast02() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIACollectionView[1]/UIACollectionCell[3]/UIAStaticText[1]")));
 	}
 	public WebElement blast_more_button() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIACollectionView[1]/UIACollectionCell[2]/UIAButton[1]")));
@@ -186,6 +192,9 @@ public class IOSElements extends Drivers {
 	public WebElement blast_lists() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("Blast Lists")));
 	}
+	public WebElement my_blast_list1() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]")));
+	}
     public WebElement create_blast_list() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.name("create")));
     }
@@ -198,8 +207,11 @@ public class IOSElements extends Drivers {
 	public WebElement blast_list_edit() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("edit")));
 	}
+    public WebElement blast_list_ok() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("OK")));
+    }
 	public WebElement rename_blast_list() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIANavigationBar[1]/UIATextField[1]\n")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIANavigationBar[1]/UIATextField[1]")));
 	}
 	public WebElement delete_list() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("delete")));
@@ -292,9 +304,15 @@ public class IOSElements extends Drivers {
 	public WebElement text_location_button() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIANavigationBar[1]/UIAButton[3]")));
 	}
+    public WebElement find_a_location() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("Find a location")));
+    }
 	public WebElement current_location() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("Current Location")));
 	}
+    public WebElement location_list_item1() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[2]/UIATableCell[1]")));
+    }
 	public WebElement add_text() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("Add Text")));
 	}
@@ -329,13 +347,13 @@ public class IOSElements extends Drivers {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
 	}
 	public WebElement swipe_view_url_card() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAScrollView[1]/UIAImage[2]")));
 	}
 	public WebElement swipe_view_location() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("Location Button")));
 	}
 	public WebElement swipe_view_text() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATextView[1]")));
 	}
 	public WebElement swipe_view_reblast() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("Reblast Button")));
@@ -356,7 +374,7 @@ public class IOSElements extends Drivers {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("btn_emoji_word_1")));
 	}
 	public WebElement swipe_view_emoji_cancel() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("kb-extend-arrow")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("Back Button (Emoji)")));
 	}
 	public WebElement swipe_view_photo_send() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("btn photo next")));
@@ -367,8 +385,9 @@ public class IOSElements extends Drivers {
 	public WebElement mute_blast_icon() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
 	}
-	public WebElement blast_Ok_button() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableGroup[1]/UIAButton[2]")));
+	public TouchAction blast_Ok_button() throws Exception {
+        Thread.sleep(1000);
+        return action.press((int)(screenWidth / 1.15), (int)(screenHeight / 3.18)).release();
 	}
 	public WebElement dust_three_dotted_menu() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIACollectionView[1]/UIACollectionCell[1]/UIAButton[1]")));
@@ -438,7 +457,7 @@ public class IOSElements extends Drivers {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[2]/UIACollectionView[1]/UIACollectionCell[1]")));
 	}
 	public WebElement profile_follow_button() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.name("followButton")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("followButton")));
 	}
 	public WebElement confirm_unfollow_button() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("Yes")));
