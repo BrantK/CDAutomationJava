@@ -7,7 +7,7 @@ import com.cyberdust.automation.elements.Drivers;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Run_BlastTest extends Drivers {
-	
+
 	@Test
 	public void test01_createBlastList() throws Exception {
 		log("[Start] Starting blast test");
@@ -15,6 +15,7 @@ public class Run_BlastTest extends Drivers {
 			log("Test01 creating blast list");
 			
 			if (Android()) {
+
 				new Android_BlastTest().test01_create_blast_list();
 			} else if (IOS()) {
 				new IOS_BlastTest().test01_create_blast_list();
@@ -23,6 +24,14 @@ public class Run_BlastTest extends Drivers {
 		} catch (Exception e) {
 			log("[Fail] Got exception " + e);
 			relaunch();
+
+			if (Android()) {
+                new Android_BlastTest().blasts_tab().click();
+            }
+            if (IOS()) {
+                new IOS_BlastTest().blasts_tab().click();
+            }
+
 			throw e;
 		}
 	}
@@ -41,6 +50,14 @@ public class Run_BlastTest extends Drivers {
 		} catch (Exception e) {
 			log("[Fail] Got exception " + e);
 			relaunch();
+
+            if (Android()) {
+                new Android_BlastTest().blasts_tab().click();
+            }
+            if (IOS()) {
+                new IOS_BlastTest().blasts_tab().click();
+            }
+
 			throw e;
 		}
 	}
@@ -59,6 +76,14 @@ public class Run_BlastTest extends Drivers {
 		} catch (Exception e) {
 			log("[Fail] Got exception " + e);
 			relaunch();
+
+            if (Android()) {
+                new Android_BlastTest().blasts_tab().click();
+            }
+            if (IOS()) {
+                new IOS_BlastTest().blasts_tab().click();
+            }
+
 			throw e;
 		}
 	}
@@ -77,6 +102,14 @@ public class Run_BlastTest extends Drivers {
 		} catch (Exception e) {
 			log("[Fail] Got exception " + e);
 			relaunch();
+
+            if (Android()) {
+                new Android_BlastTest().blasts_tab().click();
+            }
+            if (IOS()) {
+                new IOS_BlastTest().blasts_tab().click();
+            }
+
 			throw e;
 		}
 	}
@@ -95,6 +128,14 @@ public class Run_BlastTest extends Drivers {
 		} catch (Exception e) {
 			log("[Fail] Got exception " + e);
 			relaunch();
+
+            if (Android()) {
+                new Android_BlastTest().blasts_tab().click();
+            }
+            if (IOS()) {
+                new IOS_BlastTest().blasts_tab().click();
+            }
+
 			throw e;
 		}
 	}
@@ -113,6 +154,14 @@ public class Run_BlastTest extends Drivers {
 		} catch (Exception e) {
 			log("[Fail] Got exception " + e);
 			relaunch();
+
+            if (Android()) {
+                new Android_BlastTest().blasts_tab().click();
+            }
+            if (IOS()) {
+                new IOS_BlastTest().blasts_tab().click();
+            }
+
 			throw e;
 		}
 	}
@@ -131,6 +180,14 @@ public class Run_BlastTest extends Drivers {
 		} catch (Exception e) {
 			log("[Fail] Got exception " + e);
 			relaunch();
+
+            if (Android()) {
+                new Android_BlastTest().blasts_tab().click();
+            }
+            if (IOS()) {
+                new IOS_BlastTest().blasts_tab().click();
+            }
+
 			throw e;
 		}
 	}
@@ -149,163 +206,181 @@ public class Run_BlastTest extends Drivers {
 		} catch (Exception e) {
 			log("[Fail] Got exception " + e);
 			relaunch();
+
+            if (Android()) {
+                new Android_BlastTest().blasts_tab().click();
+            }
+            if (IOS()) {
+                new IOS_BlastTest().blasts_tab().click();
+            }
+
 			throw e;
 		}
 	}
 	
 	@Test
-	public void test09_openTextBlast() throws Exception {
-		try {
-			log("Test09 opening text blasts");
+    public void test09_replyToBlast() throws Exception {
+        try {
+            log("Test09 replying to blast");
 
-			if (Android()) {
-				new Android_BlastTest().test09_open_text_blast();
-			} else if (IOS()) {
-				new IOS_BlastTest().test09_open_text_blast();
-			}
-			
-		} catch (Exception e) {
-			log("[Fail] Got exception " + e);
-			relaunch();
+            if (Android()) {
+                new Android_BlastTest().test14_reply_to_blast();
+            } else if (IOS()) {
+                new IOS_BlastTest().test09_reply_to_blast();
+            }
 
-			if (Android()) {
-				new Android_BlastTest().name(new Android_BlastTest().blasts_account01).click(); 
-			}
-			if (IOS()) {
-				new IOS_BlastTest().name(new IOS_BlastTest().blasts_account01).click(); 
-			}
-			
-			Thread.sleep(1000);
-			throw e;
-		}
-	}
+        } catch (Exception e) {
+            log("[Fail] Got exception " + e);
+            relaunch();
+
+            if (Android()) {
+                new Android_BlastTest().blasts_tab().click();
+                new Android_BlastTest().blast01().click();
+            }
+            if (IOS()) {
+                new IOS_BlastTest().blasts_tab().click();
+                new IOS_BlastTest().blast01().click();
+            }
+
+            throw e;
+        }
+    }
+
+
+    @Test
+    public void test10_openVideoBlast() throws Exception {
+        try {
+            log("Test10 opening video blasts");
+
+            if (Android()) {
+                new Android_BlastTest().test13_open_video_blast();
+            } else if (IOS()) {
+                new IOS_BlastTest().test10_open_video_blast();
+            }
+
+        } catch (Exception e) {
+            log("[Fail] Got exception " + e);
+            relaunch();
+
+            if (Android()) {
+                new Android_BlastTest().blasts_tab().click();
+                new Android_BlastTest().blast01().click();
+            }
+            if (IOS()) {
+                new IOS_BlastTest().blasts_tab().click();
+                new IOS_BlastTest().blast01().click();
+            }
+
+            Thread.sleep(1000);
+            throw e;
+        }
+    }
 	
 	@Test
-	public void test10_openPhotoBlast() throws Exception {
-		try {
-			log("Test10 opening photo blasts");
+    public void test11_openGiphyBlast() throws Exception {
+        try {
+            log("Test11 opening giphy blast");
 
-			if (Android()) {
-				new Android_BlastTest().test10_open_photo_blast();
-			} else if (IOS()) {
-				new IOS_BlastTest().test10_open_photo_blast();
-			}
-			
-		} catch (Exception e) {
-			log("[Fail] Got exception " + e);
-			relaunch();
-			
-			if (Android()) {
-				new Android_BlastTest().name(new Android_BlastTest().blasts_account01).click(); 
-			}
-			if (IOS()) {
-				new IOS_BlastTest().name(new IOS_BlastTest().blasts_account01).click(); 
-			}
-			
-			Thread.sleep(1000);
-			throw e;
-		}
-	}
+            if (Android()) {
+                new Android_BlastTest().test12_open_giphy_blast();
+            } else if (IOS()) {
+                new IOS_BlastTest().test11_open_giphy_blast();
+            }
+
+        } catch (Exception e) {
+            log("[Fail] Got exception " + e);
+            relaunch();
+
+            if (Android()) {
+                new Android_BlastTest().blasts_tab().click();
+                new Android_BlastTest().blast01().click();
+            }
+            if (IOS()) {
+                new IOS_BlastTest().blasts_tab().click();
+                new IOS_BlastTest().blast01().click();
+            }
+
+            Thread.sleep(1000);
+            throw e;
+        }
+    }
 	
 	@Test
-	public void test11_openNonPublicBlast() throws Exception {
-		try {
-			log("Test11 openinig non public blast");
+    public void test12_openNonPublicBlast() throws Exception {
+        try {
+            log("Test12 opening non public blast");
 
-			if (Android()) {
-				new Android_BlastTest().test11_open_non_public_blast();
-			} else if (IOS()) {
-				new IOS_BlastTest().test11_open_non_public_blast();
-			}
-			
-		} catch (Exception e) {
-			log("[Fail] Got exception " + e);
-			relaunch();
+            if (Android()) {
+                new Android_BlastTest().test11_open_non_public_blast();
+            } else if (IOS()) {
+                new IOS_BlastTest().test12_open_non_public_blast();
+            }
 
-			if (Android()) {
-				new Android_BlastTest().name(new Android_BlastTest().blasts_account01).click(); 
-			}
-			if (IOS()) {
-				new IOS_BlastTest().name(new IOS_BlastTest().blasts_account01).click(); 
-			}
-			
-			Thread.sleep(1000);
-			throw e;
-		}
-	}
+        } catch (Exception e) {
+            log("[Fail] Got exception " + e);
+            relaunch();
+
+            if (Android()) {
+                new Android_BlastTest().blasts_tab().click();
+                new Android_BlastTest().blast01().click();
+            }
+            if (IOS()) {
+                new IOS_BlastTest().blasts_tab().click();
+                new IOS_BlastTest().blast01().click();
+            }
+
+            Thread.sleep(1000);
+            throw e;
+        }
+    }
 	
 	@Test
-	public void test12_openGiphyBlast() throws Exception {
-		try {
-			log("Test12 opening giphy blast");
-			
-			if (Android()) {
-				new Android_BlastTest().test12_open_giphy_blast();
-			} else if (IOS()) {
-				new IOS_BlastTest().test12_open_giphy_blast();
-			}
-			
-		} catch (Exception e) {
-			log("[Fail] Got exception " + e);
-			relaunch();
+    public void test13_openPhotoBlast() throws Exception {
+        try {
+            log("Test13 opening photo blasts");
 
-			if (Android()) {
-				new Android_BlastTest().name(new Android_BlastTest().blasts_account01).click(); 
-			}
-			if (IOS()) {
-				new IOS_BlastTest().name(new IOS_BlastTest().blasts_account01).click(); 
-			}
-			
-			Thread.sleep(1000);
-			throw e;
-		}
-	}
+            if (Android()) {
+                new Android_BlastTest().test10_open_photo_blast();
+            } else if (IOS()) {
+                new IOS_BlastTest().test13_open_photo_blast();
+            }
+
+        } catch (Exception e) {
+            log("[Fail] Got exception " + e);
+            relaunch();
+
+            if (Android()) {
+                new Android_BlastTest().blasts_tab().click();
+                new Android_BlastTest().blast01().click();
+            }
+            if (IOS()) {
+                new IOS_BlastTest().blasts_tab().click();
+                new IOS_BlastTest().blast01().click();
+            }
+
+            Thread.sleep(1000);
+            throw e;
+        }
+    }
 	
 	@Test
-	public void test13_openVideoBlast() throws Exception {
-		try {
-			log("Test13 opening video blasts");
+    public void test14_openTextBlast() throws Exception {
+        try {
+            log("Test14 opening text blasts");
 
-			if (Android()) {
-				new Android_BlastTest().test13_open_video_blast();
-			} else if (IOS()) {
-				new IOS_BlastTest().test13_open_video_blast();
-			}
-			
-		} catch (Exception e) {
-			log("[Fail] Got exception " + e);
-			relaunch();
+            if (Android()) {
+                new Android_BlastTest().test09_open_text_blast();
+            } else if (IOS()) {
+                new IOS_BlastTest().test14_open_text_blast();
+            }
 
-			if (Android()) {
-				new Android_BlastTest().name(new Android_BlastTest().blasts_account01).click(); 
-			}
-			if (IOS()) {
-				new IOS_BlastTest().name(new IOS_BlastTest().blasts_account01).click(); 
-			}
-			
-			Thread.sleep(1000);
-			throw e;
-		}
-	}
-	
-	@Test
-	public void test14_replyToBlast() throws Exception {
-		try {
-			log("Test14 replying to blast");
+        } catch (Exception e) {
+            log("[Fail] Got exception " + e);
+            relaunch();
+            throw e;
+        }
+    }
 
-			if (Android()) {
-				new Android_BlastTest().test14_reply_to_blast();
-			} else if (IOS()) {
-				new IOS_BlastTest().test14_reply_to_blast();
-			}
-			
-		} catch (Exception e) {
-			log("[Fail] Got exception " + e);
-			relaunch();
-			throw e;
-		}
-	}
-	
 	@Test
 	public void test15_checkReplies() throws Exception {
 		try {

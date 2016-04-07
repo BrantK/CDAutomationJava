@@ -36,7 +36,7 @@ public class Android_BlastTest extends AndroidElements {
 		username(blasts_account03).click();
 		OK_button().click();
 	}
-	
+
 	public void test02_send_text_blasts() throws Exception {
 		// Sends text blast with +username, URL, and location to blast list
 		log("Sending text blast to blast list");
