@@ -121,7 +121,7 @@ public class IOS_Find extends IOSElements{
         System.out.println("Okay");
 
 
-        blast_Ok_button().click();
+        blast_Ok_button().perform();;
         if (!(error_message().getAttribute("name")).equals("Error")){
             throw new InterruptedException("Submitted blank \"Build A Following\" form");
         }
@@ -141,7 +141,7 @@ public class IOS_Find extends IOSElements{
         category_advertising().click();
         no_button().click();
 
-        blast_Ok_button().click();
+        blast_Ok_button().perform();
         System.out.println("Form submitted successfully");
         OK_button().click();
 

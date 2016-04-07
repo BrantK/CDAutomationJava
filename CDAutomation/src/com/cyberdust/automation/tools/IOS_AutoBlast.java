@@ -20,7 +20,7 @@ public class IOS_AutoBlast extends IOSElements {
         next_button().click();
         blast_friends().click();
         username(blast_recipient).click();
-        action.press(blast_Ok_button().getLocation().getX(), blast_Ok_button().getLocation().getY()-10).release().perform();
+        blast_Ok_button().perform();
     }
     public void video_blast() throws Exception {
         action_menu().click();
@@ -30,7 +30,7 @@ public class IOS_AutoBlast extends IOSElements {
         next_button().click();
         blast_friends().click();
         username(blast_recipient).click();
-        action.press(blast_Ok_button().getLocation().getX(), blast_Ok_button().getLocation().getY()-10).release().perform();
+        blast_Ok_button().perform();
     }
     public void text_blast() throws Exception {
         action_menu().click();
@@ -39,7 +39,7 @@ public class IOS_AutoBlast extends IOSElements {
         next_button().click();
         blast_friends().click();
         username(blast_recipient).click();
-        action.press(blast_Ok_button().getLocation().getX(), blast_Ok_button().getLocation().getY()-10).release().perform();
+        blast_Ok_button().perform();
     }
 
     @Test
