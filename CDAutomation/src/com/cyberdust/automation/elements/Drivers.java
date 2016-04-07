@@ -30,12 +30,14 @@ public abstract class Drivers extends TestAccounts {
 	public TouchAction action = new TouchAction(driver);
 	public int screenWidth = driver.manage().window().getSize().getWidth();
 	public int screenHeight = driver.manage().window().getSize().getHeight();
+    public static boolean IOSSimulator = false;
 	public static boolean IOSEnabled = false;
 	
 	@BeforeClass
 	public static void setUp() throws Exception {
 		DeviceReader.AndroidDevice = false;
 		DeviceReader.IOSDevice = false;
+        IOSSimulator = false;
 		resetCapabilities();
 		
 		if (System.getProperty("os.name").toLowerCase().contains("mac")) {
@@ -61,6 +63,7 @@ public abstract class Drivers extends TestAccounts {
                 System.out.println("No devices detected, using iOS simulator");
             }
 
+            IOSSimulator = true;
             capabilities.setCapability("platformName", "IOS");
             capabilities.setCapability("platformVersion", "");
             capabilities.setCapability("deviceName", "");
@@ -166,7 +169,7 @@ public abstract class Drivers extends TestAccounts {
 			new File(projectPath+"\\testlogs\\").mkdir();
 			logLocation = projectPath+"\\testlogs\\"+logName+".log";
 		}
-		
+
 		if (text.contains("org.openqa.selenium.remote.SessionNotFoundException")) {
 			System.err.print("Test Stopped" + "\n");	
 		} 
