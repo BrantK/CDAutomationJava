@@ -1,9 +1,5 @@
 package com.cyberdust.automation.tests.followers;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
 import com.cyberdust.automation.elements.IOSElements;
 import com.cyberdust.automation.elements.LoginWith;
 
@@ -19,42 +15,53 @@ public class IOS_followersTest extends IOSElements {
 		add_friend().click();
 		
 		try {
-			if (!add_friend().isDisplayed())
-				System.out.println("Friend added from followers menu");
+			if (name("Followed").isDisplayed())
+				log("Friend added from followers menu");
 		} catch (Exception e) {
-			System.out.println("Unable to add friend from followers menu");
+			log("Unable to add friend from followers menu");
 		}
-		back_button().click();
-		back_button().click();
-		more_button().click();
+
+        OK_button().click();
+		back_arrow().click();
 		friends().click();
-		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(followers_account02)));
-		action.longPress(first_friend,4000).release().perform();
+
+        Thread.sleep(500);
+        driver.swipe(name(followers_account02).getLocation().getX() + (screenWidth - 5),
+                name(followers_account02).getLocation().getY() + 20,
+                name(followers_account02).getLocation().getX() + 50,
+                name(followers_account02).getLocation().getY() + 20, 500);
+
 		unfollow_button().click();
-		okay_button().click();
-		back_button().click();
+		yes_button().click();
+		back_arrow().click();
 
 	}
 	
 	public void test02_add_friends() throws Exception {
 		
 		followers().click();
-		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(followers_account02)));
-		action.longPress(first_friend, 4000).release().perform();
-		
+
+        Thread.sleep(500);
+        driver.swipe(name(followers_account02).getLocation().getX() + (screenWidth - 5),
+                name(followers_account02).getLocation().getY() + 20,
+                name(followers_account02).getLocation().getX() + 50,
+                name(followers_account02).getLocation().getY() + 20, 500);
+
 		blast_more_block().click();
-		okay_button().click();
-		back_button().click();
-		action.press(followers()).moveTo(back_button()).release().perform();
+		yes_button().click();
+        OK_button().click();
+		back_arrow().click();
+        Thread.sleep(1000);
+        action.press(followers()).moveTo(close_button()).release().perform();
 		muted_blocked_users().click();
 		
 		try {
-			if (first_friend.isDisplayed())
-				System.out.println("Friend added from followers menu");
+			if (name(followers_account02).isDisplayed())
+				log("Friend added from followers menu");
 		} catch (Exception e) {
-			System.out.println("Unable to add friend from followers menu");
+			log("Unable to add friend from followers menu");
 		}
-		first_friend.click();
+        name(followers_account02).click();
+        back_arrow().click();
 	}
-	
 }
