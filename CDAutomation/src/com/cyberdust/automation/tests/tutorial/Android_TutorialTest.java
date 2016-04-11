@@ -33,7 +33,10 @@ public class Android_TutorialTest extends AndroidElements {
 			tutorial_back_button().click();
 			back_button().click();
 			Thread.sleep(1000);
-		action.tap(90, 1750).perform();
+			int x = (int)(screenWidth/12);
+			int y = (int)(screenHeight/1.098);
+			
+		action.tap(x, y).perform();
 		Thread.sleep(2000);
 		
 		try
@@ -51,31 +54,10 @@ public class Android_TutorialTest extends AndroidElements {
 	
 	}
 	
-	public void test02_main_page() throws Exception
+	public void test03_main_page() throws Exception
 	{
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		tutorial_private_messaging().click();
+		tutorial_getStarted_Button().click();
 		
 		
 		
