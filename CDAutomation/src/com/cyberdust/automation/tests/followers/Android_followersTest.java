@@ -39,7 +39,7 @@ public class Android_followersTest extends AndroidElements {
 	
 	public void test02_add_friends() throws Exception {
 		
-		followers().click();
+
 		followers().click();
 		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(followers_account02)));
 		action.longPress(first_friend, 3000).release().perform();
