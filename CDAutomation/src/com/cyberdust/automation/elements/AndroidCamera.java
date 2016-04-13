@@ -2,9 +2,11 @@ package com.cyberdust.automation.elements;
 
 public class AndroidCamera extends AndroidElements {
 	
-	public void takePhoto() throws Exception {
+	public boolean takePhoto() throws Exception {
 		// Tries to take a photo with several different kinds of android phones
-		Thread.sleep(1000);
+		boolean photo_taken = false;
+
+        Thread.sleep(1000);
         aDriver().pressKeyCode(27);
 
         Thread.sleep(1000);
@@ -46,6 +48,7 @@ public class AndroidCamera extends AndroidElements {
         try {
             waitTime(2);
         	OK_button().click(); Thread.sleep(3000);
+            photo_taken = true;
         } catch (Exception e) {
 
             // If none of the above works, go back to More page
@@ -67,5 +70,6 @@ public class AndroidCamera extends AndroidElements {
                 more_button().click();
             }
         }
+        return photo_taken;
 	}
 }

@@ -419,8 +419,9 @@ public class AndroidElements extends Drivers {
 	 * Find Tab elements *
 	 **********************/
 	public WebElement chatter_add(int myIndex) throws Exception {
+		Thread.sleep(1000);
 		List<WebElement> first_chatter_cards_list = driver.findElements(By.xpath("//android.widget.ImageView[@index='1']"));
-		return first_chatter_cards_list.get(1);
+		return first_chatter_cards_list.get(myIndex);
 
 	}
 	public WebElement chatter_open_profile(int myIndex) {
@@ -472,24 +473,25 @@ public class AndroidElements extends Drivers {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.name("progress")));
 	}
 	public WebElement build_following_lower_keyboard() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath(" //UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAStaticText[4]")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath(" //UIAApplication[1]/UIAWwwindow[1]/UIAScrollView[1]/UIAStaticText[4]")));
 	}
 
-	public WebElement searchbar() throws Exception {
-		Thread.sleep(500);
-		return driver.findElement(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIAImage[1]"));
+	public WebElement open_searchbar() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/search_bar")));
 	}
-	public WebElement follow_fourth_search_result() throws Exception {
-		Thread.sleep(500);
-		return driver.findElement(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[4]/UIAButton[2]"));
+	public WebElement typeable_searchbar() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/add_friends_fragment_search_box")));
 	}
-	public WebElement open_fourth_search_result() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[4]")));
+
+	public WebElement follow_first_search_result() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.RelativeLayout[@index='1']/android.widget.ImageView[@resource-id='com.radicalapps.cyberdust:id/add_friend_contacts_listitem_button']")));
+	}
+	public WebElement open_first_search_result() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.RelativeLayout[@index='1']/android.widget.ImageView[@resource-id='com.radicalapps.cyberdust:id/add_friend_contacts_listitem_icon_photo']")));
 	}
 	public WebElement close_search() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.name("dismiss search")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.name("DISCOVER")));
 	}
-
 	public WebElement no_button() throws Exception{
 		Thread.sleep(1000);
 		return driver.findElement(By.id("android:id/button2"));
@@ -534,7 +536,7 @@ public class AndroidElements extends Drivers {
 	}
 	public WebElement first_publisher_add() {
 		List<WebElement> first_chatter_cards_list = driver.findElements(By.xpath("//android.widget.ImageView[@index='1']"));
-		return first_chatter_cards_list.get(3);
+		return first_chatter_cards_list.get(2);
 	}
 	/*********************
 	 * More page elements*
@@ -558,6 +560,10 @@ public class AndroidElements extends Drivers {
     public WebElement profile_picture_done() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/activity_profile_pic_crop_btn")));
     }
+	public WebElement generic_prof_pic_image() throws Exception {
+		Thread.sleep(2000);
+		return driver.findElement(By.id("com.radicalapps.cyberdust:id/more_fragment_picture_button"));
+	}
     public WebElement enter_bio() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/more_fragment_bio")));
     }

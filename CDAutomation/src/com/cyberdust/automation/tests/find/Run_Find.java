@@ -8,7 +8,6 @@ import com.cyberdust.automation.elements.Drivers;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Run_Find extends Drivers {
 
-/*
 	@Test
 	public void test01_followChatter() throws Exception {
 		try {
@@ -61,7 +60,7 @@ public class Run_Find extends Drivers {
 			relaunch();
 			throw e;
 		}
-	}*/
+	}
 
 	@Test
 	public void test04_build_a_following() throws Exception {
@@ -80,14 +79,14 @@ public class Run_Find extends Drivers {
 			throw e;
 		}
 	}
-	/*
+
 	@Test
 	public void test05_searchbar() throws Exception {
 		try {
 			log("Starting test - ");
 			
 			if (Android()) {
-				//new Android_Find().test05_searchbar();
+				new Android_Find().test05_searchbar();
 			} else if (IOS()) {
 				new IOS_Find().test05_searchbar();
 			}
@@ -97,6 +96,6 @@ public class Run_Find extends Drivers {
 			relaunch();
 			throw e;
 		}
-	}*/
+	}
 
 }
