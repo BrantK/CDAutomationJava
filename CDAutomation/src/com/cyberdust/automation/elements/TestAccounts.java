@@ -122,10 +122,6 @@ public abstract class TestAccounts {
 	public String myblasts_account02;
 	public String myblasts_password02;
 	
-	// ProfileBioTest //
-	public String bio_account;
-	public String bio_password;
-	
 	// ReblastTest //
 	public String reblast_account01;
 	public String reblast_password01;
@@ -240,7 +236,7 @@ public abstract class TestAccounts {
 		followers_account01 = "followerstest";
 		followers_password01 = "password";
 
-		followers_account02 = "followersfriendtest";
+		followers_account02 = "followerstestfriend";
 		followers_password02 = "password";
 
 		// Friends //
@@ -288,10 +284,6 @@ public abstract class TestAccounts {
 
 		myblasts_account02 = "myblaststest02";
 		myblasts_password02 = "myblaststest02";
-
-		// ProfileBioTest //
-		bio_account = "testprofilebio";
-		bio_password = "password";
 
 		// Reblast //
 		reblast_account01 = "blasttest01";
@@ -414,7 +406,7 @@ public abstract class TestAccounts {
 		followers_account01 = "followerstest";
 		followers_password01 = "password";
 		
-		followers_account02 = "followersfriendtest";
+		followers_account02 = "followerstestfriend";
 		followers_password02 = "password";
 		
 		// Friends //
@@ -462,10 +454,6 @@ public abstract class TestAccounts {
 		
 		myblasts_account02 = "myblaststest22";
 		myblasts_password02 = "myblaststest22";
-		
-		// ProfileBioTest //
-		bio_account = "testprofilebio";
-		bio_password = "password";
 		
 		// Reblast //
 		reblast_account01 = "blasttest21";

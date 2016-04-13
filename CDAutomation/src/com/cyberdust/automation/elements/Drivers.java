@@ -7,8 +7,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import org.junit.*;
+import org.openqa.selenium.SessionNotCreatedException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.UnreachableBrowserException;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.AppiumDriver;
@@ -56,49 +58,62 @@ public abstract class Drivers extends TestAccounts {
 				.withIPAddress(appiumServerAddress)
 				.usingPort(Integer.parseInt(appiumServerPort)));
 
-        if ((IOSEnabled && (DeviceReader.IOSDevice || DeviceReader.AndroidDevice)) || (!DeviceReader.IOSDevice && !DeviceReader.AndroidDevice)) {
-            if (IOSEnabled) {
-                System.out.println("Using iOS simulator");
-            } else {
-                System.out.println("No devices detected, using iOS simulator");
+        try {
+
+            if ((IOSEnabled && (DeviceReader.IOSDevice || DeviceReader.AndroidDevice)) || (!DeviceReader.IOSDevice && !DeviceReader.AndroidDevice)) {
+                if (IOSEnabled) {
+                    System.out.println("Using iOS simulator");
+                } else {
+                    System.out.println("No devices detected, using iOS simulator");
+                }
+
+                IOSSimulator = true;
+                capabilities.setCapability("platformName", "IOS");
+                capabilities.setCapability("platformVersion", "");
+                capabilities.setCapability("deviceName", "");
+                capabilities.setCapability("noReset", true);
+                capabilities.setCapability("nativeInstrumentsLib", true);
+                capabilities.setCapability("bundleId", "com.mentionmobile.cyberdust");
+                capabilities.setCapability("app", AppPath.localAppPath);
+                System.out.println("\n------ Starting Appium Server ------");
+                driver = new IOSDriver<>(service, capabilities);
             }
 
-            IOSSimulator = true;
-            capabilities.setCapability("platformName", "IOS");
-            capabilities.setCapability("platformVersion", "");
-            capabilities.setCapability("deviceName", "");
-            capabilities.setCapability("noReset", true);
-            capabilities.setCapability("nativeInstrumentsLib", true);
-            capabilities.setCapability("bundleId", "com.mentionmobile.cyberdust");
-            capabilities.setCapability("app", AppPath.localAppPath);
-            System.out.println("\n------ Starting Appium Server ------");
-            driver = new IOSDriver<>(service, capabilities);
-        }
+            if (!IOSEnabled && DeviceReader.IOSDevice && !DeviceReader.AndroidDevice) {
+                System.out.println("iOS device detected");
+                capabilities.setCapability("platformName", "IOS");
+                capabilities.setCapability("platformVersion", "");
+                capabilities.setCapability("deviceName", "");
+                capabilities.setCapability("noReset", true);
+                capabilities.setCapability("nativeInstrumentsLib", true);
+                capabilities.setCapability("bundleId", "com.mentionmobile.cyberdust");
+                capabilities.setCapability("udid", DeviceReader.IOS_UDID);
+                System.out.println("\n------ Starting Appium Server ------");
+                driver = new IOSDriver<>(service, capabilities);
+            }
 
-		if (!IOSEnabled && DeviceReader.IOSDevice && !DeviceReader.AndroidDevice) {
-			System.out.println("iOS device detected");
-			capabilities.setCapability("platformName", "IOS");
-			capabilities.setCapability("platformVersion", "");
-			capabilities.setCapability("deviceName", "");
-			capabilities.setCapability("noReset", true);
-            capabilities.setCapability("nativeInstrumentsLib", true);
-			capabilities.setCapability("bundleId", "com.mentionmobile.cyberdust");
-			capabilities.setCapability("udid", DeviceReader.IOS_UDID);
-			System.out.println("\n------ Starting Appium Server ------");
-			driver = new IOSDriver<>(service, capabilities);
-		}
-		
-		if (!IOSEnabled && DeviceReader.AndroidDevice) {
-			System.out.println("Android device detected");
-			capabilities.setCapability("platformName", "Android");
-			capabilities.setCapability("platformVersion", "");
-			capabilities.setCapability("deviceName", "");
-			capabilities.setCapability("noReset", true);
-			capabilities.setCapability("appPackage", "com.radicalapps.cyberdust");
-			capabilities.setCapability("appActivity", "com.radicalapps.cyberdust.activities.LauncherActivity");
-			System.out.println("\n------ Starting Appium Server ------");
-			driver = new AndroidDriver<>(service, capabilities);
-		}
+            if (!IOSEnabled && DeviceReader.AndroidDevice) {
+                System.out.println("Android device detected");
+                capabilities.setCapability("platformName", "Android");
+                capabilities.setCapability("platformVersion", "");
+                capabilities.setCapability("deviceName", "");
+                capabilities.setCapability("noReset", true);
+                capabilities.setCapability("appPackage", "com.radicalapps.cyberdust");
+                capabilities.setCapability("appActivity", "com.radicalapps.cyberdust.activities.LauncherActivity");
+                System.out.println("\n------ Starting Appium Server ------");
+                driver = new AndroidDriver<>(service, capabilities);
+            }
+
+        } catch (UnreachableBrowserException e) {
+            System.out.println("Browser unreachable, restarting server...");
+            setUp();
+        } catch (SessionNotCreatedException e) {
+            System.out.println("Appium server already running, trying a different port...\n");
+            appiumServerPort += 5;
+            setUp();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 	}
 	
 	@AfterClass

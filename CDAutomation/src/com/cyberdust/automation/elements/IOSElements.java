@@ -120,7 +120,7 @@ public class IOSElements extends Drivers {
 		Thread.sleep(1000);
     	return action.longPress(165, 300).release().perform();
 	}
-	public WebElement friend_three_dotted_menu() {
+	public WebElement dust_three_dotted_menu() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.name("MoreButton 1x kj1a")));
 	}
 	public WebElement dust1_more_button() {
@@ -219,9 +219,6 @@ public class IOSElements extends Drivers {
 	public WebElement groups_title_field() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("Name Your Group ")));
 	}
-	public WebElement group_three_dotted_menu() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.name("99 11 more info")));
-	}
 	public WebElement group1_more_button() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("")));
 	}
@@ -243,6 +240,9 @@ public class IOSElements extends Drivers {
 	public WebElement dusting_with() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("99_reveal_info_arrow_red_btn")));
 	}
+    public WebElement dusting_with_close() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIANavigationBar[1]/UIAImage[2]")));
+    }
 	public WebElement card_view() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
 	}
@@ -386,11 +386,8 @@ public class IOSElements extends Drivers {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
 	}
 	public TouchAction blast_Ok_button() throws Exception {
-        Thread.sleep(1000);
+        Thread.sleep(500);
         return action.press((int)(screenWidth / 1.15), (int)(screenHeight / 3.18)).release();
-	}
-	public WebElement dust_three_dotted_menu() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIACollectionView[1]/UIACollectionCell[1]/UIAButton[1]")));
 	}
 	public WebElement message_timer() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("bg_chat_unsent.png")));
@@ -402,7 +399,7 @@ public class IOSElements extends Drivers {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("send")));
 	}
 	public WebElement sent_text_dust() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIACollectionView[1]/UIACollectionCell[1]")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIACollectionView[1]/UIACollectionCell[1]/UIAStaticText[1]")));
 	}
 	public WebElement pinned_message() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIACollectionView[1]/UIACollectionCell[1]")));
@@ -410,11 +407,14 @@ public class IOSElements extends Drivers {
 	public WebElement tap_to_unpin_button() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Tap message to unpin")));
 	}
+	public WebElement chat_room_three_dotted_menu() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("99 11 more info red btn")));
+    }
 	public WebElement follow_from_chat_room() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[3]/UIAStaticText[1]")));
 	}
 	public WebElement unfollow_from_chat_room() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[7]/UIAStaticText[1]")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("unfollow")));
 	}
 	public WebElement yes_button() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Yes")));
@@ -423,19 +423,24 @@ public class IOSElements extends Drivers {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.name("No")));
 	}
 	public WebElement Friend_already_added() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Friend Already Added")));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.name("Friend Already Added")));
 	}
     public WebElement delete_empty_rooms_button() {
     	return wait.until(ExpectedConditions.elementToBeClickable(By.name("Delete Empty Rooms")));
     }
-    public WebElement create_group_ok_button() {
-    	return wait.until(ExpectedConditions.elementToBeClickable(By.id("spinner_button_layout")));
+    public TouchAction create_group_ok_button() throws Exception {
+    	Thread.sleep(500);
+		return action.press(close_button().getLocation().getX()+5, close_button().getLocation().getY()+((int)(screenWidth/3.75))).release();
     }
+	public TouchAction add_friends_to_group_OK() throws Exception {
+		Thread.sleep(500);
+		return action.press(back_arrow().getLocation().getX()+5, back_arrow().getLocation().getY()+((int)(screenWidth/3.75))).release();
+	}
     public WebElement delete_all_groups() {
-    	return wait.until(ExpectedConditions.elementToBeClickable(By.name("Delete All Groups")));
+    	return wait.until(ExpectedConditions.elementToBeClickable(By.id("Delete And Leave Rooms")));
     }
     public WebElement delete_group_button() {
-    	return wait.until(ExpectedConditions.elementToBeClickable(By.name("delete group")));
+    	return wait.until(ExpectedConditions.elementToBeClickable(By.name("Delete Group")));
     }
     public WebElement tutorial_button() {
     	return wait.until(ExpectedConditions.elementToBeClickable(By.name("tutorial")));
@@ -499,10 +504,10 @@ public class IOSElements extends Drivers {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.name("progress")));
 	}
 	public WebElement build_following_lower_keyboard() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath(" //UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAStaticText[4]")));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath(" //UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAStaticText[4]")));
 	}
 	public WebElement contact_banner() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.name("CONTACTS")));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.name("CONTACTS")));
 	}
 	public WebElement searchbar() throws Exception {
 		Thread.sleep(500);
@@ -590,7 +595,7 @@ public class IOSElements extends Drivers {
     public WebElement friend_profile_picture() {
     	return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
     }
-    public WebElement add_friends() {
+    public WebElement find_friends() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[5]")));
     }
     public WebElement invite_friends() {
@@ -693,25 +698,20 @@ public class IOSElements extends Drivers {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Okay")));
 	}
     public WebElement unfollow_button() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("unfollow")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("unfollow user")));
     }
+
     public WebElement search_friends() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIASearchBar[1]")));
 	}
     public WebElement clear_friends_searchbar() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("dismiss search")));
 	}
-    public WebElement browse_followers() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]/UIAStaticText[1]")));
+    public WebElement find_friends_search_usernames() {
+	    return driver.findElement(By.id("Search Usernames"));
 	}
-    public WebElement browse_friends() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[3]/UIAStaticText[1]")));
-	}
-    public WebElement add_friends_search_button_text() {
-	    return driver.findElement(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATextField[1]/UIATextField[1]"));
-	}
-    public WebElement add_friends_button_inBrowseFriends() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("btn addfriends plus")));
+    public WebElement find_friends_add_button() {
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("add friends")));
 	}
     
     /********************

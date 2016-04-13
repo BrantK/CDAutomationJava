@@ -97,9 +97,7 @@ public class LoginWith extends Drivers {
 
             try {
 				Thread.sleep(1000);
-			} catch (InterruptedException ignored) {
-				
-			}
+			} catch (InterruptedException ignored) {}
 
             ios.logout().click();
             ios.confirm().click();
@@ -108,6 +106,11 @@ public class LoginWith extends Drivers {
         
         if (logged_out) {
         	ios.login_button().click();
+
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ignored) {}
+
             ios.login_username().click();
           	driver.getKeyboard().sendKeys(account+"\n"+password);
           	ios.login_OK().click();
