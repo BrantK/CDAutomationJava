@@ -8,7 +8,7 @@ import com.cyberdust.automation.elements.Drivers;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Run_Find extends Drivers {
 
-
+/*
 	@Test
 	public void test01_followChatter() throws Exception {
 		try {
@@ -26,14 +26,14 @@ public class Run_Find extends Drivers {
 			throw e;
 		}
 	}
-	
+
 	@Test
 	public void test02_chatter_categories() throws Exception {
 		try {
 			log("Starting test - ");
 			
 			if (Android()) {
-				new Android_Find().test02_chattercategories();
+				new Android_Find().test02_follow_publisher();
 			} else if (IOS()) {
 				new IOS_Find().test02_follow_publisher();
 			}
@@ -44,14 +44,14 @@ public class Run_Find extends Drivers {
 			throw e;
 		}
 	}
-	
+
 	@Test
 	public void test03_category_titles () throws Exception {
 		try {
 			log("Starting test - ");
 			
 			if (Android()) {
-				new Android_Find().test03_followfeedlist();
+				new Android_Find().test03_category_titles();
 			} else if (IOS()) {
 				new IOS_Find().test03_category_titles();
 			}
@@ -61,15 +61,15 @@ public class Run_Find extends Drivers {
 			relaunch();
 			throw e;
 		}
-	}
-	
+	}*/
+
 	@Test
 	public void test04_build_a_following() throws Exception {
 		try {
 			log("Starting test - ");
 			
 			if (Android()) {
-				new Android_Find().test04_feedList_categories();
+				new Android_Find().test04_build_a_following();
 			} else if (IOS()) {
 				new IOS_Find().test04_build_a_following();
 			}
@@ -80,7 +80,7 @@ public class Run_Find extends Drivers {
 			throw e;
 		}
 	}
-	
+	/*
 	@Test
 	public void test05_searchbar() throws Exception {
 		try {
@@ -97,6 +97,6 @@ public class Run_Find extends Drivers {
 			relaunch();
 			throw e;
 		}
-	}
+	}*/
 
 }
