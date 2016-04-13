@@ -21,13 +21,14 @@ public class Android_URLShortenerTest extends AndroidElements {
 		enter_website().click();
 		edit_textbox().clear();
 		edit_textbox().sendKeys(account_website);
-		wait(2);
+		Thread.sleep(2000);
 		
 		save_button().click();
 		
-		WebElement shortened_url = wait.until(ExpectedConditions.elementToBeClickable(By.name(shortened_website)));
+		//WebElement shortened_url = wait.until(ExpectedConditions.elementToBeClickable(By.name(shortened_website)));
 		
 		try {
+			WebElement shortened_url = wait.until(ExpectedConditions.elementToBeClickable(By.name(shortened_website)));
 			if (shortened_url.isDisplayed())
 				System.out.println("Website name is shortned");
 		} catch (Exception e) {
@@ -41,9 +42,10 @@ public class Android_URLShortenerTest extends AndroidElements {
 		edit_textbox().sendKeys(shortened_website);
 		save_button().click();
 		
-		WebElement shortened_url = wait.until(ExpectedConditions.elementToBeClickable(By.name(shortened_website)));
+
 		
 		try {
+			WebElement shortened_url = wait.until(ExpectedConditions.elementToBeClickable(By.name(shortened_website)));
 			if (shortened_url.isDisplayed())
 				System.out.println("Website name is not shortned");
 		} catch (Exception e) {
@@ -52,6 +54,6 @@ public class Android_URLShortenerTest extends AndroidElements {
 		enter_website().click();
 		edit_textbox().clear();
 		save_button().click();
-		logoutAccount();
+
 	}
 }
