@@ -41,13 +41,13 @@ public class AndroidElements extends Drivers {
 	 * Common elements
 	 ******************/
     public WebElement name(String name) {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.name(name)));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath(("//*[@text='" + name + "']"))));
     }
     public WebElement OK_button() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.name("OK")));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='OK']")));
     }
     public WebElement done_button() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.name("done")));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='done']")));
     }
 	public WebElement back_button() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("android:id/home")));
@@ -78,10 +78,10 @@ public class AndroidElements extends Drivers {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/login_button")));
 	}
 	public WebElement dusts_tab() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("DUSTS")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='DUSTS']")));
 	}
 	public WebElement find_tab() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("FIND")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='FIND']")));
 	}
 	public WebElement dust1_more_button() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.RelativeLayout[@index='0'][android.widget.ImageView[@index='2' and @resource-id='com.radicalapps.cyberdust:id/more_button']]")));
@@ -90,10 +90,10 @@ public class AndroidElements extends Drivers {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tap_to_compose_button")));
 	}
 	public WebElement blasts_tab() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("BLASTS")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='BLASTS']")));
 	}
 	public WebElement my_blasts() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.name("MY BLASTS")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='MY BLASTS']")));
 	}
 	public WebElement my_blasts_views(String viewCount) {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.TextView[@text='"+viewCount+"' and @resource-id='com.radicalapps.cyberdust:id/view_count']")));
@@ -108,7 +108,7 @@ public class AndroidElements extends Drivers {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/delete_button")));
 	}
 	public WebElement delete_all_dusts() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Delete All Dusts")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Delete All Dusts']")));
 	}
 	public WebElement blasted_by() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/profile_button")));
@@ -138,19 +138,19 @@ public class AndroidElements extends Drivers {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.ImageView[@index='3' and @resource-id='com.radicalapps.cyberdust:id/more_button']")));
 	}
 	public WebElement blast_more_mute() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("mute blasts")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='mute blasts']")));
 	}
 	public WebElement blast_more_delete() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("delete blasts")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='delete blasts']")));
 	}
 	public WebElement blast_more_block() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("block user")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='block user']")));
 	}
 	public WebElement blast_more_cancel() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("cancel")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='cancel']")));
 	}
 	public WebElement blast_lists() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Blast Lists")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Blast Lists']")));
 	}
 	public WebElement create_new_blast_list() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/create_button")));
@@ -169,13 +169,13 @@ public class AndroidElements extends Drivers {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.ImageButton")));
 	}
 	public WebElement rename_list() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Rename list")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Rename list']")));
 	}
 	public WebElement rename_blast_list() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.EditText")));
 	}
 	public WebElement delete_list() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Delete list")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Delete list']")));
 	}
 	public WebElement groups_title_field() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.FrameLayout[@index='0'][android.widget.EditText[@index='0']]")));
@@ -253,7 +253,7 @@ public class AndroidElements extends Drivers {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/action_back")));
 	}
 	public WebElement video_button() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("VIDEO")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='VIDEO']")));
 	}
 	public WebElement photo_location_button() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/location")));
@@ -268,7 +268,7 @@ public class AndroidElements extends Drivers {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/actionbar_blast_pin")));
 	}
 	public WebElement current_location() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Current Location")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Current Location']")));
 	}
 	public WebElement add_text() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/action_add_text")));
@@ -295,7 +295,7 @@ public class AndroidElements extends Drivers {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/blast_friends_button_plus")));
 	}
 	public WebElement create_blast_list() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Create Blast List")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Create Blast List']")));
 	}
 	public WebElement send_to_blast_list() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/action_check")));
@@ -349,7 +349,7 @@ public class AndroidElements extends Drivers {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/screenshot_button")));
 	}
 	public WebElement username(String user) {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name(user)));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='"+user+"']")));
 	}
 	public WebElement mute_blast_icon() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/mute_blast_icon")));
@@ -376,34 +376,34 @@ public class AndroidElements extends Drivers {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/pinned_message_text")));
 	}
 	public WebElement tap_to_unpin_button() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Tap message to unpin")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Tap message to unpin']")));
 	}
 	public WebElement follow_from_chat_room() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("follow")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='follow']")));
 	}
 	public WebElement unfollow_from_chat_room() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("unfollow")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='unfollow']")));
 	}
 	public WebElement yes_button() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Yes")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Yes']")));
 	}
 	public WebElement Friend_already_added() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Friend Already Added")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Friend Already Added']")));
 	}
     public WebElement delete_empty_rooms_button() {
-    	return wait.until(ExpectedConditions.elementToBeClickable(By.name("Delete Empty Rooms")));
+    	return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Delete Empty Rooms']")));
     }
     public WebElement create_group_ok_button() {
     	return wait.until(ExpectedConditions.elementToBeClickable(By.id("spinner_button_layout")));
     }
     public WebElement delete_all_groups() {
-    	return wait.until(ExpectedConditions.elementToBeClickable(By.name("Delete All Groups")));
+    	return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Delete All Groups']")));
     }
     public WebElement delete_group_button() {
-    	return wait.until(ExpectedConditions.elementToBeClickable(By.name("delete group")));
+    	return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='delete group']")));
     }
     public WebElement tutorial_button() {
-    	return wait.until(ExpectedConditions.elementToBeClickable(By.name("tutorial")));
+    	return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='tutorial']")));
     }
     public WebElement dust_info_text() { //text like you sent x minutes ago
     	return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/info_text")));
@@ -422,7 +422,7 @@ public class AndroidElements extends Drivers {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("android:id/button1")));
     }
     public WebElement camera_button() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.name("Camera")));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Camera']")));
     }
     public WebElement profile_picture_done() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/activity_profile_pic_crop_btn")));
@@ -521,7 +521,7 @@ public class AndroidElements extends Drivers {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/change_email_fragment_newemail_edit_text")));	
     }
     public WebElement invalid_username() {
-    	return wait.until(ExpectedConditions.elementToBeClickable(By.name("Invalid username & password combination")));
+    	return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Invalid username & password combination']")));
     }
     public WebElement friends_search() {
     	return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/add_friends_fragment_search_box")));
@@ -530,7 +530,7 @@ public class AndroidElements extends Drivers {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.ListView[@index='0'][android.widget.RelativeLayout[@index='0']]")));
 	}
     public WebElement delete_dust() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("delete dust")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='delete dust']")));
 	}
     public WebElement friends_more_button() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("more_button")));
@@ -542,10 +542,10 @@ public class AndroidElements extends Drivers {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("custom")));
 	}
     public WebElement save_button() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Save")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Save']")));
 	}
     public WebElement add_friend() { // from followers
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("+")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='+']")));
 	}
     public WebElement switch_emoji_keyboard() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/chat_room_fragment_emoji_button")));
@@ -554,13 +554,13 @@ public class AndroidElements extends Drivers {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/emoji_keyboard_fragment_keyboard_button")));
 	}
     public WebElement okay_button() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Okay")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Okay']")));
 	}
     public WebElement unfollow_button() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("unfollow user")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='unfollow user']")));
 	}
     public WebElement search_friends() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Search Friends")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Search Friends']")));
 	}
     public WebElement browse_followers() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/browse_followers_row")));
@@ -594,7 +594,7 @@ public class AndroidElements extends Drivers {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/add_button")));
 	}
     public WebElement feed_following() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("following")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='following']")));
 	}
     public WebElement other_user_prof_pic() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/overlay_profile_picture")));
@@ -603,7 +603,7 @@ public class AndroidElements extends Drivers {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/people_i_know_button")));
 	}
     public WebElement get_discovered() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Get Discovered")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Get Discovered']")));
 	}
     public WebElement get_discovered_popup() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/username_text")));
@@ -618,34 +618,34 @@ public class AndroidElements extends Drivers {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("android:id/up")));
 	}
     public WebElement business_category() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Business")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Business']")));
 	}
     public WebElement chatting_category() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Chatting")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Chatting']")));
 	}
     public WebElement entertainment_category() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Entertainment")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Entertainment']")));
 	}
     public WebElement health_category() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Health & Wellness")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Health & Wellness']")));
 	}
     public WebElement music_category() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Music")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Music']")));
 	}
     public WebElement sports_category() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Sports")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Sports']")));
 	}
     public WebElement startups_category() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Start-Ups")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Start-Ups']")));
 	}
     public WebElement technology_category() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("Technology")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Technology']")));
 	}
     public WebElement chatter_category() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/chatter_topic_text")));
 	}
     public WebElement news_category() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.name("News")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='News']")));
 	}
     public WebElement open_searchbar() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/search_bar")));
@@ -697,7 +697,7 @@ public class AndroidElements extends Drivers {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/onboarding_4_ok_button")));
     }
     public WebElement skip_button() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.name("Skip")));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Skip']")));
     }
     public WebElement date() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.NumberPicker[@index='2'][android.widget.Button]")));
@@ -722,49 +722,49 @@ public class AndroidElements extends Drivers {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tutorial_settings_switch")));
 	}
 	public WebElement tutorial_back_button() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.name("TUTORIAL")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='TUTORIAL']")));
 	}
 	public WebElement tutorial_private_messaging() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.name("Private messaging with Cyber Dust")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Private messaging with Cyber Dust']")));
 	}
 
 	public WebElement tutorial_private_networking() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.name("Private networking with other Cyber Dusters")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Private networking with other Cyber Dusters']")));
 	}
 
 	public WebElement tutorial_getStarted_Button() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.name("Get Started!")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Get Started!']")));
 	}
 
 	public WebElement tutorial_username() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.name("Get Pick a username")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Get Pick a username']")));
 	}
 
 	public WebElement tutorial_profile_photo() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.name("Select a profile photo")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Select a profile photo']")));
 	}
 
 	public WebElement tutorial_find_contacts() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.name("Find contacts with Cyber Dust")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Find contacts with Cyber Dust']")));
 	}
 
 	public WebElement tutorial_learn_to_dust() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.name("Learn to Dust")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Learn to Dust']")));
 	}
 
 	public WebElement tutorial_build_a_following() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.name("Build a following")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Build a following']")));
 	}
 
 	public WebElement tutorial_facebook_friends() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.name("Find friends from Facebook")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Find friends from Facebook']")));
 	}
 
 	public WebElement tutorial_share_profile() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.name("Share your profile")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Share your profile']")));
 	}
 
 	public WebElement tutorial_learn_about_blasts() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.name("Learn about Blasts")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Learn about Blasts']")));
 	}
 }
