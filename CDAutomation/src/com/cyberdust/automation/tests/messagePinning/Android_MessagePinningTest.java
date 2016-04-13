@@ -14,9 +14,19 @@ public class Android_MessagePinningTest extends AndroidElements {
 	LoginWith loginAs = new LoginWith();
 
 	public void test01_pinning_messages() throws Exception {
-		// Logs into existing testing account
+
 		loginAs.user(pin_account01, pin_password01);
-	
+
+		more_button().click();
+		action.press(followers()).moveTo(back_button()).release().perform();
+		tutorial().click();
+		if(tutorial_switch().getText().contains("ON"))
+		{
+			tutorial_switch().click();
+		}
+		tutorial_back_button().click();
+		back_button().click();
+		Thread.sleep(1000);
 		action_menu().click();
 		action_menu_dust().click();
 		Thread.sleep(5000);
