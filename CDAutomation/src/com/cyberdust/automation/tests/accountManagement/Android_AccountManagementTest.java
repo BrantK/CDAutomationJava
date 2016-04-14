@@ -14,7 +14,8 @@ public class Android_AccountManagementTest extends AndroidElements {
 		// Changes password
 		log("Changing password");
 		more_button().click();
-		action.press(followers()).moveTo(back_button()).release().perform();
+		action.press(followers()).moveTo(enter_bio()).release().perform();
+		account_settings().click();
 		change_password().click();
 		enter_old_password().click();
 		enter_old_password().sendKeys(acctmgnt_password01);
@@ -38,8 +39,9 @@ public class Android_AccountManagementTest extends AndroidElements {
 	public void test02_changing_email() throws Exception {
 		
 		change_email_address().click();
-		new_email_text_box().sendKeys(accmgnt_new_password);
+		new_email_text_box().sendKeys(accmgnt_new_email);
 		change_password_ok_button().click();
+		Thread.sleep(2000);
 
 		// Reset email address
 		change_email_address().click();
@@ -59,7 +61,9 @@ public class Android_AccountManagementTest extends AndroidElements {
 	public void test03_account_deleting() throws Exception {
 		log("Deleting account");
 		delete_account().click();
-		confirm().click();
+        log("Clicked delete account");
+        Thread.sleep(5000);
+		yes_button().click();
 
 		try {
 			login_button().click();
@@ -74,7 +78,7 @@ public class Android_AccountManagementTest extends AndroidElements {
 			log("[Warning] logged into deleted account!");
 			
 			more_button().click(); Thread.sleep(1000);
-	        action.press(followers()).moveTo(back_button()).release().perform();
+	        action.press(followers()).moveTo(build_a_following()).release().perform();
 	        delete_account().click();
 	        log("Deleting account again");
 	        confirm().click();
@@ -82,18 +86,21 @@ public class Android_AccountManagementTest extends AndroidElements {
 
 		// Recreating the account
 		log("Recreating account");
-		sign_up_button().click();
-		pick_username().sendKeys(acctmgnt_account01);
-		username_confirm().click();
-		create_password().sendKeys(acctmgnt_password01);
-		password_confirm().click();
 
-		birthday_confirm();
-		email().sendKeys(accmgnt_email);
-		email_OK().click();
-		OK_button().click();
-		
-		relaunch();
-		blasts_tab();
+		String account_name = "devtest";
+		String account_pw = "devtest";
+		sign_up_button().click();
+		pick_username().sendKeys(account_name);
+		username_confirm().click();
+		create_password().sendKeys(account_pw);
+		password_confirm().click();
+		birthday_confirm().click();
+
+		// Skips email
+		skip_button().click();
+
+		// Skips remaining on boarding
+		skip_button().click();
+
 	}
 }
