@@ -61,6 +61,8 @@ public class Android_AccountManagementTest extends AndroidElements {
 	public void test03_account_deleting() throws Exception {
 		log("Deleting account");
 		delete_account().click();
+        log("Clicked delete account");
+        Thread.sleep(5000);
 		yes_button().click();
 
 		try {
@@ -76,7 +78,7 @@ public class Android_AccountManagementTest extends AndroidElements {
 			log("[Warning] logged into deleted account!");
 			
 			more_button().click(); Thread.sleep(1000);
-	        action.press(followers()).moveTo(back_button()).release().perform();
+	        action.press(followers()).moveTo(build_a_following()).release().perform();
 	        delete_account().click();
 	        log("Deleting account again");
 	        confirm().click();
