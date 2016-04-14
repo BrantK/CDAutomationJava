@@ -51,14 +51,15 @@ public abstract class Drivers extends TestAccounts {
 		if (System.getProperty("os.name").toLowerCase().contains("win")) {
 			DeviceReader.AndroidDevice = true;
 		}
-		
-		AppiumDriverLocalService service = AppiumDriverLocalService
-				.buildService(new AppiumServiceBuilder()
-				.withArgument(GeneralServerFlag.LOG_NO_COLORS)
-				.withIPAddress(appiumServerAddress)
-				.usingPort(Integer.parseInt(appiumServerPort)));
 
         try {
+            AppiumDriverLocalService service = AppiumDriverLocalService
+                    .buildService(new AppiumServiceBuilder()
+                            .withAppiumJS(new File("/usr/local/lib/node_modules/appium/build/lib/main.js"))
+                            .withArgument(GeneralServerFlag.LOG_NO_COLORS)
+							.withArgument(GeneralServerFlag.LOG_LEVEL, "info")
+                            .withIPAddress(appiumServerAddress)
+                            .usingPort(Integer.parseInt(appiumServerPort)));
 
             if ((IOSEnabled && (DeviceReader.IOSDevice || DeviceReader.AndroidDevice)) || (!DeviceReader.IOSDevice && !DeviceReader.AndroidDevice)) {
                 if (IOSEnabled) {
@@ -70,7 +71,7 @@ public abstract class Drivers extends TestAccounts {
                 IOSSimulator = true;
                 capabilities.setCapability("platformName", "IOS");
                 capabilities.setCapability("platformVersion", "");
-                capabilities.setCapability("deviceName", "");
+                capabilities.setCapability("deviceName", "=iPhone 6 (");
                 capabilities.setCapability("noReset", true);
                 capabilities.setCapability("nativeInstrumentsLib", true);
                 capabilities.setCapability("bundleId", "com.mentionmobile.cyberdust");
@@ -83,7 +84,7 @@ public abstract class Drivers extends TestAccounts {
                 System.out.println("iOS device detected");
                 capabilities.setCapability("platformName", "IOS");
                 capabilities.setCapability("platformVersion", "");
-                capabilities.setCapability("deviceName", "");
+                capabilities.setCapability("deviceName", "iPhone");
                 capabilities.setCapability("noReset", true);
                 capabilities.setCapability("nativeInstrumentsLib", true);
                 capabilities.setCapability("bundleId", "com.mentionmobile.cyberdust");
@@ -96,7 +97,7 @@ public abstract class Drivers extends TestAccounts {
                 System.out.println("Android device detected");
                 capabilities.setCapability("platformName", "Android");
                 capabilities.setCapability("platformVersion", "");
-                capabilities.setCapability("deviceName", "");
+                capabilities.setCapability("deviceName", "Android");
                 capabilities.setCapability("noReset", true);
                 capabilities.setCapability("appPackage", "com.radicalapps.cyberdust");
                 capabilities.setCapability("appActivity", "com.radicalapps.cyberdust.activities.LauncherActivity");
@@ -129,8 +130,10 @@ public abstract class Drivers extends TestAccounts {
 		capabilities.setCapability("bundleId","");
 		capabilities.setCapability("udid","");
 		capabilities.setCapability("app","");
-		capabilities.setCapability("appPackage","");
-		capabilities.setCapability("appActivity","");
+        if (capabilities.getCapability("appPackage") != null) {
+            capabilities.setCapability("appPackage", "");
+            capabilities.setCapability("appActivity", "");
+        }
 	}
 	
 	// Checks if device is Android
@@ -197,7 +200,7 @@ public abstract class Drivers extends TestAccounts {
 			} else {
 				System.out.print(dateTime + testName + text + "\n");
 			}
-		} 
+		}
 		
 		try {
 			FileWriter myWriter = new FileWriter(logLocation, true);

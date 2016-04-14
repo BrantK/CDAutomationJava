@@ -112,8 +112,10 @@ public class LoginWith extends Drivers {
             } catch (InterruptedException ignored) {}
 
             ios.login_username().click();
-          	driver.getKeyboard().sendKeys(account+"\n"+password);
-          	ios.login_OK().click();
+            driver.getKeyboard().sendKeys(account);
+            ios.login_password().click();
+            driver.getKeyboard().sendKeys(password);
+            ios.login_OK().click();
         }
     }
 }
