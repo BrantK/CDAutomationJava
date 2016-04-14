@@ -89,6 +89,9 @@ public class IOSElements extends Drivers {
 	public WebElement login_username() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("Username")));
 	}
+    public WebElement login_password() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("Password")));
+    }
 	public WebElement login_OK() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("Log In")));
 	}
@@ -383,6 +386,9 @@ public class IOSElements extends Drivers {
 	public WebElement sent_text_dust() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIACollectionView[1]/UIACollectionCell[1]/UIAStaticText[1]")));
 	}
+    public WebElement sent_text_pinned() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIACollectionView[1]/UIACollectionCell[1]/UIAStaticText[2]")));
+    }
 	public WebElement pinned_message() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIACollectionView[1]/UIACollectionCell[1]")));
 	}
