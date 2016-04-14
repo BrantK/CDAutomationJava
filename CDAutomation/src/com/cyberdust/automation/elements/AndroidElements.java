@@ -489,7 +489,7 @@ public class AndroidElements extends Drivers {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.RelativeLayout[@index='1']/android.widget.ImageView[@resource-id='com.radicalapps.cyberdust:id/add_friend_contacts_listitem_icon_photo']")));
 	}
 	public WebElement close_search() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.name("DISCOVER")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='DISCOVER']")));
 	}
 	public WebElement no_button() throws Exception{
 		Thread.sleep(1000);
@@ -563,10 +563,10 @@ public class AndroidElements extends Drivers {
 		return driver.findElement(By.xpath("//android.widget.FrameLayout"));
 	}
 	public WebElement save_bio() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.name("Save")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Save']")));
 	}
 	public WebElement close_more_menu() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.name("MORE")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='MORE']")));
 	}
 	public WebElement enter_website() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/more_fragment_url")));
