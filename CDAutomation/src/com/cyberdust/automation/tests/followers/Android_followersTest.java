@@ -16,23 +16,30 @@ public class Android_followersTest extends AndroidElements {
 		more_button().click();
 		followers().click();
 		add_friend().click();
-		
-		try {
-			waitTime(2);
-			if (!add_friend().isDisplayed())
-				System.out.println("Friend added from followers menu");
-		} catch (Exception e) {
-			System.out.println("Unable to add friend from followers menu");
-		}
-		waitTime(20);
+//
+//		try {
+//			if (!(add_friend().isDisplayed()))
+//				System.out.println("Friend added from followers menu");
+//		} catch (Exception e) {
+//			System.err.println("Unable to add friend from followers menu");
+//		}
+//		Thread.sleep(2000);
 		back_button().click();
-		back_button().click();
-		more_button().click();
+//		back_button().click();
+//		more_button().click();
 		friends().click();
-		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(followers_account02)));
-		action.longPress(first_friend,3000).release().perform();
-		unfollow_button().click();
-		okay_button().click();
+		try {
+			WebElement friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(followers_account02)));
+			System.out.println("Friend added from followers menu ");
+			action.longPress(friend, 3000).release().perform();
+			unfollow_button().click();
+			okay_button().click();
+		}
+		catch (Exception e)
+		{
+			System.err.println("Unable to add friend from followers menu");
+		}
+
 		back_button().click();
 
 	}
@@ -41,7 +48,7 @@ public class Android_followersTest extends AndroidElements {
 		
 
 		followers().click();
-		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(followers_account02)));
+		WebElement first_friend = name(followers_account02);
 		action.longPress(first_friend, 3000).release().perform();
 		
 		blast_more_block().click();
@@ -54,9 +61,9 @@ public class Android_followersTest extends AndroidElements {
 		
 		try {
 			if (first_friend.isDisplayed())
-				System.out.println("Friend added from followers menu");
+				System.out.println("Follower can be blocked");
 		} catch (Exception e) {
-			System.out.println("Unable to add friend from followers menu");
+			System.err.println("Couldn't block the followers");
 		}
 		first_friend.click();
 		back_button().click();
