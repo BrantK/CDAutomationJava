@@ -16,17 +16,7 @@ public class Android_followersTest extends AndroidElements {
 		more_button().click();
 		followers().click();
 		add_friend().click();
-//
-//		try {
-//			if (!(add_friend().isDisplayed()))
-//				System.out.println("Friend added from followers menu");
-//		} catch (Exception e) {
-//			System.err.println("Unable to add friend from followers menu");
-//		}
-//		Thread.sleep(2000);
 		back_button().click();
-//		back_button().click();
-//		more_button().click();
 		friends().click();
 		try {
 			WebElement friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(followers_account02)));

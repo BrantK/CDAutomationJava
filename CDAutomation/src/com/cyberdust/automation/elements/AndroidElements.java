@@ -349,7 +349,7 @@ public class AndroidElements extends Drivers {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/screenshot_button")));
 	}
 	public WebElement username(String user) {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='"+user+"']")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='" + user + "']")));
 	}
 	public WebElement mute_blast_icon() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/mute_blast_icon")));
@@ -485,13 +485,13 @@ public class AndroidElements extends Drivers {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/more_fragment_logout_row")));
     }
     public WebElement change_email_address() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/more_fragment_email_row")));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/account_settings_email_row")));
     }
     public WebElement change_password() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/more_fragment_password_row")));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/account_settings_password_row")));
     }
     public WebElement validate_mobile() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/more_fragment_mobile_number_row")));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/account_settings_mobile_number_row")));
     }
     public WebElement muted_blocked_users() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/more_fragment_blocked_users_row")));
