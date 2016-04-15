@@ -14,7 +14,7 @@ public class Android_AccountManagementTest extends AndroidElements {
 		// Changes password
 		log("Changing password");
 		more_button().click();
-		action.press(followers()).moveTo(enter_bio()).release().perform();
+		action.press(followers()).moveTo(build_a_following()).release().perform();
 		account_settings().click();
 		change_password().click();
 		enter_old_password().click();
@@ -25,6 +25,7 @@ public class Android_AccountManagementTest extends AndroidElements {
 		confirm_new_password().sendKeys(accmgnt_new_password);
 		change_password_ok_button().click();
 
+        Thread.sleep(1000);
 		// Resets Password
 		change_password().click();
 		enter_old_password().sendKeys(accmgnt_new_password);
@@ -65,15 +66,17 @@ public class Android_AccountManagementTest extends AndroidElements {
         Thread.sleep(5000);
 		yes_button().click();
 
-		try {
+
 			login_button().click();
 			login_username().sendKeys(acctmgnt_account01);
 			login_password().click();
-			login_password().sendKeys(acctmgnt_account01);
+			login_password().sendKeys(acctmgnt_password01);
 			login_OK().click();
-			invalid_username().isDisplayed();
-			log("Could not log into deleted account");
-			relaunch();
+        try {
+			if(login_button().isDisplayed()) {
+                log("Could not log into deleted account");
+                relaunch();
+            }
 		} catch (Exception e) {
 			log("[Warning] logged into deleted account!");
 			
