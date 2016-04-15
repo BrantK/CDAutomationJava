@@ -15,6 +15,7 @@ modules.xml
 profiles_settings.xml
 workspace.xml
 vcs.xml
+.name
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
