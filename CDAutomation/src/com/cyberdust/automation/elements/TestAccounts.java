@@ -183,7 +183,7 @@ public abstract class TestAccounts {
 
 	if ((!accountSet1 && !accountSet2) || accountSet1) {
 		// AccountManagement //
-		acctmgnt_account01 = "accountmanagement";
+		acctmgnt_account01 = "acctmgnt";
 		acctmgnt_password01 = "password";
 		accmgnt_new_password = "new password";
 		accmgnt_email = "testuser_03@cyberdust.com";

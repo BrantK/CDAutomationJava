@@ -73,7 +73,7 @@ public class Android_AccountManagementTest extends AndroidElements {
 			login_password().sendKeys(acctmgnt_password01);
 			login_OK().click();
         try {
-			if(login_button().isDisplayed()) {
+			if(login_OK().isDisplayed()) {
                 log("Could not log into deleted account");
                 relaunch();
             }
@@ -90,8 +90,8 @@ public class Android_AccountManagementTest extends AndroidElements {
 		// Recreating the account
 		log("Recreating account");
 
-		String account_name = "devtest";
-		String account_pw = "devtest";
+		String account_name = "acctmgnt_account01";
+		String account_pw = "acctmgnt_password01";
 		sign_up_button().click();
 		pick_username().sendKeys(account_name);
 		username_confirm().click();
