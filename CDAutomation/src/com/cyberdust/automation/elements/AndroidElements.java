@@ -403,7 +403,7 @@ public class AndroidElements extends Drivers {
     	return wait.until(ExpectedConditions.elementToBeClickable(By.id("spinner_button_layout")));
     }
     public WebElement delete_all_groups() {
-    	return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Delete All Groups']")));
+    	return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Delete and Leave Rooms']")));
     }
     public WebElement delete_group_button() {
     	return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='delete group']")));

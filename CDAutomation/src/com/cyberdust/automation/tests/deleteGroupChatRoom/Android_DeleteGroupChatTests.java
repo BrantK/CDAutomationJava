@@ -23,9 +23,9 @@ public class Android_DeleteGroupChatTests extends AndroidElements {
 		action_menu_group().click();
 		//search_friends().sendKeys(friend_account_short);
 		
-		WebElement user1 = wait.until(ExpectedConditions.elementToBeClickable(By.name(deletegroup_account01)));
+		WebElement user1 = name("testaccount01");
 		user1.click();
-		WebElement user2 = wait.until(ExpectedConditions.elementToBeClickable(By.name(deletegroup_account02)));
+		WebElement user2 = name("testaccount02");
 		user2.click();
 		OK_button().click();
         Thread.sleep(500);
@@ -39,7 +39,6 @@ public class Android_DeleteGroupChatTests extends AndroidElements {
 		action_menu().click();
 		Thread.sleep(1000);
 		action_menu_group().click();
-		search_friends().sendKeys(friend_account_short);
 		
 		user1.click();
 		user2.click();
@@ -54,7 +53,7 @@ public class Android_DeleteGroupChatTests extends AndroidElements {
 		action_menu().click();
 		Thread.sleep(1000);
 		action_menu_group().click();
-		search_friends().sendKeys(friend_account_short);
+
 		
 		
 		user1.click();
@@ -70,7 +69,7 @@ public class Android_DeleteGroupChatTests extends AndroidElements {
 		action_menu().click();
 		Thread.sleep(1000);
 		action_menu_group().click();
-		search_friends().sendKeys(friend_account_short);
+
 		
 		user1.click();
 		user2.click();
@@ -85,7 +84,7 @@ public class Android_DeleteGroupChatTests extends AndroidElements {
 		action_menu().click();
 		Thread.sleep(1000);
 		action_menu_group().click();
-		search_friends().sendKeys(friend_account_short);
+
 		
 		user1.click();
 		user2.click();
@@ -97,16 +96,16 @@ public class Android_DeleteGroupChatTests extends AndroidElements {
 		back_button().click();
 		log("Fifth group created");
 		
-		dusts_tab().click();
-		WebElement Group1 = wait.until(ExpectedConditions.elementToBeClickable(By.name(" Group 1")));
+		//dusts_tab().click();
+		WebElement Group1 = name(" Group 1");
 		log("Got group 1");
 		
-		WebElement Group5 = wait.until(ExpectedConditions.elementToBeClickable(By.name(" Group 5")));
+		WebElement Group5 = name(" Group 5");
 		log("Got group 5");
 		
 		
 		action.press(Group1).moveTo(Group5).release().perform();
-		delete_all_dusts().click();
+		delete_all_groups().click();
 		yes_button().click();
 		
 		try{
@@ -125,11 +124,10 @@ public class Android_DeleteGroupChatTests extends AndroidElements {
 		action_menu().click();
 		Thread.sleep(1000);
 		action_menu_group().click();
-		search_friends().sendKeys(friend_account_short);
-		
-		WebElement user1 = wait.until(ExpectedConditions.elementToBeClickable(By.name(deletegroup_account01)));
+
+		WebElement user1 = name("testaccount01");
 		user1.click();
-		WebElement user2 = wait.until(ExpectedConditions.elementToBeClickable(By.name(deletegroup_account02)));
+		WebElement user2 = name("testaccount02");
 		user2.click();
 		OK_button().click();
         Thread.sleep(500);
@@ -143,7 +141,6 @@ public class Android_DeleteGroupChatTests extends AndroidElements {
 		action_menu().click();
 		Thread.sleep(1000);
 		action_menu_group().click();
-		search_friends().sendKeys(friend_account_short);
 		
 		user1.click();
 		user2.click();
@@ -158,7 +155,6 @@ public class Android_DeleteGroupChatTests extends AndroidElements {
 		action_menu().click();
 		Thread.sleep(1000);
 		action_menu_group().click();
-		search_friends().sendKeys(friend_account_short);
 		
 		
 		user1.click();
@@ -174,7 +170,6 @@ public class Android_DeleteGroupChatTests extends AndroidElements {
 		action_menu().click();
 		Thread.sleep(1000);
 		action_menu_group().click();
-		search_friends().sendKeys(friend_account_short);
 		
 		user1.click();
 		user2.click();
@@ -185,19 +180,14 @@ public class Android_DeleteGroupChatTests extends AndroidElements {
         confirm().click();
 		back_button().click();
 		log("Fourth group created");
-		WebElement Group1 = wait.until(ExpectedConditions.elementToBeClickable(By.name(" Group 1")));
-		log("Got group 1");
-		
-		friends_more_button().click();
-		delete_group_button().click();
-		friends_more_button().click();
-		delete_group_button().click();
-		friends_more_button().click();
-		delete_group_button().click();
-		friends_more_button().click();
-		delete_group_button().click();
-		
-		
+		WebElement Group1 = name(" Group 1");
+
+		for(int i=0;i<3;i++) {
+			friends_more_button().click();
+			delete_group_button().click();
+		}
+
+		Thread.sleep(1000);
 		try{
 			if(!Group1.isDisplayed())
 			{
