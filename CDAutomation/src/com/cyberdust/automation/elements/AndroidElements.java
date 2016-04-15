@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 import io.appium.java_client.TouchAction;
 
 public class AndroidElements extends Drivers {
@@ -81,13 +83,18 @@ public class AndroidElements extends Drivers {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='DUSTS']")));
 	}
 	public WebElement find_tab() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='FIND']")));
+		more_button();//to prevent clicking find tab too early
+	    return driver.findElement(By.xpath("//*[@text='FIND']"));
 	}
 	public WebElement dust1_more_button() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.RelativeLayout[@index='0'][android.widget.ImageView[@index='2' and @resource-id='com.radicalapps.cyberdust:id/more_button']]")));
 	}
 	public WebElement new_dust() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tap_to_compose_button")));
+	}
+	public WebElement empty_dust_tab_text() throws Exception {
+		Thread.sleep(1500);
+		return driver.findElement(By.xpath("//android.widget.TextView[@resource-id='com.radicalapps.cyberdust:id/no_chats_title']"));
 	}
 	public WebElement blasts_tab() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='BLASTS']")));
@@ -96,10 +103,10 @@ public class AndroidElements extends Drivers {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='MY BLASTS']")));
 	}
 	public WebElement my_blasts_views(String viewCount) {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.TextView[@text='"+viewCount+"' and @resource-id='com.radicalapps.cyberdust:id/view_count']")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.TextView[@text='" + viewCount + "' and @resource-id='com.radicalapps.cyberdust:id/view_count']")));
 	}
 	public WebElement my_blasts_screenshots(String screenshotCount) {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.TextView[@text='"+screenshotCount+"' and @resource-id='com.radicalapps.cyberdust:id/screenshot_count']")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.TextView[@text='" + screenshotCount + "' and @resource-id='com.radicalapps.cyberdust:id/screenshot_count']")));
 	}
 	public WebElement my_blasts_trash_can() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/action_delete")));
@@ -407,18 +414,140 @@ public class AndroidElements extends Drivers {
     public WebElement dust_info_text() { //text like you sent x minutes ago
     	return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/info_text")));
     }
-	
+
+	/**********************
+	 * Find Tab elements *
+	 **********************/
+	public WebElement chatter_add(int myIndex) throws Exception {
+		Thread.sleep(1000);
+		List<WebElement> first_chatter_cards_list = driver.findElements(By.xpath("//android.widget.ImageView[@index='1']"));
+		return first_chatter_cards_list.get(myIndex);
+	}
+	/*
+	public int index_generator() throws Exception {
+		List<WebElement> contact_card_array = contacts_scrollview().findElements(By.id("com.radicalapps.cyberdust:id/chatters_vertical_card_view"));
+		if((contact_card_array.size()) > 1) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}*/
+	public WebElement first_chatter_add() throws Exception {
+		List<WebElement> chatter_follow_button_list = chatter_scrollview().findElements(By.id("com.radicalapps.cyberdust:id/add_chatter_icon"));
+		return chatter_follow_button_list.get(0);
+	}
+	public WebElement chatter_scrollview() throws Exception {
+		Thread.sleep(3000);
+		return driver.findElement(By.id("com.radicalapps.cyberdust:id/discover_chatter_recyclerview"));
+	}
+	public WebElement chatter_open_profile(int myIndex) {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.support.v7.widget.RecyclerView[@resource-id='com.radicalapps.cyberdust:id/discover_chatter_recyclerview']/android.widget.FrameLayout[@index='" + myIndex + "']")));
+	}
+	public WebElement generic_prof_pic_image() throws Exception {
+		Thread.sleep(500);
+		return driver.findElement(By.id("com.radicalapps.cyberdust:id/more_fragment_picture_button"));
+	}
+	public WebElement close_profile() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/overlay_name")));
+	}
+	public WebElement publisher_open_profile(int myIndex) {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.support.v7.widget.RecyclerView[@resource-id='com.radicalapps.cyberdust:id/discover_feed_recyclerview']/android.widget.FrameLayout[@index='" + myIndex + "']")));
+	}
+	public WebElement build_a_following_button() throws Exception {
+		return contacts_scrollview().findElement(By.id("com.radicalapps.cyberdust:id/chatters_vertical_card_view"));
+	}
+	public WebElement contacts_scrollview() throws Exception {
+		Thread.sleep(2000);
+		return driver.findElement(By.id("com.radicalapps.cyberdust:id/discover_build_following_recyclerview"));
+	}
+	public WebElement more_tab_build_a_following_button() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/more_fragment_get_discovered")));
+	}
+	public WebElement select_a_category_button() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/category_chooser")));
+	}
+	public WebElement advertising_category_button() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.RelativeLayout[@index='1']")));
+	}
+	public WebElement build_a_following_description() throws Exception {
+		Thread.sleep(500);
+		return driver.findElement(By.id("com.radicalapps.cyberdust:id/description_edit_text"));
+	}
+	public WebElement close_BAF_form() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/close_button")));
+	}
+	public WebElement open_searchbar() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/search_bar")));
+	}
+	public WebElement typeable_searchbar() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/add_friends_fragment_search_box")));
+	}
+	public WebElement follow_first_search_result() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.RelativeLayout[@index='1']/android.widget.ImageView[@resource-id='com.radicalapps.cyberdust:id/add_friend_contacts_listitem_button']")));
+	}
+	public WebElement open_first_search_result() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.RelativeLayout[@index='1']/android.widget.ImageView[@resource-id='com.radicalapps.cyberdust:id/add_friend_contacts_listitem_icon_photo']")));
+	}
+	public WebElement close_search() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='DISCOVER']")));
+	}
+	public WebElement no_button() throws Exception{
+		Thread.sleep(1000);
+		return driver.findElement(By.id("android:id/button2"));
+	}
+	public WebElement send_button() throws Exception {
+		Thread.sleep(1000);
+		return driver.findElement(By.id("com.radicalapps.cyberdust:id/send_button"));
+	}
+
+	///////////////Find Tab Categories///////////////
+	public WebElement category_advertising() throws Exception {
+		Thread.sleep(1000);
+		return driver.findElement(By.xpath("//android.widget.TextView[@text='Advertising' and @index='0']"));
+	}
+	public WebElement category_arts() throws Exception {
+		Thread.sleep(1000);
+		return driver.findElement(By.xpath("//android.widget.TextView[@text='Arts' and @index='0']"));
+	}
+	public WebElement category_business() throws Exception {
+		Thread.sleep(1000);
+		return driver.findElement(By.xpath("//android.widget.TextView[@text='Business' and @index='0']"));
+	}
+	public WebElement contacts_header() throws Exception {
+		Thread.sleep(1000);
+		return driver.findElement(By.xpath("//*[@text='CONTACTS']"));
+	}
+	public WebElement first_chatter_category() throws Exception {
+		List<WebElement> first_chatter_cards_list = driver.findElements(By.xpath("//android.widget.TextView[@resource-id='com.radicalapps.cyberdust:id/chatter_topic_text']"));
+		return first_chatter_cards_list.get(0);
+	}
+	public WebElement category_path() {
+		return driver.findElement(By.id("com.radicalapps.cyberdust:id/discover_categories_header"));
+	}
+	public WebElement featured_people_banner() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/discover_chatter_header")));
+	}
+	public WebElement publisher_scrollview() throws Exception {
+		Thread.sleep(1500);
+		return driver.findElement(By.id("com.radicalapps.cyberdust:id/discover_feed_recyclerview"));
+	}
+	public WebElement first_publisher_add() throws Exception{
+		List<WebElement> first_chatter_cards_list = publisher_scrollview().findElements(By.id("com.radicalapps.cyberdust:id/add_chatter_icon"));
+		return first_chatter_cards_list.get(0);
+	}
+
 	/*********************
 	 * More page elements*
 	 *********************/
-    public WebElement profile_picture() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/more_fragment_picture")));
+    public WebElement profile_picture() throws Exception {
+		Thread.sleep(500);
+        return driver.findElement(By.id("com.radicalapps.cyberdust:id/more_fragment_picture"));
     }
     public WebElement remove_profile_picture() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("android:id/button2")));
     }
     public WebElement change_profile_picture() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("android:id/button1")));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Change']")));
     }
     public WebElement camera_button() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Camera']")));
@@ -429,7 +558,17 @@ public class AndroidElements extends Drivers {
     public WebElement enter_bio() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/more_fragment_bio")));
     }
-    public WebElement enter_website() {
+	public WebElement type_bio() throws Exception {
+		Thread.sleep(1000);
+		return driver.findElement(By.xpath("//android.widget.FrameLayout"));
+	}
+	public WebElement save_bio() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Save']")));
+	}
+	public WebElement close_more_menu() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='MORE']")));
+	}
+	public WebElement enter_website() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/more_fragment_url")));
     }
     public WebElement share_twitter() {
@@ -579,80 +718,7 @@ public class AndroidElements extends Drivers {
     public WebElement chatters_tab() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tab_chatters")));
 	}
-    
-    /*******************
-    * Find Tab Elements*
-    *******************/
-    public TouchAction open_chatter_category_menu() {
-    	return action.longPress(10, 340).release().perform();
-	}
-    public WebElement feed_list() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/feeds_button")));
-	}
-    public WebElement profile_following() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/add_button")));
-	}
-    public WebElement feed_following() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='following']")));
-	}
-    public WebElement other_user_prof_pic() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/overlay_profile_picture")));
-	}
-    public WebElement people_i_know() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/people_i_know_button")));
-	}
-    public WebElement get_discovered() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Get Discovered']")));
-	}
-    public WebElement get_discovered_popup() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/username_text")));
-	}
-    public WebElement contacts_with_cd() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/add_friends_contacts_button_text")));
-	}
-    public WebElement x_button() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/close_button")));
-	}
-    public WebElement addback_button() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("android:id/up")));
-	}
-    public WebElement business_category() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Business']")));
-	}
-    public WebElement chatting_category() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Chatting']")));
-	}
-    public WebElement entertainment_category() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Entertainment']")));
-	}
-    public WebElement health_category() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Health & Wellness']")));
-	}
-    public WebElement music_category() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Music']")));
-	}
-    public WebElement sports_category() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Sports']")));
-	}
-    public WebElement startups_category() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Start-Ups']")));
-	}
-    public WebElement technology_category() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Technology']")));
-	}
-    public WebElement chatter_category() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/chatter_topic_text")));
-	}
-    public WebElement news_category() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='News']")));
-	}
-    public WebElement open_searchbar() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/search_bar")));
-	}
-    public WebElement use_searchbar() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/add_friends_fragment_search_box")));
-	}
-    
+
     /*******************
      * Sign up elements*
      *******************/
@@ -679,20 +745,22 @@ public class AndroidElements extends Drivers {
     }
     public WebElement birthday() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/onboarding_3_form")));
-    }
-    public WebElement birthday_done() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("android:id/button1")));
+	}
+
+	public WebElement birthday_done() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("android:id/button1")));
     }
     public WebElement birthday_confirm() {
-    	return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/onboarding_3_positive_button")));
+    	return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.FrameLayout/android.widget.TextView[@resource-id='com.radicalapps.cyberdust:id/onboarding_3_positive_button']")));
     }
     public WebElement email() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/onboarding_4_email_edit_text")));
     }
     public WebElement sign_up_profile_pic() {
     	return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/onboarding_screen_4_1_profile_pic_layout")));
-    }
-    public WebElement email_OK() {
+	}
+
+	public WebElement email_OK() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/onboarding_4_ok_button")));
     }
     public WebElement skip_button() {
@@ -717,12 +785,15 @@ public class AndroidElements extends Drivers {
 	public WebElement tutorial_main_page() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tutorial_container")));
 	}
+
 	public WebElement tutorial_switch() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tutorial_settings_switch")));
 	}
+
 	public WebElement tutorial_back_button() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='TUTORIAL']")));
 	}
+
 	public WebElement tutorial_private_messaging() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Private messaging with Cyber Dust']")));
 	}

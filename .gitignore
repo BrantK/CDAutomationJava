@@ -5,6 +5,17 @@
 *.DS_Store
 *.log
 *.cfg
+*.iml
+
+# Android Studio
+compiler.xml
+misc.xml
+libs.xml
+modules.xml
+profiles_settings.xml
+workspace.xml
+vcs.xml
+.name
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/

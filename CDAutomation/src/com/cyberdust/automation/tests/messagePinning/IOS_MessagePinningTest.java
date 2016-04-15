@@ -1,112 +1,112 @@
 package com.cyberdust.automation.tests.messagePinning;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
 import com.cyberdust.automation.elements.IOSElements;
 import com.cyberdust.automation.elements.LoginWith;
 
 public class IOS_MessagePinningTest extends IOSElements {
 
 	String text_message = "cyber dust";
-
-	
 	LoginWith loginAs = new LoginWith();
 
 	public void test01_pinning_messages() throws Exception {
-		// Logs into existing testing account
 		loginAs.user(pin_account01, pin_password01);
 	
 		action_menu().click();
+		Thread.sleep(500);
 		action_menu_dust().click();
-		Thread.sleep(5000);
-		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(pin_account02)));
 	
-		first_friend.click();
+		username(pin_account02).click();
 		chat_room_text_box().click();
-		chat_room_text_box().sendKeys(text_message);
+		driver.getKeyboard().sendKeys(text_message);
 		chat_room_send_button().click();
-		System.out.println("Sent a dust");
-		Thread.sleep(5000);
-		sent_text_dust().click();
-		
+		log("Sent a dust");
+
+		action.press(sent_text_dust().getLocation().getX() - 10, sent_text_dust().getLocation().getY() - 10).release().perform();
+
 		try {
+            waitTime(2);
 			if (pinned_message().isDisplayed()) {
-				System.out.println("Pinned a message");
+				log("Pinned a message");
 			}
 		} catch (Exception e) {
-			System.out.println("Problem in pinning");
+			log("[Warning] Problem in pinning");
 		}
-		System.out.println("Checking if Pinned icon appears");
-	
-		if (tap_to_unpin_button().isDisplayed()) {
-			System.out.println("Pinned icon appears");
-		} else {
-			System.out.println("Pinned icon does not appear");
+
+		log("Checking if Pinned icon appears");
+
+        try {
+            if (tap_to_unpin_button().isDisplayed()) {
+                log("Pinned icon appears");
+            }
+        } catch (Exception e) {
+			log("[Warning] Pinned icon does not appear");
 		}
 	}
 	
-	public void test02_messagePinning() throws Exception
-	{
-			
-		back_button().click();
+	public void test02_messagePinning() throws Exception {
+        back_arrow().click();
+        username(pin_account02).click();
 	
 		try {
-			if (pinned_message().isDisplayed()) {
-				System.out.println("Message is not disappered");
+            if (tap_to_unpin_button().isDisplayed()) {
+				log("Message does not disappear");
 			}
 		} catch (Exception e) {
-			System.out.println("Message is disappeared");
+			log("[Warning] Message disappeared");
 		}
-		System.out.println("Checking if new messages appear below pinned messages");
-		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(pin_account02)));
-	
-		first_friend.click();
-		chat_room_text_box().sendKeys(text_message);
-		chat_room_send_button().click();
-		chat_room_text_box().sendKeys(text_message);
-		chat_room_send_button().click();
-		chat_room_text_box().sendKeys(text_message);
-		chat_room_send_button().click();
+
+		log("Checking if new messages appear below pinned messages");
+        chat_room_text_box().click();
+
+		for (int i = 0; i < 6; i++) {
+
+            driver.getKeyboard().sendKeys("A");
+            chat_room_send_button().click();
+        }
 		
 		try {
+            waitTime(2);
 			if (tap_to_unpin_button().isDisplayed()) {
-				System.out.println("New messages do not appear below pinned message");
+				log("[Warning] New messages do not appear below pinned message");
 			}
 		} catch (Exception e) {
-			System.out.println("New Messages appear below pinned message");
+			log("New Messages appear below pinned message");
 		}
-		back_button().click();
-		//WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(friend_username)));
-	
-		first_friend.click();
-		tap_to_unpin_button().click();
+
+		back_arrow().click();
+        username(pin_account02).click();
+
+        Thread.sleep(1000);
+        action.press(sent_text_pinned().getLocation().getX() - 10, sent_text_pinned().getLocation().getY() - 10).release().perform();
 		
 		try {
-			if (sent_text_dust().isDisplayed()) {
-				System.out.println("Unpinned the message");
+			if (name("tap message to pin").isDisplayed()) {
+				log("Unpinned the message");
 			}
 		} catch (Exception e) {
-			System.out.println("Unable to unpin");
-		}
-		Thread.sleep(16000);
-	
+			log("[Warning] Unable to unpin");
+        }
+
+        log("Waiting for dust to expire");
+        Thread.sleep(22000);
+        waitTime(1);
+
 		try {
 			if (sent_text_dust().isDisplayed()) {
-				System.out.println("Countdown did not resume");
+				log("Dust did not expired yet...");
 			}
 		} catch (Exception e) {
-			System.out.println("Countdown resumed");
+            Thread.sleep(5000);
+            try {
+
+                if (sent_text_dust().isDisplayed()) {
+                    log("[Warning] Dust did not expire after 25 seconds");
+                }
+            } catch (Exception f) {
+                log("Countdown resumed, dust expired");
+            }
 		}
 	
-		back_button().click();
-		back_button().click();
-		more_button().click();
-	
-		action.press(followers()).moveTo(back_button()).release().perform();
-	
-		logout().click();
-		confirm().click();
+		back_arrow().click();
 	}
 }

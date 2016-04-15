@@ -1,2 +1,0 @@
-INDEX VERSION 1.127+/Users/Manjushri/Documents/Cyber Dust-Automation/CDAutomation/CDAutomationJava/.metadata/.plugins/org.eclipse.jdt.core
-3752992871.index

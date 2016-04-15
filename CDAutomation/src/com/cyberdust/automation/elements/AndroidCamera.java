@@ -2,9 +2,11 @@ package com.cyberdust.automation.elements;
 
 public class AndroidCamera extends AndroidElements {
 	
-	public void takePhoto() throws Exception {
+	public boolean takePhoto() throws Exception {
 		// Tries to take a photo with several different kinds of android phones
-		Thread.sleep(1000);
+		boolean photo_taken = false;
+
+        Thread.sleep(1000);
         aDriver().pressKeyCode(27);
 
         Thread.sleep(1000);
@@ -45,27 +47,38 @@ public class AndroidCamera extends AndroidElements {
 
         try {
             waitTime(2);
-        	OK_button().click(); Thread.sleep(3000);
-        } catch (Exception e) {
-
-            // If none of the above works, go back to More page
-            log("Could not take a photo");
-            Thread.sleep(1000);
-            aDriver().pressKeyCode(4);
-
+            profile_picture();
+            photo_taken = true;
+            Thread.sleep(2000);
+        } catch (Exception e){
             try {
-                profile_picture();
+                waitTime(2);
+                OK_button().click();
+                photo_taken = true;
+                Thread.sleep(2000);
             } catch (Exception f) {
-                aDriver().pressKeyCode(4);
-            }
 
-            try {
-                profile_picture();
-            } catch (Exception g) {
-                waitTime(15);
-                relaunch();
-                more_button().click();
+                // If none of the above works, go back to More page
+                log("Could not take a photo");
+                Thread.sleep(1000);
+                aDriver().pressKeyCode(4);
+
+                try {
+                    profile_picture();
+                } catch (Exception g) {
+                    aDriver().pressKeyCode(4);
+                }
+
+                try {
+                    profile_picture();
+                } catch (Exception h) {
+                    waitTime(15);
+                    relaunch();
+                    more_button().click();
+                }
             }
         }
+
+        return photo_taken;
 	}
 }

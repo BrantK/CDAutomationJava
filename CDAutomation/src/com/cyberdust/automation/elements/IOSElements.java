@@ -647,7 +647,7 @@ public class IOSElements extends Drivers {
         return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAButton[1]")));
     }
     public WebElement new_email_text_box() {
-        return driver.findElement(By.className("UIATextField"));	
+        return driver.findElement(By.className("UIATextField"));
     }
     public WebElement invalid_username() {
     	return wait.until(ExpectedConditions.elementToBeClickable(By.id("Invalid username & password combination")));

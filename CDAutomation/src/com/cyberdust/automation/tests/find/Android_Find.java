@@ -1,144 +1,366 @@
 package com.cyberdust.automation.tests.find;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
+import com.cyberdust.automation.elements.AndroidCamera;
 import com.cyberdust.automation.elements.AndroidElements;
-import com.cyberdust.automation.elements.LoginWith;
 
 public class Android_Find extends AndroidElements {
 
-	LoginWith loginAs = new LoginWith();
-	
 	public void test01_followChatter() throws Exception {
-		
-		loginAs.user(find_account01, find_password01);
-		System.out.println("Logged In");
-		
+
+		try {
+			logout();
+		} catch (Exception ignored) {}
+
+		createAccount();
 		find_tab().click();
-		
-		//follow user from chatter stream
-		System.out.println("Following user from chatter stream.");		
-		//Thread.sleep(300);
-		//action.press(650, 510).release().perform();//follows first user
-		//Thread.sleep(300);
-		//action.press(50, 600).release().perform();//opens profile view
-		boolean followed = (profile_following().isDisplayed());
-		System.out.println("Followed from chatter stream: " + followed);
-		profile_following().click();
+
+		first_chatter_add().click();
+		chatter_open_profile(0).click();
+		if ( !profile_follow_button().getAttribute("text").equals("following")) {
+			throw new InterruptedException("Chatter not followed");
+		}
+		log("Account followed.");
+		profile_follow_button().click();
 		okay_button().click();
-		System.out.println("Chatter unfollowed.");
-		other_user_prof_pic().click();		
-		
+		log("Account unfollowed.");
+		close_profile().click();
 	}
-	
-	public void test02_chattercategories() throws Exception {
-	
-		//checking chatter are in correct category
-		System.out.println("Checking chatter categories...");
-		open_chatter_category_menu();
-		business_category().click();		
-		System.out.println(CategoryCheck("Business"));
-		open_chatter_category_menu();
-		chatting_category().click();
-		System.out.println(CategoryCheck("Chatting"));
-		open_chatter_category_menu();
-		entertainment_category().click();
-		System.out.println(CategoryCheck("Entertainment"));
-		open_chatter_category_menu();
-		health_category().click();
-		System.out.println(CategoryCheck("Health & Wellness"));
-		open_chatter_category_menu();
-		music_category().click();
-		System.out.println(CategoryCheck("Music"));
-		open_chatter_category_menu();
-		sports_category().click();
-		System.out.println(CategoryCheck("Sports"));
-		open_chatter_category_menu();
-		startups_category().click();
-		System.out.println(CategoryCheck("Start-Ups"));
-		open_chatter_category_menu();
-		technology_category().click();
-		System.out.println(CategoryCheck("Technology"));
-				
-	}
-	
-	public void test03_followfeedlist() throws Exception {
-		
-		//follows a Feed acct
-		System.out.println("Checking feed categories...");
-		open_chatter_category_menu();
-		feed_list().click();
-		entertainment_category().click();
-		Thread.sleep(900);
-		action.press(668, 531).release().perform();//follows first user
-		Thread.sleep(900);
-		action.press(50, 600).release().perform();//opens profile view
-		boolean followed = ((profile_following().getAttribute("name").equals("following")));
-		System.out.println("Followed acct from Feed stream: " + followed);
-		profile_following().click();
-		okay_button().click();
-		System.out.println("Feed acct unfollowed.");
-		other_user_prof_pic().click();	
-		
-	}
-	
-	public void test04_feedList_categories() throws Exception {
-		//checks feeds are in right categories
-		
-		//necessary to reset screen after test03, but not related to user experience
-		System.out.println("Checking feed categories...");
-		dusts_tab().click();
+
+
+	public void test02_follow_publisher() throws Exception {
+
+		Thread.sleep(2000);
 		find_tab().click();
-		
+
+		log("Following Publisher from publisher stream.");
+		try {
+			first_publisher_add().click();
+		} catch (Exception e) {
+			driver.swipe(100, (featured_people_banner().getLocation()).getY(), 100, 10, 1000);
+			first_publisher_add().click();
+		}
+
+		publisher_open_profile(0).click();
+		if ( !profile_follow_button().getAttribute("text").equals("following")) {
+                throw new InterruptedException("Publisher not followed");
+        }
+		log("Publisher followed.");
+        profile_follow_button().click();
+		okay_button().click();
+		log("Publisher unfollowed.");
+        close_profile().click();
+    }
+
+
+	public void test03_category_titles() throws Exception {
+
+		find_tab().click();
+		Thread.sleep(2000);
+        log("Testing chatter categories match descriptions");
+
+		//////Advertising category//////
+		System.out.print("Testing \"Advertising\"... ");
+		try {
+			category_advertising().click();
+		} catch (Exception ignored) {
+			driver.swipe(100, (featured_people_banner().getLocation()).getY(), 100, 10, 1000);
+			category_advertising().click();
+		}
 		Thread.sleep(500);
-		open_chatter_category_menu();
-		feed_list().click();
-		entertainment_category().click();
-		System.out.println(CategoryCheck("Entertainment"));
-		open_chatter_category_menu();
-		news_category().click();
-		System.out.println(CategoryCheck("News"));
-		open_chatter_category_menu();
-		sports_category().click();
-		System.out.println(CategoryCheck("Sports"));
-	}
-	
-	public void test05_findtab_menus() throws Exception {
-		
-		System.out.println("Testing menus... (true == pass)");
-		get_discovered().click();
-		boolean menutest = ((get_discovered_popup().getAttribute("name")).equals("findtester"));
-		System.out.println("Get Discovered: " + menutest);
-		x_button().click();
-		
-		people_i_know().click();
-		menutest = ((contacts_with_cd().getAttribute("name")).equals("Contacts with Cyber Dust"));
-		System.out.println("People I Know: " + menutest);
-		addback_button().click();
-	}
-	
-	public void test06_searchbar(){
-		/*temp
-		loginAs.user(account_name, account_pw);
-		System.out.println("Logged In");
+
+		int counter = 0; //<-- Repeat attempts added for increased stability (it was a problem on some devices)
+		while (!first_chatter_category().getAttribute("text").equals("Advertising")) {
+			aDriver().pressKeyCode(4);
+			Thread.sleep(1000);
+			try {
+				category_advertising().click();
+			} catch (Exception ignored) {
+				driver.swipe(100, (featured_people_banner().getLocation()).getY(), 100, 10, 1000);
+				category_advertising().click();
+			}
+			Thread.sleep(500);
+			if (counter >= 3) {
+				throw new InterruptedException("Advertising chatter tag does not match category.");
+			}
+			counter++;
+		}
+		System.out.println("Okay");
+		aDriver().pressKeyCode(4);
+		Thread.sleep(500);
+
+        //////Arts category//////
+		System.out.print("Testing \"Arts\"... ");
+
+		try {
+			category_arts().click();
+		} catch (Exception ignored) {
+			driver.swipe(100, (featured_people_banner().getLocation()).getY(), 100, 10, 1000);
+			category_arts().click();
+		}
+
+		Thread.sleep(500);
+
+		counter = 0;
+		while (!first_chatter_category().getAttribute("text").equals("Arts")) {
+			aDriver().pressKeyCode(4);
+			Thread.sleep(1000);
+			try {
+				category_arts().click();
+			} catch (Exception ignored) {
+				driver.swipe(100, (featured_people_banner().getLocation()).getY(), 100, 10, 1000);
+				category_arts().click();
+			}
+			Thread.sleep(500);
+			if (counter >= 3) {
+				throw new InterruptedException("Arts chatter tag does not match category.");
+			}
+			counter++;
+		}
+        System.out.println("Okay");
+        aDriver().pressKeyCode(4);
+		Thread.sleep(500);
+
+        //////Business category//////
+        System.out.print("Testing \"Business\"... ");
+
+		try{
+			category_business().click();
+		} catch (Exception ignored) {
+			driver.swipe(100, (featured_people_banner().getLocation()).getY(), 100, 10, 1000);
+			Thread.sleep(300);
+			driver.swipe(100, (category_path().getLocation()).getY(), 100, 10, 1000);
+			category_business().click();
+		}
+
+		Thread.sleep(500);
+
+		counter = 0;
+		while (!first_chatter_category().getAttribute("text").equals("Business")){
+			aDriver().pressKeyCode(4);
+			Thread.sleep(1000);
+			try{
+				category_business().click();
+			} catch (Exception ignored) {
+				driver.swipe(100, (featured_people_banner().getLocation()).getY(), 100, 10, 1000);
+				Thread.sleep(300);
+				driver.swipe(100, (category_path().getLocation()).getY(), 100, 10, 1000);
+				category_business().click();
+			}
+			Thread.sleep(500);
+			if (counter >= 5) {
+				throw new InterruptedException("Business chatter tag does not match category.");
+			}
+			counter ++;
+		}
+		System.out.println("Okay");
+		aDriver().pressKeyCode(4);
+    }
+
+
+	public void test04_build_a_following() throws Exception {
+
+		boolean failCase = false;
+
+		Thread.sleep(5000);
 		find_tab().click();
-		*/
-		System.out.println("Testing dynamic search...");
-		open_searchbar().click();
-		use_searchbar().sendKeys("test");
-		driver.findElement(By.name("testacct01"));
-		System.out.println("Dynamic search successfull");
-		
-	}
-	private String CategoryCheck (String expectedCategory){
-		if ((chatter_category().getAttribute("text")).equals(expectedCategory)){
-			return (expectedCategory + " chatters okay");
+
+		log("Filling out \"Build a Following\" form with no profile pic...");
+		build_a_following_button().click();
+
+		send_button().click();
+		try {
+			Thread.sleep(2000);
+			if (send_button().getAttribute("text").equals("SEND")){}
+		} catch (Exception e) {
+			throw new InterruptedException("Submitted blank form with no prof pic");
 		}
-		else {
-			return (expectedCategory + " chatters ERROR");
+
+		select_a_category_button().click();
+		advertising_category_button().click();
+		no_button().click();
+
+		send_button().click();
+		try {
+			Thread.sleep(2000);
+			if (send_button().getAttribute("text").equals("SEND")){}
+		} catch (Exception e) {
+			throw new InterruptedException("Submitted form with no description or profile pic.");
 		}
+
+		build_a_following_description().sendKeys("test");
+		send_button().click();
+		try {
+			Thread.sleep(2000);
+			if (send_button().getAttribute("text").equals("SEND")){}
+		} catch (Exception e) {
+			throw new InterruptedException("Submitted form with no profile pic or bio.");
+		}
+
+		close_BAF_form().click();
+		log("Adding a profile picture");
+		setProfilePic();
+		find_tab().click();
+
+		log("Waiting for profile pic to save...");
+		photo_saved_test(0); //<-- can take up to 2 min to wait for photo to save
+		log("Re-filling out \"Build a Following\" form");
+
+		build_a_following_button().click();
+		send_button().click();
+		try {
+			Thread.sleep(2000);
+			if (send_button().getAttribute("text").equals("SEND")){}
+		} catch (Exception e) {
+			throw new InterruptedException("Submitted blank form (has prof pic)");
+		}
+
+		select_a_category_button().click();
+		advertising_category_button().click();
+		no_button().click();
+
+		send_button().click();
+		try {
+			Thread.sleep(2000);
+			if (send_button().getAttribute("text").equals("SEND")){}
+		} catch (Exception e) {
+			throw new InterruptedException("Submitted form with no description (has prof pic).");
+		}
+
+		build_a_following_description().sendKeys("test");
+
+		//sometimes missed "Send" button, so it repeats 3 times for added stability
+		for (int i = 0; i <3; i++){
+			try {
+				send_button().click();
+			} catch (Exception ignored){}
+		}
+
+		try {
+			Thread.sleep(3000);
+			if ((send_button().getAttribute("text")).equals("SEND")){
+				failCase = true;
+				throw new InterruptedException("Form not submitted.");
+			}
+		} catch (Exception e) {
+			if (failCase){
+				throw e;
+			}
+		}
+
+		log("BAF form successfully submitted.");
+
+	}
+
+
+	public void test05_searchbar() throws Exception {
+
+		Thread.sleep(5000);
+		find_tab().click();
+
+        log("Trying to follow user in search results...");
+        open_searchbar().click();
+		typeable_searchbar().sendKeys("testacct0");
+        follow_first_search_result().click();
+        open_first_search_result().click();
+		if ( !profile_follow_button().getAttribute("text").equals("following")) {
+			throw new InterruptedException("User not followed");
+		}
+        log("Searchbar account followed.");
+		profile_follow_button().click();
+		okay_button().click();
+		log("Account unfollowed.");
+		close_profile().click();
+		close_search().click();
+
+		deleteAccount();
 	}
 	
-	
-	
+	public void deleteAccount() {
+		System.out.print("Deleting account... ");
+		more_button().click();
+		driver.swipe(100, (more_tab_build_a_following_button().getLocation()).getY(), 100, 10, 1000);
+		account_settings().click();
+		delete_account().click();
+		confirm().click();
+		System.out.println("Okay");
+	}
+
+	public void createAccount(){
+		System.out.print("Creating account... ");
+		sign_up_button().click();
+		pick_username().sendKeys("findtester");
+		username_confirm().click();
+		create_password().sendKeys("password");
+		password_confirm().click();
+
+		birthday_confirm().click();
+		skip_button().click();
+		skip_button().click();
+		System.out.println("Okay");
+	}
+
+	public void setProfilePic() throws Exception {
+		boolean photo_taken = false;
+		int counter = 0;
+		more_button().click();
+
+		//will try to take a photo 3 times before giving up
+		while ((!photo_taken) && counter < 3){
+
+			profile_picture().click();
+			change_profile_picture().click();
+			camera_button().click();
+			Thread.sleep(500);
+			photo_taken = new AndroidCamera().takePhoto();
+			try {
+				OK_button().click();
+			} catch (Exception ignored){}
+			counter++;
+		}
+
+		if (!photo_taken){
+			throw new InterruptedException("Photo not taken.");
+		}
+		if (photo_taken){
+			log("Profile pic taken.");
+		}
+
+		enter_bio().click();
+		type_bio().click();
+		type_bio().sendKeys("testing");
+		save_bio().click();
+		close_more_menu().click();
+	}
+
+	public void photo_saved_test (int n) throws Exception {
+		//will check if photo has been saved every 10s, up to a maximum of 2 minutes
+		boolean picture_saved = true;
+		Thread.sleep(10000);
+		more_button().click();
+
+		try {
+			generic_prof_pic_image();
+			picture_saved = false;
+		} catch (Exception ignored) {}
+
+		close_more_menu().click();
+
+		if (!picture_saved && n < 12){
+			photo_saved_test(n+1);
+		} else if (picture_saved){
+			log("Photo successfully saved to server");
+			return;
+		} else {
+			if (n == 12) {
+				throw new InterruptedException("ERROR: Profile pic never updated from server");
+			}
+			return;
+		}
+
+
+
+	}
 }
