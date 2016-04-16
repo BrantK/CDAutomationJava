@@ -8,6 +8,7 @@
 *.iml
 
 # Android Studio
+CDAutomation.iml
 compiler.xml
 misc.xml
 libs.xml
