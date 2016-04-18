@@ -5,61 +5,17 @@ import com.cyberdust.automation.elements.LoginWith;
 
 public class Android_ReblastTest extends AndroidElements {
 
-	
 	LoginWith loginAs = new LoginWith();
-	
-    public void test01_send_text_with_loc () throws Exception {
-    	// Login to reblast test accounts
-    	loginAs.user(reblast_account01, reblast_password01);
-   
-        for (int i = 0; i < 3; i++) {
-        	blasts_tab();
-            action_menu().click();
-            action_menu_text().click();
-            dust_blast_field().sendKeys("Test");
-            text_location_button().click();
-            current_location().click();
-            OK_button().click();
-            blast_friends().click();
-            username(reblast_account02).click();
-            blast_Ok_button().click();
-        }
-    }
-	
-    public void test02_send_text_no_loc () throws Exception {
-        for (int i = 0; i < 3; i++) {
-        	blasts_tab();
-            action_menu().click();
-            action_menu_text().click();
-            dust_blast_field().sendKeys("Test");
-            OK_button().click();
-            blast_friends().click();
-            username(reblast_account02).click();
-            blast_Ok_button().click();
-        }
-    }
 
-    public void test03_send_photo_with_loc() throws Exception {
+    public void test01_send_video_no_loc() throws Exception {
+        loginAs.user(reblast_account01, reblast_password01);
+
         for (int i = 0; i < 3; i++) {
-        	blasts_tab();
+            blasts_tab();
             action_menu().click();
             action_menu_media().click();
-            photo_button().click();
-            photo_location_button().click();
-            current_location().click();
-            next_button().click();
-            blast_friends().click();
-            username(reblast_account02).click();
-            blast_Ok_button().click();
-        }
-    }
-    
-    public void test04_send_photo_no_loc() throws Exception {
-        for (int i = 0; i < 3; i++) {
-        	blasts_tab();
-            action_menu().click();
-            action_menu_media().click();
-            photo_button().click();
+            video_button().click();
+            action.longPress(photo_button(), 5000).release().perform();
             next_button().click();
             blast_friends().click();
             username(reblast_account02).click();
@@ -67,37 +23,9 @@ public class Android_ReblastTest extends AndroidElements {
         }
     }
 
-    public void test05_send_giphy_with_loc() throws Exception {
+    public void test02_send_video_with_loc() throws Exception {
         for (int i = 0; i < 3; i++) {
-        	blasts_tab();
-            action_menu().click();
-            action_menu_text().click();
-            dust_blast_field().sendKeys(":giphy cats");
-            text_location_button().click();
-            current_location().click();
-            OK_button().click();
-            blast_friends().click();
-            username(reblast_account02).click();
-            blast_Ok_button().click();
-        }
-    }
-
-    public void test06_send_giphy_no_loc() throws Exception {
-        for (int i = 0; i < 3; i++) {
-        	blasts_tab();
-            action_menu().click();
-            action_menu_text().click();
-            dust_blast_field().sendKeys(":giphy cats");
-            OK_button().click();
-            blast_friends().click();
-            username(reblast_account02).click();
-            blast_Ok_button().click();
-        }
-    }
-
-    public void test07_send_video_with_loc() throws Exception {
-        for (int i = 0; i < 3; i++) {
-        	blasts_tab();
+            blasts_tab();
             action_menu().click();
             action_menu_media().click();
             video_button().click();
@@ -110,15 +38,85 @@ public class Android_ReblastTest extends AndroidElements {
             blast_Ok_button().click();
         }
     }
+
+    public void test03_send_giphy_no_loc() throws Exception {
+        for (int i = 0; i < 3; i++) {
+            blasts_tab();
+            action_menu().click();
+            action_menu_text().click();
+            dust_blast_field().sendKeys(":giphy cats");
+            OK_button().click();
+            blast_friends().click();
+            username(reblast_account02).click();
+            blast_Ok_button().click();
+        }
+    }
+
+    public void test04_send_giphy_with_loc() throws Exception {
+        for (int i = 0; i < 3; i++) {
+            blasts_tab();
+            action_menu().click();
+            action_menu_text().click();
+            dust_blast_field().sendKeys(":giphy cats");
+            text_location_button().click();
+            current_location().click();
+            OK_button().click();
+            blast_friends().click();
+            username(reblast_account02).click();
+            blast_Ok_button().click();
+        }
+    }
     
-    public void test08_send_video_no_loc() throws Exception {
+    public void test05_send_photo_no_loc() throws Exception {
         for (int i = 0; i < 3; i++) {
         	blasts_tab();
             action_menu().click();
             action_menu_media().click();
-            video_button().click();
-            action.longPress(photo_button(), 5000).release().perform();
+            photo_button().click();
             next_button().click();
+            blast_friends().click();
+            username(reblast_account02).click();
+            blast_Ok_button().click();
+        }
+    }
+
+    public void test06_send_photo_with_loc() throws Exception {
+        for (int i = 0; i < 3; i++) {
+            blasts_tab();
+            action_menu().click();
+            action_menu_media().click();
+            photo_button().click();
+            photo_location_button().click();
+            current_location().click();
+            next_button().click();
+            blast_friends().click();
+            username(reblast_account02).click();
+            blast_Ok_button().click();
+        }
+    }
+
+    public void test07_send_text_no_loc () throws Exception {
+        for (int i = 0; i < 3; i++) {
+            blasts_tab();
+            action_menu().click();
+            action_menu_text().click();
+            dust_blast_field().sendKeys("Test");
+            OK_button().click();
+            blast_friends().click();
+            username(reblast_account02).click();
+            blast_Ok_button().click();
+        }
+    }
+
+    public void test08_send_text_with_loc () throws Exception {
+        for (int i = 0; i < 3; i++) {
+            blasts_tab();
+            action_menu().click();
+            action_menu_text().click();
+            dust_blast_field().sendKeys("Test");
+            text_location_button().click();
+            current_location().click();
+            OK_button().click();
             blast_friends().click();
             username(reblast_account02).click();
             blast_Ok_button().click();
