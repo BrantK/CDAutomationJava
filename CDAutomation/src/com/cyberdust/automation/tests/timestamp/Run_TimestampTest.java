@@ -81,5 +81,6 @@ public class Run_TimestampTest extends Drivers {
 			relaunch();
 			throw e;
 		}
+		log("[Finish] Test complete\n");
 	}
 }

@@ -60,5 +60,6 @@ public class Run_AccountManagement extends Drivers {
 			log("[Fail] Got exception " + e);
 			throw e;
 		}
+		log("[Finish] Test complete\n");
 	}
 }

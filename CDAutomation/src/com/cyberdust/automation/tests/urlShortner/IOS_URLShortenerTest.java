@@ -29,9 +29,9 @@ public class IOS_URLShortenerTest extends IOSElements {
 		
 		try {
 			if (shortened_url.isDisplayed())
-				System.out.println("Website name is shortened");
+				log("Website name is shortened");
 		} catch (Exception e) {
-			System.err.println("Unable to shorten the website name");
+			log("Unable to shorten the website name");
 		}
 
 	}
@@ -45,9 +45,9 @@ public class IOS_URLShortenerTest extends IOSElements {
 		
 		try {
 			if (shortened_url.isDisplayed())
-				System.out.println("Website name is not shortened");
+				log("Website name is not shortened");
 		} catch (Exception e) {
-			System.err.println("Website is shortened");
+			log("Website is shortened");
 		}
 		enter_website().click();
 		edit_textbox().clear();

@@ -61,6 +61,7 @@ public class Run_TutorialTest extends Drivers {
 			relaunch();
 			throw e;
 		}
+		log("[Finish] Test complete\n");
 	}
 	
 }

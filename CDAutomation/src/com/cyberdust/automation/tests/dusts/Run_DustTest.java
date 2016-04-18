@@ -150,7 +150,7 @@ public class Run_DustTest extends Drivers {
 			log("[Fail] Got exception " + e);
 			throw e;
 		}
-		log("Test complete");
+		log("Test complete\n");
 	}
 }
 	

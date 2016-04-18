@@ -61,7 +61,7 @@ public class Android_GroupTest extends AndroidElements {
 				log("User who created group not listed.");
 			}
 		} catch (Exception e) {
-			log("Missing users in group!"); 
+			log("[Error] Missing users in group!");
 		}
 	}
      
@@ -142,7 +142,7 @@ public class Android_GroupTest extends AndroidElements {
 				log("All group messages successfully received");
 			}
 		} catch (Exception e) {
-			log("All group messages were not received!");
+			log("[Error] All group messages were not received!");
 			}
 		
 		// Tap and hold to see who sent a message

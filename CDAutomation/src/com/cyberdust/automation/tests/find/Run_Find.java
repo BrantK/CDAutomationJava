@@ -93,8 +93,14 @@ public class Run_Find extends Drivers {
 		} catch (Exception e) {
 			log("[Fail] Got exception " + e);
 			relaunch();
+			if (Android()) {
+				new Android_Find().deleteAccount();
+			} else if (IOS()) {
+				new IOS_Find().deleteAccount();
+			}
 			throw e;
 		}
+		log("[Finish] Test complete\n");
 	}
 
 }

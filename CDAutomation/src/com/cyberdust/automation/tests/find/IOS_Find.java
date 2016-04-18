@@ -17,17 +17,17 @@ public class IOS_Find extends IOSElements{
 
         createAccount("findtester", "password");
 
-        System.out.println("Following Account from chatter stream.");
+        log("Following Account from chatter stream.");
         find_tab().click();
         first_chatter_add().click();
         first_chatter_open_profile().click();
         if ( !profile_follow_button().getAttribute("value").equals("1")) {
             throw new InterruptedException("Chatter not followed");
         }
-        System.out.println("Account followed.");
+        log("Account followed.");
         profile_follow_button().click();
         confirm_unfollow_button().click();
-        System.out.println("Account unfollowed.");
+        log("Account unfollowed.");
         close_profile().click();
     }
 
@@ -35,23 +35,23 @@ public class IOS_Find extends IOSElements{
 
         find_tab().click();
 
-        System.out.println("Following Publisher from publisher stream.");
+        log("Following Publisher from publisher stream.");
 
         first_publisher_add().click();
         first_publisher_open_profile().click();
         if ( !profile_follow_button().getAttribute("value").equals("1")) {
                 throw new InterruptedException("Publisher not followed");
         }
-        System.out.println("Publisher followed.");
+        log("Publisher followed.");
         profile_follow_button().click();
         confirm_unfollow_button().click();
-        System.out.println("Publisher unfollowed.");
+        log("Publisher unfollowed.");
         close_profile().click();
     }
 
     public void test03_category_titles() throws Exception {
 
-        System.out.println("Testing chatter categories match descriptions");
+        log("Testing chatter categories match descriptions");
 
         try {
             find_tab().click();
@@ -61,7 +61,7 @@ public class IOS_Find extends IOSElements{
         action.press(categories_banner()).moveTo(dusts_tab()).waitAction(1000).release().perform();
 
         //////Advertising category//////
-        System.out.print("Testing \"Advertising\"... ");
+        log("Testing \"Advertising\" category titles... ");
         category_advertising().click();
         category_advertising_marketing().click();
         if (!first_chatter_category().getAttribute("name").equals("Advertising")) {
@@ -89,13 +89,13 @@ public class IOS_Find extends IOSElements{
             counter++;
         }
 
-        System.out.println("Okay");
+        log("Advertising: Okay");
         previous_screen_button().click();
         previous_screen_button().click();
 
 
         //////Arts category//////
-        System.out.print("Testing \"Arts\"... ");
+        log("Testing \"Arts\" category titles... ");
         category_arts().click();
         category_arts_dancing().click();
         if (!first_chatter_category().getAttribute("name").equals("Arts")) {
@@ -122,13 +122,13 @@ public class IOS_Find extends IOSElements{
             counter++;
         }
 
-        System.out.println("Okay");
+        log("Arts: Okay");
         previous_screen_button().click();
         previous_screen_button().click();
 
 
         //////Business category//////
-        System.out.print("Testing \"Business\"... ");
+        log("Testing \"Business\" category titles... ");
         category_business().click();
 
         try {
@@ -163,15 +163,16 @@ public class IOS_Find extends IOSElements{
             counter++;
         }
 
-        System.out.println("Okay");
+        log("Business: Okay");
         previous_screen_button().click();
         previous_screen_button().click();
     }
 
     public void test04_build_a_following() throws Exception {
 
-        //corrects screen state if previous test crashed or app crashed
+        log("Submitting \'Build a Following\" form");
 
+        //corrects screen state if previous test crashed or app crashed
         try {
             find_tab().click();
             action.press(category_advertising()).moveTo(temp_tutorial_placeholder()).release().perform();
@@ -203,7 +204,7 @@ public class IOS_Find extends IOSElements{
         no_button().click();
 
         BAF_form_send_button().click();
-        System.out.println("Form submitted (no prof pic)");
+        log("Form submitted (no prof pic)");
         OK_button().click();
 
 
@@ -214,7 +215,7 @@ public class IOS_Find extends IOSElements{
         find_tab().click();
 
         action.press(contact_banner()).moveTo(featured_people_banner()).release().perform();
-        System.out.println("Trying to follow user in search results...");
+        log("Trying to follow user in search results...");
         Thread.sleep(3000);
         action.press(searchbar()).release().perform();
         driver.getKeyboard().sendKeys("testacct0");
@@ -223,10 +224,10 @@ public class IOS_Find extends IOSElements{
         if ( !profile_follow_button().getAttribute("value").equals("1")) {
             throw new InterruptedException("Searchbar account not followed");
         }
-        System.out.println("Searchbar account followed.");
+        log("Searchbar account followed.");
         profile_follow_button().click();
         confirm_unfollow_button().click();
-        System.out.println("Account unfollowed.");
+        log("Account unfollowed.");
         close_profile().click();
         close_search().click();
 

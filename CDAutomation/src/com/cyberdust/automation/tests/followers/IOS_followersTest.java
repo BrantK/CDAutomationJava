@@ -18,7 +18,7 @@ public class IOS_followersTest extends IOSElements {
 			if (name("Followed").isDisplayed())
 				log("Friend added from followers menu");
 		} catch (Exception e) {
-			log("Unable to add friend from followers menu");
+			log("[Error] Unable to add friend from followers menu");
 		}
 
         OK_button().click();
@@ -59,7 +59,7 @@ public class IOS_followersTest extends IOSElements {
 			if (name(followers_account02).isDisplayed())
 				log("Friend added from followers menu");
 		} catch (Exception e) {
-			log("Unable to add friend from followers menu");
+			log("[Error] Unable to add friend from followers menu");
 		}
         name(followers_account02).click();
         back_arrow().click();

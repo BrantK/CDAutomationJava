@@ -54,7 +54,7 @@ public class IOS_GroupTest extends IOSElements {
 				log("User who created group not listed.");
 			}
 		} catch (Exception e) {
-			log("Missing users in group!"); 
+			log("[Error] Missing users in group!");
 		}
 
         Thread.sleep(500);
@@ -159,7 +159,7 @@ public class IOS_GroupTest extends IOSElements {
                 }
             }
         } catch (Exception e) {
-            log("All group messages were not received!");
+            log("[Error] All group messages were not received!");
         }
 		
 		Thread.sleep(1000);

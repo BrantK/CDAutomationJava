@@ -30,9 +30,9 @@ public class Android_URLShortenerTest extends AndroidElements {
 		try {
 			WebElement shortened_url = wait.until(ExpectedConditions.elementToBeClickable(By.name(shortened_website)));
 			if (shortened_url.isDisplayed())
-				System.out.println("Website name is shortned");
+				log("Website name is shortened");
 		} catch (Exception e) {
-			System.err.println("Unable to shorten the website name");
+			log("Unable to shorten the website name");
 		}
 
 	}
@@ -47,9 +47,9 @@ public class Android_URLShortenerTest extends AndroidElements {
 		try {
 			WebElement shortened_url = wait.until(ExpectedConditions.elementToBeClickable(By.name(shortened_website)));
 			if (shortened_url.isDisplayed())
-				System.out.println("Website name is not shortned");
+				log("Website name is not shortened");
 		} catch (Exception e) {
-			System.err.println("Website is shortned");
+			log("Website is shortened");
 		}
 		enter_website().click();
 		edit_textbox().clear();

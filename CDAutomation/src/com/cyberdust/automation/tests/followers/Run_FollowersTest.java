@@ -43,5 +43,6 @@ public class Run_FollowersTest extends Drivers {
 			log("[Fail] Got exception " + e);
 			throw e;
 		}
+		log("[Finish] Test complete\n");
 	}
 }

@@ -97,6 +97,7 @@ public class Run_AddFriendsTest extends Drivers {
 			relaunch();
 			throw e;
 		}
+		log("[Finish] Test complete\n");
 	}
 	/*
 	@Test

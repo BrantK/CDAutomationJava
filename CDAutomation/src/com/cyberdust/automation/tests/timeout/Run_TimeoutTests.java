@@ -43,6 +43,7 @@ public class Run_TimeoutTests extends Drivers {
 			relaunch();
 			throw e;
 		}
+		log("[Finish] Test complete\n");
 	}
 }
 	
