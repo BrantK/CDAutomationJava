@@ -20,14 +20,14 @@ public class Android_followersTest extends AndroidElements {
 		friends().click();
 		try {
 			WebElement friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(followers_account02)));
-			System.out.println("Friend added from followers menu ");
+			log("Friend added from followers menu ");
 			action.longPress(friend, 3000).release().perform();
 			unfollow_button().click();
 			okay_button().click();
 		}
 		catch (Exception e)
 		{
-			System.err.println("Unable to add friend from followers menu");
+			log("[Error] Unable to add friend from followers menu");
 		}
 
 		back_button().click();
@@ -51,9 +51,9 @@ public class Android_followersTest extends AndroidElements {
 		
 		try {
 			if (first_friend.isDisplayed())
-				System.out.println("Follower can be blocked");
+				log("Follower can be blocked");
 		} catch (Exception e) {
-			System.err.println("Couldn't block the followers");
+			log("[Error] Couldn't block the followers");
 		}
 		first_friend.click();
 		back_button().click();

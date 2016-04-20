@@ -8,41 +8,40 @@ import com.cyberdust.automation.elements.Drivers;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Run_Find extends Drivers {
 
-	@Test
-	public void test01_followChatter() throws Exception {
-		try {
-			log("Starting test - ");
-			
-			if (Android()) {
-				new Android_Find().test01_followChatter();
-			} else if (IOS()) {
-				new IOS_Find().test01_followChatter();
-			}
-			
-		} catch (Exception e) {
-			log("[Fail] Got exception " + e);
-			relaunch();
-			throw e;
-		}
-	}
+        @Test
+        public void test01_followChatter() throws Exception {
+            try {
+                log("Starting test - ");
 
-	@Test
-	public void test02_chatter_categories() throws Exception {
-		try {
-			log("Starting test - ");
-			
-			if (Android()) {
-				new Android_Find().test02_follow_publisher();
-			} else if (IOS()) {
-				new IOS_Find().test02_follow_publisher();
-			}
-			
-		} catch (Exception e) {
-			log("[Fail] Got exception " + e);
-			relaunch();
-			throw e;
-		}
-	}
+                if (Android()) {
+                    new Android_Find().test01_followChatter();
+                } else if (IOS()) {
+                    new IOS_Find().test01_followChatter();               }
+
+            } catch (Exception e) {
+                log("[Fail] Got exception " + e);
+                relaunch();
+                throw e;
+            }
+        }
+
+        @Test
+        public void test02_chatter_categories() throws Exception {
+            try {
+                log("Starting test - ");
+
+                if (Android()) {
+                    new Android_Find().test02_follow_publisher();
+                } else if (IOS()) {
+                    new IOS_Find().test02_follow_publisher();
+                }
+
+            } catch (Exception e) {
+                log("[Fail] Got exception " + e);
+                relaunch();
+                throw e;
+            }
+        }
 
 	@Test
 	public void test03_category_titles () throws Exception {
@@ -94,8 +93,14 @@ public class Run_Find extends Drivers {
 		} catch (Exception e) {
 			log("[Fail] Got exception " + e);
 			relaunch();
+			if (Android()) {
+				new Android_Find().deleteAccount();
+			} else if (IOS()) {
+				new IOS_Find().deleteAccount();
+			}
 			throw e;
 		}
+		log("[Finish] Test complete\n");
 	}
 
 }

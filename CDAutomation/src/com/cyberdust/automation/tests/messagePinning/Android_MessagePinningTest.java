@@ -36,23 +36,23 @@ public class Android_MessagePinningTest extends AndroidElements {
 		chat_room_text_box().click();
 		chat_room_text_box().sendKeys(text_message);
 		chat_room_send_button().click();
-		System.out.println("Sent a dust");
+		log("Sent a dust");
 		Thread.sleep(5000);
 		sent_text_dust().click();
 		
 		try {
 			if (pinned_message().isDisplayed()) {
-				System.out.println("Pinned a message");
+				log("Pinned a message");
 			}
 		} catch (Exception e) {
-			System.out.println("Problem in pinning");
+			log("[Warning] Problem in pinning");
 		}
-		System.out.println("Checking if Pinned icon appears");
+		log("Checking if Pinned icon appears");
 	
 		if (tap_to_unpin_button().isDisplayed()) {
-			System.out.println("Pinned icon appears");
+			log("Pinned icon appears");
 		} else {
-			System.out.println("Pinned icon does not appear");
+			log("[Warning] Pinned icon does not appear");
 		}
 	}
 	
@@ -63,12 +63,12 @@ public class Android_MessagePinningTest extends AndroidElements {
 	
 		try {
 			if (pinned_message().isDisplayed()) {
-				System.out.println("Message is not disappered");
+				log("Message has not disappeared");
 			}
 		} catch (Exception e) {
-			System.out.println("Message is disappeared");
+			log("[Warning] Message has disappeared");
 		}
-		System.out.println("Checking if new messages appear below pinned messages");
+		log("Checking if new messages appear below pinned messages");
 		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(pin_account02)));
 	
 		first_friend.click();
@@ -81,10 +81,10 @@ public class Android_MessagePinningTest extends AndroidElements {
 		
 		try {
 			if (tap_to_unpin_button().isDisplayed()) {
-				System.out.println("New messages do not appear below pinned message");
+				log("[Warning] New messages do not appear below pinned message");
 			}
 		} catch (Exception e) {
-			System.out.println("New Messages appear below pinned message");
+			log("New Messages appear below pinned message");
 		}
 		back_button().click();
 		//WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(friend_username)));
@@ -94,19 +94,19 @@ public class Android_MessagePinningTest extends AndroidElements {
 		
 		try {
 			if (sent_text_dust().isDisplayed()) {
-				System.out.println("Unpinned the message");
+				log("Unpinned the message");
 			}
 		} catch (Exception e) {
-			System.out.println("Unable to unpin");
+			log("[Warning] Unable to unpin");
 		}
 		Thread.sleep(16000);
 	
 		try {
 			if (sent_text_dust().isDisplayed()) {
-				System.out.println("Countdown did not resume");
+				log("[Warning] Countdown did not resume");
 			}
 		} catch (Exception e) {
-			System.out.println("Countdown resumed");
+			log("Countdown resumed");
 		}
 	
 		back_button().click();

@@ -7,36 +7,89 @@ import com.cyberdust.automation.elements.Drivers;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Run_ReblastTest extends Drivers {
-	
-	@Test
-	public void test01_sendTextWithLoc() throws Exception {
-		log("[Start] Starting reblast test");
-		try {
-			log("Test01 sending text blasts with location");
 
-			
-			if (Android()) {
-				new Android_ReblastTest().test01_send_text_with_loc();
-			} else if (IOS()) {
-				new IOS_ReblastTest().test01_send_text_with_loc();
-			}
-			
-		} catch (Exception e) {
-			log("[Fail] Got exception " + e);
-			relaunch();
-			throw e;
-		}
-	}
-	
+    @Test
+    public void test01_sendVideoNoLoc() throws Exception {
+        log("[Start] Starting reblast test");
+        try {
+            log("Test01 sending video blasts without location");
+
+            if (Android()) {
+                new Android_ReblastTest().test01_send_video_no_loc();
+            } else if (IOS()) {
+                new IOS_ReblastTest().test01_send_video_no_loc();
+            }
+
+        } catch (Exception e) {
+            log("[Fail] Got exception " + e);
+            relaunch();
+            throw e;
+        }
+    }
+
+    @Test
+    public void test02_sendVideoWithLoc() throws Exception {
+        try {
+            log("Test02 sending video blasts with location");
+
+            if (Android()) {
+                new Android_ReblastTest().test02_send_video_with_loc();
+            } else if (IOS()) {
+                new IOS_ReblastTest().test02_send_video_with_loc();
+            }
+
+        } catch (Exception e) {
+            log("[Fail] Got exception " + e);
+            relaunch();
+            throw e;
+        }
+    }
+
+    @Test
+    public void test03_sendGiphyNoLoc() throws Exception {
+        try {
+            log("Test03 sending giphy blasts without location");
+
+            if (Android()) {
+                new Android_ReblastTest().test03_send_giphy_no_loc();
+            } else if (IOS()) {
+                new IOS_ReblastTest().test03_send_giphy_no_loc();
+            }
+
+        } catch (Exception e) {
+            log("[Fail] Got exception " + e);
+            relaunch();
+            throw e;
+        }
+    }
+
+    @Test
+    public void test04_sendGiphyWithLoc() throws Exception {
+        try {
+            log("Test04 sending giphy blasts with location");
+
+            if (Android()) {
+                new Android_ReblastTest().test04_send_giphy_with_loc();
+            } else if (IOS()) {
+                new IOS_ReblastTest().test04_send_giphy_with_loc();
+            }
+
+        } catch (Exception e) {
+            log("[Fail] Got exception " + e);
+            relaunch();
+            throw e;
+        }
+    }
+
 	@Test
-	public void test02_sendTextNoLoc() throws Exception {
+	public void test05_sendPhotoNoLoc() throws Exception {
 		try {
-			log("Test02 sending text blasts without location");
+			log("Test05 sending photo blasts without location");
 			
 			if (Android()) {
-				new Android_ReblastTest().test02_send_text_no_loc();
+				new Android_ReblastTest().test05_send_photo_no_loc();
 			} else if (IOS()) {
-				new IOS_ReblastTest().test02_send_text_no_loc();
+				new IOS_ReblastTest().test05_send_photo_no_loc();
 			}
 			
 		} catch (Exception e) {
@@ -45,114 +98,59 @@ public class Run_ReblastTest extends Drivers {
 			throw e;
 		}
 	}
-	
-	@Test
-	public void test03_sendPhotoWithLoc() throws Exception {
-		try {
-			log("Test03 sending photo blasts with location");
-			
-			if (Android()) {
-				new Android_ReblastTest().test03_send_photo_with_loc();
-			} else if (IOS()) {
-				new IOS_ReblastTest().test03_send_photo_with_loc();
-			}
-			
-		} catch (Exception e) {
-			log("[Fail] Got exception " + e);
-			relaunch();
-			throw e;
-		}
-	}
-	
-	@Test
-	public void test04_sendPhotoNoLoc() throws Exception {
-		try {
-			log("Test04 sending photo blasts without location");
-			
-			if (Android()) {
-				new Android_ReblastTest().test04_send_photo_no_loc();
-			} else if (IOS()) {
-				new IOS_ReblastTest().test04_send_photo_no_loc();
-			}
-			
-		} catch (Exception e) {
-			log("[Fail] Got exception " + e);
-			relaunch();
-			throw e;
-		}
-	}
-	
-	@Test
-	public void test05_sendGiphyWithLoc() throws Exception {
-		try {
-			log("Test05 sending giphy blasts with location");
-			
-			if (Android()) {
-				new Android_ReblastTest().test05_send_giphy_with_loc();
-			} else if (IOS()) {
-				new IOS_ReblastTest().test05_send_giphy_with_loc();
-			}
-			
-		} catch (Exception e) {
-			log("[Fail] Got exception " + e);
-			relaunch();
-			throw e;
-		}
-	}
-	
-	@Test
-	public void test06_sendGiphyNoLoc() throws Exception {
-		try {
-			log("Test06 sending giphy blasts without location");
-			
-			if (Android()) {
-				new Android_ReblastTest().test06_send_giphy_no_loc();
-			} else if (IOS()) {
-				new IOS_ReblastTest().test06_send_giphy_no_loc();
-			}
-			
-		} catch (Exception e) {
-			log("[Fail] Got exception " + e);
-			relaunch();
-			throw e;
-		}
-	}
-	
-	@Test
-	public void test07_sendVideoWithLoc() throws Exception {
-		try {
-			log("Test07 sending video blasts with location");
-			
-			if (Android()) {
-				new Android_ReblastTest().test07_send_video_with_loc();
-			} else if (IOS()) {
-				new IOS_ReblastTest().test07_send_video_with_loc();
-			}
-			
-		} catch (Exception e) {
-			log("[Fail] Got exception " + e);
-			relaunch();
-			throw e;
-		}
-	}
-	
-	@Test
-	public void test08_sendVideoNoLoc() throws Exception {
-		try {
-			log("Test08 sending video blasts without location");
-			
-			if (Android()) {
-				new Android_ReblastTest().test08_send_video_no_loc();
-			} else if (IOS()) {
-				new IOS_ReblastTest().test08_send_video_no_loc();
-			}
-			
-		} catch (Exception e) {
-			log("[Fail] Got exception " + e);
-			relaunch();
-			throw e;
-		}
-	}
+
+    @Test
+    public void test06_sendPhotoWithLoc() throws Exception {
+        try {
+            log("Test06 sending photo blasts with location");
+
+            if (Android()) {
+                new Android_ReblastTest().test06_send_photo_with_loc();
+            } else if (IOS()) {
+                new IOS_ReblastTest().test06_send_photo_with_loc();
+            }
+
+        } catch (Exception e) {
+            log("[Fail] Got exception " + e);
+            relaunch();
+            throw e;
+        }
+    }
+
+    @Test
+    public void test07_sendTextNoLoc() throws Exception {
+        try {
+            log("Test07 sending text blasts without location");
+
+            if (Android()) {
+                new Android_ReblastTest().test07_send_text_no_loc();
+            } else if (IOS()) {
+                new IOS_ReblastTest().test07_send_text_no_loc();
+            }
+
+        } catch (Exception e) {
+            log("[Fail] Got exception " + e);
+            relaunch();
+            throw e;
+        }
+    }
+
+    @Test
+    public void test08_sendTextWithLoc() throws Exception {
+        try {
+            log("Test08 sending text blasts with location");
+            if (Android()) {
+                new Android_ReblastTest().test08_send_text_with_loc();
+            } else if (IOS()) {
+                new IOS_ReblastTest().test08_send_text_with_loc();
+            }
+
+        } catch (Exception e) {
+            log("[Fail] Got exception " + e);
+            relaunch();
+            throw e;
+        }
+    }
 	
 	@Test
 	public void test09_reblastSetup() throws Exception {

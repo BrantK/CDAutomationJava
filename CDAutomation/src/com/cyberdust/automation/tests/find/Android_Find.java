@@ -62,7 +62,7 @@ public class Android_Find extends AndroidElements {
         log("Testing chatter categories match descriptions");
 
 		//////Advertising category//////
-		System.out.print("Testing \"Advertising\"... ");
+		log("Testing \"Advertising\" category titles... ");
 		try {
 			category_advertising().click();
 		} catch (Exception ignored) {
@@ -87,12 +87,12 @@ public class Android_Find extends AndroidElements {
 			}
 			counter++;
 		}
-		System.out.println("Okay");
+		log("Advertising: Okay");
 		aDriver().pressKeyCode(4);
 		Thread.sleep(500);
 
         //////Arts category//////
-		System.out.print("Testing \"Arts\"... ");
+		log("Testing \"Arts\" category titles... ");
 
 		try {
 			category_arts().click();
@@ -119,12 +119,12 @@ public class Android_Find extends AndroidElements {
 			}
 			counter++;
 		}
-        System.out.println("Okay");
+        log("Arts: Okay");
         aDriver().pressKeyCode(4);
 		Thread.sleep(500);
 
         //////Business category//////
-        System.out.print("Testing \"Business\"... ");
+        log("Testing \"Business\" category titles... ");
 
 		try{
 			category_business().click();
@@ -155,7 +155,7 @@ public class Android_Find extends AndroidElements {
 			}
 			counter ++;
 		}
-		System.out.println("Okay");
+		log("Business: Okay");
 		aDriver().pressKeyCode(4);
     }
 
@@ -279,17 +279,17 @@ public class Android_Find extends AndroidElements {
 	}
 	
 	public void deleteAccount() {
-		System.out.print("Deleting account... ");
+		log("Deleting account... ");
 		more_button().click();
 		driver.swipe(100, (more_tab_build_a_following_button().getLocation()).getY(), 100, 10, 1000);
 		account_settings().click();
 		delete_account().click();
 		confirm().click();
-		System.out.println("Okay");
+		log("Account deleted");
 	}
 
 	public void createAccount(){
-		System.out.print("Creating account... ");
+		log("Creating account... ");
 		sign_up_button().click();
 		pick_username().sendKeys("findtester");
 		username_confirm().click();
@@ -299,7 +299,7 @@ public class Android_Find extends AndroidElements {
 		birthday_confirm().click();
 		skip_button().click();
 		skip_button().click();
-		System.out.println("Okay");
+		log("Account created");
 	}
 
 	public void setProfilePic() throws Exception {

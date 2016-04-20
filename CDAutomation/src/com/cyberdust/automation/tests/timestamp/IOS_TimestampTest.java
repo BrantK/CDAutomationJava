@@ -36,13 +36,13 @@ public class IOS_TimestampTest extends IOSElements {
 			}
 			else
 			{
-				log("incorrect");
+				log("[Error] incorrect");
 			}
 			
 		}
 		catch(Exception e)
 		{
-			log("timestamp is incorrect");
+			log("[Error] Timestamp is incorrect");
 		}
 		
 	}
@@ -75,13 +75,13 @@ public class IOS_TimestampTest extends IOSElements {
 			}
 			else
 			{
-				log("incorrect");
+				log("[Error] incorrect");
 			}
 			
 		}
 		catch(Exception e)
 		{
-			log("timestamp is incorrect");
+			log("[Error] Timestamp is incorrect");
 		}
 		Thread.sleep(1000);
 		friends_more_button().click();
@@ -103,13 +103,13 @@ public class IOS_TimestampTest extends IOSElements {
 			}
 			else
 			{
-				log("incorrect");
+				log("[Error] incorrect");
 			}
 				
 		}
 		catch(Exception e)
 		{
-			log("timestamp is incorrect");
+			log("[Error] Timestamp is incorrect");
 		}
 	}
 	public void test04_received_group_timestamp() throws Exception {
@@ -122,13 +122,13 @@ public class IOS_TimestampTest extends IOSElements {
 			}
 			else
 			{
-				log("incorrect");
+				log("[Error] incorrect");
 			}
 				
 		}
 		catch(Exception e)
 		{
-			log("timestamp is incorrect");
+			log("[Error] Timestamp is incorrect");
 		
 		}
 			

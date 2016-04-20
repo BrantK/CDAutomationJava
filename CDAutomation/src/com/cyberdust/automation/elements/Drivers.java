@@ -23,7 +23,7 @@ import io.appium.java_client.service.local.flags.GeneralServerFlag;
 
 public abstract class Drivers extends TestAccounts {
 	
-	public static AppiumDriver<WebElement> driver;
+	public static AppiumDriver <WebElement> driver;
 	public static DesiredCapabilities capabilities = new DesiredCapabilities();
 	public static String appiumServerAddress = "127.0.0.1";
 	public static String appiumServerPort = "4723";

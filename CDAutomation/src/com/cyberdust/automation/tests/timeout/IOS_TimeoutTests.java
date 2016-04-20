@@ -118,7 +118,7 @@ public class IOS_TimeoutTests extends IOSElements {
 		}
 		else
 		{	
-			System.out.println("ERROR: Message is not deleted after 60 seconds");
+			log("[Error] Message is not deleted after 60 seconds");
 			
 		}
 	}
@@ -132,7 +132,7 @@ public class IOS_TimeoutTests extends IOSElements {
 		Thread.sleep(60000);
 		if(!message1.isDisplayed())
 		{
-			System.out.println("Message deleted after 60 seconds");
+			log("Message deleted after 60 seconds");
 			back_button().click();
 			action.longPress(second_friend, 3000).release().perform();
 			delete_dust().click();
@@ -140,7 +140,7 @@ public class IOS_TimeoutTests extends IOSElements {
 		}
 		else
 		{	
-			System.out.println("ERROR: Message is not deleted after 60 seconds");
+			log("[Error] Message is not deleted after 60 seconds");
 			
 		}
 //		WebElement message11 = wait.until(ExpectedConditions.elementToBeClickable(By.name(text_message)));
@@ -150,33 +150,33 @@ public class IOS_TimeoutTests extends IOSElements {
 		
 		if(!message1.isDisplayed())
 		{
-			System.out.println("Message deleted after 60 seconds");
+			log("Message deleted after 60 seconds");
 			
 		}
 		else
 		{	
-			System.out.println("ERROR: Message is not deleted after 60 seconds");
+			log("[Error] Message is not deleted after 60 seconds");
 			
 		}
 
 		if(!message1.isDisplayed())
 		{
-			System.out.println("Message deleted after 20 seconds");
+			log("Message deleted after 20 seconds");
 			
 		}
 		else
 		{	
-			System.out.println("ERROR: Message is not deleted after 20 seconds");
+			log("[Error] Message is not deleted after 20 seconds");
 			
 		}
 		if(!swipe_view_monkey().isDisplayed())
 		{
-			System.out.println("Message deleted after 20 seconds");
+			log("Message deleted after 20 seconds");
 			
 		}
 		else
 		{	
-			System.out.println("ERROR: Message is not deleted after 20 seconds");
+			log("[Error] Message is not deleted after 20 seconds");
 			
 		}
 		
@@ -186,24 +186,24 @@ public class IOS_TimeoutTests extends IOSElements {
 		Thread.sleep(40000);
 		if(!message4.isDisplayed())
 		{
-			System.out.println("Message deleted after 60 seconds");
+			log("Message deleted after 60 seconds");
 			
 		}
 		else
 		{	
-			System.out.println("ERROR: Message is not deleted after 60 seconds");
+			log("[Error] Message is not deleted after 60 seconds");
 			
 		}
 		
 		Thread.sleep(40000);
 		if(!message3.isDisplayed())
 		{
-			System.out.println("Message deleted after 60 seconds");
+			log("Message deleted after 60 seconds");
 			
 		}
 		else
 		{	
-			System.out.println("ERROR: Message is not deleted after 60 seconds");
+			log("[Error] Message is not deleted after 60 seconds");
 			
 		}
 

@@ -42,13 +42,13 @@ public class Android_TimestampTest extends AndroidElements {
 			}
 			else
 			{
-				log("incorrect");
+				log("[Error] Timestamp is incorrect");
 			}
 			
 		}
 		catch(Exception e)
 		{
-			log("timestamp is incorrect");
+			log("[Error] Timestamp is incorrect");
 		}
 		
 	}
@@ -81,13 +81,13 @@ public class Android_TimestampTest extends AndroidElements {
 			}
 			else
 			{
-				log("incorrect");
+				log("[Error] incorrect");
 			}
 			
 		}
 		catch(Exception e)
 		{
-			log("timestamp is incorrect");
+			log("[Error] Timestamp is incorrect");
 		}
 		Thread.sleep(1000);
 		friends_more_button().click();
@@ -109,13 +109,13 @@ public class Android_TimestampTest extends AndroidElements {
 			}
 			else
 			{
-				log("incorrect");
+				log("[Error] incorrect");
 			}
 				
 		}
 		catch(Exception e)
 		{
-			log("timestamp is incorrect");
+			log("[Error] Timestamp is incorrect");
 		}
 	}
 	public void test04_received_group_timestamp() throws Exception {
@@ -128,13 +128,13 @@ public class Android_TimestampTest extends AndroidElements {
 			}
 			else
 			{
-				log("incorrect");
+				log("[Error] incorrect");
 			}
 				
 		}
 		catch(Exception e)
 		{
-			log("timestamp is incorrect");
+			log("[Error] Timestamp is incorrect");
 		
 		}
 			

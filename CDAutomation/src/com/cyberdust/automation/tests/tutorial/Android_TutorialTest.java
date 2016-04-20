@@ -106,12 +106,6 @@ public class Android_TutorialTest extends AndroidElements {
 		Thread.sleep(2000);
 
 		
-		
-		
-		
-		
-		
-		
 	}
 	
 }

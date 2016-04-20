@@ -476,14 +476,16 @@ public class IOSElements extends Drivers {
 	public WebElement select_a_category_button() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAButton[1]")));
 	}
-	public WebElement build_a_following_description() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATextView[1]")));
+	public WebElement build_a_following_description() throws Exception {
+		Thread.sleep(1000);
+		return driver.findElement(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATextView[1]"));
 	}
 	public WebElement previous_screen_button() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("back arrow red btn")));
 	}
-	public WebElement error_message() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.id("Error")));
+	public WebElement error_message() throws Exception {
+		Thread.sleep(500);
+		return driver.findElement(By.id("Error"));
 	}
 	public WebElement closeButton () {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("closeButton")));
@@ -511,6 +513,10 @@ public class IOSElements extends Drivers {
 	public WebElement close_search() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("dismiss search")));
 	}
+	public WebElement BAF_form_send_button() throws Exception {
+		Thread.sleep(1000);
+		return driver.findElement(By.id("SEND"));
+	}
 
 	///////////////Find Tab Categories///////////////
 	public WebElement category_advertising() {
@@ -531,6 +537,9 @@ public class IOSElements extends Drivers {
 	public WebElement category_business_finance() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("Finance")));
 	}
+	public WebElement business_nav_bar () {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIANavigationBar[1]/UIAStaticText[1]")));
+	}
 	public WebElement first_chatter_category() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIACollectionView[1]/UIACollectionCell[1]/UIAStaticText[2]")));
 	}
@@ -541,7 +550,12 @@ public class IOSElements extends Drivers {
     public WebElement profile_picture() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAButton[2]")));
     }
-    public WebElement remove_profile_picture() {
+	public WebElement more_tab_nav_bar() throws Exception {
+		Thread.sleep(1000);
+		return driver.findElement(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIANavigationBar[1]/UIAStaticText[1]"));
+	}
+
+	public WebElement remove_profile_picture() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("Delete")));
     }
     public WebElement change_profile_picture() {
@@ -553,6 +567,9 @@ public class IOSElements extends Drivers {
     public WebElement profile_picture_done() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("btn photo use")));
     }
+	public WebElement more_tab_build_a_following() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]")));
+	}
     public WebElement enter_bio() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIATextView[1]")));
     }
@@ -632,7 +649,7 @@ public class IOSElements extends Drivers {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("Delete")));
 	}
 	public WebElement confirm_delete_again() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[4]/UIAAlert[1]/UIACollectionView[1]/UIACollectionCell[1]")));
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[4]/UIAAlert[1]/UIACollectionView[1]/UIACollectionCell[1]/UIAButton[1]")));
 	}
     public WebElement enter_old_password() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("current password")));
