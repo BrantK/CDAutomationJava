@@ -8,7 +8,7 @@ public class IOS_AccountManagementTest extends IOSElements {
 	LoginWith loginAs = new LoginWith();
 
     public void test01_changing_password() throws Exception {
-        // Logs into existing testing account
+
         loginAs.user(acctmgnt_account01, acctmgnt_password01);
 
         // Changes password
