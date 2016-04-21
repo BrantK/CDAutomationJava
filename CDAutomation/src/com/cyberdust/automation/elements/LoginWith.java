@@ -52,6 +52,7 @@ public class LoginWith extends Drivers {
             if (already_logged_in) {
                 android.back_button().click();
             } else {
+                driver.swipe(screenWidth / 2, screenHeight - 20, screenWidth / 2, 20, 300);
                 android.logout().click();
                 android.confirm().click();
                 logged_out = true;
