@@ -45,7 +45,7 @@ public class LoginWith extends Drivers {
         }
 
         if (!already_logged_in && !logged_out) {
-            action.press(android.build_a_following()).moveTo(android.back_button()).release().perform();
+            driver.swipe(screenWidth / 2, screenHeight - 20, screenWidth / 2, 20, 300);
             android.logout().click();
             android.confirm().click();
             logged_out = true;
@@ -93,7 +93,7 @@ public class LoginWith extends Drivers {
         }
 
         if (!already_logged_in && !logged_out) {
-            action.press(ios.followers()).moveTo(ios.close_button()).release().perform();
+            driver.swipe(screenWidth / 2, screenHeight - 20, screenWidth / 2, 20, 300);
 
             try {
 				Thread.sleep(1000);
