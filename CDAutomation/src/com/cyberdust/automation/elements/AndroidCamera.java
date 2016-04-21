@@ -6,6 +6,13 @@ public class AndroidCamera extends AndroidElements {
 		// Tries to take a photo with several different kinds of android phones
 		boolean photo_taken = false;
 
+        try {
+            waitTime(2);
+            if (profile_picture().isDisplayed()) {
+                log("[Warning] Camera failed to open");
+            }
+        } catch (Exception ignored) {}
+
         Thread.sleep(1000);
         aDriver().pressKeyCode(27);
 

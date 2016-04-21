@@ -1,5 +1,6 @@
 package com.cyberdust.automation.tests.blasts;
 
+import com.cyberdust.automation.elements.IOSElements;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
 
@@ -11,6 +12,7 @@ public class Run_BlastTest extends Drivers {
 	@Test
 	public void test01_createBlastList() throws Exception {
 		log("[Start] Starting blast test");
+
 		try {
 			log("Test01 creating blast list");
 			
@@ -29,7 +31,7 @@ public class Run_BlastTest extends Drivers {
                 new Android_BlastTest().blasts_tab().click();
             }
             if (IOS()) {
-                new IOS_BlastTest().blasts_tab().click();
+                new IOSElements().blasts_tab().click();
             }
 
 			throw e;
@@ -224,7 +226,7 @@ public class Run_BlastTest extends Drivers {
             log("Test09 replying to blast");
 
             if (Android()) {
-                new Android_BlastTest().test14_reply_to_blast();
+                new Android_BlastTest().test09_reply_to_blast();
             } else if (IOS()) {
                 new IOS_BlastTest().test09_reply_to_blast();
             }
@@ -253,7 +255,7 @@ public class Run_BlastTest extends Drivers {
             log("Test10 opening video blasts");
 
             if (Android()) {
-                new Android_BlastTest().test13_open_video_blast();
+                new Android_BlastTest().test10_open_video_blast();
             } else if (IOS()) {
                 new IOS_BlastTest().test10_open_video_blast();
             }
@@ -282,7 +284,7 @@ public class Run_BlastTest extends Drivers {
             log("Test11 opening giphy blast");
 
             if (Android()) {
-                new Android_BlastTest().test12_open_giphy_blast();
+                new Android_BlastTest().test11_open_giphy_blast();
             } else if (IOS()) {
                 new IOS_BlastTest().test11_open_giphy_blast();
             }
@@ -311,7 +313,7 @@ public class Run_BlastTest extends Drivers {
             log("Test12 opening non public blast");
 
             if (Android()) {
-                new Android_BlastTest().test11_open_non_public_blast();
+                new Android_BlastTest().test12_open_non_public_blast();
             } else if (IOS()) {
                 new IOS_BlastTest().test12_open_non_public_blast();
             }
@@ -340,7 +342,7 @@ public class Run_BlastTest extends Drivers {
             log("Test13 opening photo blasts");
 
             if (Android()) {
-                new Android_BlastTest().test10_open_photo_blast();
+                new Android_BlastTest().test13_open_photo_blast();
             } else if (IOS()) {
                 new IOS_BlastTest().test13_open_photo_blast();
             }
@@ -369,7 +371,7 @@ public class Run_BlastTest extends Drivers {
             log("Test14 opening text blasts");
 
             if (Android()) {
-                new Android_BlastTest().test09_open_text_blast();
+                new Android_BlastTest().test14_open_text_blast();
             } else if (IOS()) {
                 new IOS_BlastTest().test14_open_text_blast();
             }
