@@ -3,11 +3,11 @@ package com.cyberdust.automation.tests.signUp;
 import com.cyberdust.automation.elements.AndroidCamera;
 import com.cyberdust.automation.elements.AndroidElements;
 
-public class Android_SignUpTest extends AndroidElements {
+class Android_SignUpTest extends AndroidElements {
 	
 	AndroidCamera androidCamera = new AndroidCamera();
 	
-	public void test01_check_logged_out() throws Exception {
+	void test01_check_logged_out() throws Exception {
 		// Check if logged out
 		boolean isLoggedOut;
 		try {
@@ -20,7 +20,7 @@ public class Android_SignUpTest extends AndroidElements {
         }
 		if (!isLoggedOut) {
             more_button().click(); Thread.sleep(1000);
-            action.press(build_a_following()).moveTo(back_button()).release().perform();
+            driver.swipe(screenWidth/2, screenHeight - 20, screenWidth/2, 20, 300);
             // try this: driver.scrollTo("Logout");
             logout().click();
             log("Logging out before starting test");
@@ -28,49 +28,70 @@ public class Android_SignUpTest extends AndroidElements {
 		}
 	}
 	
-	public void test02_sign_up() throws Exception {
-		// Create new account and check if special characters can be used
-	    sign_up_button().click();
-	    pick_username().sendKeys(signup_account + "!@//$");
-	    try {
-	    	waitTime(3);
-	        username_confirm().click();
-	        log("Special characters used in username");
-	    } catch (Exception e) {
-	        log("Could not use special characters in username");
-	    }
-	    waitTime(20);
-	    pick_username().sendKeys(signup_account);
-	    username_confirm().click();
-	    create_password().sendKeys(signup_password);
-	    password_confirm().click();
-	    birthday().click(); Thread.sleep(2000);
-	    		
-        // Sets birthday
-        log("Entering birthday");
-        action.longPress(date().getLocation().x, date().getLocation().y, 2000).release().perform();
-        birthday_done().click();
-        birthday_confirm().click();
+	void test02_sign_up() throws Exception {
+        // Create new account and check if special characters can be used
+        sign_up_button().click();
+        pick_username().sendKeys(signup_account + "!@//$");
+        try {
+            waitTime(3);
+            username_confirm().click();
+            log("Special characters used in username");
+        } catch (Exception e) {
+            log("Could not use special characters in username");
+        }
+        waitTime(20);
+        pick_username().sendKeys(signup_account);
+        username_confirm().click();
+        create_password().sendKeys(signup_password);
+        password_confirm().click();
+    }
 
-        // Skips rest of on boarding and tutorial
-        skip_button().click();
-        skip_button().click();
-        skip_button().click();
+    void test03_sign_up2() throws Exception {
+        waitTime(2);
+
+        try {
+            if (birthday_confirm().isDisplayed()) {
+                birthday_confirm().click();
+                waitTime(20);
+            }
+        } catch (Exception e) {
+            skip_button().click();
+        }
+
+        try {
+            if (skip_button().isDisplayed()) {
+                skip_button().click();
+            }
+        } catch (Exception e) {
+            birthday_confirm().click();
+            waitTime(20);
+        }
+
+
+        try {
+            if (skip_button().isDisplayed()) {
+                skip_button().click();
+            }
+        } catch (Exception e) {
+            birthday_confirm().click();
+            waitTime(20);
+        }
 
         tutorial_close().click();
 	}
 	
-    public void test03_update_profile_pic() throws Exception {
+    void test04_update_profile_pic() throws Exception {
         // Changes profile picture
         more_button().click();
         profile_picture().click();
+        name("Change").click();
         log("Changing profile picture");
         camera_button().click(); Thread.sleep(3000);
         androidCamera.takePhoto();
         log("Profile picture updated");
     }
 
-	public void test04_update_bio_and_website() throws Exception {
+    void test05_update_bio_and_website() throws Exception {
         enter_bio().click();
 		driver.getKeyboard().sendKeys("My awesome test bio");
 		save_button().click();
@@ -92,10 +113,10 @@ public class Android_SignUpTest extends AndroidElements {
 		}
 	}
 	
-    public void test05_login_logout() throws Exception {
+    void test06_login_logout() throws Exception {
         // Logout and login test
         log("Logging out then logging in");
-        action.press(build_a_following()).moveTo(back_button()).release().perform();
+        driver.swipe(screenWidth/2, screenHeight - 20, screenWidth/2, 20, 300);
         logout().click();
         confirm().click();
         login_button().click();
@@ -130,7 +151,9 @@ public class Android_SignUpTest extends AndroidElements {
 		}
 
 		// Deletes account
-        action.press(followers()).moveTo(enter_bio()).release().perform();
+        waitTime(10);
+        Thread.sleep(500);
+        driver.swipe(screenWidth/2, screenHeight/2, screenWidth/2, screenHeight/4, 200);
         account_settings().click();
         delete_account().click();
         log("Deleting account");

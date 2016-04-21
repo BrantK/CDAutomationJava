@@ -2,9 +2,9 @@ package com.cyberdust.automation.tests.signUp;
 
 import com.cyberdust.automation.elements.IOSElements;
 
-public class IOS_SignUpTest extends IOSElements {
+class IOS_SignUpTest extends IOSElements {
 	
-	public void test01_check_logged_out() throws Exception {
+	void test01_check_logged_out() throws Exception {
 		// Check if logged out
 		boolean isLoggedOut;
 
@@ -25,7 +25,7 @@ public class IOS_SignUpTest extends IOSElements {
 		}
 	}
 	
-	public void test02_sign_up() throws Exception {
+	void test02_sign_up() throws Exception {
 		// Create new account and check if special characters can be used
 	    sign_up_button().click();
 	    driver.getKeyboard().sendKeys(signup_account);
@@ -44,21 +44,47 @@ public class IOS_SignUpTest extends IOSElements {
             driver.getKeyboard().sendKeys(signup_account);
             username_OK().click();
 	    }
-	    waitTime(20);
 
+	    waitTime(20);
 	    driver.getKeyboard().sendKeys(signup_password);
 	    password_OK().click();
-	    birthday_OK().click(); Thread.sleep(2000);
-
-        // Skips rest of on boarding and tutorial
-        skip_button().click();
-        skip_button().click();
-        skip_button().click();
-
-        tutorial_close().click();
 	}
+
+    void test03_sign_up2() throws Exception {
+        waitTime(2);
+
+        try {
+            if (birthday_OK().isDisplayed()) {
+                birthday_OK().click();
+                waitTime(20);
+            }
+        } catch (Exception e) {
+            skip_button().click();
+        }
+
+        try {
+            if (skip_button().isDisplayed()) {
+                skip_button().click();
+            }
+        } catch (Exception e) {
+            birthday_OK().click();
+            waitTime(20);
+        }
+
+        try {
+            if (skip_button().isDisplayed()) {
+                skip_button().click();
+            }
+        } catch (Exception e) {
+            birthday_OK().click();
+            waitTime(20);
+        }
+
+        skip_button().click();
+        tutorial_close().click();
+    }
 	
-    public void test03_update_profile_pic() throws Exception {
+    void test04_update_profile_pic() throws Exception {
         // Changes profile picture
         more_button().click();
         profile_picture().click();
@@ -78,7 +104,7 @@ public class IOS_SignUpTest extends IOSElements {
         profile_picture_done().click();
     }
 
-    public void test04_update_bio_and_website() throws Exception {
+    void test05_update_bio_and_website() throws Exception {
         enter_bio().click();
         driver.getKeyboard().sendKeys("My awesome test bio");
         name("Next").click();
@@ -100,15 +126,17 @@ public class IOS_SignUpTest extends IOSElements {
         }
     }
 
-    public void test05_login_logout() throws Exception {
+    void test06_login_logout() throws Exception {
         // Logout and login test
         log("Logging out then logging in");
-        action.press(followers()).moveTo(close_button()).release().perform();
+        driver.swipe(screenWidth / 2, screenHeight - 20, screenWidth / 2, 20, 300);
         logout().click();
         confirm().click();
         login_button().click();
         login_username().click();
-        driver.getKeyboard().sendKeys(signup_account.toUpperCase() + "\n" + signup_password);
+        driver.getKeyboard().sendKeys(signup_account.toUpperCase());
+        login_password().click();
+        driver.getKeyboard().sendKeys(signup_password);
         login_OK().click();
         log("Username is not case sensitive");
 
@@ -125,7 +153,7 @@ public class IOS_SignUpTest extends IOSElements {
         }
 
         // Deletes account
-        action.press(followers()).moveTo(close_button()).release().perform();
+        driver.swipe(screenWidth / 2, screenHeight - 20, screenWidth / 2, 20, 300);
         account_settings().click();
         delete_account().click();
         confirm_delete().click();
