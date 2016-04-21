@@ -3,17 +3,18 @@ package com.cyberdust.automation.tests.blasts;
 import com.cyberdust.automation.elements.AndroidElements;
 import com.cyberdust.automation.elements.LoginWith;
 
-public class Android_BlastTest extends AndroidElements {
+class Android_BlastTest extends AndroidElements {
 
-	String blast_url = "www.cyberdust.com";
-	String blast_username = "+" + blasts_account01;
-	LoginWith loginAs = new LoginWith();
+	private String blast_url = "www.cyberdust.com";
+	private String blast_username = "+" + blasts_account01;
+	private LoginWith loginAs = new LoginWith();
 	
-	public void test01_create_blast_list() throws Exception {
+	void test01_create_blast_list() throws Exception {
 		// Logs into blast testing account
 		loginAs.user(blasts_account01, blasts_password01);
 
 		// Creates a blast list
+		blasts_tab().click();
 		blast_lists().click();
 		Thread.sleep(2000);
 		log("Creating a blast list");
@@ -27,9 +28,8 @@ public class Android_BlastTest extends AndroidElements {
 				confirm().click();
 				blast_lists().click();
 			}
-		} catch (Exception ignored) {
-			
-		}
+		} catch (Exception ignored) {}
+
 		blast_list_field().sendKeys("List from Blasts tab");
 		OK_button().click();
 		username(blasts_account02).click();
@@ -37,7 +37,7 @@ public class Android_BlastTest extends AndroidElements {
 		OK_button().click();
 	}
 
-	public void test02_send_text_blasts() throws Exception {
+	void test02_send_text_blasts() throws Exception {
 		// Sends text blast with +username, URL, and location to blast list
 		log("Sending text blast to blast list");
 		blasts_tab();
@@ -66,7 +66,7 @@ public class Android_BlastTest extends AndroidElements {
 		back_button().click();
 	}
 
-	public void test03_send_photo_blast_01() throws Exception {
+	void test03_send_photo_blast_01() throws Exception {
 		// Sends photo blast with drawing and URL to all followers
 		log("Sending photo blast with drawing and text to all followers");
 		blasts_tab();
@@ -88,7 +88,7 @@ public class Android_BlastTest extends AndroidElements {
 		blast_Ok_button().click();
 	}
 
-	public void test04_send_photo_blast_02() throws Exception {
+	void test04_send_photo_blast_02() throws Exception {
 		// Sends non public photo blast with +username to the new blast list
 		log("Sending non public photo blast");
 		blasts_tab();
@@ -114,7 +114,7 @@ public class Android_BlastTest extends AndroidElements {
 		confirm().click();
 	}
 
-	public void test05_send_giphy_blast() throws Exception {
+	void test05_send_giphy_blast() throws Exception {
 		// Sends text blast with giphy to a single friend
 		log("Sending giphy");
 		blasts_tab();
@@ -128,30 +128,7 @@ public class Android_BlastTest extends AndroidElements {
 		blast_Ok_button().click();
 	}
 
-	public void test06_send_video_blast_01() throws Exception {
-		// Takes video, adds +username, creates blast list, then sends to that blast list
-		log("Sending video to newly created blast list");
-		blasts_tab();
-		action_menu().click();
-		Thread.sleep(1000);
-		action_menu_media().click();
-		video_button().click();
-		action.longPress(photo_button(), 5000).release().perform();
-		add_text().click();
-		add_text_field().sendKeys(blast_username);
-		done_button().click();
-		next_button().click();
-		create_blast_list().click();
-		blast_list_field().sendKeys("My Test List");
-		OK_button().click();
-		username(blasts_account02).click();
-		username(blasts_account03).click();
-		OK_button().click();
-		send_to_blast_list().click();
-		blast_Ok_button().click();
-	}
-
-	public void test07_send_video_blast_02() throws Exception {
+	void test06_send_video_blast_01() throws Exception {
 		// Takes video, adds URL, then sends to single friend
 		log("Sending video with URL");
 		blasts_tab();
@@ -169,7 +146,30 @@ public class Android_BlastTest extends AndroidElements {
 		blast_Ok_button().click();
 	}
 
-	public void test08_send_text_for_replies() throws Exception {
+    void test07_send_video_blast_02() throws Exception {
+        // Takes video, adds +username, creates blast list, then sends to that blast list
+        log("Sending video to newly created blast list");
+        blasts_tab();
+        action_menu().click();
+        Thread.sleep(1000);
+        action_menu_media().click();
+        video_button().click();
+        action.longPress(photo_button(), 5000).release().perform();
+        add_text().click();
+        add_text_field().sendKeys(blast_username);
+        done_button().click();
+        next_button().click();
+        create_blast_list().click();
+        blast_list_field().sendKeys("My Test List");
+        OK_button().click();
+        username(blasts_account02).click();
+        username(blasts_account03).click();
+        OK_button().click();
+        send_to_blast_list().click();
+        blast_Ok_button().click();
+    }
+
+	void test08_send_text_for_replies() throws Exception {
 		// Sends text blast for reply test on other account
 		log("Sending text blast for reply test");
 		blasts_tab();
@@ -192,14 +192,142 @@ public class Android_BlastTest extends AndroidElements {
 		confirm().click();
 	}
 
-	public void test09_open_text_blast() throws Exception {
-		loginAs.user(blasts_account02, blasts_password02);
+	void test09_reply_to_blast() throws Exception {
+        loginAs.user(blasts_account02, blasts_password02);
+        blasts_tab().click();
+        username(blasts_account01).click();
 
+		// Opens blast and tests reply functionality
+		log("Testing reply functionality");
+		swipe_view_reply().click();
+		swipe_view_reply().sendKeys("Test reply");
+		swipe_view_reply_send().click();
+		swipe_view_reply().click();
+		swipe_view_reply().sendKeys("+blasttest");
+
+		log("Testing if +usernames can be tapped");
+		swipe_view_reblast().click();
+		swipe_view_reply_send().click();
+		swipe_view_reply_emoji().click();
+		swipe_view_monkey().click();
+		swipe_view_emoji_cancel().click();
+		swipe_view_reply_camera().click();
+
+		log("Testing photo and video replies");
+		photo_button().click();
+		photo_pen().click();
+		driver.swipe(photo_back_button().getLocation().x + 50, photo_back_button().getLocation().y - 50,
+				photo_pen().getLocation().x, photo_pen().getLocation().y + 50, 1000);
+		swipe_view_photo_send().click();
+		swipe_view_reply_camera().click();
+		video_button().click();
+		action.longPress(photo_button(), 5000).release().perform();
+		swipe_view_photo_send().click();
+
+        Thread.sleep(1000);
+        driver.swipe((screenWidth-20), (screenHeight/2), (20), (screenHeight/2), 300);
+	}
+
+    void test10_open_video_blast() throws Exception {
+        // Opens video with +username
+        try {
+            Thread.sleep(4000);
+            if (driver.findElementById("com.radicalapps.cyberdust:id/overlay_video_view").isDisplayed()) {
+                log("Video loaded successfully");
+            }
+        } catch (Exception e) {
+            log("Video did not load");
+        }
+
+        swipe_view_text().click();
+
+        try {
+            Thread.sleep(1000);
+            if (profile_follow_button().isDisplayed()) {
+                log ("+username tapped and profile opened");
+            }
+        } catch (Exception e) {
+            log ("[Warning] +username did not open profile!");
+        }
+
+        action.press(screenWidth/10*2, screenHeight/10*2).release().perform();
+
+        Thread.sleep(1000);
+        driver.swipe((screenWidth-20), (screenHeight/2), (20), (screenHeight/2), 300);
+
+        // Opens video with URL
+        swipe_view_text().click();
+        Thread.sleep(4000);
+        back_button().click();
+        Thread.sleep(1000);
+
+        driver.swipe((screenWidth-20), (screenHeight/2), (20), (screenHeight/2), 300);
+    }
+
+    void test11_open_giphy_blast() throws Exception {
+        // Checks if giphy was received
+        try {
+            Thread.sleep(3000);
+            if (driver.findElementById("com.radicalapps.cyberdust:id/page_frag_gif_view").isDisplayed()
+                    && driver.findElementById("com.radicalapps.cyberdust:id/text_overlay").isDisplayed()) {
+                log("Giphy loaded successfully");
+            }
+        } catch (Exception e) {
+            log("Giphy was not found");
+        }
+        Thread.sleep(1000);
+        driver.swipe((screenWidth-20), (screenHeight/2), (20), (screenHeight/2), 300);
+    }
+
+    void test12_open_non_public_blast() throws Exception {
+        // Opens non public photo blast with +username
+        try {
+            Thread.sleep(4000);
+            if (driver.findElementById("com.radicalapps.cyberdust:id/page_frag_reblast").isDisplayed()) {
+                log("Able to reblast non public blast");
+            }
+        } catch (Exception e) {
+            log("Not able to reblast non public blast");
+        }
+        swipe_view_text().click();
+
+        try {
+            Thread.sleep(1000);
+            if (profile_follow_button().isDisplayed()) {
+                log ("+username tapped and profile opened");
+            }
+        } catch (Exception e) {
+            log ("[Warning] +username did not open profile!");
+        }
+
+        close_profile().click();
+
+        Thread.sleep(1000);
+        driver.swipe((screenWidth-20), (screenHeight/2), (20), (screenHeight/2), 300);
+    }
+
+    void test13_open_photo_blast() throws Exception {
+        // Opens photo with drawing and URL
+        try {
+            Thread.sleep(3000);
+            if (driver.findElementById("com.radicalapps.cyberdust:id/page_frag_image").isDisplayed()) {
+                log("Image loaded successfully");
+            }
+        } catch (Exception e) {
+            log("Image did not load");
+        }
+        swipe_view_text().click();
+        Thread.sleep(4000);
+        back_button().click();
+        Thread.sleep(1000);
+
+        driver.swipe((screenWidth-20), (screenHeight/2), (20), (screenHeight/2), 300);
+    }
+
+	void test14_open_text_blast() throws Exception {
 		// Opens text blast with +username, URL, and location
 		log("Opening text blast and checking +username, URL, and location");
-		blasts_tab();
-		name(blasts_account01).click(); Thread.sleep(2000);
-		
+
 		swipe_view_location().click(); Thread.sleep(3000);
 		aDriver().pressKeyCode(4); Thread.sleep(2000);
 		action.press(screenWidth/10*2, screenHeight/10*2).release().perform(); // taps +username
@@ -213,147 +341,17 @@ public class Android_BlastTest extends AndroidElements {
 			log ("[Warning] +username did not open profile!");
 		}
 		
-		aDriver().pressKeyCode(4);
-		Thread.sleep(2000);
-		action.press(screenWidth/10*2, (int)(screenHeight/10*2.9)).release().perform(); // Taps on URL
-		// swipe_view_url_card().click(); currently not working over Wifi
-		Thread.sleep(4000);
-		back_button().click(); Thread.sleep(1000);
-		
-		driver.swipe((screenWidth/10*8), (screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
-	}
+		close_profile().click();
+		swipe_view_url_card().click();
 
-	public void test10_open_photo_blast() throws Exception {
-		// Opens photo with drawing and URL
-		try {
-			Thread.sleep(3000);
-			if (driver.findElementById("com.radicalapps.cyberdust:id/page_frag_image").isDisplayed()) {
-				log("Image loaded successfully");
-			}
-		} catch (Exception e) {
-			log("Image did not load");
-		}
-		swipe_view_text().click();
 		Thread.sleep(4000);
 		back_button().click();
-		Thread.sleep(1000);
 
-		driver.swipe((screenWidth/10*8), (screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
+        Thread.sleep(1000);
+        driver.swipe((screenWidth-20), (screenHeight/2), (20), (screenHeight/2), 300);
 	}
 
-	public void test11_open_non_public_blast() throws Exception {
-		// Opens non public photo blast with +username
-		try {
-			Thread.sleep(4000);
-			if (driver.findElementById("com.radicalapps.cyberdust:id/page_frag_reblast").isDisplayed()) {
-				log("Able to reblast non public blast");
-			}
-		} catch (Exception e) {
-			log("Not able to reblast non public blast");
-		}
-		swipe_view_text().click();
-		
-		try {
-			Thread.sleep(1000);
-			if (profile_follow_button().isDisplayed()) {
-				log ("+username tapped and profile opened");
-			}
-		} catch (Exception e) {
-			log ("[Warning] +username did not open profile!");
-		}
-		
-		action.press(screenWidth/10*2, screenHeight/10*2).release().perform();
-		Thread.sleep(1000);
-
-		driver.swipe((screenWidth/10*8), (screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
-	}
-
-	public void test12_open_giphy_blast() throws Exception {
-		// Checks if giphy was received
-		try {
-			Thread.sleep(3000);
-			if (driver.findElementById("com.radicalapps.cyberdust:id/page_frag_gif_view").isDisplayed() 
-					&& driver.findElementById("com.radicalapps.cyberdust:id/text_overlay").isDisplayed()) {
-				log("Giphy loaded successfully");
-			}
-		} catch (Exception e) {
-			log("Giphy was not found");
-		}
-		Thread.sleep(1000);
-		driver.swipe((screenWidth/10*8), (screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
-	}
-
-	public void test13_open_video_blast() throws Exception {
-		// Opens video with +username
-		try {
-			Thread.sleep(4000);
-			if (driver.findElementById("com.radicalapps.cyberdust:id/overlay_video_view").isDisplayed()) {
-				log("Video loaded successfully");
-			}
-		} catch (Exception e) {
-			log("Video did not load");
-		}
-		swipe_view_text().click();
-		
-		try {
-			Thread.sleep(1000);
-			if (profile_follow_button().isDisplayed()) {
-				log ("+username tapped and profile opened");
-			}
-		} catch (Exception e) {
-			log ("[Warning] +username did not open profile!");
-		}
-		
-		action.press(screenWidth/10*2, screenHeight/10*2).release().perform();
-		Thread.sleep(1000);
-
-		driver.swipe((screenWidth/10*8), (screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
-
-		// Opens video with URL
-		swipe_view_text().click();
-		Thread.sleep(4000);
-		back_button().click();
-		Thread.sleep(1000);
-
-		driver.swipe((screenWidth/10*8), (screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
-	}
-
-	public void test14_reply_to_blast() throws Exception {
-		// Opens blast and tests reply functionality
-		log("Testing reply functionality");
-		swipe_view_reply().click();
-		swipe_view_reply().sendKeys("Test reply");
-		swipe_view_reply_send().click();
-		swipe_view_reply().click();
-		swipe_view_reply().sendKeys("+blasttest");
-		
-		log("Testing if +usernames can be tapped");
-		swipe_view_reblast().click();
-		swipe_view_reply_send().click();
-		swipe_view_reply_monkey().click();
-		swipe_view_monkey().click();
-		swipe_view_emoji_cancel().click();
-		swipe_view_reply_media().click();
-		
-		log("Testing photo and video replies");
-		photo_button().click();
-		photo_pen().click();
-		driver.swipe(photo_back_button().getLocation().x + 50, photo_back_button().getLocation().y - 50,
-				photo_pen().getLocation().x, photo_pen().getLocation().y + 50, 1000);
-		swipe_view_photo_send().click();
-		swipe_view_reply_media().click();
-		video_button().click();
-		action.longPress(photo_button(), 5000).release().perform();
-		swipe_view_photo_send().click();
-		try {
-			swipe_view_exit().click();
-		} catch (Exception e) {
-			action.press(100, 1000).release().perform();
-			swipe_view_exit().click();
-		}	
-	}
-
-	public void test15_check_replies() throws Exception {
+	void test15_check_replies() throws Exception {
 		// Login with account01 to check replies
 		loginAs.user(blasts_account01, blasts_password01);
 

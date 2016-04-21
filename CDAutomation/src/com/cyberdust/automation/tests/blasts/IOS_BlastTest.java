@@ -3,13 +3,13 @@ package com.cyberdust.automation.tests.blasts;
 import com.cyberdust.automation.elements.IOSElements;
 import com.cyberdust.automation.elements.LoginWith;
 
-public class IOS_BlastTest extends IOSElements {
+class IOS_BlastTest extends IOSElements {
 
-	String blast_url = "www.cyberdust.com";
-	String blast_username = "+" + blasts_account01;
-	LoginWith loginAs = new LoginWith();
+	private String blast_url = "www.cyberdust.com";
+	private String blast_username = "+" + blasts_account01;
+	private LoginWith loginAs = new LoginWith();
 
-	public void test01_create_blast_list() throws Exception {
+	void test01_create_blast_list() throws Exception {
 		// Logs into blast testing account
 		loginAs.user(blasts_account01, blasts_password01);
 
@@ -41,7 +41,7 @@ public class IOS_BlastTest extends IOSElements {
 		back_arrow().click();
 	}
 
-	public void test02_send_text_blasts() throws Exception {
+	void test02_send_text_blasts() throws Exception {
 		// Sends text blast with +username, URL, and location to blast list
         log("Sending text blast to blast list");
 		blasts_tab();
@@ -72,7 +72,7 @@ public class IOS_BlastTest extends IOSElements {
 		back_arrow().click();
 	}
 
-	public void test03_send_photo_blast_01() throws Exception {
+	void test03_send_photo_blast_01() throws Exception {
 		// Sends photo blast with drawing and URL to all followers
 		log("Sending photo blast with drawing and text to all followers");
 		blasts_tab();
@@ -101,9 +101,9 @@ public class IOS_BlastTest extends IOSElements {
 		blast_Ok_button().perform();
 	}
 
-	public void test04_send_photo_blast_02() throws Exception {
-		// Sends non public photo blast with +username to the new blast list
-		log("Sending non public photo blast");
+	void test04_send_photo_blast_02() throws Exception {
+		// Sends non photo blast with +username to the new blast list
+		log("Sending non photo blast");
 		blasts_tab();
 		action_menu().click();
 		Thread.sleep(1000);
@@ -136,7 +136,7 @@ public class IOS_BlastTest extends IOSElements {
 		back_arrow().click();
 	}
 
-	public void test05_send_giphy_blast() throws Exception {
+	void test05_send_giphy_blast() throws Exception {
 		// Sends text blast with giphy to a single friend
 		log("Sending giphy");
 		blasts_tab();
@@ -159,7 +159,7 @@ public class IOS_BlastTest extends IOSElements {
 		blast_Ok_button().perform();
 	}
 
-	public void test06_send_video_blast_01() throws Exception {
+	void test06_send_video_blast_01() throws Exception {
 		// Takes video, adds +username, creates blast list, then sends to that blast list
         if (!IOSSimulator) {
             log("Sending video to newly created blast list");
@@ -184,7 +184,7 @@ public class IOS_BlastTest extends IOSElements {
         }
 	}
 
-	public void test07_send_video_blast_02() throws Exception {
+	void test07_send_video_blast_02() throws Exception {
 		// Takes video, adds URL, then sends to single friend
         if (!IOSSimulator) {
             log("Sending video with URL");
@@ -204,7 +204,7 @@ public class IOS_BlastTest extends IOSElements {
         }
 	}
 
-	public void test08_send_text_for_replies() throws Exception {
+	void test08_send_text_for_replies() throws Exception {
 		// Sends text blast for reply test on other account
 		log("Sending text blast for reply test");
 		blasts_tab();
@@ -229,7 +229,7 @@ public class IOS_BlastTest extends IOSElements {
         }
 	}
 
-    public void test09_reply_to_blast() throws Exception {
+    void test09_reply_to_blast() throws Exception {
         // Login with account01 to check replies
         loginAs.user(blasts_account02, blasts_password02);
 
@@ -278,7 +278,7 @@ public class IOS_BlastTest extends IOSElements {
         driver.swipe((screenWidth/10*9), (screenHeight/10*4), (screenWidth/10), (screenHeight/10*4), 500);
     }
 
-    public void test10_open_video_blast() throws Exception {
+    void test10_open_video_blast() throws Exception {
         // Opens video with +username
         if (!IOSSimulator) {
             try {
@@ -316,7 +316,7 @@ public class IOS_BlastTest extends IOSElements {
         }
     }
 
-	public void test11_open_giphy_blast() throws Exception {
+	void test11_open_giphy_blast() throws Exception {
 		// Checks if giphy was received
 		try {
 			Thread.sleep(2000);
@@ -332,16 +332,16 @@ public class IOS_BlastTest extends IOSElements {
 		driver.swipe((screenWidth/10*9), (screenHeight/10*4), (screenWidth/10), (screenHeight/10*4), 500);
 	}
 
-    public void test12_open_non_public_blast() throws Exception {
-        // Opens non public photo blast with +username
+    void test12_open_non_public_blast() throws Exception {
+        // Opens non photo blast with +username
         try {
             waitTime(2);
             Thread.sleep(1000);
             if (swipe_view_reblast().isDisplayed()) {
-                log("[Warning] Able to reblast non public blast");
+                log("[Warning] Able to reblast non blast");
             }
         } catch (Exception e) {
-            log("Not able to reblast non public blast");
+            log("Not able to reblast non blast");
         }
 
         Thread.sleep(1000);
@@ -361,7 +361,7 @@ public class IOS_BlastTest extends IOSElements {
         driver.swipe((screenWidth/10*9), (screenHeight/10*4), (screenWidth/10), (screenHeight/10*4), 500);
     }
 
-    public void test13_open_photo_blast() throws Exception {
+    void test13_open_photo_blast() throws Exception {
         // Opens photo with drawing and URL
         try {
             Thread.sleep(2000);
@@ -380,7 +380,7 @@ public class IOS_BlastTest extends IOSElements {
         driver.swipe((screenWidth/10*9), (screenHeight/10*4), (screenWidth/10), (screenHeight/10*4), 500);
     }
 
-    public void test14_open_text_blast() throws Exception {
+    void test14_open_text_blast() throws Exception {
         // Opens text blast with +username, URL, and location
         log("Opening text blast and checking +username, URL, and location");
 
@@ -414,7 +414,7 @@ public class IOS_BlastTest extends IOSElements {
         }
     }
 
-	public void test15_check_replies() throws Exception {
+	void test15_check_replies() throws Exception {
 		// Opens replies from blasts_account02 and does a check to see if they were all received
         loginAs.user(blasts_account01, blasts_password01);
 		dusts_tab().click();
