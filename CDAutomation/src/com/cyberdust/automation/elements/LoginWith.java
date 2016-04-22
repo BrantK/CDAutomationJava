@@ -100,7 +100,9 @@ public class LoginWith extends Drivers {
             try {
             	ios.waitTime(2);
             	if (ios.name(account).isDisplayed()) {
+                    log("already logged in");
                     ios.close_button().click();
+                    log("clicked close");
             	}
             } catch (Exception e) {
                 driver.swipe(screenWidth / 2, screenHeight - 20, screenWidth / 2, 20, 300);
