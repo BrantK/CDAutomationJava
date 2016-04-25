@@ -16,7 +16,7 @@ public class Run_AccountManagement extends Drivers {
 			if (Android()) {
 				new Android_AccountManagementTest().test01_changing_password();
 			} else if (IOS()) {
-				//new IOS_AccountManagementTest().test01_changing_password();
+				new IOS_AccountManagementTest().test01_changing_password();
 			}
 			
 		} catch (Exception e) {
@@ -34,7 +34,7 @@ public class Run_AccountManagement extends Drivers {
 			if (Android()) {
 				new Android_AccountManagementTest().test02_changing_email();
 			} else if (IOS()) {
-				//new IOS_AccountManagementTest().test02_changing_email();
+				new IOS_AccountManagementTest().test02_changing_email();
 			}
 			
 		} catch (Exception e) {
