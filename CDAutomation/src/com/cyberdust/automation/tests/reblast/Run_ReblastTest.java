@@ -1,6 +1,5 @@
 package com.cyberdust.automation.tests.reblast;
 
-import com.cyberdust.automation.elements.TestAccounts;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
 
@@ -18,7 +17,7 @@ public class Run_ReblastTest extends Drivers {
             if (Android()) {
                 new Android_ReblastTest().test01_send_video_no_loc();
             } else if (IOS()) {
-                //new IOS_ReblastTest().test01_send_video_no_loc();
+                new IOS_ReblastTest().test01_send_video_no_loc();
             }
 
         } catch (Exception e) {
@@ -36,7 +35,7 @@ public class Run_ReblastTest extends Drivers {
             if (Android()) {
                 new Android_ReblastTest().test02_send_video_with_loc();
             } else if (IOS()) {
-                //new IOS_ReblastTest().test02_send_video_with_loc();
+                new IOS_ReblastTest().test02_send_video_with_loc();
             }
 
         } catch (Exception e) {
@@ -54,7 +53,7 @@ public class Run_ReblastTest extends Drivers {
             if (Android()) {
                 new Android_ReblastTest().test03_send_giphy_no_loc();
             } else if (IOS()) {
-              //  new IOS_ReblastTest().test03_send_giphy_no_loc();
+                new IOS_ReblastTest().test03_send_giphy_no_loc();
             }
 
         } catch (Exception e) {
@@ -72,7 +71,7 @@ public class Run_ReblastTest extends Drivers {
             if (Android()) {
                 new Android_ReblastTest().test04_send_giphy_with_loc();
             } else if (IOS()) {
-               // new IOS_ReblastTest().test04_send_giphy_with_loc();
+               new IOS_ReblastTest().test04_send_giphy_with_loc();
             }
 
         } catch (Exception e) {
@@ -90,7 +89,7 @@ public class Run_ReblastTest extends Drivers {
 			if (Android()) {
 				new Android_ReblastTest().test05_send_photo_no_loc();
 			} else if (IOS()) {
-				//new IOS_ReblastTest().test05_send_photo_no_loc();
+				new IOS_ReblastTest().test05_send_photo_no_loc();
 			}
 			
 		} catch (Exception e) {
@@ -108,7 +107,7 @@ public class Run_ReblastTest extends Drivers {
             if (Android()) {
                 new Android_ReblastTest().test06_send_photo_with_loc();
             } else if (IOS()) {
-               // new IOS_ReblastTest().test06_send_photo_with_loc();
+               new IOS_ReblastTest().test06_send_photo_with_loc();
             }
 
         } catch (Exception e) {
@@ -126,7 +125,7 @@ public class Run_ReblastTest extends Drivers {
             if (Android()) {
                 new Android_ReblastTest().test07_send_text_no_loc();
             } else if (IOS()) {
-           //     new IOS_ReblastTest().test07_send_text_no_loc();
+                new IOS_ReblastTest().test07_send_text_no_loc();
             }
 
         } catch (Exception e) {
@@ -143,7 +142,7 @@ public class Run_ReblastTest extends Drivers {
             if (Android()) {
                 new Android_ReblastTest().test08_send_text_with_loc();
             } else if (IOS()) {
-           //     new IOS_ReblastTest().test08_send_text_with_loc();
+                new IOS_ReblastTest().test08_send_text_with_loc();
             }
 
         } catch (Exception e) {

@@ -208,10 +208,10 @@ class Android_BlastTest extends AndroidElements {
 		log("Testing if +usernames can be tapped");
 		swipe_view_reblast().click();
 		swipe_view_reply_send().click();
-		//swipe_view_reply_emoji().click();
+		swipe_view_reply_emoji().click();
 		swipe_view_monkey().click();
 		swipe_view_emoji_cancel().click();
-		//swipe_view_reply_camera().click();
+		swipe_view_reply_camera().click();
 
 		log("Testing photo and video replies");
 		photo_button().click();
@@ -219,7 +219,7 @@ class Android_BlastTest extends AndroidElements {
 		driver.swipe(photo_back_button().getLocation().x + 50, photo_back_button().getLocation().y - 50,
 				photo_pen().getLocation().x, photo_pen().getLocation().y + 50, 1000);
 		swipe_view_photo_send().click();
-		//swipe_view_reply_camera().click();
+		swipe_view_reply_camera().click();
 		video_button().click();
 		action().longPress(photo_button(), 5000).release().perform();
 		swipe_view_photo_send().click();
