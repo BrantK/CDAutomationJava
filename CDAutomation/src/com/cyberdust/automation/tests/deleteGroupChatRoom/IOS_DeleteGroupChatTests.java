@@ -35,7 +35,7 @@ public class IOS_DeleteGroupChatTests extends IOSElements{
             }
 
         Thread.sleep(500);*/
-        action.press(name("Group 2")).moveTo(name("Group 4")).release().perform();
+        action().press(name("Group 2")).moveTo(name("Group 4")).release().perform();
 		delete_all_groups().click();
 		yes_button().click();
 		
