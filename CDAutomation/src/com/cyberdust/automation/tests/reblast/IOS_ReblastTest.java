@@ -16,7 +16,7 @@ class IOS_ReblastTest extends IOSElements {
                 action_menu().click();
                 action_menu_media().click();
                 video_button().click();
-                action.longPress(photo_button(), 5000).release().perform();
+                action().longPress(photo_button(), 5000).release().perform();
                 next_button().click();
                 blast_friends().click();
                 username(reblast_account02).click();
@@ -31,7 +31,7 @@ class IOS_ReblastTest extends IOSElements {
                 action_menu().click();
                 action_menu_media().click();
                 video_button().click();
-                action.longPress(photo_button(), 5000).release().perform();
+                action().longPress(photo_button(), 5000).release().perform();
 
                 photo_location_button().click();
                 find_a_location().click();
@@ -196,7 +196,7 @@ class IOS_ReblastTest extends IOSElements {
         username(reblast_account01).click();
         username(reblast_account03).click();
         Thread.sleep(500);
-        action.press((int)(screenWidth / 18.5), (int)(screenHeight / 6.5)).release().perform();
+        action().press((int)(screenWidth / 18.5), (int)(screenHeight / 6.5)).release().perform();
         pop_up_ok().click();
         back_arrow().click();
 

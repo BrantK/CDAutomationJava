@@ -31,7 +31,7 @@ public class AndroidElements extends Drivers {
         }
 		if (!isLoggedOut) {
             more_button().click(); Thread.sleep(1000);
-            action.press(followers()).moveTo(back_button()).release().perform();
+            action().press(followers()).moveTo(back_button()).release().perform();
             Thread.sleep(1000);
             logout().click();
             log("Logging out before starting test");
@@ -167,7 +167,7 @@ public class AndroidElements extends Drivers {
 	}
 	public TouchAction blast_list_expand() {
 	    WebElement el = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.ExpandableListView[@index='0'][android.widget.RelativeLayout]")));
-	    return action.press(el.getLocation().x, el.getLocation().y).release().perform();
+	    return action().press(el.getLocation().x, el.getLocation().y).release().perform();
 	}
 	public WebElement blast_list_edit() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/blast_groups_list_item_edit_action")));
@@ -316,7 +316,7 @@ public class AndroidElements extends Drivers {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/cancel")));
 	}
 	public WebElement swipe_view_url_card() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.LinearLayout[@index='0'][android.widget.LinearLayout[@index='1']]")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/text_content_layout")));
 	}
 	public WebElement swipe_view_location() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/page_frag_location")));
@@ -333,11 +333,11 @@ public class AndroidElements extends Drivers {
 	public WebElement swipe_view_reply_send() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/reply_send")));
 	}
-	public WebElement swipe_view_reply_media() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/reply_media")));
+	public WebElement swipe_view_reply_camera() {
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/reply_camera")));
 	}
-	public WebElement swipe_view_reply_monkey() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/reply_monkey")));
+	public WebElement swipe_view_reply_emoji() {
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/reply_emoji")));
 	}
 	public WebElement swipe_view_monkey() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/emoji_image")));
@@ -584,7 +584,7 @@ public class AndroidElements extends Drivers {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/more_share_email")));
     }
     public WebElement build_a_following() {
-    	return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/more_fragment_get_discovered")));
+    	return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/more_fragment_get_discovered_text")));
     }
     public WebElement followers() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/browse_followers_row")));
@@ -732,26 +732,19 @@ public class AndroidElements extends Drivers {
     	return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/splash_twitter_button")));
     }
     public WebElement pick_username() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/onboarding_1_form")));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/onboarding_username_form")));
     }
     public WebElement username_confirm() {
-    	return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/onboarding_1_positive_button")));
+    	return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/onboarding_username_positive_button")));
     }
     public WebElement create_password() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/onboarding_2_form")));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/onboarding_password_form")));
     }
     public WebElement password_confirm() {
-    	return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/onboarding_2_positive_button")));
-    }
-    public WebElement birthday() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/onboarding_3_form")));
-	}
-
-	public WebElement birthday_done() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.id("android:id/button1")));
+    	return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/onboarding_password_positive_button")));
     }
     public WebElement birthday_confirm() {
-    	return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.FrameLayout/android.widget.TextView[@resource-id='com.radicalapps.cyberdust:id/onboarding_3_positive_button']")));
+    	return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/onboarding_birthdate_positive_button")));
     }
     public WebElement email() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/onboarding_4_email_edit_text")));
@@ -768,9 +761,6 @@ public class AndroidElements extends Drivers {
     }
     public WebElement date() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.NumberPicker[@index='2'][android.widget.Button]")));
-    }
-    public WebElement tutorial_window() {
-    	return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tutorial_container")));
     }
     public WebElement tutorial_close() {
     	return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tutorial_close_button")));

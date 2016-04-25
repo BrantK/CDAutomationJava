@@ -18,7 +18,7 @@ class IOS_SignUpTest extends IOSElements {
         }
 		if (!isLoggedOut) {
             more_button().click();
-            action.press(followers()).moveTo(close_button()).release().perform();
+            action().press(followers()).moveTo(close_button()).release().perform();
             logout().click();
             log("Logging out before starting test");
             confirm().click();

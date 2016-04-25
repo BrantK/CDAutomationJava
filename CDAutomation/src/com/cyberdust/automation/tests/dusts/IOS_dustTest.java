@@ -57,7 +57,7 @@ public class IOS_dustTest extends IOSElements {
 	public void test03_chat_from_search_bar() throws Exception {
 		back_arrow().click();
 		more_button().click();
-		action.press(share_twitter()).moveTo(enter_bio()).release().perform();
+		action().press(share_twitter()).moveTo(enter_bio()).release().perform();
 		find_friends().click();
 		find_friends_search_usernames().click();
 
@@ -85,7 +85,7 @@ public class IOS_dustTest extends IOSElements {
 		remove_dustroom();
 
         more_button().click();
-		action.press(share_twitter()).moveTo(enter_bio()).release().perform();
+		action().press(share_twitter()).moveTo(enter_bio()).release().perform();
         find_friends().click();
 		find_friends_search_usernames().click();
 

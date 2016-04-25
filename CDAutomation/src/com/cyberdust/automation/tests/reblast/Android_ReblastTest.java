@@ -17,7 +17,7 @@ class Android_ReblastTest extends AndroidElements {
             action_menu_media().click();
             video_button().click();
             try {
-                action.longPress(photo_button(), 4000).release().perform();
+                action().longPress(photo_button(), 4000).release().perform();
             } catch (Exception ignored) {}
             next_button().click();
             blast_friends().click();
@@ -32,7 +32,7 @@ class Android_ReblastTest extends AndroidElements {
             action_menu_media().click();
             video_button().click();
             try {
-                action.longPress(photo_button(), 4000).release().perform();
+                action().longPress(photo_button(), 4000).release().perform();
             } catch (Exception ignored) {}
             photo_location_button().click();
             current_location().click();

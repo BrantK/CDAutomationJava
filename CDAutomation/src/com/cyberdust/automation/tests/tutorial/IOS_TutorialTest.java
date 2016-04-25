@@ -17,7 +17,7 @@ public class IOS_TutorialTest extends IOSElements {
 		Thread.sleep(5000);
 		
 		more_button().click();
-		 action.press(followers()).moveTo(back_button()).release().perform();
+		 action().press(followers()).moveTo(back_button()).release().perform();
 		 tutorial_button().click();
 		 Thread.sleep(1000);
 		 WebElement replay = wait.until(ExpectedConditions.elementToBeClickable(By.name("replay")));

@@ -71,7 +71,7 @@ public class Android_DustTest extends AndroidElements {
 
 		back_button().click();
 		more_button().click();
-		action.press(share_twitter()).moveTo(enter_bio()).release().perform();
+		action().press(share_twitter()).moveTo(enter_bio()).release().perform();
 		add_friends().click();
 		add_friends_search_button_text().click();
 		
@@ -111,7 +111,7 @@ public class Android_DustTest extends AndroidElements {
 		remove_dustroom();
 		
 		more_button().click();
-		action.press(share_twitter()).moveTo(enter_bio()).release().perform();
+		action().press(share_twitter()).moveTo(enter_bio()).release().perform();
 		add_friends().click();
 		add_friends_search_button_text().click();
 		

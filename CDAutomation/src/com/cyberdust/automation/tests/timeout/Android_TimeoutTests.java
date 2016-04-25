@@ -91,7 +91,7 @@ public class Android_TimeoutTests extends AndroidElements {
 		user5.click();
 		group_camera_button().click();
 		video_button().click();
-		action.longPress(photo_button(), 5000).release().perform();
+		action().longPress(photo_button(), 5000).release().perform();
 		add_text().click();
 		add_text_field().sendKeys("www.cyberdust.com");
 		done_button().click();
@@ -114,7 +114,7 @@ public class Android_TimeoutTests extends AndroidElements {
 		{
 			log("Message deleted after 60 seconds");
 			back_button().click();
-			action.longPress(first_friend, 3000).release().perform();
+			action().longPress(first_friend, 3000).release().perform();
 			delete_dust().click();
 			
 		}
@@ -136,7 +136,7 @@ public class Android_TimeoutTests extends AndroidElements {
 		{
 			log("Message deleted after 60 seconds");
 			back_button().click();
-			action.longPress(second_friend, 3000).release().perform();
+			action().longPress(second_friend, 3000).release().perform();
 			delete_dust().click();
 			
 		}

@@ -14,7 +14,7 @@ public class IOS_AccountManagementTest extends IOSElements {
         // Changes password
         log("Changing password");
         more_button().click();
-        action.press(followers()).moveTo(back_button()).release().perform();
+        action().press(followers()).moveTo(back_button()).release().perform();
         account_settings().click();
         change_password().click();
         driver.getKeyboard().sendKeys(acctmgnt_password01 + "\n" + accmgnt_new_password + "\n" + accmgnt_new_password);
@@ -76,7 +76,7 @@ public class IOS_AccountManagementTest extends IOSElements {
             log("[Warning] logged into deleted account!");
 
             more_button().click(); Thread.sleep(1000);
-            action.press(followers()).moveTo(back_button()).release().perform();
+            action().press(followers()).moveTo(back_button()).release().perform();
             account_settings().click();
             delete_account().click();
             confirm_delete().click();

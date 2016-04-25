@@ -21,7 +21,7 @@ public class Android_GroupTest extends AndroidElements {
         username(groups_account03).click();
         OK_button().click();
         Thread.sleep(500);
-        action.press((int)(screenWidth/10*4.86), (int)(screenHeight/10*5.07)).release().perform();
+        action().press((int)(screenWidth/10*4.86), (int)(screenHeight/10*5.07)).release().perform();
         groups_title_field().sendKeys("Test Group");
         confirm().click();
 	}
@@ -70,7 +70,7 @@ public class Android_GroupTest extends AndroidElements {
         Thread.sleep(1000);
 		group_text_field().clear();
 		group_text_field().sendKeys("+grouptest");
-		action.press(group_text_field().getLocation().x+300, group_text_field().getLocation().y-50).release().perform();
+		action().press(group_text_field().getLocation().x+300, group_text_field().getLocation().y-50).release().perform();
 		group_text_send().click();
      }
      
@@ -94,7 +94,7 @@ public class Android_GroupTest extends AndroidElements {
 		// Video
 		group_camera_button().click();
 		video_button().click();
-		action.longPress(photo_button(), 5000).release().perform();
+		action().longPress(photo_button(), 5000).release().perform();
 		add_text().click();
 		add_text_field().sendKeys("www.cyberdust.com");
 		done_button().click();
@@ -148,7 +148,7 @@ public class Android_GroupTest extends AndroidElements {
 		// Tap and hold to see who sent a message
 		Thread.sleep(1000);
 		log("Tapping and holding on message");
-		action.longPress(message_timer(), 3000).perform();
+		action().longPress(message_timer(), 3000).perform();
 		
 		Thread.sleep(1000);
 		group_three_dotted_menu().click();

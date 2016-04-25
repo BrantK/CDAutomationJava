@@ -52,7 +52,7 @@ public class IOS_followersTest extends IOSElements {
         OK_button().click();
 		back_arrow().click();
         Thread.sleep(1000);
-        action.press(followers()).moveTo(close_button()).release().perform();
+        action().press(followers()).moveTo(close_button()).release().perform();
 		muted_blocked_users().click();
 		
 		try {

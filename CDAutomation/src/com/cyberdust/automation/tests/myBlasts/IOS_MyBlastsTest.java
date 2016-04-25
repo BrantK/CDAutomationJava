@@ -9,22 +9,20 @@ public class IOS_MyBlastsTest extends IOSElements {
 	
 	public void swipeThroughBlasts() throws Exception {
 		// use iPhone screenshot // screenshot_button().click();
-		Thread.sleep(1000);
-		driver.swipe((screenWidth/10*8), (screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
-		Thread.sleep(1000);
-		driver.swipe((screenWidth/10*8), (screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
-		Thread.sleep(1000);
-		driver.swipe((screenWidth/10*8), (screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
+
+		for (int i = 0; i < 3; i ++) {
+            Thread.sleep(1000);
+            driver.swipe((screenWidth / 10 * 8), (screenHeight / 10 * 3), (screenWidth / 10), (screenHeight / 10 * 3), 300);
+        }
 	}
 	
 	public void test01_send_text_blast() throws Exception {
 		loginAs.user(myblasts_account01, myblasts_password01);
 		log("Sending text blast to account02");
-		blasts_tab();
 		action_menu().click();
 		action_menu_text().click();
-		text_blast_field().sendKeys("Test");
-		OK_button().click();
+		driver.getKeyboard().sendKeys("Test");
+		next_button().click();
 		blast_friends().click();
 		username(myblasts_account02).click();
 		blast_Ok_button().perform();
@@ -32,7 +30,6 @@ public class IOS_MyBlastsTest extends IOSElements {
 	
 	public void test02_send_photo_blast() throws Exception {
 		log("Sending photo blast to account02");
-		blasts_tab();
 		action_menu().click();
 		action_menu_media().click();
 		photo_button().click();
@@ -54,7 +51,7 @@ public class IOS_MyBlastsTest extends IOSElements {
 		action_menu().click();
 		action_menu_media().click();
 		video_button().click();
-		action.longPress(photo_button(), 5000).release().perform();
+		action().longPress(photo_button(), 5000).release().perform();
 		next_button().click();
 		blast_friends().click();
 		username(myblasts_account02).click();
@@ -64,7 +61,7 @@ public class IOS_MyBlastsTest extends IOSElements {
 	public void test04_view_blasts_from_homepage() throws Exception {
 		loginAs.user(myblasts_account02, myblasts_password02);
 		log("Viewing blasts from homepage");
-		blasts_tab();
+		blasts_tab().click();
 		Thread.sleep(1000);
 		
 		driver.swipe((screenWidth/10*8), (screenHeight/10*5), (screenWidth/10), (screenHeight/10*5), 300);
@@ -91,7 +88,7 @@ public class IOS_MyBlastsTest extends IOSElements {
 		blasts_tab();
 		homepage_profile_picture().click();
 		profile_blast_image();
-		action.press((int)(screenWidth/10*2.08), (int)(screenHeight/10*8.45)).release().perform();
+		action().press((int)(screenWidth/10*2.08), (int)(screenHeight/10*8.45)).release().perform();
 		swipeThroughBlasts();
 		username(myblasts_account01).click();
 	}
@@ -247,7 +244,7 @@ public class IOS_MyBlastsTest extends IOSElements {
 			my_blasts_delete().click();
 		}
 		
-		back_button().click();
+		close_button().click();
 		
 		log("All views and screenshots checked");
 	}

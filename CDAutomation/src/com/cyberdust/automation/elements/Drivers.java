@@ -24,15 +24,14 @@ import io.appium.java_client.service.local.flags.GeneralServerFlag;
 public abstract class Drivers extends TestAccounts {
 	
 	public static AppiumDriver <WebElement> driver;
-	public static DesiredCapabilities capabilities = new DesiredCapabilities();
+	private static DesiredCapabilities capabilities = new DesiredCapabilities();
 	public static String appiumServerAddress = "127.0.0.1";
 	public static String appiumServerPort = "4723";
 	
 	public WebDriverWait wait = new WebDriverWait(driver, 20);
-	public TouchAction action = new TouchAction(driver);
 	public int screenWidth = driver.manage().window().getSize().getWidth();
 	public int screenHeight = driver.manage().window().getSize().getHeight();
-    public static boolean IOSSimulator = false;
+    protected static boolean IOSSimulator = false;
 	public static boolean IOSEnabled = false;
 	
 	@BeforeClass
@@ -138,20 +137,12 @@ public abstract class Drivers extends TestAccounts {
 	
 	// Checks if device is Android
 	public boolean Android() {
-		if (capabilities.getCapability("platformName").equals("Android")) {
-			return true;
-		} else {
-			return false;
-		}
+		return capabilities.getCapability("platformName").equals("Android");
 	}
 	
 	// Checks if device is iOS
 	public boolean IOS() {
-		if (capabilities.getCapability("platformName").equals("IOS")) {
-			return true;
-		} else {
-			return false;
-		}
+		return capabilities.getCapability("platformName").equals("IOS");
 	}
 	
 	// For calling the Android driver from other classes
@@ -163,7 +154,12 @@ public abstract class Drivers extends TestAccounts {
 	public static IOSDriver<WebElement> iDriver() {
 		return (IOSDriver<WebElement>) driver;
 	}
-	
+
+    // For using TouchAction
+    public static TouchAction action () {
+        return new TouchAction(driver);
+    }
+
 	// Relaunches the app
 	public static void relaunch() {
 		driver.closeApp();

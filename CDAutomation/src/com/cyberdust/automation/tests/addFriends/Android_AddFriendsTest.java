@@ -65,7 +65,7 @@ public class Android_AddFriendsTest extends AndroidElements {
 	{
 
 		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(addfriend_account02)));
-		action.longPress(first_friend, 4000).release().perform();
+		action().longPress(first_friend, 4000).release().perform();
 		WebElement follow_firstFriend = wait.until(ExpectedConditions.elementToBeClickable(By.name("follow aaaaa2" )));
 		follow_firstFriend.click();
 		first_friend.click();
@@ -94,7 +94,7 @@ public class Android_AddFriendsTest extends AndroidElements {
 		back_button().click();
 		browse_friends().click();
 		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(addfriend_account02)));
-		action.longPress(first_friend, 4000).release().perform();
+		action().longPress(first_friend, 4000).release().perform();
 		try{
 			
 			if(unfollow_button().isDisplayed())
@@ -118,11 +118,11 @@ public class Android_AddFriendsTest extends AndroidElements {
 		back_button().click();
 		back_button().click();
 		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(addfriend_account02)));
-		action.longPress(first_friend, 4000).release().perform();
+		action().longPress(first_friend, 4000).release().perform();
 		delete_dust().click();
 		//okay_button().click();
 		more_button().click();
-		action.press(friends()).moveTo(followers()).release().perform();
+		action().press(friends()).moveTo(followers()).release().perform();
 		add_friends().click();
 		add_friends_search_button_text().click();
 		friends_search().sendKeys(addfriend_account02);
@@ -132,7 +132,7 @@ public class Android_AddFriendsTest extends AndroidElements {
 		back_button().click();
 		back_button().click();
 		browse_friends().click();
-		action.longPress(first_friend, 4000).release().perform();
+		action().longPress(first_friend, 4000).release().perform();
 		try{
 			
 			if(unfollow_button().isDisplayed())
@@ -155,7 +155,7 @@ public class Android_AddFriendsTest extends AndroidElements {
 
 		back_button().click();
 		Thread.sleep(1000);
-		action.press(share_twitter()).moveTo(enter_bio()).release().perform();
+		action().press(share_twitter()).moveTo(enter_bio()).release().perform();
 		add_friends().click();
 		add_friends_search_button_text().click();
 		friends_search().click();
@@ -166,7 +166,7 @@ public class Android_AddFriendsTest extends AndroidElements {
 		back_button().click();
 		browse_friends().click();
 		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(addfriend_account02)));
-		action.longPress(first_friend, 4000).release().perform();
+		action().longPress(first_friend, 4000).release().perform();
 		try{
 			
 			if(unfollow_button().isDisplayed())
