@@ -1,367 +1,482 @@
 package com.cyberdust.automation.tests.reblast;
 
-import com.cyberdust.automation.elements.AndroidElements;
+import com.cyberdust.automation.elements.IOSElements;
 import com.cyberdust.automation.elements.LoginWith;
 
-public class IOS_ReblastTest extends AndroidElements {
+class IOS_ReblastTest extends IOSElements {
+	
+	private LoginWith loginAs = new LoginWith();
+    static int reblastCount;
 
-//	//////////////////////////////////
-//	String account01 = "blasttest01";
-//	String password01 = account01;
-//	
-//	String account02 = "blasttest02";
-//	String password02 = account02;
-////	
-//	String reblast_account03 = "blasttest03";
-//	String password03 = account03;
-	//////////////////////////////////
-	
-	LoginWith loginAs = new LoginWith();
-	
-    public void test01_send_text_with_loc () throws Exception {
-    	// Login to reblast test accounts
-    	loginAs.user(reblast_account01, reblast_password01);
-   
+    void test01_send_video_no_loc() throws Exception {
+        loginAs.user(reblast_account01, reblast_password01);
+
+        if (!IOSSimulator) {
+            for (int i = 0; i < 3; i++) {
+                action_menu().click();
+                action_menu_media().click();
+                video_button().click();
+                action.longPress(photo_button(), 5000).release().perform();
+                next_button().click();
+                blast_friends().click();
+                username(reblast_account02).click();
+                blast_Ok_button().perform();
+            }
+        }
+    }
+
+    void test02_send_video_with_loc() throws Exception {
+        if (!IOSSimulator) {
+            for (int i = 0; i < 3; i++) {
+                action_menu().click();
+                action_menu_media().click();
+                video_button().click();
+                action.longPress(photo_button(), 5000).release().perform();
+
+                photo_location_button().click();
+                find_a_location().click();
+                driver.getKeyboard().sendKeys("Los");
+                driver.findElementById("Search").click();
+                location_list_item1().click();
+
+                next_button().click();
+                blast_friends().click();
+                username(reblast_account02).click();
+                blast_Ok_button().perform();
+            }
+        }
+    }
+
+    void test03_send_giphy_no_loc() throws Exception {
         for (int i = 0; i < 3; i++) {
-        	blasts_tab();
             action_menu().click();
             action_menu_text().click();
-            dust_blast_field().sendKeys("Test");
+            driver.getKeyboard().sendKeys(":giphy");
+            try {
+                waitTime(1/2);
+                autocorrect_popup().click();
+            } catch (Exception ignored) {}
+            waitTime(10);
+            driver.getKeyboard().sendKeys(" cats");
+            next_button().click();
+
+            blast_friends().click();
+            username(reblast_account02).click();
+            blast_Ok_button().perform();
+        }
+    }
+
+    void test04_send_giphy_with_loc() throws Exception {
+        for (int i = 0; i < 3; i++) {
+            action_menu().click();
+            action_menu_text().click();
+            driver.getKeyboard().sendKeys(":giphy");
+            try {
+                waitTime(1/2);
+                autocorrect_popup().click();
+            } catch (Exception ignored) {}
+            waitTime(10);
+            driver.getKeyboard().sendKeys(" cats");
+
             text_location_button().click();
-            current_location().click();
-            OK_button().click();
+            find_a_location().click();
+            driver.getKeyboard().sendKeys("Los");
+            driver.findElementById("Search").click();
+            location_list_item1().click();
+            next_button().click();
+
             blast_friends().click();
             username(reblast_account02).click();
-            blast_Ok_button().click();
-        }
-    }
-	
-    public void test02_send_text_no_loc () throws Exception {
-        for (int i = 0; i < 3; i++) {
-        	blasts_tab();
-            action_menu().click();
-            action_menu_text().click();
-            dust_blast_field().sendKeys("Test");
-            OK_button().click();
-            blast_friends().click();
-            username(reblast_account02).click();
-            blast_Ok_button().click();
+            blast_Ok_button().perform();
         }
     }
 
-    public void test03_send_photo_with_loc() throws Exception {
+    void test05_send_photo_no_loc() throws Exception {
         for (int i = 0; i < 3; i++) {
-        	blasts_tab();
             action_menu().click();
             action_menu_media().click();
-            photo_button().click();
+
+            if (IOSSimulator) {
+                photo_gallery().click();
+                camera_roll().click();
+                camera_roll_photo1().click();
+            } else {
+                photo_button().click();
+            }
+
+            next_button().click();
+            blast_friends().click();
+            username(reblast_account02).click();
+            blast_Ok_button().perform();
+        }
+    }
+
+    void test06_send_photo_with_loc() throws Exception {
+        for (int i = 0; i < 3; i++) {
+            action_menu().click();
+            action_menu_media().click();
+
+            if (IOSSimulator) {
+                photo_gallery().click();
+                camera_roll().click();
+                camera_roll_photo1().click();
+            } else {
+                photo_button().click();
+            }
+
             photo_location_button().click();
-            current_location().click();
+            find_a_location().click();
+            driver.getKeyboard().sendKeys("Los");
+            driver.findElementById("Search").click();
+            location_list_item1().click();
+
             next_button().click();
             blast_friends().click();
             username(reblast_account02).click();
-            blast_Ok_button().click();
-        }
-    }
-    
-    public void test04_send_photo_no_loc() throws Exception {
-        for (int i = 0; i < 3; i++) {
-        	blasts_tab();
-            action_menu().click();
-            action_menu_media().click();
-            photo_button().click();
-            next_button().click();
-            blast_friends().click();
-            username(reblast_account02).click();
-            blast_Ok_button().click();
+            blast_Ok_button().perform();
         }
     }
 
-    public void test05_send_giphy_with_loc() throws Exception {
+    void test07_send_text_no_loc () throws Exception {
         for (int i = 0; i < 3; i++) {
-        	blasts_tab();
             action_menu().click();
             action_menu_text().click();
-            dust_blast_field().sendKeys(":giphy cats");
+            driver.getKeyboard().sendKeys("Test");
+            next_button().click();
+            blast_friends().click();
+            username(reblast_account02).click();
+            blast_Ok_button().perform();
+        }
+    }
+
+    void test08_send_text_with_loc () throws Exception {
+        for (int i = 0; i < 3; i++) {
+            action_menu().click();
+            action_menu_text().click();
+            driver.getKeyboard().sendKeys("Test");
+
             text_location_button().click();
-            current_location().click();
-            OK_button().click();
-            blast_friends().click();
-            username(reblast_account02).click();
-            blast_Ok_button().click();
-        }
-    }
-
-    public void test06_send_giphy_no_loc() throws Exception {
-        for (int i = 0; i < 3; i++) {
-        	blasts_tab();
-            action_menu().click();
-            action_menu_text().click();
-            dust_blast_field().sendKeys(":giphy cats");
-            OK_button().click();
-            blast_friends().click();
-            username(reblast_account02).click();
-            blast_Ok_button().click();
-        }
-    }
-
-    public void test07_send_video_with_loc() throws Exception {
-        for (int i = 0; i < 3; i++) {
-        	blasts_tab();
-            action_menu().click();
-            action_menu_media().click();
-            video_button().click();
-            action.longPress(photo_button(), 5000).release().perform();
-            photo_location_button().click();
-            current_location().click();
+            find_a_location().click();
+            driver.getKeyboard().sendKeys("Los");
+            driver.findElementById("Search").click();
+            location_list_item1().click();
             next_button().click();
+
             blast_friends().click();
             username(reblast_account02).click();
-            blast_Ok_button().click();
-        }
-    }
-    
-    public void test08_send_video_no_loc() throws Exception {
-        for (int i = 0; i < 3; i++) {
-        	blasts_tab();
-            action_menu().click();
-            action_menu_media().click();
-            video_button().click();
-            action.longPress(photo_button(), 5000).release().perform();
-            next_button().click();
-            blast_friends().click();
-            username(reblast_account02).click();
-            blast_Ok_button().click();
+            blast_Ok_button().perform();
         }
     }
 
-    public void test09_reblast_setup() throws Exception {
+    void test09_reblast_setup() throws Exception {
         loginAs.user(reblast_account02, reblast_password02);
-        blasts_tab();
-        driver.swipe((screenWidth/10), (screenHeight/10*8), (screenWidth/10), (screenHeight/10), 300);
+
+        blasts_tab().click();
+        Thread.sleep(1000);
+        driver.swipe(screenWidth / 2, screenHeight - 20, screenWidth / 2, 20, 500);
         blast_lists().click(); 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         log("Creating a blast list");
+
         try {
-            if (driver.findElementById("com.radicalapps.cyberdust:id/blast_groups_list_item_group_indicator").isDisplayed()) {
-                blast_list_expand();  // Doesn't need .click() attribute
+            waitTime(1);
+            if (my_blast_list1().isDisplayed()) {
+                blast_list_expand().click();
                 blast_list_edit().click();
-                blast_list_more().click();
                 log("Deleting pre-existing blast list first");
                 delete_list().click();
                 confirm().click();
-                blast_lists().click();
             }
-        } catch (Exception ignored) {
+        } catch (Exception ignored) {}
 
-        }
-        blast_list_field().sendKeys("Reblast List");
-        OK_button().click();
+        waitTime(10);
+        create_blast_list().click();
+        driver.getKeyboard().sendKeys("Reblast List");
+        next_arrow().click();
         username(reblast_account01).click();
         username(reblast_account03).click();
-        OK_button().click();
         Thread.sleep(500);
-        driver.swipe((screenWidth/10), (screenHeight/10*2), (screenWidth/10), (screenHeight/10*8), 300);
+        action.press((int)(screenWidth / 18.5), (int)(screenHeight / 6.5)).release().perform();
+        pop_up_ok().click();
+        back_arrow().click();
+
+        Thread.sleep(1000);
+        driver.swipe(screenWidth / 2, 30, screenWidth / 2, screenHeight - 30, 500);
     }
     
-    public void test10_reblast_text_with_loc() throws Exception {
+    void test10_reblast_text_with_loc() throws Exception {
         username(reblast_account01).click();
+
         log("Reblasting text to all followers");
         swipe_view_reblast().click();
         blast_all_followers().click();
-        blast_Ok_button().click();
+        reblast_send().perform();
+        reblastCount += 1;
         swipe_view_reply();
-        driver.swipe((screenWidth/10*8),(screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
+        Thread.sleep(300);
+        driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 500);
+
         log("Reblasting text to blast list");
         swipe_view_reblast().click();
         send_to_blast_list().click();
-        blast_Ok_button().click();
+        reblast_send().perform();
+        reblastCount += 1;
         swipe_view_reply();
-        driver.swipe((screenWidth/10*8), (screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
+        Thread.sleep(300);
+        driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 500);
+
         log("Reblasting text to a friend");
         swipe_view_reblast().click();
         blast_friends().click();
         username(reblast_account03).click();
-        blast_Ok_button().click();
-        swipe_view_reply();
-        //driver.pressKeyCode(4);
+        reblast_send().perform();
+        reblastCount += 1;
+        swipe_view_exit().click();
     }
 
-
-    public void test11_reblast_text_no_loc() throws Exception {
+    void test11_reblast_text_no_loc() throws Exception {
         username(reblast_account01).click();
+
         log("Reblasting text to all followers");
         swipe_view_reblast().click();
         blast_all_followers().click();
-        blast_Ok_button().click();
+        reblast_send().perform();
+        reblastCount += 1;
         swipe_view_reply();
-        driver.swipe((screenWidth/10*8),(screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
+        Thread.sleep(300);
+        driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 500);
+
         log("Reblasting text to blast list");
         swipe_view_reblast().click();
         send_to_blast_list().click();
-        blast_Ok_button().click();
+        reblast_send().perform();
+        reblastCount += 1;
         swipe_view_reply();
-        driver.swipe((screenWidth/10*8),(screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
+        Thread.sleep(300);
+        driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 500);
+
         log("Reblasting text to a friend");
         swipe_view_reblast().click();
         blast_friends().click();
         username(reblast_account03).click();
-        blast_Ok_button().click();
-        swipe_view_reply();
-        //driver.pressKeyCode(4);
+        reblast_send().perform();
+        reblastCount += 1;
+        swipe_view_exit().click();
     }
 
- 
-    public void test12_reblast_photo_with_loc() throws Exception {
+    void test12_reblast_photo_with_loc() throws Exception {
         username(reblast_account01).click();
+
         log("Reblasting photo to all followers");
         swipe_view_reblast().click();
         blast_all_followers().click();
-        blast_Ok_button().click();
+        reblast_send().perform();
+        reblastCount += 1;
         swipe_view_reply();
-        driver.swipe((screenWidth/10*8),(screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
+        Thread.sleep(300);
+        driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 500);
+
         log("Reblasting photo to blast list");
         swipe_view_reblast().click();
         send_to_blast_list().click();
-        blast_Ok_button().click();
+        reblast_send().perform();
+        reblastCount += 1;
         swipe_view_reply();
-        driver.swipe((screenWidth/10*8),(screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
+        Thread.sleep(300);
+        driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 500);
+
         log("Reblasting photo to a friend");
         swipe_view_reblast().click();
         blast_friends().click();
         username(reblast_account03).click();
-        blast_Ok_button().click();
-        swipe_view_reply();
-        //driver.pressKeyCode(4);
+        reblast_send().perform();
+        reblastCount += 1;
+        swipe_view_exit().click();
     }
 
-
-    public void test13_reblast_photo_no_loc() throws Exception {
+    void test13_reblast_photo_no_loc() throws Exception {
         username(reblast_account01).click();
+
         log("Reblasting photo to all followers");
         swipe_view_reblast().click();
         blast_all_followers().click();
-        blast_Ok_button().click();
+        reblast_send().perform();
+        reblastCount += 1;
         swipe_view_reply();
-        driver.swipe((screenWidth/10*8),(screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
+        Thread.sleep(300);
+        driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 500);
+
         log("Reblasting photo to blast list");
         swipe_view_reblast().click();
         send_to_blast_list().click();
-        blast_Ok_button().click();
+        reblast_send().perform();
+        reblastCount += 1;
         swipe_view_reply();
-        driver.swipe((screenWidth/10*8),(screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
+        Thread.sleep(300);
+        driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 500);
+
         log("Reblasting photo to a friend");
         swipe_view_reblast().click();
         blast_friends().click();
         username(reblast_account03).click();
-        blast_Ok_button().click();
-        swipe_view_reply();
-        //driver.pressKeyCode(4);
+        reblast_send().perform();
+        reblastCount += 1;
+        swipe_view_exit().click();
     }
 
-    public void test14_reblast_giphy_with_loc() throws Exception {
+    void test14_reblast_giphy_with_loc() throws Exception {
         username(reblast_account01).click();
+
         log("Reblasting giphy to all followers");
         swipe_view_reblast().click();
         blast_all_followers().click();
-        blast_Ok_button().click();
+        reblast_send().perform();
+        reblastCount += 1;
         swipe_view_reply();
-        driver.swipe((screenWidth/10*8),(screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
+        Thread.sleep(300);
+        driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 500);
+
         log("Reblasting giphy to blast list");
         swipe_view_reblast().click();
         send_to_blast_list().click();
-        blast_Ok_button().click();
+        reblast_send().perform();
+        reblastCount += 1;
         swipe_view_reply();
-        driver.swipe((screenWidth/10*8),(screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
+        Thread.sleep(300);
+        driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 500);
+
         log("Reblasting giphy to a friend");
         swipe_view_reblast().click();
         blast_friends().click();
         username(reblast_account03).click();
-        blast_Ok_button().click();
-        swipe_view_reply();
-        //driver.pressKeyCode(4);
+        reblast_send().perform();
+        reblastCount += 1;
+        swipe_view_exit().click();
     }
 
-    public void test15_reblast_giphy_no_loc() throws Exception {
+    void test15_reblast_giphy_no_loc() throws Exception {
         username(reblast_account01).click();
+
         log("Reblasting giphy to all followers");
         swipe_view_reblast().click();
         blast_all_followers().click();
-        blast_Ok_button().click();
+        reblast_send().perform();
+        reblastCount += 1;
         swipe_view_reply();
-        driver.swipe((screenWidth/10*8),(screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
+        Thread.sleep(300);
+        driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 500);
+
         log("Reblasting giphy to blast list");
         swipe_view_reblast().click();
         send_to_blast_list().click();
-        blast_Ok_button().click();
+        reblast_send().perform();
+        reblastCount += 1;
         swipe_view_reply();
-        driver.swipe((screenWidth/10*8),(screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
+        Thread.sleep(300);
+        driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 500);
+
         log("Reblasting giphy to a friend");
         swipe_view_reblast().click();
         blast_friends().click();
         username(reblast_account03).click();
-        blast_Ok_button().click();
-        swipe_view_reply();
-        //driver.pressKeyCode(4);
+        reblast_send().perform();
+        reblastCount += 1;
+        swipe_view_exit().click();
     }
     
-    public void test16_reblast_video_with_loc() throws Exception {
-        username(reblast_account01).click();
-        log("Reblasting video to all followers");
-        swipe_view_reblast().click();
-        blast_all_followers().click();
-        blast_Ok_button().click();
-        swipe_view_reply();
-        driver.swipe((screenWidth/10*8),(screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
-        log("Reblasting video to blast list");
-        swipe_view_reblast().click();
-        send_to_blast_list().click();
-        blast_Ok_button().click();
-        swipe_view_reply();
-        driver.swipe((screenWidth/10*8),(screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
-        log("Reblasting video to a friend");
-        swipe_view_reblast().click();
-        blast_friends().click();
-        username(reblast_account03).click();
-        blast_Ok_button().click();
-        swipe_view_reply();
-        //driver.pressKeyCode(4);
-    }
+    void test16_reblast_video_with_loc() throws Exception {
+        if (!IOSSimulator) {
+            username(reblast_account01).click();
 
-    public void test17_reblast_video_no_loc() throws Exception {
-        username(reblast_account01).click();
-        log("Reblasting video to all followers");
-        swipe_view_reblast().click();
-        blast_all_followers().click();
-        blast_Ok_button().click();
-        swipe_view_reply();
-        driver.swipe((screenWidth/10*8),(screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
-        log("Reblasting video to blast list");
-        swipe_view_reblast().click();
-        send_to_blast_list().click();
-        blast_Ok_button().click();
-        swipe_view_reply();
-        driver.swipe((screenWidth/10*8),(screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
-        log("Reblasting video to a friend");
-        swipe_view_reblast().click();
-        blast_friends().click();
-        username(reblast_account03).click();
-        blast_Ok_button().click();
-        swipe_view_reply();
-        //driver.pressKeyCode(4);
-    }
+            log("Reblasting video to all followers");
+            swipe_view_reblast().click();
+            blast_all_followers().click();
+            reblast_send().perform();
+            reblastCount += 1;
+            swipe_view_reply();
+            Thread.sleep(300);
+            driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 500);
 
-    public void test18_check_reblast_count() throws Exception {
-        loginAs.user(reblast_account03, reblast_password03);
-        try {
-            if (name("24").isDisplayed()) {
-                log("Blast count correct");
-                blast_more_button().click();
-                blast_more_delete().click();
-                log("Deleting blasts");
-            }
-        } catch (Exception e) {
-            log("Blast count incorrect");
+            log("Reblasting video to blast list");
+            swipe_view_reblast().click();
+            send_to_blast_list().click();
+            reblast_send().perform();
+            reblastCount += 1;
+            swipe_view_reply();
+            Thread.sleep(300);
+            driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 500);
+
+            log("Reblasting video to a friend");
+            swipe_view_reblast().click();
+            blast_friends().click();
+            username(reblast_account03).click();
+            reblast_send().perform();
+            reblastCount += 1;
+            swipe_view_exit().click();
         }
+    }
+
+    void test17_reblast_video_no_loc() throws Exception {
+        if (!IOSSimulator) {
+            username(reblast_account01).click();
+
+            log("Reblasting video to all followers");
+            swipe_view_reblast().click();
+            blast_all_followers().click();
+            reblast_send().perform();
+            reblastCount += 1;
+            swipe_view_reply();
+            Thread.sleep(300);
+            driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 500);
+
+            log("Reblasting video to blast list");
+            swipe_view_reblast().click();
+            send_to_blast_list().click();
+            reblast_send().perform();
+            reblastCount += 1;
+            swipe_view_reply();
+            Thread.sleep(300);
+            driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 500);
+
+            log("Reblasting video to a friend");
+            swipe_view_reblast().click();
+            blast_friends().click();
+            username(reblast_account03).click();
+            reblast_send().perform();
+            reblastCount += 1;
+            swipe_view_exit().click();
+        }
+    }
+
+    void test18_check_reblast_count() throws Exception {
+        relaunch();
+        loginAs.user(reblast_account03, reblast_password03);
+        blasts_tab().click();
+        Thread.sleep(500);
+
+        for (int i = 1; i <= reblastCount; i++) {
+            Thread.sleep(500);
+            driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 200);
+
+            if (i == reblastCount) {
+                log(i+" out of "+reblastCount+" reblasts received");
+                break;
+            }
+
+            try {
+                waitTime(1);
+                username(reblast_account02);
+            } catch (Exception e) {
+                log("[Warning] only "+i+" out of "+reblastCount+" reblasts received");
+                break;
+            }
+        }
+
+        try {
+            waitTime(2);
+            if (username(reblast_account02).isDisplayed()) {
+                log("[Warning] too many reblasts received");
+            }
+        } catch (Exception ignored) {}
     }
 }
