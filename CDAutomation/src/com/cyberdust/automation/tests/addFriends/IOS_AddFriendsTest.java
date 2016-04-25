@@ -70,7 +70,7 @@ public class IOS_AddFriendsTest extends IOSElements {
 
 	public void test03_chat_from_search_bar() throws Exception {
         more_button().click();
-        action.press(friends()).moveTo(followers()).release().perform();
+        action().press(friends()).moveTo(followers()).release().perform();
         find_friends().click();
         find_friends_search_usernames().click();
         friends_search().click();

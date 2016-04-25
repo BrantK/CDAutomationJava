@@ -58,7 +58,7 @@ public class IOS_GroupTest extends IOSElements {
 		}
 
         Thread.sleep(500);
-        action.press(name("dusting with").getLocation().getX()+5, name("dusting with").getLocation().getY()+5).release().perform();
+        action().press(name("dusting with").getLocation().getX()+5, name("dusting with").getLocation().getY()+5).release().perform();
 	}
      
     public void test04_send_username() throws Exception {
@@ -97,7 +97,7 @@ public class IOS_GroupTest extends IOSElements {
         if (!IOSSimulator) {
             group_camera_button().click();
             video_button().click();
-            action.longPress(photo_button(), 5000).release().perform();
+            action().longPress(photo_button(), 5000).release().perform();
             add_text().click();
             driver.getKeyboard().sendKeys("www.cyberdust.com");
             done_button().click();

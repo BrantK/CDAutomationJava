@@ -11,10 +11,10 @@ public class AndroidAlbum extends AndroidElements {
 		try {
 			name("Photos").click();
 			Thread.sleep(2000);// Note 4
-			action.press((sw/10), (sh/10*3)).release().perform();
+			action().press((sw/10), (sh/10*3)).release().perform();
 		} catch (Exception e) {
 			Thread.sleep(2000);
-			action.press((sw/10), (sh/10*3)).release().perform();
+			action().press((sw/10), (sh/10*3)).release().perform();
 		}
 		Thread.sleep(1000);
 	}

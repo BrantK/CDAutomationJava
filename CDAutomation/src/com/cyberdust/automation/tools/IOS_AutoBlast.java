@@ -26,7 +26,7 @@ public class IOS_AutoBlast extends IOSElements {
         action_menu().click();
         action_menu_media().click();
         video_button().click();
-        action.longPress(photo_button(), 5000).release().perform();
+        action().longPress(photo_button(), 5000).release().perform();
         next_button().click();
         blast_friends().click();
         username(blast_recipient).click();

@@ -10,17 +10,17 @@ public class Android_MyBlastsTest extends AndroidElements {
 	public void swipeThroughBlasts() throws Exception {
 		screenshot_button().click();
 		Thread.sleep(1000);
-		driver.swipe((screenWidth/10*8), (screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
+		driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 300);
 		Thread.sleep(1000);
-		driver.swipe((screenWidth/10*8), (screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
+		driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 300);
 		Thread.sleep(1000);
-		driver.swipe((screenWidth/10*8), (screenHeight/10*3), (screenWidth/10), (screenHeight/10*3), 300);
+		driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 300);
 	}
 	
 	public void test01_send_text_blast() throws Exception {
 		loginAs.user(myblasts_account01, myblasts_password01);
 		log("Sending text blast to myblasts_account02");
-		blasts_tab();
+		blasts_tab().click();
 		action_menu().click();
 		action_menu_text().click();
 		dust_blast_field().sendKeys("Test");
@@ -32,7 +32,6 @@ public class Android_MyBlastsTest extends AndroidElements {
 	
 	public void test02_send_photo_blast() throws Exception {
 		log("Sending photo blast to myblasts_account02");
-		blasts_tab();
 		action_menu().click();
 		action_menu_media().click();
 		photo_button().click();
@@ -50,11 +49,10 @@ public class Android_MyBlastsTest extends AndroidElements {
 	
 	public void test03_send_video_blast() throws Exception {
 		log("Sending video blast to myblasts_account02");
-		blasts_tab();
 		action_menu().click();
 		action_menu_media().click();
 		video_button().click();
-		action.longPress(photo_button(), 5000).release().perform();
+		action().longPress(photo_button(), 5000).release().perform();
 		next_button().click();
 		blast_friends().click();
 		username(myblasts_account02).click();
@@ -64,34 +62,33 @@ public class Android_MyBlastsTest extends AndroidElements {
 	public void test04_view_blasts_from_homepage() throws Exception {
 		loginAs.user(myblasts_account02, myblasts_password02);
 		log("Viewing blasts from homepage");
-		blasts_tab();
+		blasts_tab().click();
 		Thread.sleep(1000);
-		
-		driver.swipe((screenWidth/10*8), (screenHeight/10*5), (screenWidth/10), (screenHeight/10*5), 300);
+
+		driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 300);
 		Thread.sleep(1000);
-		driver.swipe((screenWidth/10*8), (screenHeight/10*5), (screenWidth/10), (screenHeight/10*5), 300);
+		driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 300);
 		Thread.sleep(1000);
-		driver.swipe((screenWidth/10), (screenHeight/10*5), (screenWidth/10*8), (screenHeight/10*5), 300);
+		driver.swipe(20, screenHeight / 2, screenWidth - 20, screenHeight / 2, 300);
 		Thread.sleep(1000);
-		driver.swipe((screenWidth/10), (screenHeight/10*5), (screenWidth/10*8), (screenHeight/10*5), 300);
+		driver.swipe(20, screenHeight / 2, screenWidth - 20, screenHeight / 2, 300);
 		Thread.sleep(1000);
 		
 		dusts_tab().click();
 		blasts_tab().click();
 		Thread.sleep(1000);
-		
-		driver.swipe((screenWidth/10*8), (screenHeight/10*5), (screenWidth/10), (screenHeight/10*5), 300);
+
+		driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 300);
 		Thread.sleep(1000);
-		driver.swipe((screenWidth/10), (screenHeight/10*5), (screenWidth/10*8), (screenHeight/10*5), 300);
+		driver.swipe(20, screenHeight / 2, screenWidth - 20, screenHeight / 2, 300);
 		Thread.sleep(1000);
 	}
 	
 	public void test05_view_blasts_from_profile() throws Exception {
 		log("Viewing blasts from profile page and taking screenshot");
-		blasts_tab();
 		homepage_profile_picture().click();
 		profile_blast_image();
-		action.press((int)(screenWidth/10*2.08), (int)(screenHeight/10*8.45)).release().perform();
+		action().press((int)(screenWidth/10*2.08), (int)(screenHeight/10*8.45)).release().perform();
 		swipeThroughBlasts();
 		username(myblasts_account01).click();
 	}
@@ -107,7 +104,7 @@ public class Android_MyBlastsTest extends AndroidElements {
 	public void test07_check_views_and_screenshots() throws Exception {
 		loginAs.user(myblasts_account01, myblasts_password01);
 		log("Checking view count and screenshot count");
-		blasts_tab();
+		blasts_tab().click();
 		waitTime(2);
 		
 		// Checks view and screenshot count on Blasts Tab

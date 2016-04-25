@@ -17,7 +17,7 @@ public class IOSElements extends Drivers {
 	}
 	
 	// Logs out of current account
-	public void logoutAccount() throws Exception {
+	protected void logoutAccount() throws Exception {
 		boolean isLoggedOut;
 		try {
 			log("Checking if logged out");
@@ -29,7 +29,7 @@ public class IOSElements extends Drivers {
         }
 		if (!isLoggedOut) {
             more_button().click(); Thread.sleep(1000);
-            action.press(followers()).moveTo(close_button()).release().perform();
+            action().press(followers()).moveTo(close_button()).release().perform();
             Thread.sleep(1000);
             logout().click();
             log("Logging out before starting test");
@@ -176,7 +176,7 @@ public class IOSElements extends Drivers {
 	public WebElement blast_more_cancel() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("Cancel")));
 	}
-	public WebElement blast_lists() {
+	protected WebElement blast_lists() {
 	    try {
             return wait.until(ExpectedConditions.elementToBeClickable(By.id("Blast Lists")));
         } catch (Exception e) {
@@ -235,19 +235,22 @@ public class IOSElements extends Drivers {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("profileMore")));
 	}
 	public WebElement action_menu() throws Exception {
-		Thread.sleep(500);
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("floatingMenuCompose")));
 	}
-	public WebElement action_menu_dust() {
+	public WebElement action_menu_dust() throws InterruptedException {
+        Thread.sleep(500);
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAImage[4]")));
 	}
-	public WebElement action_menu_group() {
+	public WebElement action_menu_group() throws InterruptedException {
+        Thread.sleep(500);
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAImage[2]")));
 	}
-	public WebElement action_menu_text() {
+	public WebElement action_menu_text() throws InterruptedException {
+        Thread.sleep(500);
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAImage[3]")));
 	}
-	public WebElement action_menu_media() {
+	public WebElement action_menu_media() throws InterruptedException {
+        Thread.sleep(500);
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAImage[5]")));
 	}
 	public WebElement text_blast_field() {
@@ -370,9 +373,13 @@ public class IOSElements extends Drivers {
 	public WebElement mute_blast_icon() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
 	}
-	public TouchAction blast_Ok_button() throws Exception {
-        Thread.sleep(500);
-        return action.press((int)(screenWidth / 1.15), (int)(screenHeight / 3.18)).release();
+	public TouchAction reblast_send() throws InterruptedException {
+		Thread.sleep(800);
+        return action().press((int)(screenWidth / 1.15), (int)(screenHeight / 4.17)).release();
+	}
+	public TouchAction blast_Ok_button() throws InterruptedException {
+        Thread.sleep(800);
+        return action().press((int)(screenWidth / 1.15), (int)(screenHeight / 3.18)).release();
 	}
 	public WebElement message_timer() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("bg_chat_unsent.png")));
@@ -418,11 +425,11 @@ public class IOSElements extends Drivers {
     }
     public TouchAction create_group_ok_button() throws Exception {
     	Thread.sleep(500);
-		return action.press(close_button().getLocation().getX()+5, close_button().getLocation().getY()+((int)(screenWidth/3.75))).release();
+		return action().press(close_button().getLocation().getX()+5, close_button().getLocation().getY()+((int)(screenWidth/3.75))).release();
     }
 	public TouchAction add_friends_to_group_OK() throws Exception {
 		Thread.sleep(500);
-		return action.press(back_arrow().getLocation().getX()+5, back_arrow().getLocation().getY()+((int)(screenWidth/3.75))).release();
+		return action().press(back_arrow().getLocation().getX()+5, back_arrow().getLocation().getY()+((int)(screenWidth/3.75))).release();
 	}
     public WebElement delete_all_groups() {
     	return wait.until(ExpectedConditions.elementToBeClickable(By.id("Delete And Leave Rooms")));
@@ -554,7 +561,6 @@ public class IOSElements extends Drivers {
 		Thread.sleep(1000);
 		return driver.findElement(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIANavigationBar[1]/UIAStaticText[1]"));
 	}
-
 	public WebElement remove_profile_picture() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("Delete")));
     }

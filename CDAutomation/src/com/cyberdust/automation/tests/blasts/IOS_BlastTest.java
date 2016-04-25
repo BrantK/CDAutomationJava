@@ -36,7 +36,7 @@ class IOS_BlastTest extends IOSElements {
 		username(blasts_account02).click();
 		username(blasts_account03).click();
         Thread.sleep(500);
-		action.press((int)(screenWidth / 18.5), (int)(screenHeight / 6.5)).release().perform();
+		action().press((int)(screenWidth / 18.5), (int)(screenHeight / 6.5)).release().perform();
 		pop_up_ok().click();
 		back_arrow().click();
 	}
@@ -67,7 +67,7 @@ class IOS_BlastTest extends IOSElements {
 		rename_blast_list().clear();
         driver.getKeyboard().sendKeys("Edited blast list");
         Thread.sleep(500);
-        action.press((int)(screenWidth / 18.5), (int)(screenHeight / 6.5)).release().perform();
+        action().press((int)(screenWidth / 18.5), (int)(screenHeight / 6.5)).release().perform();
 		pop_up_ok().click();
 		back_arrow().click();
 	}
@@ -168,7 +168,7 @@ class IOS_BlastTest extends IOSElements {
             Thread.sleep(1000);
             action_menu_media().click();
             video_button().click();
-            action.longPress(photo_button(), 5000).release().perform();
+            action().longPress(photo_button(), 5000).release().perform();
             add_text().click();
             driver.getKeyboard().sendKeys(blast_username);
             done_button().click();
@@ -193,7 +193,7 @@ class IOS_BlastTest extends IOSElements {
             Thread.sleep(1000);
             action_menu_media().click();
             video_button().click();
-            action.longPress(photo_button(), 5000).release().perform();
+            action().longPress(photo_button(), 5000).release().perform();
             add_text().click();
             driver.getKeyboard().sendKeys(blast_url);
             done_button().click();
@@ -270,7 +270,7 @@ class IOS_BlastTest extends IOSElements {
         if (!IOSSimulator) {
             swipe_view_reply_media().click();
             video_button().click();
-            action.longPress(photo_button(), 5000).release().perform();
+            action().longPress(photo_button(), 5000).release().perform();
             swipe_view_photo_send().click();
         }
 
@@ -291,7 +291,7 @@ class IOS_BlastTest extends IOSElements {
             }
 
             Thread.sleep(1000);
-            action.press(swipe_view_text().getLocation().x+50, swipe_view_text().getLocation().y+10).release().perform();
+            action().press(swipe_view_text().getLocation().x+50, swipe_view_text().getLocation().y+10).release().perform();
 
             try {
                 Thread.sleep(1000);
@@ -302,12 +302,12 @@ class IOS_BlastTest extends IOSElements {
                 log("[Warning] +username did not open profile!");
             }
 
-            action.press(screenWidth/10*2, screenHeight/10*2).release().perform(); Thread.sleep(1000);
+            action().press(screenWidth/10*2, screenHeight/10*2).release().perform(); Thread.sleep(1000);
             driver.swipe((screenWidth/10*9), (screenHeight/10*4), (screenWidth/10), (screenHeight/10*4), 500);
 
             // Opens video with URL
             Thread.sleep(1000);
-            action.press(swipe_view_text().getLocation().x+50, swipe_view_text().getLocation().y+10).release().perform();
+            action().press(swipe_view_text().getLocation().x+50, swipe_view_text().getLocation().y+10).release().perform();
             Thread.sleep(3000);
             back_button().click();
 
@@ -345,7 +345,7 @@ class IOS_BlastTest extends IOSElements {
         }
 
         Thread.sleep(1000);
-        action.press(swipe_view_text().getLocation().x+50, swipe_view_text().getLocation().y+10).release().perform();
+        action().press(swipe_view_text().getLocation().x+50, swipe_view_text().getLocation().y+10).release().perform();
 
         try {
             Thread.sleep(1000);
@@ -372,7 +372,7 @@ class IOS_BlastTest extends IOSElements {
             log("[Warning] Image did not load");
         }
         Thread.sleep(1000);
-        action.press(swipe_view_text().getLocation().x+50, swipe_view_text().getLocation().y+10).release().perform();
+        action().press(swipe_view_text().getLocation().x+50, swipe_view_text().getLocation().y+10).release().perform();
         Thread.sleep(4000);
         x_button().click();
 
@@ -387,7 +387,7 @@ class IOS_BlastTest extends IOSElements {
         Thread.sleep(500);
         swipe_view_location().click(); Thread.sleep(2000);
         x_button().click(); Thread.sleep(2000);
-        action.press((int)(screenWidth/9.38), (int)(screenHeight/8.89)).release().perform(); // taps +username
+        action().press((int)(screenWidth/9.38), (int)(screenHeight/8.89)).release().perform(); // taps +username
 
         try {
             Thread.sleep(1000);
@@ -409,7 +409,7 @@ class IOS_BlastTest extends IOSElements {
             waitTime(2);
             swipe_view_exit().click();
         } catch (Exception e) {
-            action.press(5, 5).release().perform();
+            action().press(5, 5).release().perform();
             swipe_view_exit().click();
         }
     }

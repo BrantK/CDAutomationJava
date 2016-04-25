@@ -14,7 +14,7 @@ public class Android_AccountManagementTest extends AndroidElements {
 		// Changes password
 		log("Changing password");
 		more_button().click();
-		action.press(followers()).moveTo(build_a_following()).release().perform();
+		action().press(followers()).moveTo(build_a_following()).release().perform();
 		account_settings().click();
 		change_password().click();
 		enter_old_password().click();
@@ -81,7 +81,7 @@ public class Android_AccountManagementTest extends AndroidElements {
 			log("[Warning] logged into deleted account!");
 			
 			more_button().click(); Thread.sleep(1000);
-	        action.press(followers()).moveTo(build_a_following()).release().perform();
+	        action().press(followers()).moveTo(build_a_following()).release().perform();
 	        delete_account().click();
 	        log("Deleting account again");
 	        confirm().click();

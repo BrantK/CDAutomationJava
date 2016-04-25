@@ -136,7 +136,7 @@ class Android_BlastTest extends AndroidElements {
 		Thread.sleep(1000);
 		action_menu_media().click();
 		video_button().click();
-		action.longPress(photo_button(), 5000).release().perform();
+		action().longPress(photo_button(), 5000).release().perform();
 		add_text().click();
 		add_text_field().sendKeys(blast_url);
 		done_button().click();
@@ -154,7 +154,7 @@ class Android_BlastTest extends AndroidElements {
         Thread.sleep(1000);
         action_menu_media().click();
         video_button().click();
-        action.longPress(photo_button(), 5000).release().perform();
+        action().longPress(photo_button(), 5000).release().perform();
         add_text().click();
         add_text_field().sendKeys(blast_username);
         done_button().click();
@@ -221,7 +221,7 @@ class Android_BlastTest extends AndroidElements {
 		swipe_view_photo_send().click();
 		//swipe_view_reply_camera().click();
 		video_button().click();
-		action.longPress(photo_button(), 5000).release().perform();
+		action().longPress(photo_button(), 5000).release().perform();
 		swipe_view_photo_send().click();
 
         Thread.sleep(1000);
@@ -250,7 +250,7 @@ class Android_BlastTest extends AndroidElements {
             log ("[Warning] +username did not open profile!");
         }
 
-        action.press(screenWidth/10*2, screenHeight/10*2).release().perform();
+        action().press(screenWidth/10*2, screenHeight/10*2).release().perform();
 
         Thread.sleep(1000);
         driver.swipe((screenWidth-20), (screenHeight/2), (20), (screenHeight/2), 300);
@@ -330,7 +330,7 @@ class Android_BlastTest extends AndroidElements {
 
 		swipe_view_location().click(); Thread.sleep(3000);
 		aDriver().pressKeyCode(4); Thread.sleep(2000);
-		action.press(screenWidth/10*2, screenHeight/10*2).release().perform(); // taps +username
+		action().press(screenWidth/10*2, screenHeight/10*2).release().perform(); // taps +username
 		
 		try {
 			Thread.sleep(1000);

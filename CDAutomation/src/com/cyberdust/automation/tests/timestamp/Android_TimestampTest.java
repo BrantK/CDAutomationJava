@@ -64,7 +64,7 @@ public class Android_TimestampTest extends AndroidElements {
 		user2.click();
 		OK_button().click();
         Thread.sleep(500);
-        action.press((int)(screenWidth/10*4.86), (int)(screenHeight/10*5.07)).release().perform();
+        action().press((int)(screenWidth/10*4.86), (int)(screenHeight/10*5.07)).release().perform();
         groups_title_field().sendKeys(" Group 1");
         confirm().click();
         group_text_field().click();

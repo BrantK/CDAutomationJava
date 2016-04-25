@@ -21,7 +21,7 @@ public class IOS_MessagePinningTest extends IOSElements {
 		chat_room_send_button().click();
 		log("Sent a dust");
 
-		action.press(sent_text_dust().getLocation().getX() - 10, sent_text_dust().getLocation().getY() - 10).release().perform();
+		action().press(sent_text_dust().getLocation().getX() - 10, sent_text_dust().getLocation().getY() - 10).release().perform();
 
 		try {
             waitTime(2);
@@ -77,7 +77,7 @@ public class IOS_MessagePinningTest extends IOSElements {
         username(pin_account02).click();
 
         Thread.sleep(1000);
-        action.press(sent_text_pinned().getLocation().getX() - 10, sent_text_pinned().getLocation().getY() - 10).release().perform();
+        action().press(sent_text_pinned().getLocation().getX() - 10, sent_text_pinned().getLocation().getY() - 10).release().perform();
 		
 		try {
 			if (name("tap message to pin").isDisplayed()) {

@@ -21,7 +21,7 @@ public class Android_followersTest extends AndroidElements {
 		try {
 			WebElement friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(followers_account02)));
 			log("Friend added from followers menu ");
-			action.longPress(friend, 3000).release().perform();
+			action().longPress(friend, 3000).release().perform();
 			unfollow_button().click();
 			okay_button().click();
 		}
@@ -39,14 +39,14 @@ public class Android_followersTest extends AndroidElements {
 
 		followers().click();
 		WebElement first_friend = name(followers_account02);
-		action.longPress(first_friend, 3000).release().perform();
+		action().longPress(first_friend, 3000).release().perform();
 		
 		blast_more_block().click();
 		okay_button().click();
 		Thread.sleep(1000);
 		aDriver().pressKeyCode(4);
 		back_button().click();
-		action.press(followers()).moveTo(back_button()).release().perform();
+		action().press(followers()).moveTo(back_button()).release().perform();
 		muted_blocked_users().click();
 		
 		try {

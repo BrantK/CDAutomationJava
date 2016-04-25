@@ -285,7 +285,7 @@ public class IOS_FriendsTest extends IOSElements {
     		waitTime(2);
     		username(friends_account05).click();
     	} catch (Exception e) {
-    		action.press((int)(screenWidth/10*5.17), (int)(screenHeight/10*3.11)).release().perform();
+    		action().press((int)(screenWidth/10*5.17), (int)(screenHeight/10*3.11)).release().perform();
         }
 
         waitTime(15);
@@ -308,7 +308,7 @@ public class IOS_FriendsTest extends IOSElements {
             swipe_view_reply_monkey().click();
         } catch (Exception e) {
             Thread.sleep(500);
-            action.press(screenWidth / 2, screenHeight / 2).release().perform();
+            action().press(screenWidth / 2, screenHeight / 2).release().perform();
         }
 
         swipe_view_exit().click();
@@ -444,7 +444,7 @@ public class IOS_FriendsTest extends IOSElements {
     	// Unblock account03, 04, 05, and 06 from More/muted and blocked users
         log("Unblocking accounts 03, 04, 05, and 06 from More/muted and blocked users");
     	Thread.sleep(500);
-    	action.press(followers()).moveTo(close_button()).release().perform();
+    	action().press(followers()).moveTo(close_button()).release().perform();
     	muted_blocked_users().click();
     	for (int i = 3; i <=6; i++) {
     		username("friendtest0"+i).click();
@@ -482,7 +482,7 @@ public class IOS_FriendsTest extends IOSElements {
 
     	try {
     		if (name(friends_account01).isDisplayed() && name(friends_account05).isDisplayed() && name(friends_account06).isDisplayed()) {
-    			action.press(name(friends_account06)).moveTo(dusts_tab()).release().perform();
+    			action().press(name(friends_account06)).moveTo(dusts_tab()).release().perform();
 
     			if (name(friends_account04).isDisplayed() && name(friends_account03).isDisplayed()) {
     				log("Dusts successfully received from all muted users");
@@ -517,11 +517,11 @@ public class IOS_FriendsTest extends IOSElements {
         try {
             waitTime(2);
             Thread.sleep(500);
-            action.press(screenWidth / 2, screenHeight / 2).release().perform();
+            action().press(screenWidth / 2, screenHeight / 2).release().perform();
             swipe_view_exit().click();
         } catch (Exception e) {
             Thread.sleep(500);
-            action.press(screenWidth / 2, screenHeight / 2).release().perform();
+            action().press(screenWidth / 2, screenHeight / 2).release().perform();
             swipe_view_exit().click();
         }
 
@@ -543,7 +543,7 @@ public class IOS_FriendsTest extends IOSElements {
 
     	// Unmute account04 from More/'muted/blocked users'
         log("Unmuting account04 from More/muted and blocked users");
-    	action.press(followers()).moveTo(close_button()).release().perform();
+    	action().press(followers()).moveTo(close_button()).release().perform();
         muted_blocked_users().click();
         username(friends_account04).click();
     	back_arrow().click();

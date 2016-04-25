@@ -18,7 +18,7 @@ public class Android_MessagePinningTest extends AndroidElements {
 		loginAs.user(pin_account01, pin_password01);
 
 		more_button().click();
-		action.press(followers()).moveTo(back_button()).release().perform();
+		action().press(followers()).moveTo(back_button()).release().perform();
 		tutorial().click();
 		if(tutorial_switch().getText().contains("ON"))
 		{
@@ -113,7 +113,7 @@ public class Android_MessagePinningTest extends AndroidElements {
 		back_button().click();
 		more_button().click();
 	
-		action.press(followers()).moveTo(back_button()).release().perform();
+		action().press(followers()).moveTo(back_button()).release().perform();
 	
 		logout().click();
 		confirm().click();

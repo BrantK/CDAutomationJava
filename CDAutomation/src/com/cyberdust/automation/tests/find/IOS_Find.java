@@ -55,10 +55,10 @@ public class IOS_Find extends IOSElements{
 
         try {
             find_tab().click();
-            action.press(featured_people_banner()).moveTo(dusts_tab()).waitAction(1000).release().perform();
+            action().press(featured_people_banner()).moveTo(dusts_tab()).waitAction(1000).release().perform();
         } catch (Exception ignored) {}
 
-        action.press(categories_banner()).moveTo(dusts_tab()).waitAction(1000).release().perform();
+        action().press(categories_banner()).moveTo(dusts_tab()).waitAction(1000).release().perform();
 
         //////Advertising category//////
         log("Testing \"Advertising\" category titles... ");
@@ -80,7 +80,7 @@ public class IOS_Find extends IOSElements{
             try {
                 category_advertising().click();
             } catch (Exception ignored) {
-                action.press(categories_banner()).moveTo(dusts_tab()).waitAction(1000).release().perform();
+                action().press(categories_banner()).moveTo(dusts_tab()).waitAction(1000).release().perform();
                 category_advertising().click();
             }
             Thread.sleep(500);
@@ -113,7 +113,7 @@ public class IOS_Find extends IOSElements{
             try {
                 category_arts().click();
             } catch (Exception ignored) {
-                action.press(categories_banner()).moveTo(dusts_tab()).waitAction(1000).release().perform();
+                action().press(categories_banner()).moveTo(dusts_tab()).waitAction(1000).release().perform();
                 category_arts().click();
             }
             Thread.sleep(500);
@@ -135,7 +135,7 @@ public class IOS_Find extends IOSElements{
             category_business_finance().click();
             Thread.sleep(5000);
         } catch (Exception e) {
-            action.press(categories_banner()).moveTo(business_nav_bar()).waitAction(1000).release().perform();
+            action().press(categories_banner()).moveTo(business_nav_bar()).waitAction(1000).release().perform();
             category_business_finance().click();
         }
 
@@ -154,7 +154,7 @@ public class IOS_Find extends IOSElements{
             try {
                 category_business().click();
             } catch (Exception ignored) {
-                action.press(categories_banner()).moveTo(dusts_tab()).waitAction(1000).release().perform();
+                action().press(categories_banner()).moveTo(dusts_tab()).waitAction(1000).release().perform();
                 category_business().click();
             }
             Thread.sleep(500);
@@ -175,7 +175,7 @@ public class IOS_Find extends IOSElements{
         //corrects screen state if previous test crashed or app crashed
         try {
             find_tab().click();
-            action.press(category_advertising()).moveTo(temp_tutorial_placeholder()).release().perform();
+            action().press(category_advertising()).moveTo(temp_tutorial_placeholder()).release().perform();
         } catch (Exception e) {}
 
         build_a_following_button().click();
@@ -214,10 +214,10 @@ public class IOS_Find extends IOSElements{
 
         find_tab().click();
 
-        action.press(contact_banner()).moveTo(featured_people_banner()).release().perform();
+        action().press(contact_banner()).moveTo(featured_people_banner()).release().perform();
         log("Trying to follow user in search results...");
         Thread.sleep(3000);
-        action.press(searchbar()).release().perform();
+        action().press(searchbar()).release().perform();
         driver.getKeyboard().sendKeys("testacct0");
         follow_fourth_search_result().click();
         open_fourth_search_result().click();
@@ -254,11 +254,11 @@ public class IOS_Find extends IOSElements{
         log("Deleting account");
         more_button().click();
         try {
-            action.press(followers()).moveTo(more_tab_nav_bar()).release().perform();
+            action().press(followers()).moveTo(more_tab_nav_bar()).release().perform();
             log("Used 'followers'");
         } catch (Exception ignored) {
             try {
-                action.press(more_tab_build_a_following()).moveTo(more_tab_nav_bar()).release().perform();
+                action().press(more_tab_build_a_following()).moveTo(more_tab_nav_bar()).release().perform();
                 log("Used 'build a following'");
             }catch (Exception e) {
                 throw new InterruptedException("Both failed");

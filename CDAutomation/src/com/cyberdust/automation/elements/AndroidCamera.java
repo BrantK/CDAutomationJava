@@ -34,7 +34,7 @@ public class AndroidCamera extends AndroidElements {
         } catch (Exception ignored) {}
 
         try {
-        	action.press(1660, 530).release().perform();  // For new HTC One phones
+        	action().press(1660, 530).release().perform();  // For new HTC One phones
         } catch (Exception ignored) {}
 
         try {

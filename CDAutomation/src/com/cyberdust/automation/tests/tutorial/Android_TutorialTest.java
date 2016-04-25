@@ -39,7 +39,7 @@ public class Android_TutorialTest extends AndroidElements {
 			int x = (int)(screenWidth/12);
 			int y = (int)(screenHeight/1.098);
 
-			action.tap(x, y).perform();
+			action().tap(x, y).perform();
 			Thread.sleep(2000);
 
 			try
@@ -57,7 +57,7 @@ public class Android_TutorialTest extends AndroidElements {
 
 		more_button().click();
 
-		action.press(followers()).moveTo(back_button()).release().perform();
+		action().press(followers()).moveTo(back_button()).release().perform();
 		logout().click();
 		confirm().click();
 
@@ -69,7 +69,7 @@ public class Android_TutorialTest extends AndroidElements {
 		loginAs.user(tutorial_account, tutorial_password);
 		Thread.sleep(4000);
 		more_button().click();
-		action.press(followers()).moveTo(back_button()).release().perform();
+		action().press(followers()).moveTo(back_button()).release().perform();
 		tutorial().click();
 		if(tutorial_switch().getText().contains("OFF"))
 		{
@@ -81,7 +81,7 @@ public class Android_TutorialTest extends AndroidElements {
 			int x = (int)(screenWidth/12);
 			int y = (int)(screenHeight/1.098);
 			
-		action.tap(x, y).perform();
+		action().tap(x, y).perform();
 		Thread.sleep(2000);
 		
 		try

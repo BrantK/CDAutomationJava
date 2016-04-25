@@ -1,5 +1,6 @@
 package com.cyberdust.automation.tests.reblast;
 
+import com.cyberdust.automation.elements.TestAccounts;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
 
@@ -166,6 +167,14 @@ public class Run_ReblastTest extends Drivers {
 		} catch (Exception e) {
 			log("[Fail] Got exception " + e);
 			relaunch();
+
+			if (Android()) {
+				new Android_ReblastTest().blasts_tab().click();
+			}
+			if (IOS()) {
+				new IOS_ReblastTest().blasts_tab().click();
+			}
+
 			throw e;
 		}
 	}
@@ -184,6 +193,14 @@ public class Run_ReblastTest extends Drivers {
 		} catch (Exception e) {
 			log("[Fail] Got exception " + e);
 			relaunch();
+
+			if (Android()) {
+				new Android_ReblastTest().blasts_tab().click();
+			}
+			if (IOS()) {
+				new IOS_ReblastTest().blasts_tab().click();
+			}
+
 			throw e;
 		}
 	}
@@ -202,6 +219,14 @@ public class Run_ReblastTest extends Drivers {
 		} catch (Exception e) {
 			log("[Fail] Got exception " + e);
 			relaunch();
+
+			if (Android()) {
+				new Android_ReblastTest().blasts_tab().click();
+			}
+			if (IOS()) {
+				new IOS_ReblastTest().blasts_tab().click();
+			}
+
 			throw e;
 		}
 	}
@@ -220,6 +245,14 @@ public class Run_ReblastTest extends Drivers {
 		} catch (Exception e) {
 			log("[Fail] Got exception " + e);
 			relaunch();
+
+			if (Android()) {
+				new Android_ReblastTest().blasts_tab().click();
+			}
+			if (IOS()) {
+				new IOS_ReblastTest().blasts_tab().click();
+			}
+
 			throw e;
 		}
 	}
@@ -238,6 +271,14 @@ public class Run_ReblastTest extends Drivers {
 		} catch (Exception e) {
 			log("[Fail] Got exception " + e);
 			relaunch();
+
+			if (Android()) {
+				new Android_ReblastTest().blasts_tab().click();
+			}
+			if (IOS()) {
+				new IOS_ReblastTest().blasts_tab().click();
+			}
+
 			throw e;
 		}
 	}
@@ -256,6 +297,14 @@ public class Run_ReblastTest extends Drivers {
 		} catch (Exception e) {
 			log("[Fail] Got exception " + e);
 			relaunch();
+
+			if (Android()) {
+				new Android_ReblastTest().blasts_tab().click();
+			}
+			if (IOS()) {
+				new IOS_ReblastTest().blasts_tab().click();
+			}
+
 			throw e;
 		}
 	}
@@ -274,6 +323,14 @@ public class Run_ReblastTest extends Drivers {
 		} catch (Exception e) {
 			log("[Fail] Got exception " + e);
 			relaunch();
+
+			if (Android()) {
+				new Android_ReblastTest().blasts_tab().click();
+			}
+			if (IOS()) {
+				new IOS_ReblastTest().blasts_tab().click();
+			}
+
 			throw e;
 		}
 	}
@@ -292,6 +349,14 @@ public class Run_ReblastTest extends Drivers {
 		} catch (Exception e) {
 			log("[Fail] Got exception " + e);
 			relaunch();
+
+			if (Android()) {
+				new Android_ReblastTest().blasts_tab().click();
+			}
+			if (IOS()) {
+				new IOS_ReblastTest().blasts_tab().click();
+			}
+
 			throw e;
 		}
 	}
@@ -310,13 +375,21 @@ public class Run_ReblastTest extends Drivers {
 		} catch (Exception e) {
 			log("[Fail] Got exception " + e);
 			relaunch();
+
+			if (Android()) {
+				new Android_ReblastTest().blasts_tab().click();
+			}
+			if (IOS()) {
+				new IOS_ReblastTest().blasts_tab().click();
+			}
+
 			throw e;
 		}
 	}
 	
 	@Test
 	public void test18_checkReblastCount() throws Exception {
-		try {
+        try {
 			log("Test18 checking if all reblasts were received");
 			
 			if (Android()) {
