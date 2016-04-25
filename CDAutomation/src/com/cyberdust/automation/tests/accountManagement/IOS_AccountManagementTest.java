@@ -14,20 +14,32 @@ public class IOS_AccountManagementTest extends IOSElements {
         // Changes password
         log("Changing password");
         more_button().click();
-        action().press(followers()).moveTo(back_button()).release().perform();
+        action.press(friends()).moveTo(close_button()).release().perform();
         account_settings().click();
         change_password().click();
-        driver.getKeyboard().sendKeys(acctmgnt_password01 + "\n" + accmgnt_new_password + "\n" + accmgnt_new_password);
+        driver.getKeyboard().sendKeys(acctmgnt_password01);
+        enter_new_password().click();
+        driver.getKeyboard().sendKeys(accmgnt_new_password);
+        confirm_new_password().click();
+        driver.getKeyboard().sendKeys(accmgnt_new_password);
+
         change_password_ok_button().click();
         Alert_OK_button().click();
+        Thread.sleep(2000);
 
         // Resets Password
         change_password().click();
-        driver.getKeyboard().sendKeys(accmgnt_new_password + "\n" + acctmgnt_password01 + "\n" + acctmgnt_password01);
+        driver.getKeyboard().sendKeys(accmgnt_new_password);
+        enter_new_password().click();
+        driver.getKeyboard().sendKeys(acctmgnt_password01);
+        confirm_new_password().click();
+        driver.getKeyboard().sendKeys(acctmgnt_password01);
         change_password_ok_button().click();
         Alert_OK_button().click();
         log("Password reset");
+        Thread.sleep(2000);
     }
+
 
     public void test02_changing_email() throws Exception {
         change_email_address().click();
@@ -57,15 +69,22 @@ public class IOS_AccountManagementTest extends IOSElements {
     }
 
     public void test03_account_deleting() throws Exception {
+        loginAs.user(acctmgnt_account01, acctmgnt_password01);
+        more_button().click();
+        action.press(friends()).moveTo(close_button()).release().perform();
+        account_settings().click();
         log("Deleting account");
         delete_account().click();
         confirm_delete().click();
         confirm_delete_again().click();
 
         try {
+            log("trying to login with a deleted account");
             login_button().click();
             login_username().click();
-            driver.getKeyboard().sendKeys(acctmgnt_account01 + "\n" + acctmgnt_account01);
+            driver.getKeyboard().sendKeys(acctmgnt_account01);
+            login_password().click();
+            driver.getKeyboard().sendKeys(acctmgnt_password01);
             login_OK().click();
             Thread.sleep(1000);
             if (name("Login Error. Please try again!").isDisplayed()) {
@@ -76,7 +95,7 @@ public class IOS_AccountManagementTest extends IOSElements {
             log("[Warning] logged into deleted account!");
 
             more_button().click(); Thread.sleep(1000);
-            action().press(followers()).moveTo(back_button()).release().perform();
+            action.press(followers()).moveTo(back_button()).release().perform();
             account_settings().click();
             delete_account().click();
             confirm_delete().click();
@@ -84,7 +103,7 @@ public class IOS_AccountManagementTest extends IOSElements {
             log("Deleting account again");
         }
 
-        // Recreating the account
+        log("Recreating the account");
         sign_up_button().click();
         driver.getKeyboard().sendKeys(acctmgnt_account01);
         username_OK().click();

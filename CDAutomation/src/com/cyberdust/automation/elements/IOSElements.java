@@ -666,6 +666,8 @@ public class IOSElements extends Drivers {
     public WebElement confirm_new_password() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("re-type new password")));
     }
+
+
     public WebElement change_password_ok_button() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAButton[1]")));
     }
