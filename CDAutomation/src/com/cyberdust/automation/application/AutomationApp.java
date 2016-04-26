@@ -283,7 +283,7 @@ public class AutomationApp {
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-					
+
 					if (!stopButton.isEnabled() && !stopped) {
 						stopButton.setEnabled(true);
 						stopped = true;
@@ -295,6 +295,7 @@ public class AutomationApp {
 						System.setErr(serverErrPrintStream);
 						
 						testProgressBar.setValue(testProgressBar.getValue()+1);
+                        junitOut.clearSelection();
 						
 						if (testProgressBar.getValue() == testMethodsList.size()-1) {
 							testProgressBar.setValue(testMethodsList.size());
@@ -309,14 +310,7 @@ public class AutomationApp {
 						if (!passedTests.contains(t.passedTests())) {
 							passedTests.add(t.passedTests());
 						}
-						
-						if (TestRunner.completedTests.size() == testClassList.getSelectedValuesList().size()) {
-							runButton.setEnabled(true);
-							optionsButton.setEnabled(true);
-							testClassList.setEnabled(true);
-							selectAllButton.setEnabled(true);
-						}
-						
+
 						if (!stopButton.isEnabled()) {
 							System.err.println("Stopping test...");
 
@@ -325,23 +319,25 @@ public class AutomationApp {
 							optionsButton.setEnabled(true);
 							testClassList.setEnabled(true);
 							selectAllButton.setEnabled(true);
-							
 							com.cyberdust.automation.elements.Drivers.tearDown();
 						}
 
-						junitOut.clearSelection();
-						threadCollector.cancel(true);
+                        if (TestRunner.completedTests.size() == testClassList.getSelectedValuesList().size()) {
+                            runButton.setEnabled(true);
+                            optionsButton.setEnabled(true);
+                            testClassList.setEnabled(true);
+                            selectAllButton.setEnabled(true);
+                            threadCollector.cancel(true);
+                        }
 					}
 				}
 			}
-			
-			return null;
+            return null;
 		};
 
 		// Listeners //
 		ActionListener runTest = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
 				SwingWorker<Void, Void> newTestWorker = new SwingWorker<Void, Void>() {
 					public Void doInBackground() throws Exception {
 						TestRunner.runTests(testClassList.getSelectedValuesList());
@@ -363,7 +359,6 @@ public class AutomationApp {
 				try {
 					newTestWorker.execute();
 					newMethodWorker.execute();
-					
 				} catch (NullPointerException e) {
 					System.err.println("Failed to establish connection to Appium server.\n");
 					
