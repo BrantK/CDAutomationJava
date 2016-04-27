@@ -26,6 +26,9 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.CompoundBorder;
 
+import com.cyberdust.automation.elements.DeviceReader;
+import com.cyberdust.automation.elements.Drivers;
+
 public class AutomationApp {
 	private JFrame myFrame;
 	private SwingWorker<Void, Void> threadCollector = null;
@@ -293,15 +296,8 @@ public class AutomationApp {
 					if (TestListener.currentTest.equals("done")) {
 						System.setOut(serverOutPrintStream);
 						System.setErr(serverErrPrintStream);
-						
-						testProgressBar.setValue(testProgressBar.getValue()+1);
                         junitOut.clearSelection();
-						
-						if (testProgressBar.getValue() == testMethodsList.size()-1) {
-							testProgressBar.setValue(testMethodsList.size());
-							testProgressBar.setString("Complete");
-						}
-						
+
 						if (!failedTests.contains(t.failedTests())){
 							failedTests.add(t.failedTests());
 							exceptionsMap.put(t.failedTests(), TestListener.exceptionResult);
@@ -312,21 +308,37 @@ public class AutomationApp {
 						}
 
 						if (!stopButton.isEnabled()) {
-							System.err.println("Stopping test...");
-
+                            if (executedTests.contains(testClassList.getSelectedValue())) {
+                                for (int i = 0; i < testMethodsList.size(); i++) {
+                                    executedTests.remove(testMethodsList.get(i));
+                                    passedTests.remove(testMethodsList.get(i));
+                                    failedTests.remove(testMethodsList.get(i));
+                                    exceptionsMap.remove(testMethodsList.get(i));
+                                }
+                            }
+							System.out.println("[Automation App] Stopping test...");
+                            System.setErr(null);
+                            testProgressBar.setValue(0);
+                            testProgressBar.setString("Stopped");
 							stopButton.setEnabled(true);
 							runButton.setEnabled(true);
 							optionsButton.setEnabled(true);
 							testClassList.setEnabled(true);
 							selectAllButton.setEnabled(true);
-							com.cyberdust.automation.elements.Drivers.tearDown();
+                            Drivers.ranSetup = false;
+                            Drivers.tearDown();
+                            threadCollector.cancel(true);
 						}
 
                         if (TestRunner.completedTests.size() == testClassList.getSelectedValuesList().size()) {
+                            testProgressBar.setValue(testMethodsList.size());
+                            testProgressBar.setString("Complete");
                             runButton.setEnabled(true);
                             optionsButton.setEnabled(true);
                             testClassList.setEnabled(true);
                             selectAllButton.setEnabled(true);
+                            Drivers.ranSetup = false;
+                            Drivers.tearDown();
                             threadCollector.cancel(true);
                         }
 					}
@@ -353,7 +365,7 @@ public class AutomationApp {
 				};
 				
 				if (IOSCheckBox.isSelected()) {
-					com.cyberdust.automation.elements.Drivers.IOSEnabled = true;
+					DeviceReader.IOSOverride = true;
 				}
 				
 				try {
@@ -439,10 +451,10 @@ public class AutomationApp {
 			public void actionPerformed(ActionEvent arg0) {
 				if (IOSCheckBox.isSelected()) {
 					Settings.appSettings.put("IOSOverride", "true");
-					com.cyberdust.automation.elements.Drivers.IOSEnabled = true;
+                    DeviceReader.IOSOverride = true;
 				} else {
 					Settings.appSettings.put("IOSOverride", "false");
-					com.cyberdust.automation.elements.Drivers.IOSEnabled = false;
+                    DeviceReader.IOSOverride = false;
 				}
 			}
 		};
@@ -458,8 +470,6 @@ public class AutomationApp {
 		ActionListener stopTests = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (!TestListener.currentTest.isEmpty() && !TestListener.currentTest.equals("done")) {
-					//testWorker.cancel(true);
-					//methodWorker.cancel(true);
 					new TestRunner().stopTests();
 					TestListener.currentTest = "done";
 					stopButton.setEnabled(false);
@@ -502,11 +512,11 @@ public class AutomationApp {
 		ActionListener openSettings = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (addressField.getText().isEmpty()) {
-					addressField.setText(com.cyberdust.automation.elements.Drivers.appiumServerAddress);
+					addressField.setText(Drivers.appiumServerAddress);
 				}
 
 				if (portField.getText().isEmpty()) {
-					portField.setText(com.cyberdust.automation.elements.Drivers.appiumServerPort);
+					portField.setText(Drivers.appiumServerPort);
 				}
 
 				int savedSettings = JOptionPane.showOptionDialog(null, generalSettings, "Settings",
@@ -514,15 +524,15 @@ public class AutomationApp {
 
 				if (savedSettings == JOptionPane.OK_OPTION) {
 					if (addressField.getText().isEmpty()) {
-						addressField.setText(com.cyberdust.automation.elements.Drivers.appiumServerAddress);
+						addressField.setText(Drivers.appiumServerAddress);
 					}
 
 					if (portField.getText().isEmpty()) {
-						portField.setText(com.cyberdust.automation.elements.Drivers.appiumServerPort);
+						portField.setText(Drivers.appiumServerPort);
 					}
 
-					com.cyberdust.automation.elements.Drivers.appiumServerAddress = addressField.getText();
-					com.cyberdust.automation.elements.Drivers.appiumServerPort = portField.getText();
+					Drivers.appiumServerAddress = addressField.getText();
+					Drivers.appiumServerPort = portField.getText();
 					Settings.appSettings.put("address", addressField.getText());
 					Settings.appSettings.put("port", portField.getText());
 
@@ -544,7 +554,6 @@ public class AutomationApp {
 		
 		// Right-click menu //
 		JPopupMenu listPopup = new JPopupMenu();
-		
 		listPopup.add(" Run Test").addActionListener(runTest);
 		listPopup.add(" Open Log").addActionListener(openLog);
 		listPopup.add(" Clear Log").addActionListener(clearLog);
@@ -673,11 +682,11 @@ public class AutomationApp {
 		}
 		
 		if (Settings.appSettings.getProperty("address") != null) {
-			com.cyberdust.automation.elements.Drivers.appiumServerAddress = Settings.appSettings.getProperty("address");
+			Drivers.appiumServerAddress = Settings.appSettings.getProperty("address");
 		}
 		
 		if (Settings.appSettings.getProperty("port") != null) {
-			com.cyberdust.automation.elements.Drivers.appiumServerPort = Settings.appSettings.getProperty("port");
+			Drivers.appiumServerPort = Settings.appSettings.getProperty("port");
 		}
 		
 		if (Settings.appSettings.getProperty("accountset") != null) {
