@@ -55,29 +55,22 @@ public class DeviceReader {
 
         if (System.getProperty("os.name").toLowerCase().contains("win")) {
             runningAndroidDevice = true;
+            connectedDevice = "Android";
         }
 
 		if ((IOSOverride && (connectedIOS || connectedAndroid)) || (!connectedIOS && !connectedAndroid)) {
             runningIOSSimulator = true;
-            connectedDevice = "iOS simulator";
-
-            if (IOSOverride) {
-                System.out.println("Using iOS simulator");
-            } else {
-                System.out.println("No devices detected, using iOS simulator");
-            }
+            connectedDevice = "iOS Simulator";
 		}
 
         if (!IOSOverride && connectedIOS && !connectedAndroid) {
             runningIOSDevice = true;
-            connectedDevice = "iOS device";
-            System.out.println("Using connected iOS device");
+            connectedDevice = "iPhone";
         }
 
         if (!IOSOverride && connectedAndroid) {
             runningAndroidDevice = true;
-            connectedDevice = "Android device";
-            System.out.println("Using connected Android device");
+            connectedDevice = "Android";
         }
     }
 }
