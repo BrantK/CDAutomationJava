@@ -592,6 +592,11 @@ public class AndroidElements extends Drivers {
     public WebElement friends() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/browse_friends_row")));
     }
+
+	public WebElement find_friends() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/add_friends_button_text")));
+	}
+
     public WebElement friend_profile_picture() {
     	return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/chat_friend_listitem_icon")));
     }

@@ -38,9 +38,12 @@ public class IOS_followersTest extends IOSElements {
 	}
 	
 	public void test02_add_friends() throws Exception {
-		
+
+
+		log("looking for followers");
 		followers().click();
 
+		log("followers clicked");
         Thread.sleep(500);
         driver.swipe(name(followers_account02).getLocation().getX() + (screenWidth - 5),
                 name(followers_account02).getLocation().getY() + 20,
@@ -57,9 +60,9 @@ public class IOS_followersTest extends IOSElements {
 		
 		try {
 			if (name(followers_account02).isDisplayed())
-				log("Friend added from followers menu");
+				log("Followers can be blocked");
 		} catch (Exception e) {
-			log("[Error] Unable to add friend from followers menu");
+			log("[Error] Unable block a follower");
 		}
         name(followers_account02).click();
         back_arrow().click();

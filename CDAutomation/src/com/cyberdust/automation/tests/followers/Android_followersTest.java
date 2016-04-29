@@ -19,7 +19,7 @@ public class Android_followersTest extends AndroidElements {
 		back_button().click();
 		friends().click();
 		try {
-			WebElement friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(followers_account02)));
+			WebElement friend = name(followers_account02);
 			log("Friend added from followers menu ");
 			action().longPress(friend, 3000).release().perform();
 			unfollow_button().click();
@@ -44,18 +44,23 @@ public class Android_followersTest extends AndroidElements {
 		blast_more_block().click();
 		okay_button().click();
 		Thread.sleep(1000);
+
 		aDriver().pressKeyCode(4);
+
 		back_button().click();
+
+
 		action().press(followers()).moveTo(back_button()).release().perform();
 		muted_blocked_users().click();
-		
+		log("clicked muted users");
+		Thread.sleep(5000);
 		try {
-			if (first_friend.isDisplayed())
+			if (name(followers_account02).isDisplayed())
 				log("Follower can be blocked");
 		} catch (Exception e) {
 			log("[Error] Couldn't block the followers");
 		}
-		first_friend.click();
+		name(followers_account02).click();
 		back_button().click();
 		back_button().click();
 	}
