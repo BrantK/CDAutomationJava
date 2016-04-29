@@ -26,9 +26,13 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.CompoundBorder;
 
+import com.cyberdust.automation.elements.DeviceReader;
+import com.cyberdust.automation.elements.Drivers;
+
 public class AutomationApp {
 	private JFrame myFrame;
 	private SwingWorker<Void, Void> threadCollector = null;
+    private Boolean checkingDevice = true;
 	
 	public static void main(String[] args) {
 		new Settings().loadSettings();
@@ -97,7 +101,9 @@ public class AutomationApp {
 		testClassList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		testListScroll.setViewportView(testClassList);
 		testListScroll.setBounds(10, 10, 180, 200);
-		testListScroll.setBorder(new CompoundBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null), new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Tests", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(128, 128, 128))));
+		testListScroll.setBorder(new CompoundBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null),
+                new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Tests",
+                        TitledBorder.LEADING, TitledBorder.TOP, null, new Color(128, 128, 128))));
 		myFrame.getContentPane().add(testListScroll);
 		
 		// JUnit output window //
@@ -114,7 +120,9 @@ public class AutomationApp {
 		junitOut.setFocusable(false);
 		junitScroll.setViewportView(junitOut);
 		junitScroll.setBounds(220, 10, 260, 200);
-		junitScroll.setBorder(new CompoundBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null), new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "JUnit", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(128, 128, 128))));
+		junitScroll.setBorder(new CompoundBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null),
+                new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "JUnit",
+                        TitledBorder.LEADING, TitledBorder.TOP, null, new Color(128, 128, 128))));
 		myFrame.getContentPane().add(junitScroll);
 
 		// Console output window //
@@ -129,7 +137,7 @@ public class AutomationApp {
 		consoleScroll.setBounds(10, 245, 470, 226);
 		consoleScroll.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		myFrame.getContentPane().add(consoleScroll);
-		
+
 		// Server output window //
 		JLabel serverTitle = new JLabel("Appium");
 		serverTitle.setForeground(Color.GRAY);
@@ -193,10 +201,26 @@ public class AutomationApp {
 		JProgressBar testProgressBar = new JProgressBar();
 		testProgressBar.setMinimum(0);
 		testProgressBar.setBounds(260, 220, 180, 14);
-		testProgressBar.setForeground(Color.GREEN.darker());
+		testProgressBar.setForeground(Color.BLUE.darker());
 		testProgressBar.setFont(new Font("Arial", Font.PLAIN, 10));
 		myFrame.getContentPane().add(testProgressBar);
-		
+
+        // Connected device //
+        JLabel deviceText = new JLabel();
+        deviceText.setFont(new Font("Arial", Font.PLAIN, 11));
+        deviceText.setBounds(615, 13, 100, 18);
+        deviceText.setForeground(Color.GRAY);
+        deviceText.setText("Device: ");
+        myFrame.getContentPane().add(deviceText);
+
+        JLabel currentDevice = new JLabel();
+        currentDevice.setFont(new Font("Arial", Font.BOLD, 13));
+        currentDevice.setBounds(657, 12, 100, 18);
+        currentDevice.setForeground(Color.GRAY.darker());
+        currentDevice.setHorizontalAlignment(JLabel.CENTER);
+        currentDevice.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+        myFrame.getContentPane().add(currentDevice);
+
 		// Buttons //
 		JButton selectAllButton = new JButton("Select All");
 		selectAllButton.setFont(new Font("Arial", Font.PLAIN, 11));
@@ -211,11 +235,11 @@ public class AutomationApp {
 		JButton stopButton = new JButton("Stop");
 		stopButton.setFont(new Font("Arial", Font.PLAIN, 12));
 		stopButton.setBounds(330, 486, 90, 25);
-		myFrame.getContentPane().add(stopButton);
+        myFrame.getContentPane().add(stopButton);
 		
 		JToggleButton pauseButton = new JToggleButton("Pause");
-		pauseButton.setFont(new Font("Arial", Font.PLAIN, 12));
-		pauseButton.setBounds(330, 486, 90, 25);
+        pauseButton.setFont(new Font("Arial", Font.PLAIN, 12));
+        pauseButton.setBounds(330, 486, 90, 25);
 		//myFrame.getContentPane().add(pauseButton);
 		
 		JButton runButton = new JButton("Run");
@@ -229,119 +253,152 @@ public class AutomationApp {
 		myFrame.getContentPane().add(optionsButton);
 		
 		JButton androidButton = new JButton(androidIcon);
-		androidButton.setBounds(680, 1, 48, 35);
+		androidButton.setBounds(810, 1, 48, 35);
 		myFrame.getContentPane().add(androidButton);
 		
 		JButton appleButton = new JButton(appleIcon);
-		appleButton.setBounds(750, 1, 48, 35);
+		appleButton.setBounds(870, 1, 48, 35);
 		myFrame.getContentPane().add(appleButton);
 		
 		JButton settingsButton = new JButton(settingsIcon);
-		settingsButton.setBounds(820, 1, 48, 35);
-		myFrame.getContentPane().add(settingsButton);
-		
+		settingsButton.setBounds(930, 1, 48, 35);
+        settingsButton.setToolTipText("Connection settings");
+        myFrame.getContentPane().add(settingsButton);
+
 		JButton clearOutputButton = new JButton(trashIcon);
-		clearOutputButton.setBounds(990, 1, 48, 35);
+        clearOutputButton.setBounds(990, 1, 48, 35);
+        clearOutputButton.setToolTipText("Clears server output");
 		myFrame.getContentPane().add(clearOutputButton);
-		
+
+
+        // Displays connected device //
+        Function<Void, Void> runDeviceWorker = (arg0) -> {{
+            SwingWorker<Void, Void> deviceWorker = new SwingWorker<Void, Void>() {
+                DeviceReader reader = new DeviceReader();
+                public Void doInBackground() throws Exception {
+                    while (checkingDevice) {
+                        try {
+                            Thread.sleep(1000);
+                            reader.checkDevice();
+                            currentDevice.setText(DeviceReader.connectedDevice);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    return null;
+                }
+            };
+            deviceWorker.execute();
+        }
+            return null;
+        };
+
 		// Highlights the currently running test //
-		Function<Void, Void> runMethodSelector = (methodSelect) -> {{
-			
-			TestListener t = new TestListener();
-				testProgressBar.setMaximum(testMethodsList.size()-1);
-				List<String> selectedTests = testClassList.getSelectedValuesList();
-				boolean stopped = false;
-				
-				while (testMethodsList.contains(t.runningTest())) {
-					junitOut.setSelectedValue(t.runningTest(), true);
-					System.setOut(logOutPrintStream);
-					System.setErr(logErrPrintStream);
-					
-					testProgressBar.setStringPainted(true);
-					testProgressBar.setString("Test Progress");
-					testProgressBar.setValue((junitOut.getSelectedIndex()));
-			
-					if (!failedTests.contains(t.failedTests())){
-						failedTests.add(t.failedTests());
-						exceptionsMap.put(t.failedTests(), TestListener.exceptionResult);
-					}
-					
-					if (!passedTests.contains(t.passedTests())) {
-						passedTests.add(t.passedTests());
-					}
-					
-					if (testMethodsList.contains(testClassList.getSelectedValue())) {
-						for (int i = 0; i < selectedTests.size(); i++) {
-							if (!executedTests.contains(selectedTests.get(i))) {
-								executedTests.add(selectedTests.get(i));
-							}
-						}
-					}
-						
-					try {
-						Thread.sleep(300);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					
-					if (!stopButton.isEnabled() && !stopped) {
-						stopButton.setEnabled(true);
-						stopped = true;
-					}
+        Function<Void, Void> runMethodSelector = (arg0) -> {{
+            TestListener listener = new TestListener();
+            testProgressBar.setMaximum(testMethodsList.size()-1);
+            List<String> selectedTests = testClassList.getSelectedValuesList();
+            boolean stopped = false;
 
-					// After all tests have been completed
-					if (TestListener.currentTest.equals("done")) {
-						System.setOut(serverOutPrintStream);
-						System.setErr(serverErrPrintStream);
-						
-						testProgressBar.setValue(testProgressBar.getValue()+1);
-						
-						if (testProgressBar.getValue() == testMethodsList.size()-1) {
-							testProgressBar.setValue(testMethodsList.size());
-							testProgressBar.setString("Complete");
-						}
-						
-						if (!failedTests.contains(t.failedTests())){
-							failedTests.add(t.failedTests());
-							exceptionsMap.put(t.failedTests(), TestListener.exceptionResult);
-						}
-						
-						if (!passedTests.contains(t.passedTests())) {
-							passedTests.add(t.passedTests());
-						}
-						
-						if (TestRunner.completedTests.size() == testClassList.getSelectedValuesList().size()) {
-							runButton.setEnabled(true);
-							optionsButton.setEnabled(true);
-							testClassList.setEnabled(true);
-							selectAllButton.setEnabled(true);
-						}
-						
-						if (!stopButton.isEnabled()) {
-							System.err.println("Stopping test...");
+            while (testMethodsList.contains(listener.runningTest())) {
+                junitOut.setSelectedValue(listener.runningTest(), true);
+                System.setOut(logOutPrintStream);
+                System.setErr(logErrPrintStream);
 
-							stopButton.setEnabled(true);
-							runButton.setEnabled(true);
-							optionsButton.setEnabled(true);
-							testClassList.setEnabled(true);
-							selectAllButton.setEnabled(true);
-							
-							com.cyberdust.automation.elements.Drivers.tearDown();
-						}
+                testProgressBar.setStringPainted(true);
+                testProgressBar.setString("Test Progress");
+                testProgressBar.setValue((junitOut.getSelectedIndex()));
 
-						junitOut.clearSelection();
-						threadCollector.cancel(true);
-					}
-				}
-			}
-			
-			return null;
-		};
+                if (!failedTests.contains(listener.failedTests())){
+                    failedTests.add(listener.failedTests());
+                    exceptionsMap.put(listener.failedTests(), TestListener.exceptionResult);
+                }
+
+                if (!passedTests.contains(listener.passedTests())) {
+                    passedTests.add(listener.passedTests());
+                }
+
+                if (testMethodsList.contains(testClassList.getSelectedValue())) {
+                    for (String tests : selectedTests) {
+                        if (!executedTests.contains(tests)) {
+                            executedTests.add(tests);
+                        }
+                    }
+                }
+
+                try {
+                    Thread.sleep(300);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                if (!stopButton.isEnabled() && !stopped) {
+                    stopButton.setEnabled(true);
+                    stopped = true;
+                }
+
+                // After all tests have been completed
+                if (TestListener.currentTest.equals("done")) {
+                    System.setOut(serverOutPrintStream);
+                    System.setErr(serverErrPrintStream);
+                    junitOut.clearSelection();
+
+                    if (!failedTests.contains(listener.failedTests())){
+                        failedTests.add(listener.failedTests());
+                        exceptionsMap.put(listener.failedTests(), TestListener.exceptionResult);
+                    }
+
+                    if (!passedTests.contains(listener.passedTests())) {
+                        passedTests.add(listener.passedTests());
+                    }
+
+                    if (!stopButton.isEnabled()) {
+                        if (executedTests.contains(testClassList.getSelectedValue())) {
+                            for (int i = 0; i < testMethodsList.size(); i++) {
+                                executedTests.remove(testMethodsList.get(i));
+                                passedTests.remove(testMethodsList.get(i));
+                                failedTests.remove(testMethodsList.get(i));
+                                exceptionsMap.remove(testMethodsList.get(i));
+                            }
+                        }
+                        System.out.println("[Automation App] Stopping test...");
+                        System.setErr(null);
+                        testProgressBar.setValue(0);
+                        testProgressBar.setString("Stopped");
+                        stopButton.setEnabled(true);
+                        runButton.setEnabled(true);
+                        optionsButton.setEnabled(true);
+                        testClassList.setEnabled(true);
+                        selectAllButton.setEnabled(true);
+                        checkingDevice = true;
+                        runDeviceWorker.apply(null);
+                        Drivers.ranSetup = false;
+                        Drivers.tearDown();
+                        threadCollector.cancel(true);
+                    }
+
+                    if (TestRunner.completedTests.size() == testClassList.getSelectedValuesList().size()) {
+                        testProgressBar.setValue(testMethodsList.size());
+                        testProgressBar.setString("Complete");
+                        runButton.setEnabled(true);
+                        optionsButton.setEnabled(true);
+                        testClassList.setEnabled(true);
+                        selectAllButton.setEnabled(true);
+                        checkingDevice = true;
+                        runDeviceWorker.apply(null);
+                        Drivers.ranSetup = false;
+                        Drivers.tearDown();
+                        threadCollector.cancel(true);
+                    }
+                }
+            }
+        }
+            return null;
+        };
 
 		// Listeners //
 		ActionListener runTest = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
 				SwingWorker<Void, Void> newTestWorker = new SwingWorker<Void, Void>() {
 					public Void doInBackground() throws Exception {
 						TestRunner.runTests(testClassList.getSelectedValuesList());
@@ -357,13 +414,12 @@ public class AutomationApp {
 				};
 				
 				if (IOSCheckBox.isSelected()) {
-					com.cyberdust.automation.elements.Drivers.IOSEnabled = true;
+					DeviceReader.IOSOverride = true;
 				}
 				
 				try {
 					newTestWorker.execute();
 					newMethodWorker.execute();
-					
 				} catch (NullPointerException e) {
 					System.err.println("Failed to establish connection to Appium server.\n");
 					
@@ -384,6 +440,7 @@ public class AutomationApp {
 				}
 					
 				if (!testClassList.isSelectionEmpty()) {
+                    checkingDevice = false;
 					runButton.setEnabled(false);
 					stopButton.setEnabled(false);
 					optionsButton.setEnabled(false);
@@ -444,10 +501,10 @@ public class AutomationApp {
 			public void actionPerformed(ActionEvent arg0) {
 				if (IOSCheckBox.isSelected()) {
 					Settings.appSettings.put("IOSOverride", "true");
-					com.cyberdust.automation.elements.Drivers.IOSEnabled = true;
+                    DeviceReader.IOSOverride = true;
 				} else {
 					Settings.appSettings.put("IOSOverride", "false");
-					com.cyberdust.automation.elements.Drivers.IOSEnabled = false;
+                    DeviceReader.IOSOverride = false;
 				}
 			}
 		};
@@ -459,12 +516,10 @@ public class AutomationApp {
 				//}
 			}
 		};
-		
-		ActionListener stopTests = new ActionListener() {
+
+        ActionListener stopTests = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (!TestListener.currentTest.isEmpty() && !TestListener.currentTest.equals("done")) {
-					//testWorker.cancel(true);
-					//methodWorker.cancel(true);
 					new TestRunner().stopTests();
 					TestListener.currentTest = "done";
 					stopButton.setEnabled(false);
@@ -499,7 +554,6 @@ public class AutomationApp {
 						com.cyberdust.automation.elements.TestAccounts.accountSet2 = true;
 					}
 				}
-
 				new Settings().storeSettings();
 			}
 		};
@@ -507,11 +561,11 @@ public class AutomationApp {
 		ActionListener openSettings = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (addressField.getText().isEmpty()) {
-					addressField.setText(com.cyberdust.automation.elements.Drivers.appiumServerAddress);
+					addressField.setText(Drivers.appiumServerAddress);
 				}
 
 				if (portField.getText().isEmpty()) {
-					portField.setText(com.cyberdust.automation.elements.Drivers.appiumServerPort);
+					portField.setText(Drivers.appiumServerPort);
 				}
 
 				int savedSettings = JOptionPane.showOptionDialog(null, generalSettings, "Settings",
@@ -519,15 +573,15 @@ public class AutomationApp {
 
 				if (savedSettings == JOptionPane.OK_OPTION) {
 					if (addressField.getText().isEmpty()) {
-						addressField.setText(com.cyberdust.automation.elements.Drivers.appiumServerAddress);
+						addressField.setText(Drivers.appiumServerAddress);
 					}
 
 					if (portField.getText().isEmpty()) {
-						portField.setText(com.cyberdust.automation.elements.Drivers.appiumServerPort);
+						portField.setText(Drivers.appiumServerPort);
 					}
 
-					com.cyberdust.automation.elements.Drivers.appiumServerAddress = addressField.getText();
-					com.cyberdust.automation.elements.Drivers.appiumServerPort = portField.getText();
+					Drivers.appiumServerAddress = addressField.getText();
+					Drivers.appiumServerPort = portField.getText();
 					Settings.appSettings.put("address", addressField.getText());
 					Settings.appSettings.put("port", portField.getText());
 
@@ -549,7 +603,6 @@ public class AutomationApp {
 		
 		// Right-click menu //
 		JPopupMenu listPopup = new JPopupMenu();
-		
 		listPopup.add(" Run Test").addActionListener(runTest);
 		listPopup.add(" Open Log").addActionListener(openLog);
 		listPopup.add(" Clear Log").addActionListener(clearLog);
@@ -587,15 +640,16 @@ public class AutomationApp {
 			public void valueChanged(ListSelectionEvent arg0) {
 				List<String> selectedTests = testClassList.getSelectedValuesList();
 				
-				if (testClassList.getSelectedIndex() == testClassList.getLeadSelectionIndex() && testClassList.getSelectedIndex() == testClassList.getAnchorSelectionIndex()) {
+				if (testClassList.getSelectedIndex() == testClassList.getLeadSelectionIndex()
+                        && testClassList.getSelectedIndex() == testClassList.getAnchorSelectionIndex()) {
 					testMethodsList.removeAllElements();
 				} 
 			
 				try {
 					List<String> calledTestMethods = com.cyberdust.automation.application.TestListener.getTestMethods(selectedTests);
-					for (int i = 0; i < calledTestMethods.size(); i++) {
-						if (selectedTests.contains(calledTestMethods.get(0)) && !testMethodsList.contains(calledTestMethods.get(i))) {
-							testMethodsList.addElement(calledTestMethods.get(i));
+					for (String tests : calledTestMethods) {
+						if (selectedTests.contains(calledTestMethods.get(0)) && !testMethodsList.contains(tests)) {
+							testMethodsList.addElement(tests);
 						}
 					}
 					testMethodsList.addElement("\n");
@@ -672,17 +726,23 @@ public class AutomationApp {
 			}
 		});
 
-		// Conditions to check when app is launched //
+		// Things to do on launch //
+        runDeviceWorker.apply(null);
+
+        if (IOSCheckBox.isSelected()) {
+            DeviceReader.IOSOverride = true;
+        }
+
 		if (System.getProperty("os.name").toLowerCase().contains("win")) {
 			IOSCheckBox.setEnabled(false);
 		}
 		
 		if (Settings.appSettings.getProperty("address") != null) {
-			com.cyberdust.automation.elements.Drivers.appiumServerAddress = Settings.appSettings.getProperty("address");
+			Drivers.appiumServerAddress = Settings.appSettings.getProperty("address");
 		}
 		
 		if (Settings.appSettings.getProperty("port") != null) {
-			com.cyberdust.automation.elements.Drivers.appiumServerPort = Settings.appSettings.getProperty("port");
+			Drivers.appiumServerPort = Settings.appSettings.getProperty("port");
 		}
 		
 		if (Settings.appSettings.getProperty("accountset") != null) {

@@ -7,19 +7,9 @@ public class Android_MyBlastsTest extends AndroidElements {
 	
 	LoginWith loginAs = new LoginWith();
 	
-	public void swipeThroughBlasts() throws Exception {
-		screenshot_button().click();
-		Thread.sleep(1000);
-		driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 300);
-		Thread.sleep(1000);
-		driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 300);
-		Thread.sleep(1000);
-		driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 300);
-	}
-	
 	public void test01_send_text_blast() throws Exception {
 		loginAs.user(myblasts_account01, myblasts_password01);
-		log("Sending text blast to myblasts_account02");
+		log("Sending text blast to myblasts test account02");
 		blasts_tab().click();
 		action_menu().click();
 		action_menu_text().click();
@@ -31,7 +21,7 @@ public class Android_MyBlastsTest extends AndroidElements {
 	}
 	
 	public void test02_send_photo_blast() throws Exception {
-		log("Sending photo blast to myblasts_account02");
+		log("Sending photo blast to myblasts test account02");
 		action_menu().click();
 		action_menu_media().click();
 		photo_button().click();
@@ -64,21 +54,11 @@ public class Android_MyBlastsTest extends AndroidElements {
 		log("Viewing blasts from homepage");
 		blasts_tab().click();
 		Thread.sleep(1000);
-
 		driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 300);
 		Thread.sleep(1000);
 		driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 300);
 		Thread.sleep(1000);
 		driver.swipe(20, screenHeight / 2, screenWidth - 20, screenHeight / 2, 300);
-		Thread.sleep(1000);
-		driver.swipe(20, screenHeight / 2, screenWidth - 20, screenHeight / 2, 300);
-		Thread.sleep(1000);
-		
-		dusts_tab().click();
-		blasts_tab().click();
-		Thread.sleep(1000);
-
-		driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 300);
 		Thread.sleep(1000);
 		driver.swipe(20, screenHeight / 2, screenWidth - 20, screenHeight / 2, 300);
 		Thread.sleep(1000);
@@ -89,7 +69,15 @@ public class Android_MyBlastsTest extends AndroidElements {
 		homepage_profile_picture().click();
 		profile_blast_image();
 		action().press((int)(screenWidth/10*2.08), (int)(screenHeight/10*8.45)).release().perform();
-		swipeThroughBlasts();
+		screenshot_button().click();
+		Thread.sleep(1000);
+		driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 300);
+		Thread.sleep(1000);
+		driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 300);
+		Thread.sleep(1000);
+        driver.swipe(20, screenHeight / 2, screenWidth - 20, screenHeight / 2, 300);
+        Thread.sleep(1000);
+        aDriver().pressKeyCode(4);
 		username(myblasts_account01).click();
 	}
 	
@@ -98,7 +86,13 @@ public class Android_MyBlastsTest extends AndroidElements {
 		blasts_tab();
 		driver.swipe((screenWidth/10), (screenHeight/10*5), (screenWidth/10*8), (screenHeight/10*5), 300);
 		username(myblasts_account01).click();
-		swipeThroughBlasts();
+        Thread.sleep(1000);
+        driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 300);
+        Thread.sleep(1000);
+        driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 300);
+        screenshot_button().click();
+        Thread.sleep(1000);
+        driver.swipe(screenWidth - 20, screenHeight / 2, 20, screenHeight / 2, 300);
 	}
 	
 	public void test07_check_views_and_screenshots() throws Exception {
@@ -148,20 +142,20 @@ public class Android_MyBlastsTest extends AndroidElements {
 		
 		try {
 			if (my_blasts_views("3").isDisplayed()) {
-				log("Correct view count on individual blast");
+				log("Correct view count on text blast");
 			}
 		} catch (Exception e) {
-			log("[Warning] Incorrect view count on individual blast");
+			log("[Warning] Incorrect view count on text blast");
 		}
 		
 		try {
 			if (my_blasts_screenshots("1").isDisplayed()) {
-				log("Correct screenshot count on individual blast");
+				log("Correct screenshot count on text blast");
 				Thread.sleep(1000);
 				my_blasts_screenshots("1").click();
 			}
 		} catch (Exception e) {
-			log("[Warning] Incorrect screenshot count on individual blast");
+			log("[Warning] Incorrect screenshot count on text blast");
 		}
 		
 		try {
@@ -174,25 +168,24 @@ public class Android_MyBlastsTest extends AndroidElements {
 		
 		swipe_view_exit().click();
 		swipe_view_exit().click();
-		
 		my_blasts_views("4").click();
 		
 		try {
 			if (my_blasts_views("4").isDisplayed()) {
-				log("Correct view count on individual blast");
+				log("Correct view count on photo blast");
 			}
 		} catch (Exception e) {
-			log("[Warning] Incorrect view count on individual blast");
+			log("[Warning] Incorrect view count on photo blast");
 		}
 		
 		try {
 			if (my_blasts_screenshots("0").isDisplayed()) {
-				log("Correct screenshot count on individual blast");
+				log("Correct screenshot count on photo blast");
 				Thread.sleep(1000);
 				my_blasts_screenshots("0").click();
 			}
 		} catch (Exception e) {
-			log("[Warning] Incorrect screenshot count on individual blast");
+			log("[Warning] Incorrect screenshot count on photo blast");
 		}
 		
 		try {
@@ -210,20 +203,20 @@ public class Android_MyBlastsTest extends AndroidElements {
 		
 		try {
 			if (my_blasts_views("5").isDisplayed()) {
-				log("Correct view count on individual blast");
+				log("Correct view count on video blast");
 			}
 		} catch (Exception e) {
-			log("[Warning] Incorrect view count on individual blast");
+			log("[Warning] Incorrect view count on video blast");
 		}
 		
 		try {
 			if (my_blasts_screenshots("1").isDisplayed()) {
-				log("Correct screenshot count on individual blast");
+				log("Correct screenshot count on video blast");
 				Thread.sleep(1000);
 				my_blasts_screenshots("1").click();
 			}
 		} catch (Exception e) {
-			log("[Warning] Incorrect screenshot count on individual blast");
+			log("[Warning] Incorrect screenshot count on video blast");
 		}
 		
 		try {

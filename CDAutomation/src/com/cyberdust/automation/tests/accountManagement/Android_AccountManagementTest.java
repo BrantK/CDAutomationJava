@@ -14,7 +14,7 @@ public class Android_AccountManagementTest extends AndroidElements {
 		// Changes password
 		log("Changing password");
 		more_button().click();
-		action().press(followers()).moveTo(build_a_following()).release().perform();
+        driver.swipe(screenWidth/2, screenHeight/2, screenWidth/2, screenHeight/4, 200);
 		account_settings().click();
 		change_password().click();
 		enter_old_password().click();
@@ -63,9 +63,15 @@ public class Android_AccountManagementTest extends AndroidElements {
 		log("Deleting account");
 		delete_account().click();
         log("Clicked delete account");
-        Thread.sleep(5000);
-		yes_button().click();
 
+        try {
+            waitTime(2);
+            yes_button().click();
+        } catch (Exception e) {
+            aDriver().pressKeyCode(4);
+            delete_account().click();
+            yes_button().click();
+        }
 
 			login_button().click();
 			login_username().sendKeys(acctmgnt_account01);
@@ -75,13 +81,14 @@ public class Android_AccountManagementTest extends AndroidElements {
         try {
 			if(login_OK().isDisplayed()) {
                 log("Could not log into deleted account");
-                relaunch();
+                aDriver().pressKeyCode(4);
             }
 		} catch (Exception e) {
 			log("[Warning] logged into deleted account!");
 			
 			more_button().click(); Thread.sleep(1000);
-	        action().press(followers()).moveTo(build_a_following()).release().perform();
+            driver.swipe(screenWidth/2, screenHeight/2, screenWidth/2, screenHeight/4, 200);
+            account_settings().click();
 	        delete_account().click();
 	        log("Deleting account again");
 	        confirm().click();
@@ -89,13 +96,10 @@ public class Android_AccountManagementTest extends AndroidElements {
 
 		// Recreating the account
 		log("Recreating account");
-
-		String account_name = "acctmgnt_account01";
-		String account_pw = "acctmgnt_password01";
 		sign_up_button().click();
-		pick_username().sendKeys(account_name);
+		pick_username().sendKeys(acctmgnt_account01);
 		username_confirm().click();
-		create_password().sendKeys(account_pw);
+		create_password().sendKeys(acctmgnt_password01);
 		password_confirm().click();
 		birthday_confirm().click();
 
@@ -103,7 +107,6 @@ public class Android_AccountManagementTest extends AndroidElements {
 		skip_button().click();
 
 		// Skips remaining on boarding
-		skip_button().click();
-
+		relaunch();
 	}
 }

@@ -47,37 +47,19 @@ class Android_SignUpTest extends AndroidElements {
     }
 
     void test03_sign_up2() throws Exception {
-        waitTime(2);
+        // Skips rest of on boarding
+        birthday_confirm().click();
+        skip_button().click();
+        Thread.sleep(1000);
+        relaunch();
 
         try {
-            if (birthday_confirm().isDisplayed()) {
-                birthday_confirm().click();
-                waitTime(20);
+            action_menu();
+            waitTime(1);
+            if (name("ALLOW").isDisplayed()) {
+                name("ALLOW").click();
             }
-        } catch (Exception e) {
-            skip_button().click();
-        }
-
-        try {
-            if (skip_button().isDisplayed()) {
-                skip_button().click();
-            }
-        } catch (Exception e) {
-            birthday_confirm().click();
-            waitTime(20);
-        }
-
-
-        try {
-            if (skip_button().isDisplayed()) {
-                skip_button().click();
-            }
-        } catch (Exception e) {
-            birthday_confirm().click();
-            waitTime(20);
-        }
-
-        tutorial_close().click();
+        } catch (Exception ignored) {}
 	}
 	
     void test04_update_profile_pic() throws Exception {

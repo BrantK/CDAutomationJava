@@ -4,14 +4,23 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class DeviceReader {
-	
-	public static boolean IOSDevice;
-	public static boolean AndroidDevice;
-	public static String IOS_UDID;
+
+    public static boolean runningIOSSimulator;
+    public static boolean runningAndroidDevice;
+    public static boolean runningIOSDevice;
+    public static boolean IOSOverride;
+    public static String connectedDevice;
+    public static String IOS_UDID;
 	
 	public void checkDevice () throws Exception {
+        boolean connectedIOS = false;
+        boolean connectedAndroid = false;
 		String output;
-		
+
+        runningIOSSimulator = false;
+        runningAndroidDevice = false;
+        runningIOSDevice = false;
+
 		ProcessBuilder processBuilder = new ProcessBuilder("system_profiler", "SPUSBDataType");
 		Process process = processBuilder.start();
 		BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -23,28 +32,45 @@ public class DeviceReader {
 			}
 			
 			if (output.toLowerCase().contains("iphone")) {
-				IOSDevice = true;
-				AndroidDevice = false;
+				connectedIOS = true;
 			}
 			
 			if (output.toLowerCase().contains("android")) {
-				AndroidDevice = true;
-				IOSDevice = false;
+				connectedAndroid = true;
 			}
-			
 		}
 		
 		processBuilder = new ProcessBuilder(System.getenv("ANDROID_HOME")+"/platform-tools/adb", "devices");
 		process = processBuilder.start();
 		stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
 		
-		if (!IOSDevice && !AndroidDevice) {
+		if (!connectedIOS && !connectedAndroid) {
 			while ((output = stdInput.readLine()) != null) {
 				if (!output.contains("List of devices attached") && !output.isEmpty()) {
-					AndroidDevice = true;
-					IOSDevice = false;
+					connectedAndroid = true;
+					connectedIOS = false;
 				}
 			}
 		}
-	}
+
+        if (System.getProperty("os.name").toLowerCase().contains("win")) {
+            runningAndroidDevice = true;
+            connectedDevice = "Android";
+        }
+
+		if ((IOSOverride && (connectedIOS || connectedAndroid)) || (!connectedIOS && !connectedAndroid)) {
+            runningIOSSimulator = true;
+            connectedDevice = "iOS Simulator";
+		}
+
+        if (!IOSOverride && connectedIOS && !connectedAndroid) {
+            runningIOSDevice = true;
+            connectedDevice = "iPhone";
+        }
+
+        if (!IOSOverride && connectedAndroid) {
+            runningAndroidDevice = true;
+            connectedDevice = "Android";
+        }
+    }
 }

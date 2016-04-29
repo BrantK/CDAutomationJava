@@ -22,51 +22,41 @@ import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
 
 public abstract class Drivers extends TestAccounts {
-	
-	public static AppiumDriver <WebElement> driver;
+
+    private static AppiumDriverLocalService service = AppiumDriverLocalService.buildDefaultService();
 	private static DesiredCapabilities capabilities = new DesiredCapabilities();
+    public static AppiumDriver <WebElement> driver;
 	public static String appiumServerAddress = "127.0.0.1";
 	public static String appiumServerPort = "4723";
-	
+
 	public WebDriverWait wait = new WebDriverWait(driver, 20);
 	public int screenWidth = driver.manage().window().getSize().getWidth();
 	public int screenHeight = driver.manage().window().getSize().getHeight();
+    public static boolean ranSetup = false;
     protected static boolean IOSSimulator = false;
-	public static boolean IOSEnabled = false;
-	
-	@BeforeClass
-	public static void setUp() throws Exception {
-		DeviceReader.AndroidDevice = false;
-		DeviceReader.IOSDevice = false;
+
+    static void initialSetup() throws Exception {
+        ranSetup = true;
         IOSSimulator = false;
-		resetCapabilities();
-		
-		if (System.getProperty("os.name").toLowerCase().contains("mac")) {
-			new VariableCheck().environmentVariable();
-			new DeviceReader().checkDevice();
-			new AppPath().findApp();
-		}
-		
-		if (System.getProperty("os.name").toLowerCase().contains("win")) {
-			DeviceReader.AndroidDevice = true;
-		}
+        resetCapabilities();
+
+        if (System.getProperty("os.name").toLowerCase().contains("mac")) {
+            new VariableCheck().environmentVariable();
+            new DeviceReader().checkDevice();
+            new AppPath().findApp();
+        }
+
+        System.out.println("\n------ Starting Appium Server ------");
+        service = AppiumDriverLocalService.buildService(new AppiumServiceBuilder()
+                        .withAppiumJS(new File("/usr/local/lib/node_modules/appium/build/lib/main.js"))
+                        .withArgument(GeneralServerFlag.LOG_NO_COLORS)
+                        .withArgument(GeneralServerFlag.LOG_LEVEL, "info")
+                        .withIPAddress(appiumServerAddress)
+                        .usingPort(Integer.parseInt(appiumServerPort)));
+        service.start();
 
         try {
-            AppiumDriverLocalService service = AppiumDriverLocalService
-                    .buildService(new AppiumServiceBuilder()
-                            .withAppiumJS(new File("/usr/local/lib/node_modules/appium/build/lib/main.js"))
-                            .withArgument(GeneralServerFlag.LOG_NO_COLORS)
-							.withArgument(GeneralServerFlag.LOG_LEVEL, "info")
-                            .withIPAddress(appiumServerAddress)
-                            .usingPort(Integer.parseInt(appiumServerPort)));
-
-            if ((IOSEnabled && (DeviceReader.IOSDevice || DeviceReader.AndroidDevice)) || (!DeviceReader.IOSDevice && !DeviceReader.AndroidDevice)) {
-                if (IOSEnabled) {
-                    System.out.println("Using iOS simulator");
-                } else {
-                    System.out.println("No devices detected, using iOS simulator");
-                }
-
+            if (DeviceReader.runningIOSSimulator) {
                 IOSSimulator = true;
                 capabilities.setCapability("platformName", "IOS");
                 capabilities.setCapability("platformVersion", "");
@@ -75,12 +65,10 @@ public abstract class Drivers extends TestAccounts {
                 capabilities.setCapability("nativeInstrumentsLib", true);
                 capabilities.setCapability("bundleId", "com.mentionmobile.cyberdust");
                 capabilities.setCapability("app", AppPath.localAppPath);
-                System.out.println("\n------ Starting Appium Server ------");
-                driver = new IOSDriver<>(service, capabilities);
+                driver = new IOSDriver<>(service.getUrl(), capabilities);
             }
 
-            if (!IOSEnabled && DeviceReader.IOSDevice && !DeviceReader.AndroidDevice) {
-                System.out.println("iOS device detected");
+            if (DeviceReader.runningIOSDevice) {
                 capabilities.setCapability("platformName", "IOS");
                 capabilities.setCapability("platformVersion", "");
                 capabilities.setCapability("deviceName", "iPhone");
@@ -88,37 +76,41 @@ public abstract class Drivers extends TestAccounts {
                 capabilities.setCapability("nativeInstrumentsLib", true);
                 capabilities.setCapability("bundleId", "com.mentionmobile.cyberdust");
                 capabilities.setCapability("udid", DeviceReader.IOS_UDID);
-                System.out.println("\n------ Starting Appium Server ------");
-                driver = new IOSDriver<>(service, capabilities);
+                driver = new IOSDriver<>(service.getUrl(), capabilities);
             }
 
-            if (!IOSEnabled && DeviceReader.AndroidDevice) {
-                System.out.println("Android device detected");
+            if (DeviceReader.runningAndroidDevice) {
                 capabilities.setCapability("platformName", "Android");
                 capabilities.setCapability("platformVersion", "");
                 capabilities.setCapability("deviceName", "Android");
                 capabilities.setCapability("noReset", true);
                 capabilities.setCapability("appPackage", "com.radicalapps.cyberdust");
                 capabilities.setCapability("appActivity", "com.radicalapps.cyberdust.activities.LauncherActivity");
-                System.out.println("\n------ Starting Appium Server ------");
-                driver = new AndroidDriver<>(service, capabilities);
+                driver = new AndroidDriver<>(service.getUrl(), capabilities);
             }
 
         } catch (UnreachableBrowserException e) {
             System.out.println("Browser unreachable, restarting server...");
             setUp();
         } catch (SessionNotCreatedException e) {
-            System.out.println("Appium server already running, trying a different port...\n");
-            appiumServerPort += 5;
+            appiumServerPort = String.valueOf(Integer.parseInt(appiumServerPort) + 5);
+            System.out.println("[Appium] Server already running, trying port "+appiumServerPort+"\n");
             setUp();
         } catch (Exception e) {
             e.printStackTrace();
         }
-	}
+    }
 	
-	@AfterClass
+	@BeforeClass
+	public static void setUp() throws Exception {
+        if (!ranSetup) {
+            initialSetup();
+        }
+	}
+
 	public static void tearDown() {
-		driver.quit();
+        driver.quit();
+        service.stop();
 	}
 	
 	// Resets capabilities to default
@@ -167,7 +159,8 @@ public abstract class Drivers extends TestAccounts {
 	}
 	
 	// Prints text to console and to a log file in the project folder / test logs folder
-	public void log(String text) {
+	@SuppressWarnings("ResultOfMethodCallIgnored")
+    public void log(String text) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yy HH:mm:ss");
 		String projectPath = Paths.get("").toAbsolutePath().normalize().toString();
 		String logLocation;
@@ -184,27 +177,19 @@ public abstract class Drivers extends TestAccounts {
 			logLocation = projectPath+"\\testlogs\\"+logName+".log";
 		}
 
-		if (text.contains("org.openqa.selenium.remote.SessionNotFoundException")) {
-			System.err.print("Test Stopped" + "\n");	
-		} 
-		
-		if (!text.contains("org.openqa.selenium.remote.SessionNotFoundException")) {
-			if (text.toLowerCase().contains("fail") || text.toLowerCase().contains("exception") 
-					|| text.toLowerCase().contains("warning") || text.toLowerCase().contains("error")) {
-				System.err.print(dateTime + testName + text + "\n");
-			
-			} else {
-				System.out.print(dateTime + testName + text + "\n");
-			}
-		}
+        if (text.toLowerCase().contains("fail") || text.toLowerCase().contains("exception")
+                || text.toLowerCase().contains("warning") || text.toLowerCase().contains("error")) {
+            System.err.print(dateTime + testName + text + "\n");
+        } else {
+            System.out.print(dateTime + testName + text + "\n");
+        }
 		
 		try {
 			FileWriter myWriter = new FileWriter(logLocation, true);
-			
-			if (!text.contains("org.openqa.selenium.remote.SessionNotFoundException")) {
-				myWriter.append(dateTime + testName + text + "\n");
-			}
-			
+            myWriter.append(dateTime);
+            myWriter.append(testName);
+            myWriter.append(text);
+            myWriter.append("\n");
 			myWriter.close();
 		} catch (Exception e) {
 			e.printStackTrace();
