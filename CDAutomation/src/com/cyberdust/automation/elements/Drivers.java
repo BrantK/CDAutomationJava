@@ -177,14 +177,9 @@ public abstract class Drivers extends TestAccounts {
 			logLocation = projectPath+"\\testlogs\\"+logName+".log";
 		}
 
-		if (text.contains("org.openqa.selenium.remote.SessionNotFoundException")) {
-			System.err.print("Test Stopped" + "\n");	
-		} 
-
         if (text.toLowerCase().contains("fail") || text.toLowerCase().contains("exception")
                 || text.toLowerCase().contains("warning") || text.toLowerCase().contains("error")) {
             System.err.print(dateTime + testName + text + "\n");
-
         } else {
             System.out.print(dateTime + testName + text + "\n");
         }
