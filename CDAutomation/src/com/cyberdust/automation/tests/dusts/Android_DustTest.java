@@ -19,8 +19,7 @@ public class Android_DustTest extends AndroidElements {
 		action_menu().click();
 		action_menu_dust().click();
 		Thread.sleep(5000);
-		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(dusts_account02)));
-		first_friend.click();
+		name(dusts_account02).click();
 		chat_room_text_box().click();
 		chat_room_text_box().sendKeys(text_message);
 		chat_room_send_button().click();
@@ -41,8 +40,7 @@ public class Android_DustTest extends AndroidElements {
 		back_button().click();
 		back_button().click();
 		dusts_tab().click();
-		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(dusts_account02)));
-		first_friend.click();
+		name(dusts_account02).click();
 		chat_room_text_box().click();
 		chat_room_text_box().sendKeys(text_message);
 		chat_room_send_button().click();
@@ -77,8 +75,7 @@ public class Android_DustTest extends AndroidElements {
 		
 		friends_search().click();
 		friends_search().sendKeys(dusts_account02.substring(0, dusts_account02.length()-1));
-		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(dusts_account02)));
-		first_friend.click();
+		name(dusts_account02).click();
 		chat_room_text_box().click();
 		chat_room_text_box().sendKeys(text_message);
 		chat_room_send_button().click();
@@ -117,8 +114,7 @@ public class Android_DustTest extends AndroidElements {
 		
 		friends_search().click();
 		friends_search().sendKeys(dusts_account02.substring(0, dusts_account02.length()-1));
-		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(dusts_account02)));
-		first_friend.click();
+		name(dusts_account02).click();
 		chat_room_text_box().click();
 		chat_room_text_box().sendKeys(text_message);
 		chat_room_send_button().click();
@@ -150,8 +146,7 @@ public class Android_DustTest extends AndroidElements {
 		back_button().click();
 		friends().click();
 		friends_list_search().sendKeys(dusts_account02.substring(0, dusts_account02.length()-1));
-		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(dusts_account02)));
-		first_friend.click();
+		name(dusts_account02).click();
 		chat_room_text_box().click();
 		chat_room_text_box().sendKeys(text_message);
 		chat_room_send_button().click();
@@ -184,8 +179,7 @@ public class Android_DustTest extends AndroidElements {
 		more_button().click();
 		friends().click();
 		friends_list_search().sendKeys(dusts_account02.substring(0, dusts_account02.length()-1));
-		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(dusts_account02)));
-		first_friend.click();
+		name(dusts_account02).click();
 		chat_room_text_box().click();
 		chat_room_text_box().sendKeys(text_message);
 		chat_room_send_button().click();
@@ -214,8 +208,7 @@ public class Android_DustTest extends AndroidElements {
 		back_button().click();
 		more_button().click();
 		friends().click();
-		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(dusts_account02)));
-		first_friend.click();
+		name(dusts_account02).click();
 		chat_room_text_box().click();
 		chat_room_text_box().sendKeys(text_message);
 		chat_room_send_button().click();
@@ -249,8 +242,6 @@ public class Android_DustTest extends AndroidElements {
 		friends().click();
 		friends_list_search().click();
 		friends_list_search().sendKeys(dusts_account02.substring(0, dusts_account02.length()-1));
-		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(dusts_account02)));
-		first_friend.click();
 		chat_room_text_box().click();
 		chat_room_text_box().sendKeys(text_message);
 		chat_room_send_button().click();
