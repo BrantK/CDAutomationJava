@@ -12,6 +12,8 @@ public class Android_MessagePinningTest extends AndroidElements {
 	String text_message = "cyberdust.com";
 	
 	LoginWith loginAs = new LoginWith();
+	WebElement first_friend = name(pin_account02);
+
 
 	public void test01_pinning_messages() throws Exception {
 
@@ -30,8 +32,7 @@ public class Android_MessagePinningTest extends AndroidElements {
 		action_menu().click();
 		action_menu_dust().click();
 		Thread.sleep(5000);
-		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(pin_account02)));
-	
+
 		first_friend.click();
 		chat_room_text_box().click();
 		chat_room_text_box().sendKeys(text_message);
@@ -60,8 +61,9 @@ public class Android_MessagePinningTest extends AndroidElements {
 	{
 			
 		back_button().click();
-	
+		first_friend.click();
 		try {
+			Thread.sleep(1000);
 			if (pinned_message().isDisplayed()) {
 				log("Message has not disappeared");
 			}
@@ -69,7 +71,7 @@ public class Android_MessagePinningTest extends AndroidElements {
 			log("[Warning] Message has disappeared");
 		}
 		log("Checking if new messages appear below pinned messages");
-		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(pin_account02)));
+		WebElement first_friend = name(pin_account02);
 	
 		first_friend.click();
 		chat_room_text_box().sendKeys(text_message);
@@ -87,8 +89,7 @@ public class Android_MessagePinningTest extends AndroidElements {
 			log("New Messages appear below pinned message");
 		}
 		back_button().click();
-		//WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(friend_username)));
-	
+
 		first_friend.click();
 		tap_to_unpin_button().click();
 		
