@@ -1,9 +1,5 @@
 package com.cyberdust.automation.tests.dusts;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
 import com.cyberdust.automation.elements.AndroidElements;
 import com.cyberdust.automation.elements.LoginWith;
 
@@ -69,7 +65,7 @@ public class Android_DustTest extends AndroidElements {
 
 		back_button().click();
 		more_button().click();
-		action().press(share_twitter()).moveTo(enter_bio()).release().perform();
+		driver.swipe(screenWidth/2, screenHeight/2, screenWidth/2, screenHeight/3, 200);
 		add_friends().click();
 		add_friends_search_button_text().click();
 		
@@ -108,7 +104,7 @@ public class Android_DustTest extends AndroidElements {
 		remove_dustroom();
 		
 		more_button().click();
-		action().press(share_twitter()).moveTo(enter_bio()).release().perform();
+		driver.swipe(screenWidth/2, screenHeight/2, screenWidth/2, screenHeight/3, 200);
 		add_friends().click();
 		add_friends_search_button_text().click();
 		
@@ -175,8 +171,8 @@ public class Android_DustTest extends AndroidElements {
 
 		back_button().click();
 		remove_dustroom();
-		blasts_tab().click();
 		more_button().click();
+		driver.swipe(screenWidth/2, screenHeight/2, screenWidth/2, screenHeight/3, 200);
 		friends().click();
 		friends_list_search().sendKeys(dusts_account02.substring(0, dusts_account02.length()-1));
 		name(dusts_account02).click();
@@ -207,6 +203,7 @@ public class Android_DustTest extends AndroidElements {
 		back_button().click();
 		back_button().click();
 		more_button().click();
+        driver.swipe(screenWidth/2, screenHeight/2, screenWidth/2, screenHeight/3, 200);
 		friends().click();
 		name(dusts_account02).click();
 		chat_room_text_box().click();
@@ -239,9 +236,11 @@ public class Android_DustTest extends AndroidElements {
 		remove_dustroom();
 		blasts_tab();
 		more_button().click();
+        driver.swipe(screenWidth/2, screenHeight/2, screenWidth/2, screenHeight/3, 200);
 		friends().click();
 		friends_list_search().click();
 		friends_list_search().sendKeys(dusts_account02.substring(0, dusts_account02.length()-1));
+        name(dusts_account02).click();
 		chat_room_text_box().click();
 		chat_room_text_box().sendKeys(text_message);
 		chat_room_send_button().click();
