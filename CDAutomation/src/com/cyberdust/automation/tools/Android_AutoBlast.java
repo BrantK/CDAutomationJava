@@ -4,7 +4,7 @@ import com.cyberdust.automation.elements.AndroidElements;
 import io.appium.java_client.TouchAction;
 import org.junit.*;
 
-public class AutoBlast extends AndroidElements {
+public class Android_AutoBlast extends AndroidElements {
 	String blast_recipient = "bktest01";
 	String blast_type = "text, photo";  // Use photo, video, text, or a combination of the 3
 	String blast_text = "Test";  // Only works for text blasts
