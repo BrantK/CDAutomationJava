@@ -44,7 +44,7 @@ public class AndroidCamera extends AndroidElements {
 
         try {
         	Thread.sleep(500);
-        	driver.findElementByName("Save").click();  // For Galaxy Note 3
+        	name("Save").click();  // For Galaxy Note 3
         } catch (Exception ignored) {}
 
         try {

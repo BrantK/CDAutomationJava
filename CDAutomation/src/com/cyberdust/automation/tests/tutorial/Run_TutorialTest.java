@@ -62,10 +62,10 @@ public class Run_TutorialTest extends Drivers {
 			throw e;
 		}
 	}
+	@Test
 	public void test04_Learn_to_dust() throws Exception {
 		try {
 			log("Test04 Learn to dust");
-
 			if (Android()) {
 				new Android_TutorialTest().test04_Learn_to_dust();
 			} else if (IOS()) {
