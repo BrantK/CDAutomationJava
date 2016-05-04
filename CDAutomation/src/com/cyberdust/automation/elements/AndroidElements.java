@@ -592,11 +592,9 @@ public class AndroidElements extends Drivers {
     public WebElement friends() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/browse_friends_row")));
     }
-
 	public WebElement find_friends() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/add_friends_button_text")));
 	}
-
     public WebElement friend_profile_picture() {
     	return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/chat_friend_listitem_icon")));
     }
@@ -754,10 +752,6 @@ public class AndroidElements extends Drivers {
     public WebElement email() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/onboarding_4_email_edit_text")));
     }
-    public WebElement sign_up_profile_pic() {
-    	return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/onboarding_screen_4_1_profile_pic_layout")));
-	}
-
 	public WebElement email_OK() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/onboarding_4_ok_button")));
     }
@@ -767,6 +761,9 @@ public class AndroidElements extends Drivers {
     public WebElement date() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.NumberPicker[@index='2'][android.widget.Button]")));
     }
+	public WebElement phone_continue() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/dgts__sendCodeButton")));
+	}
     public WebElement tutorial_close() {
     	return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tutorial_close_button")));
     }
