@@ -763,12 +763,10 @@ public class IOSElements extends Drivers {
     public WebElement tutorial_close() {
     	return wait.until(ExpectedConditions.elementToBeClickable(By.id("onboardingDownButton")));
     }
-
 	public WebElement back_button() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("back arrow red btn")));
 	}
-	public WebElement blast_more_button(){
-		return wait.until(ExpectedConditions.elementToBeClickable(By.id("back arrow red btn")));
+	public WebElement phone_continue(){
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
 	}
-
 }
