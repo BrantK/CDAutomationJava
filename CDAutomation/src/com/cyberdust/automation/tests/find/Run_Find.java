@@ -11,7 +11,7 @@ public class Run_Find extends Drivers {
         @Test
         public void test01_followChatter() throws Exception {
             try {
-                log("Starting test - ");
+                log("- Starting test01 -");
 
                 if (Android()) {
                     new Android_Find().test01_followChatter();
@@ -28,7 +28,7 @@ public class Run_Find extends Drivers {
         @Test
         public void test02_chatter_categories() throws Exception {
             try {
-                log("Starting test - ");
+                log("- Starting test02 -");
 
                 if (Android()) {
                     new Android_Find().test02_follow_publisher();
@@ -46,7 +46,7 @@ public class Run_Find extends Drivers {
 	@Test
 	public void test03_category_titles () throws Exception {
 		try {
-			log("Starting test - ");
+			log("- Starting test03 -");
 			
 			if (Android()) {
 				new Android_Find().test03_category_titles();
@@ -64,7 +64,7 @@ public class Run_Find extends Drivers {
 	@Test
 	public void test04_build_a_following() throws Exception {
 		try {
-			log("Starting test - ");
+			log("- Starting test04 -");
 			
 			if (Android()) {
 				new Android_Find().test04_build_a_following();
@@ -82,7 +82,7 @@ public class Run_Find extends Drivers {
 	@Test
 	public void test05_searchbar() throws Exception {
 		try {
-			log("Starting test - ");
+			log("- Starting test05 -");
 			
 			if (Android()) {
 				new Android_Find().test05_searchbar();
