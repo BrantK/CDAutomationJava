@@ -2,6 +2,7 @@ package com.cyberdust.automation.tests.accountManagement;
 
 import com.cyberdust.automation.elements.AndroidElements;
 import com.cyberdust.automation.elements.LoginWith;
+import com.cyberdust.automation.tools.AccountCreator;
 
 public class Android_AccountManagementTest extends AndroidElements {
 
@@ -95,18 +96,6 @@ public class Android_AccountManagementTest extends AndroidElements {
 		}
 
 		// Recreating the account
-		log("Recreating account");
-		sign_up_button().click();
-		pick_username().sendKeys(acctmgnt_account01);
-		username_confirm().click();
-		create_password().sendKeys(acctmgnt_password01);
-		password_confirm().click();
-		birthday_confirm().click();
-
-		// Skips email
-		skip_button().click();
-
-		// Skips remaining on boarding
-		relaunch();
+		new AccountCreator().signUp(acctmgnt_account01, acctmgnt_password01);
 	}
 }
