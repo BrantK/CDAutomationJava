@@ -39,7 +39,7 @@ public class AndroidCamera extends AndroidElements {
 
         try {
         	Thread.sleep(500);
-        	driver.findElementByName("OK").click();  // For Galaxy Note 4
+        	name("OK").click();  // For Galaxy Note 4
         } catch (Exception ignored) {}
 
         try {

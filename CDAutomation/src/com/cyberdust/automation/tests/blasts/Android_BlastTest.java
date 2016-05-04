@@ -224,7 +224,7 @@ class Android_BlastTest extends AndroidElements {
 		action().longPress(photo_button(), 5000).release().perform();
 		swipe_view_photo_send().click();
 
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         driver.swipe((screenWidth-20), (screenHeight/2), (20), (screenHeight/2), 300);
 	}
 
@@ -236,7 +236,7 @@ class Android_BlastTest extends AndroidElements {
                 log("Video loaded successfully");
             }
         } catch (Exception e) {
-            log("Video did not load");
+            log("[Warning] Video did not load");
         }
 
         swipe_view_text().click();
@@ -246,13 +246,12 @@ class Android_BlastTest extends AndroidElements {
             if (profile_follow_button().isDisplayed()) {
                 log ("+username tapped and profile opened");
             }
+			close_profile().click();
         } catch (Exception e) {
-            log ("[Warning] +username did not open profile!");
+            log ("[Warning] could not open profile!");
         }
 
-        action().press(screenWidth/10*2, screenHeight/10*2).release().perform();
-
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         driver.swipe((screenWidth-20), (screenHeight/2), (20), (screenHeight/2), 300);
 
         // Opens video with URL
@@ -273,7 +272,7 @@ class Android_BlastTest extends AndroidElements {
                 log("Giphy loaded successfully");
             }
         } catch (Exception e) {
-            log("Giphy was not found");
+            log("[Warning] Giphy was not found");
         }
         Thread.sleep(1000);
         driver.swipe((screenWidth-20), (screenHeight/2), (20), (screenHeight/2), 300);
@@ -284,7 +283,7 @@ class Android_BlastTest extends AndroidElements {
         try {
             Thread.sleep(4000);
             if (driver.findElementById("com.radicalapps.cyberdust:id/page_frag_reblast").isDisplayed()) {
-                log("Able to reblast non public blast");
+                log("[Warning] Able to reblast non public blast");
             }
         } catch (Exception e) {
             log("Not able to reblast non public blast");
@@ -296,11 +295,10 @@ class Android_BlastTest extends AndroidElements {
             if (profile_follow_button().isDisplayed()) {
                 log ("+username tapped and profile opened");
             }
+            close_profile().click();
         } catch (Exception e) {
             log ("[Warning] +username did not open profile!");
         }
-
-        close_profile().click();
 
         Thread.sleep(1000);
         driver.swipe((screenWidth-20), (screenHeight/2), (20), (screenHeight/2), 300);
@@ -314,7 +312,7 @@ class Android_BlastTest extends AndroidElements {
                 log("Image loaded successfully");
             }
         } catch (Exception e) {
-            log("Image did not load");
+            log("[Warning] Image did not load");
         }
         swipe_view_text().click();
         Thread.sleep(4000);
@@ -337,13 +335,12 @@ class Android_BlastTest extends AndroidElements {
 			if (profile_follow_button().isDisplayed()) {
 				log ("+username tapped and profile opened");
 			}
+            close_profile().click();
 		} catch (Exception e) {
 			log ("[Warning] +username did not open profile!");
 		}
-		
-		close_profile().click();
-		swipe_view_url_card().click();
 
+		swipe_view_url_card().click();
 		Thread.sleep(4000);
 		back_button().click();
 
