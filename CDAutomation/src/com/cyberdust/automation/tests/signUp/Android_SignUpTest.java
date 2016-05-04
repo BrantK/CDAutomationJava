@@ -4,7 +4,11 @@ import com.cyberdust.automation.elements.AndroidCamera;
 import com.cyberdust.automation.elements.AndroidElements;
 
 class Android_SignUpTest extends AndroidElements {
-	
+    boolean password;
+    boolean birthday;
+    boolean email;
+    boolean phone;
+
 	AndroidCamera androidCamera = new AndroidCamera();
 	
 	void test01_check_logged_out() throws Exception {
@@ -12,7 +16,7 @@ class Android_SignUpTest extends AndroidElements {
 		boolean isLoggedOut;
 		try {
 			log("Checking if logged out");
-			waitTime(8);
+			waitTime(4);
             sign_up_button();
             isLoggedOut = true;
         } catch (Exception e) {
@@ -42,24 +46,29 @@ class Android_SignUpTest extends AndroidElements {
         waitTime(20);
         pick_username().sendKeys(signup_account);
         username_confirm().click();
-        create_password().sendKeys(signup_password);
-        password_confirm().click();
     }
 
     void test03_sign_up2() throws Exception {
-        // Skips rest of on boarding
-        birthday_confirm().click();
-        skip_button().click();
-        Thread.sleep(1000);
-        relaunch();
+        for (int i = 0; i < 3; i++) {
+            dynamicOnBoardingCheck();
+        }
 
         try {
-            action_menu();
-            waitTime(1);
-            if (name("ALLOW").isDisplayed()) {
-                name("ALLOW").click();
+            waitTime(5);
+            dusts_tab().isDisplayed();
+            log("Dusts tab");
+        } catch (Exception e) {
+            dynamicOnBoardingCheck();
+        }
+
+        try {
+            waitTime(2);
+            if (name("Allow").isDisplayed()) {
+                name("Allow").click();
             }
         } catch (Exception ignored) {}
+
+        tutorial_close().click();
 	}
 	
     void test04_update_profile_pic() throws Exception {
@@ -67,6 +76,14 @@ class Android_SignUpTest extends AndroidElements {
         more_button().click();
         profile_picture().click();
         name("Change").click();
+        try {
+            waitTime(1);
+            if (name("Allow").isDisplayed()) {
+                name("Allow").click();
+                name("Allow").click();
+            }
+        } catch (Exception ignored) {}
+        waitTime(10);
         log("Changing profile picture");
         camera_button().click(); Thread.sleep(3000);
         androidCamera.takePhoto();
@@ -141,4 +158,60 @@ class Android_SignUpTest extends AndroidElements {
         log("Deleting account");
         confirm().click();
 	}
+
+    void dynamicOnBoardingCheck() throws Exception {
+        waitTime(1);
+
+        if (!password) {
+            try {
+                create_password().isDisplayed();
+                create_password().sendKeys(signup_password);
+                password_confirm().click();
+                password = true;
+            } catch (Exception ignored) {}
+        }
+
+        if (!birthday) {
+            try {
+                birthday_confirm().click();
+                birthday = true;
+                Thread.sleep(5000);
+            } catch (Exception ignored) {}
+        }
+
+        if (!email) {
+            try {
+                skip_button().click();
+                email = true;
+            } catch (Exception ignored) {}
+        }
+
+        if (!phone) {
+            try {
+                name("Secure account").click();
+                phone_continue();
+                skipPhoneValidation();
+            } catch (Exception ignored) {}
+        }
+
+        if (!phone) {
+            try {
+                phone_continue();
+                skipPhoneValidation();
+                phone = true;
+            } catch (Exception ignored) {}
+        }
+    }
+
+    void skipPhoneValidation () throws Exception {
+        driver.getKeyboard().sendKeys("1");
+        name("Continue").click();
+        Thread.sleep(1000);
+
+        for (int i = 0; i < 4; i++) {
+            action().press(phone_continue().getLocation().x+20, phone_continue().getLocation().y+20).release().perform();
+        }
+
+        name("Dismiss").click();
+    }
 }

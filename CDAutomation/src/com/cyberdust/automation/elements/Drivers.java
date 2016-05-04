@@ -28,8 +28,6 @@ public abstract class Drivers extends TestAccounts {
     public static AppiumDriver <WebElement> driver;
 	public static String appiumServerAddress = "127.0.0.1";
 	public static String appiumServerPort = "4723";
-
-	public WebDriverWait wait = new WebDriverWait(driver, 20);
 	public int screenWidth = driver.manage().window().getSize().getWidth();
 	public int screenHeight = driver.manage().window().getSize().getHeight();
     public static boolean ranSetup = false;
@@ -142,7 +140,7 @@ public abstract class Drivers extends TestAccounts {
 		return (AndroidDriver<WebElement>) driver;
 	}
 	
-	// For calling the iOS driver from other class
+	// For calling the iOS driver from other classes
 	public static IOSDriver<WebElement> iDriver() {
 		return (IOSDriver<WebElement>) driver;
 	}

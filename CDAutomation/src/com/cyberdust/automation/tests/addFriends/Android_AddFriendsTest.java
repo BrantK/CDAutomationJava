@@ -135,8 +135,6 @@ public class Android_AddFriendsTest extends AndroidElements {
 	{
 
 		back_button().click();
-		Thread.sleep(1000);
-        driver.swipe(screenWidth/2, screenHeight/2, screenWidth/2, screenHeight/3, 200);
 		add_friends().click();
 		add_friends_search_button_text().click();
 		friends_search().click();

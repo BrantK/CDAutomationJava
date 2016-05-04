@@ -1,20 +1,13 @@
 package com.cyberdust.automation.tests.find;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
 import com.cyberdust.automation.elements.AndroidCamera;
 import com.cyberdust.automation.elements.AndroidElements;
+import com.cyberdust.automation.tools.AccountCreator;
 
 public class Android_Find extends AndroidElements {
 
 	public void test01_followChatter() throws Exception {
-
-		try {
-			logout();
-		} catch (Exception ignored) {}
-
-		createAccount();
+		new AccountCreator().signUp(find_account01, find_password01);
 		find_tab().click();
 
 		first_chatter_add().click();
@@ -145,8 +138,9 @@ public class Android_Find extends AndroidElements {
 				category_business().click();
 			} catch (Exception ignored) {
 				driver.swipe(100, (featured_people_banner().getLocation()).getY(), 100, 10, 1000);
-				Thread.sleep(300);
+				Thread.sleep(500);
 				driver.swipe(100, (category_path().getLocation()).getY(), 100, 10, 1000);
+                Thread.sleep(500);
 				category_business().click();
 			}
 			Thread.sleep(500);
@@ -173,9 +167,9 @@ public class Android_Find extends AndroidElements {
 		send_button().click();
 		try {
 			Thread.sleep(2000);
-			if (send_button().getAttribute("text").equals("SEND")){}
+			send_button().isDisplayed();
 		} catch (Exception e) {
-			throw new InterruptedException("Submitted blank form with no prof pic");
+			throw new InterruptedException("[Warning] Submitted blank form with no prof pic");
 		}
 
 		select_a_category_button().click();
@@ -185,7 +179,7 @@ public class Android_Find extends AndroidElements {
 		send_button().click();
 		try {
 			Thread.sleep(2000);
-			if (send_button().getAttribute("text").equals("SEND")){}
+			send_button().isDisplayed();
 		} catch (Exception e) {
 			throw new InterruptedException("Submitted form with no description or profile pic.");
 		}
@@ -194,7 +188,7 @@ public class Android_Find extends AndroidElements {
 		send_button().click();
 		try {
 			Thread.sleep(2000);
-			if (send_button().getAttribute("text").equals("SEND")){}
+            send_button().isDisplayed();
 		} catch (Exception e) {
 			throw new InterruptedException("Submitted form with no profile pic or bio.");
 		}
@@ -212,7 +206,7 @@ public class Android_Find extends AndroidElements {
 		send_button().click();
 		try {
 			Thread.sleep(2000);
-			if (send_button().getAttribute("text").equals("SEND")){}
+            send_button().isDisplayed();
 		} catch (Exception e) {
 			throw new InterruptedException("Submitted blank form (has prof pic)");
 		}
@@ -224,7 +218,7 @@ public class Android_Find extends AndroidElements {
 		send_button().click();
 		try {
 			Thread.sleep(2000);
-			if (send_button().getAttribute("text").equals("SEND")){}
+            send_button().isDisplayed();
 		} catch (Exception e) {
 			throw new InterruptedException("Submitted form with no description (has prof pic).");
 		}
@@ -240,7 +234,7 @@ public class Android_Find extends AndroidElements {
 
 		try {
 			Thread.sleep(3000);
-			if ((send_button().getAttribute("text")).equals("SEND")){
+			if (send_button().isDisplayed()){
 				failCase = true;
 				throw new InterruptedException("Form not submitted.");
 			}
@@ -288,20 +282,6 @@ public class Android_Find extends AndroidElements {
 		log("Account deleted");
 	}
 
-	public void createAccount(){
-		log("Creating account... ");
-		sign_up_button().click();
-		pick_username().sendKeys("findtester");
-		username_confirm().click();
-		create_password().sendKeys("password");
-		password_confirm().click();
-
-		birthday_confirm().click();
-		skip_button().click();
-		skip_button().click();
-		log("Account created");
-	}
-
 	public void setProfilePic() throws Exception {
 		boolean photo_taken = false;
 		int counter = 0;
@@ -323,8 +303,7 @@ public class Android_Find extends AndroidElements {
 
 		if (!photo_taken){
 			throw new InterruptedException("Photo not taken.");
-		}
-		if (photo_taken){
+		} else {
 			log("Profile pic taken.");
 		}
 
@@ -352,15 +331,10 @@ public class Android_Find extends AndroidElements {
 			photo_saved_test(n+1);
 		} else if (picture_saved){
 			log("Photo successfully saved to server");
-			return;
 		} else {
 			if (n == 12) {
 				throw new InterruptedException("ERROR: Profile pic never updated from server");
 			}
-			return;
 		}
-
-
-
 	}
 }

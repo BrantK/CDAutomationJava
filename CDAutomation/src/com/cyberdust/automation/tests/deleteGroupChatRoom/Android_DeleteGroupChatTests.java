@@ -96,9 +96,9 @@ public class Android_DeleteGroupChatTests extends AndroidElements {
 		
 		WebElement Group5 = name(" Group 5");
 		log("Got group 5");
-		
-		
-		action().press(Group1).moveTo(Group5).release().perform();
+
+
+		driver.swipe(screenWidth / 2, screenHeight - 20, screenWidth / 2, 20, 300);
 		delete_all_groups().click();
 		yes_button().click();
 		

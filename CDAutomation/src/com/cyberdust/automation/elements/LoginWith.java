@@ -33,7 +33,13 @@ public class LoginWith extends Drivers {
                 }
             } catch (Exception ignored) {}
 
-            android.more_button().click();
+            try {
+                android.more_button().click();
+            } catch (Exception ignored) {
+                relaunch();
+                android.waitTime(15);
+                android.more_button().click();
+            }
 
             try {
                 android.waitTime(2);
