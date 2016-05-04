@@ -23,7 +23,7 @@ public class AndroidElements extends Drivers {
 		boolean isLoggedOut;
 		try {
 			log("Checking if logged out");
-			waitTime(8);
+			waitTime(4);
             sign_up_button();
             isLoggedOut = true;
         } catch (Exception e) {
