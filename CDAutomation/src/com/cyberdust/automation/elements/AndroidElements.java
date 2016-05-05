@@ -721,6 +721,9 @@ public class AndroidElements extends Drivers {
     public WebElement chatters_tab() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tab_chatters")));
 	}
+    public WebElement add_facebook_friends() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/add_friends_facebook_button_text")));
+    }
 
     /*******************
      * Sign up elements*
