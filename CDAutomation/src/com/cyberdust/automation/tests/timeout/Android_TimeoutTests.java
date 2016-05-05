@@ -11,18 +11,16 @@ import com.cyberdust.automation.elements.AndroidElements;
 public class Android_TimeoutTests extends AndroidElements {
 	
 	String text_message = "Cyber Dust";
-	
-	AndroidCamera androidCamera = new AndroidCamera();
+
 	LoginWith loginAs = new LoginWith();
 
-	public void test01_video_timeout() throws Exception
-	{
+	public void test01_video_timeout() throws Exception {
+
 		loginAs.user(timeout_account01,timeout_account);
 		Thread.sleep(5000);
 		action_menu().click();
 		Thread.sleep(1000);
 		action_menu_dust().click();
-		
 
 		search_friends().sendKeys(timeout_account.substring(0, timeout_account.length()-1));
 		WebElement user1 = wait.until(ExpectedConditions.elementToBeClickable(By.name(timeout_account)));
@@ -110,110 +108,76 @@ public class Android_TimeoutTests extends AndroidElements {
 		log("Testing a video message");
 		WebElement message1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/photo_view_image")));
 		Thread.sleep(60000);
-		if(!message1.isDisplayed())
-		{
+
+		if(!message1.isDisplayed()) {
 			log("Message deleted after 60 seconds");
 			back_button().click();
 			action().longPress(first_friend, 3000).release().perform();
 			delete_dust().click();
 			
-		}
-		else
-		{	
+		} else {
 			log("ERROR: Message is not deleted after 60 seconds");
-			
 		}
 	}
 	
-	public void test02_photo_timeout() throws Exception
-	{ 
+	public void test02_photo_timeout() throws Exception {
+
 		WebElement second_friend =wait.until(ExpectedConditions.elementToBeClickable(By.name(timeout_account04)));
 		second_friend.click();
 		Thread.sleep(60000);
 		WebElement message1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/photo_view_image")));
 		Thread.sleep(60000);
-		if(!message1.isDisplayed())
-		{
+
+		if(!message1.isDisplayed()) {
 			log("Message deleted after 60 seconds");
 			back_button().click();
 			action().longPress(second_friend, 3000).release().perform();
 			delete_dust().click();
-			
-		}
-		else
-		{	
+		} else {
 			log("ERROR: Message is not deleted after 60 seconds");
-			
-		}
-//		WebElement message11 = wait.until(ExpectedConditions.elementToBeClickable(By.name(text_message)));
-//		WebElement message2 = wait.until(ExpectedConditions.elementToBeClickable(By.name("+technology")));
+        }
+
 		Thread.sleep(21000);
-//		WebElement message5 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.ScrollView[@index='0'][android.widget.LinearLayout[@index='0']][android.widget.RelativeLayout[@index ='1'")));       
-		
-		if(!message1.isDisplayed())
-		{
+
+		if(!message1.isDisplayed()) {
 			log("Message deleted after 60 seconds");
-			
-		}
-		else
-		{	
+		} else {
 			log("ERROR: Message is not deleted after 60 seconds");
-			
 		}
 
-		if(!message1.isDisplayed())
-		{
+		if(!message1.isDisplayed()) {
 			log("Message deleted after 20 seconds");
-			
-		}
-		else
-		{	
+		} else {
 			log("ERROR: Message is not deleted after 20 seconds");
-			
 		}
-		if(!swipe_view_monkey().isDisplayed())
-		{
+
+        if(!swipe_view_monkey().isDisplayed()) {
 			log("Message deleted after 20 seconds");
-			
-		}
-		else
-		{	
+		} else {
 			log("ERROR: Message is not deleted after 20 seconds");
-			
 		}
 		
 		WebElement message3 = wait.until(ExpectedConditions.elementToBeClickable(By.name("+technology")));
 		WebElement message4 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.ScrollView[@index='0'][android.widget.LinearLayout[@index='0']][android.widget.RelativeLayout[@index ='0'")));       
 		
 		Thread.sleep(40000);
-		if(!message4.isDisplayed())
-		{
+
+		if(!message4.isDisplayed()) {
 			log("Message deleted after 60 seconds");
-			
-		}
-		else
-		{	
+		} else {
 			log("ERROR: Message is not deleted after 60 seconds");
-			
 		}
-		
+
+
 		Thread.sleep(40000);
-		if(!message3.isDisplayed())
-		{
+		if(!message3.isDisplayed()) {
 			log("Message deleted after 60 seconds");
-			
-		}
-		else
-		{	
+		} else {
 			log("ERROR: Message is not deleted after 60 seconds");
-			
 		}
-
-
 	}
 		
-	public void backToHome() throws Exception
-	{
+	public void backToHome() throws Exception {
 		back_button().click();
 		back_button().click();
 	}
