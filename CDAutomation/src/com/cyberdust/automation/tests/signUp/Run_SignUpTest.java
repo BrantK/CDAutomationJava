@@ -12,7 +12,7 @@ public class Run_SignUpTest extends Drivers {
 	public void test01_checkIfLoggedOut() throws Exception {
 		log("[Start] Starting sign up test");
 		try {
-			log("[Test01]");
+			log("- Test01 -");
 			
 			if (Android()) {
 				new Android_SignUpTest().test01_check_logged_out();
@@ -30,7 +30,7 @@ public class Run_SignUpTest extends Drivers {
 	@Test
 	public void test02_signUp() throws Exception {
 		try {
-			log("[Test02]");
+			log("- Test02 -");
 
 			if (Android()) {
 				new Android_SignUpTest().test02_sign_up();
@@ -48,7 +48,7 @@ public class Run_SignUpTest extends Drivers {
     @Test
     public void test03_signUp2() throws Exception {
         try {
-            log("[Test03]");
+            log("- Test03 -");
 
             if (Android()) {
                 new Android_SignUpTest().test03_sign_up2();
@@ -66,7 +66,7 @@ public class Run_SignUpTest extends Drivers {
 	@Test
 	public void test04_updateProfilePic() throws Exception {
 		try {
-			log("[Test04]");
+			log("- Test04 -");
 
 			if (Android()) {
 				new Android_SignUpTest().test04_update_profile_pic();
@@ -92,7 +92,7 @@ public class Run_SignUpTest extends Drivers {
 	@Test
 	public void test05_updateBio() throws Exception {
 		try {
-			log("[Test05]");
+			log("- Test05 -");
 
 			if (Android()) {
 				new Android_SignUpTest().test05_update_bio_and_website();
@@ -118,7 +118,7 @@ public class Run_SignUpTest extends Drivers {
 	@Test
 	public void test06_loginLogout() throws Exception {
 		try {
-			log("[Test06]");
+			log("- Test06 -");
 
 			if (Android()) {
 				new Android_SignUpTest().test06_login_logout();

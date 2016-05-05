@@ -13,7 +13,8 @@ public class Run_GroupTest extends Drivers {
 		log("[Start] Starting group test");
 		
 		try {
-			log("Test01 creating a group");
+			log("- Test01 -");
+			log("Creating a group");
 			
 			if (Android()) {
 				new Android_GroupTest().test01_create_group();
@@ -41,7 +42,8 @@ public class Run_GroupTest extends Drivers {
 	@Test
 	public void test02_addBlockedUser() throws Exception {
 		try {
-			log("Test02 trying to add blocked user");
+			log("- Test02 -");
+            log("Trying to add blocked user");
 			
 			if (Android()) {
 				new Android_GroupTest().test02_add_blocked_user();
@@ -69,7 +71,8 @@ public class Run_GroupTest extends Drivers {
 	@Test
 	public void test03_groupMembers() throws Exception {
 		try {
-			log("Test03 checking group members");
+			log("- Test03 -");
+            log("Checking group members");
 			
 			if (Android()) {
 				new Android_GroupTest().test03_group_members();
@@ -97,7 +100,8 @@ public class Run_GroupTest extends Drivers {
 	@Test
 	public void test04_sendUsername() throws Exception {
 		try {
-			log("Test04 sending a +username");
+			log("- Test04 -");
+            log("Sending a +username");
 			
 			if (Android()) {
 				new Android_GroupTest().test04_send_username();
@@ -125,7 +129,8 @@ public class Run_GroupTest extends Drivers {
 	@Test
 	public void test05_sendPhoto() throws Exception {
 		try {
-			log("Test05 sending a photo");
+			log("- Test05 -");
+            log("Sending a photo");
 			
 			if (Android()) {
 				new Android_GroupTest().test05_send_photo();
@@ -153,7 +158,8 @@ public class Run_GroupTest extends Drivers {
 	@Test
 	public void test06_sendVideo() throws Exception {
 		try {
-			log("Test06 sending a video");
+			log("- Test06 -");
+            log("Sending a video");
 			
 			if (Android()) {
 				new Android_GroupTest().test06_send_video();
@@ -181,7 +187,8 @@ public class Run_GroupTest extends Drivers {
 	@Test
 	public void test07_sendGiphy() throws Exception {
 		try {
-			log("Test07 sending a giphy");
+			log("- Test07 -");
+            log("Sending a giphy");
 			
 			if (Android()) {
 				new Android_GroupTest().test07_send_giphy();
@@ -209,7 +216,8 @@ public class Run_GroupTest extends Drivers {
 	@Test
 	public void test08_sendGalleryPhoto() throws Exception {
 		try {
-			log("Test08 sending a picture from gallery");
+			log("- Test08 -");
+            log("Sending a picture from gallery");
 			
 			if (Android()) {
 				new Android_GroupTest().test08_send_gallery_photo();
@@ -237,7 +245,8 @@ public class Run_GroupTest extends Drivers {
 	@Test
 	public void test09_openGroupMessages() throws Exception {
 		try {
-			log("Test09 checking group messages");
+			log("- Test09 -");
+            log("Checking group messages");
 			
 			if (Android()) {
 				new Android_GroupTest().test09_open_group_messages();

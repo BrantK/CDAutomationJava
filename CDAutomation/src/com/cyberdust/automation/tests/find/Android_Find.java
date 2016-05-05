@@ -2,12 +2,15 @@ package com.cyberdust.automation.tests.find;
 
 import com.cyberdust.automation.elements.AndroidCamera;
 import com.cyberdust.automation.elements.AndroidElements;
+import com.cyberdust.automation.elements.LoginWith;
 import com.cyberdust.automation.tools.AccountCreator;
 
 public class Android_Find extends AndroidElements {
 
+    LoginWith loginAs = new LoginWith();
+
 	public void test01_followChatter() throws Exception {
-		new AccountCreator().signUp(find_account01, find_password01);
+		loginAs.user(find_account01, find_password01);
 		find_tab().click();
 
 		first_chatter_add().click();
@@ -270,6 +273,7 @@ public class Android_Find extends AndroidElements {
 		close_search().click();
 
 		deleteAccount();
+        new AccountCreator().signUp(find_account01, find_password01);
 	}
 	
 	public void deleteAccount() {

@@ -9,9 +9,7 @@ public class Android_GroupTest extends AndroidElements {
 	
     public void test01_create_group() throws Exception {
 		// Log into account01
-    	log("Running login method");
 		loginAs.user(groups_account01, groups_password01);
-		log("Ran login method");
 		
 		// Adds test accounts to group
 		blasts_tab();

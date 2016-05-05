@@ -12,7 +12,8 @@ public class Run_URLShortenerTest extends Drivers {
 	public void test01_websiteAddress() throws Exception {
 		log("[Start] Starting url shortener test");
 		try {
-			log("Test01 entering website address");
+			log("- Test01 -");
+            log("Entering website address");
 			
 			if (Android()) {
 				new Android_URLShortenerTest().test01_shortned_bio();
@@ -39,7 +40,8 @@ public class Run_URLShortenerTest extends Drivers {
 	public void test02_shortURL() throws Exception {
 		log("[Start] Starting enter-short URL test");
 		try {
-			log("Test02 entering short website address");
+			log("- Test02 -");
+			log("Entering short website address");
 
 			if (Android()) {
 				new Android_URLShortenerTest().test02_shortned_bio();
