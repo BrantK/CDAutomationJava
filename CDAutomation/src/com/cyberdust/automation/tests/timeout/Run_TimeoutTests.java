@@ -12,7 +12,7 @@ public class Run_TimeoutTests extends Drivers {
 	public void test01_TimeOutTest() throws Exception {
 		log("[Start] Starting time out test");
 		try {
-			log("Test01: message expires");
+			log("- Test01 -");
 
 			if (Android()) {
 				new Android_TimeoutTests().test01_video_timeout();
@@ -30,7 +30,7 @@ public class Run_TimeoutTests extends Drivers {
 	@Test
 	public void test02_TimeOutTest() throws Exception {
 		try {
-			log("Test01: message expires");
+			log("- Test02 -");
 
 			if (Android()) {
 				new Android_TimeoutTests().test02_photo_timeout();

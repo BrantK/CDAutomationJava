@@ -14,7 +14,7 @@ public class Run_BlastTest extends Drivers {
 		log("[Start] Starting blast test");
 
 		try {
-			log("Test01 creating blast list");
+			log("- Test01 -");
 			
 			if (Android()) {
 
@@ -41,7 +41,7 @@ public class Run_BlastTest extends Drivers {
 	@Test
 	public void test02_sendTextBlasts() throws Exception {
 		try {
-			log("Test02 sending text blasts");
+			log("- Test02 -");
 
 			if (Android()) {
 				new Android_BlastTest().test02_send_text_blasts();
@@ -67,7 +67,7 @@ public class Run_BlastTest extends Drivers {
 	@Test
 	public void test03_sendPhotoBlast1() throws Exception {
 		try {
-			log("Test03 sending photo blast1");
+			log("- Test03 -");
 
 			if (Android()) {
 				new Android_BlastTest().test03_send_photo_blast_01();
@@ -93,7 +93,7 @@ public class Run_BlastTest extends Drivers {
 	@Test
 	public void test04_sendPhotoBlast2() throws Exception {
 		try {
-			log("Test04 sending photo blast2");
+			log("- Test04 -");
 
 			if (Android()) {
 				new Android_BlastTest().test04_send_photo_blast_02();
@@ -119,7 +119,7 @@ public class Run_BlastTest extends Drivers {
 	@Test
 	public void test05_sendGiphyBlast() throws Exception {
 		try {
-			log("Test05 sending giphy blast");
+			log("- Test05 -");
 
 			if (Android()) {
 				new Android_BlastTest().test05_send_giphy_blast();
@@ -145,7 +145,7 @@ public class Run_BlastTest extends Drivers {
 	@Test
 	public void test06_sendVideoBlast1() throws Exception {
 		try {
-			log("Test06 sending video blast1");
+			log("- Test06 -");
 
 			if (Android()) {
 				new Android_BlastTest().test06_send_video_blast_01();
@@ -171,7 +171,7 @@ public class Run_BlastTest extends Drivers {
 	@Test
 	public void test07_sendVideoBlast2() throws Exception {
 		try {
-			log("Test07 sending video blast2");
+			log("- Test07 -");
 
 			if (Android()) {
 				new Android_BlastTest().test07_send_video_blast_02();
@@ -197,7 +197,7 @@ public class Run_BlastTest extends Drivers {
 	@Test
 	public void test08_sendTextForReplies() throws Exception {
 		try {
-			log("Test08 sending text blast for reply test");
+			log("- Test08 -");
 
 			if (Android()) {
 				new Android_BlastTest().test08_send_text_for_replies();
@@ -223,7 +223,7 @@ public class Run_BlastTest extends Drivers {
 	@Test
     public void test09_replyToBlast() throws Exception {
         try {
-            log("Test09 replying to blast");
+            log("- Test09 -");
 
             if (Android()) {
                 new Android_BlastTest().test09_reply_to_blast();
@@ -252,7 +252,7 @@ public class Run_BlastTest extends Drivers {
     @Test
     public void test10_openVideoBlast() throws Exception {
         try {
-            log("Test10 opening video blasts");
+            log("- Test10 -");
 
             if (Android()) {
                 new Android_BlastTest().test10_open_video_blast();
@@ -281,7 +281,7 @@ public class Run_BlastTest extends Drivers {
 	@Test
     public void test11_openGiphyBlast() throws Exception {
         try {
-            log("Test11 opening giphy blast");
+            log("- Test11 -");
 
             if (Android()) {
                 new Android_BlastTest().test11_open_giphy_blast();
@@ -310,7 +310,7 @@ public class Run_BlastTest extends Drivers {
 	@Test
     public void test12_openNonPublicBlast() throws Exception {
         try {
-            log("Test12 opening non public blast");
+            log("- Test12 -");
 
             if (Android()) {
                 new Android_BlastTest().test12_open_non_public_blast();
@@ -339,7 +339,7 @@ public class Run_BlastTest extends Drivers {
 	@Test
     public void test13_openPhotoBlast() throws Exception {
         try {
-            log("Test13 opening photo blasts");
+            log("- Test13 -");
 
             if (Android()) {
                 new Android_BlastTest().test13_open_photo_blast();
@@ -368,7 +368,7 @@ public class Run_BlastTest extends Drivers {
 	@Test
     public void test14_openTextBlast() throws Exception {
         try {
-            log("Test14 opening text blasts");
+            log("- Test14 -");
 
             if (Android()) {
                 new Android_BlastTest().test14_open_text_blast();
@@ -386,7 +386,7 @@ public class Run_BlastTest extends Drivers {
 	@Test
 	public void test15_checkReplies() throws Exception {
 		try {
-			log("Test15 checking if replies were received");
+			log("- Test15 -");
 
 			if (Android()) {
 				new Android_BlastTest().test15_check_replies();

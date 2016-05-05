@@ -12,7 +12,7 @@ public class Run_MessagePinningTest extends Drivers {
 	public void test01() throws Exception {
 		log("[Start] Starting test");
 		try {
-			log("Test01");
+			log("- Test01 -");
 			
 			if (Android()) {
 				new Android_MessagePinningTest().test01_pinning_messages();
@@ -30,7 +30,7 @@ public class Run_MessagePinningTest extends Drivers {
 	@Test
 	public void test02() throws Exception {
 		try {
-			log("Test02");
+			log("- Test02 -");
 			
 			if (Android()) {
 				new Android_MessagePinningTest().test02_messagePinning();

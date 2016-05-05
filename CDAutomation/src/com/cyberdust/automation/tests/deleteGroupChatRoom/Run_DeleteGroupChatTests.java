@@ -12,7 +12,8 @@ public class Run_DeleteGroupChatTests extends Drivers {
 	public void test01_delete_all_group_chat_rooms() throws Exception {
 		log("[Start] Starting delete group chat room test");
 		try {
-			log("Test01 Deleting all group chat rooms");
+			log("- Test01 -");
+			log("Deleting all group chat rooms");
 			
 			if (Android()) {
 				new Android_DeleteGroupChatTests().test01_delete_all_group_chat_rooms();
@@ -31,7 +32,8 @@ public class Run_DeleteGroupChatTests extends Drivers {
 	public void test02_delete_group_chat_rooms() throws Exception {
 		
 		try {
-			log("Test02 Deleting 1-4 group chat rooms");
+			log("- Test02 -");
+            log("Deleting 1-4 group chat rooms");
 
 			if (Android()) {
 				new Android_DeleteGroupChatTests().test02_delete_group_chat_rooms();

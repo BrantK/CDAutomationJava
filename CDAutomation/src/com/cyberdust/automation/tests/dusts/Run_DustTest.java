@@ -12,7 +12,8 @@ public class Run_DustTest extends Drivers {
 	public void test01_sendTextDusts() throws Exception {
 		log("[Start] Starting blast test");
 		try {
-			log("Test01: Start a chat from Dusts tab from the floating action menu: +dust");
+			log("- Test01 -");
+			log("Starting a new dust from action menu");
 			
 			if (Android()) {
 				new Android_DustTest().test01_chat_from_action_menu();
@@ -30,7 +31,8 @@ public class Run_DustTest extends Drivers {
 	@Test
 	public void test02_dustRoomTest() throws Exception {
 		try {
-			log("Test02: Start a chat from Dusts tab - you already have a dust room with that person.");
+			log("- Test02 -");
+            log("Starting a dust with someone you already dusted");
 
 			if (Android()) {
 				new Android_DustTest().test02_chat_from_dust_room();
@@ -48,7 +50,8 @@ public class Run_DustTest extends Drivers {
 	@Test
 	public void test03_sendDustFromSearchBar() throws Exception {
 		try {
-			log("Test03: Start a chat from Dusts tab (using search) - you already have a dust room with that person.");
+			log("- Test03 -");
+            log("Starting a dust from search");
 
 			if (Android()) {
 				new Android_DustTest().test03_chat_from_search_bar();
@@ -66,7 +69,8 @@ public class Run_DustTest extends Drivers {
 	@Test
 	public void test04_sendDustFromSearchBar02() throws Exception {
 		try {
-			log("Test04 Start a chat from Dusts tab (using search) - you dont have a dust room with that person.");
+			log("- Test04 -");
+            log("Start a new dust from search");
 
 			if (Android()) {
 				new Android_DustTest().test04_chat_from_search_bar();
@@ -84,7 +88,8 @@ public class Run_DustTest extends Drivers {
 	@Test
 	public void test05_sendDustsfromFriendsPage() throws Exception {
 		try {
-			log("Test05: Start a chat from Friends page (using search) - you already have a dust room with that person.");
+			log("- Test05 -");
+            log("Starting a dust from friends - search");
 
 			if (Android()) {
 				new Android_DustTest().test05_chat_from_friend_list();
@@ -102,7 +107,8 @@ public class Run_DustTest extends Drivers {
 	@Test
 	public void test06_sendDustsfromFriendsPage02() throws Exception {
 		try {
-			log("Test06: Start a chat from Friends page (using search) - you dont have a dust room with that person.");
+			log("- Test06 -");
+            log("Starting a new dust from friends - search");
 
 			if (Android()) {
 				new Android_DustTest().test06_chat_from_friend_list();
@@ -120,7 +126,8 @@ public class Run_DustTest extends Drivers {
 	@Test
 	public void test07_sendDustsfromFriendsPage03() throws Exception {
 		try {
-			log("Test07: Start a chat from Friends page - you already have a dust room with that person.");
+			log("- Test07 -");
+            log("Start a dust from friends list");
 
 			if (Android()) {
 				new Android_DustTest().test07_chat_from_friend_list();
@@ -138,7 +145,8 @@ public class Run_DustTest extends Drivers {
 	@Test
 	public void test08_sendDustsfromFriendsPage04() throws Exception {
 		try {
-			log("Test08: Start a chat from Friends page - you dont have a dust room with that person.");
+			log("- Test08 -");
+            log("Start new dust from friends list");
 
 			if (Android()) {
 				new Android_DustTest().test08_chat_from_friend_list();

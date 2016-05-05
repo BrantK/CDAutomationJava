@@ -12,7 +12,8 @@ public class Run_FollowersTest extends Drivers {
 	public void test01_addFriends() throws Exception {
 		log("[Start] Starting blast test");
 		try {
-			log("Test01: Adding a friend from followers menu");
+			log("- Test01 -");
+			log("Adding a friend from followers menu");
 			
 			if (Android()) {
 				new Android_followersTest().test01_add_friends();
@@ -31,7 +32,8 @@ public class Run_FollowersTest extends Drivers {
 	public void test02_addFriends02() throws Exception {
 
 		try {
-			log("Test02: blocking a follower");
+			log("- Test02 -");
+            log("Blocking a follower");
 			
 			if (Android()) {
 				new Android_followersTest().test02_add_friends();

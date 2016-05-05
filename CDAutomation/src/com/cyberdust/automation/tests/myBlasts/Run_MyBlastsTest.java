@@ -12,7 +12,7 @@ public class Run_MyBlastsTest extends Drivers {
 	public void test01_sendTextBlast() throws Exception {
 		log("[Start] Starting My Blasts test");
 		try {
-			log("[Test01]");
+			log("- Test01 -");
 			
 			if (Android()) {
 				new Android_MyBlastsTest().test01_send_text_blast();
@@ -30,7 +30,7 @@ public class Run_MyBlastsTest extends Drivers {
 	@Test
 	public void test02_sendPhotoBlast() throws Exception {
 		try {
-			log("[Test02]");
+			log("- Test02 -");
 			
 			if (Android()) {
 				new Android_MyBlastsTest().test02_send_photo_blast();
@@ -48,7 +48,7 @@ public class Run_MyBlastsTest extends Drivers {
 	@Test
 	public void test03_sendVideoBlast() throws Exception {
 		try {
-			log("[Test03]");
+			log("- Test03 -");
 			
 			if (Android()) {
 				new Android_MyBlastsTest().test03_send_video_blast();
@@ -66,7 +66,7 @@ public class Run_MyBlastsTest extends Drivers {
 	@Test
 	public void test04_viewBlastsFromHomepage() throws Exception {
 		try {
-			log("[Test04]");
+			log("- Test04 -");
 			
 			if (Android()) {
 				new Android_MyBlastsTest().test04_view_blasts_from_homepage();
@@ -84,7 +84,7 @@ public class Run_MyBlastsTest extends Drivers {
 	@Test
 	public void test05_viewBlastsFromProfile() throws Exception {
 		try {
-			log("[Test05]");
+			log("- Test05 -");
 
 			if (Android()) {
 				new Android_MyBlastsTest().test05_view_blasts_from_profile();
@@ -102,7 +102,7 @@ public class Run_MyBlastsTest extends Drivers {
 	@Test
 	public void test06_viewBlastsFromSwipeView() throws Exception {
 		try {
-			log("[Test06]");
+			log("- Test06 -");
 			
 			if (Android()) {
 				new Android_MyBlastsTest().test06_view_blasts_from_swipe_view();
@@ -120,7 +120,7 @@ public class Run_MyBlastsTest extends Drivers {
 	@Test
 	public void test07_checkViewsAndScreenshots() throws Exception {
 		try {
-			log("[Test07]");
+			log("- Test07 -");
 
 			if (Android()) {
 				new Android_MyBlastsTest().test07_check_views_and_screenshots();
