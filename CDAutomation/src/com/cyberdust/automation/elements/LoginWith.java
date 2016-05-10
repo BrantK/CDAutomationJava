@@ -48,7 +48,7 @@ public class LoginWith extends Drivers {
             	}
             } catch (Exception ignored) {}
 
-            if (!tutorial) {
+            if (tutorial) {
                 driver.swipe(screenWidth / 2, screenHeight - 20, screenWidth / 2, 20, 300);
                 android.tutorial().click();
                 try {
