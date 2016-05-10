@@ -48,10 +48,15 @@ public class LoginWith extends Drivers {
             	}
             } catch (Exception ignored) {}
 
-            if (tutorial) {
+            if (!tutorial) {
                 driver.swipe(screenWidth / 2, screenHeight - 20, screenWidth / 2, 20, 300);
                 android.tutorial().click();
-                driver.findElementById("com.radicalapps.cyberdust:id/tutorial_settings_switch").click();
+                try {
+                    Thread.sleep(500);
+                    if (driver.findElementByXPath("//*[@text='ON' and @resource-id='com.radicalapps.cyberdust:id/tutorial_settings_switch']").isDisplayed()) {
+                        driver.findElementById("com.radicalapps.cyberdust:id/tutorial_settings_switch").click();
+                    }
+                } catch (Exception ignored) {}
                 android.back_button().click();
             }
 
