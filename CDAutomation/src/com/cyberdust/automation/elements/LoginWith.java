@@ -47,9 +47,10 @@ public class LoginWith extends Drivers {
                     already_logged_in = true;
             	}
             } catch (Exception ignored) {}
+            android.waitTime(20);
 
             if (tutorial) {
-                driver.swipe(screenWidth / 2, screenHeight - 20, screenWidth / 2, 20, 300);
+                android.scrollToBottom();
                 android.tutorial().click();
                 try {
                     Thread.sleep(500);
@@ -63,7 +64,7 @@ public class LoginWith extends Drivers {
             if (already_logged_in) {
                 android.back_button().click();
             } else {
-                driver.swipe(screenWidth / 2, screenHeight - 20, screenWidth / 2, 20, 300);
+                android.scrollToBottom();
                 android.logout().click();
                 android.confirm().click();
                 logged_out = true;
