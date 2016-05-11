@@ -6,7 +6,7 @@ import org.junit.runners.MethodSorters;
 import com.cyberdust.automation.elements.Drivers;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class Run_FriendTest extends Drivers {
+public class Run_FriendsTest extends Drivers {
 	
 	@Test
 	public void test01_blastFromAcct04() throws Exception {
