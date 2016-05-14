@@ -5,7 +5,7 @@ import com.cyberdust.automation.elements.LoginWith;
 
 public class Android_MessagePinningTest extends AndroidElements {
 
-	String text_message = "cyberdust.com";
+	String text_message = "test";
 	LoginWith loginAs = new LoginWith();
 
 	public void test01_pinning_messages() throws Exception {
@@ -42,7 +42,6 @@ public class Android_MessagePinningTest extends AndroidElements {
 	
 	public void test02_messagePinning() throws Exception
 	{
-			
 		back_button().click();
 		name(pin_account02).click();
 		try {
@@ -55,15 +54,14 @@ public class Android_MessagePinningTest extends AndroidElements {
 		}
 		log("Checking if new messages appear below pinned messages");
 
-		name(pin_account02).click();
-		chat_room_text_box().sendKeys(text_message);
-		chat_room_send_button().click();
-		chat_room_text_box().sendKeys(text_message);
-		chat_room_send_button().click();
-		chat_room_text_box().sendKeys(text_message);
-		chat_room_send_button().click();
+        for (int i = 0; i < 4; i++) {
+
+            driver.getKeyboard().sendKeys("A");
+            chat_room_send_button().click();
+        }
 		
 		try {
+            waitTime(2);
 			if (tap_to_unpin_button().isDisplayed()) {
 				log("[Warning] New messages do not appear below pinned message");
 			}
@@ -82,9 +80,11 @@ public class Android_MessagePinningTest extends AndroidElements {
 		} catch (Exception e) {
 			log("[Warning] Unable to unpin");
 		}
-		Thread.sleep(16000);
+
+		Thread.sleep(22000);
 	
 		try {
+			waitTime(2);
 			if (sent_text_dust().isDisplayed()) {
 				log("[Warning] Countdown did not resume");
 			}

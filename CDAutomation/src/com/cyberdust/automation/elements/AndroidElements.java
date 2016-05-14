@@ -330,7 +330,7 @@ public class AndroidElements extends Drivers {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/chat_room_fragment_send_button")));
 	}
 	public WebElement sent_text_dust() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("//*[@text='Tap message to pin']\"")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/chat_bubble_view_message_text")));
 	}
 	public WebElement pinned_message() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/pinned_message_text")));
