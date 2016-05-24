@@ -1,16 +1,9 @@
 package com.cyberdust.automation.tests.timestamp;
 
-import org.openqa.selenium.WebElement;
-
 import com.cyberdust.automation.elements.AndroidElements;
 import com.cyberdust.automation.elements.LoginWith;
 
 public class Android_TimestampTest extends AndroidElements {
-	
-//	String account_name = "timestamptest";
-//	String account_pw = "password";
-//	String account_friend = "timestamptestfriend";
-//	String account_friend2 = "timestampfriend2";
 	
 	String friend_account_short ="timestamp";
 	String text_message = "CyberDust.com";
@@ -25,147 +18,80 @@ public class Android_TimestampTest extends AndroidElements {
 		Thread.sleep(1000);
 		action_menu_dust().click();
 		search_friends().sendKeys(friend_account_short);
-		WebElement user1 = name(timestamp_account01);
-		user1.click();
+		name(timestamp_account01).click();
 		chat_room_text_box().click();
 		chat_room_text_box().sendKeys(text_message);
 		chat_room_send_button().click();
 		back_button().click();
 		back_button().click();
 		dusts_tab().click();
+
 		try{
-			
-			//if(dust_info_text().getText().contains("you sent")&&(dust_info_text().getText().contains("minute ago")||dust_info_text().getText().contains("minute ago")))
-			if((dust_info_text().getText()).contains("You sent less than a minute ago"))
-			{
+			if ((dust_info_text().getText()).contains("You sent less than a minute ago")) {
 				log("timestamp is correct");
-			}
-			else
-			{
+			} else {
 				log("[Error] Timestamp is incorrect");
 			}
 			
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			log("[Error] Timestamp is incorrect");
-		}
-		
+        }
 	}
 	
 	public void test02_sent_group_timestamp() throws Exception {
         action_menu().click();
-		
 		Thread.sleep(1000);
 		action_menu_group().click();
-		WebElement user1 = name(timestamp_account01);
-		WebElement user2 = name(timestamp_account02);
-		user1.click();
-		user2.click();
+        name(timestamp_account01).click();
+        Thread.sleep(500);
+		name(timestamp_account02).click();
 		OK_button().click();
         Thread.sleep(500);
-        action().press((int)(screenWidth/10*4.86), (int)(screenHeight/10*5.07)).release().perform();
-        groups_title_field().sendKeys(" Group 1");
+        groups_title_field().sendKeys("Group 1");
         confirm().click();
         group_text_field().click();
         group_text_field().sendKeys(text_message);
         group_text_send().click();
 		back_button().click();
 		dusts_tab().click();
-		try{
-			
-			//if(dust_info_text().getText().contains("you sent")&&(dust_info_text().getText().contains("minute ago")||dust_info_text().getText().contains("minute ago")))
-			if((dust_info_text().getText()).contains("You sent less than a minute ago"))
-			{
+
+		try {
+			if ((dust_info_text().getText()).contains("You sent less than a minute ago")) {
 				log("timestamp is correct");
-			}
-			else
-			{
+			} else {
 				log("[Error] incorrect");
 			}
-			
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			log("[Error] Timestamp is incorrect");
 		}
+
 		Thread.sleep(1000);
 		friends_more_button().click();
 		delete_group_button().click();
 	}
-	
-	
+
 	public void test03_received_dust_timestamp() throws Exception {
-		
 		loginAs.user(timestamp_account01, timestamp_password01);
-		Thread.sleep(5000);
-		
-		
 		dusts_tab().click();
-		try{
-			if(dust_info_text().getText().contains("You received")&&(dust_info_text().getText().contains("minute ago")))
-			{
+
+		try {
+			if (dust_info_text().getText().contains("You received")&&(dust_info_text().getText().contains("minute ago"))) {
 				log("timestamp is correct");
 			}
-			else
-			{
-				log("[Error] incorrect");
-			}
-				
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			log("[Error] Timestamp is incorrect");
 		}
 	}
+
 	public void test04_received_group_timestamp() throws Exception {
-	
 		dusts_tab().click();
-		try{
-			if(dust_info_text().getText().contains("You received")&&(dust_info_text().getText().contains("minute ago")))
-			{
+
+		try {
+			if (dust_info_text().getText().contains("You received")&&(dust_info_text().getText().contains("minute ago"))) {
 				log("timestamp is correct");
 			}
-			else
-			{
-				log("[Error] incorrect");
-			}
-				
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			log("[Error] Timestamp is incorrect");
-		
 		}
-			
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
