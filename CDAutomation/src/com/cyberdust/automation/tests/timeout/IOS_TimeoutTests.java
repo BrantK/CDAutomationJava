@@ -96,30 +96,21 @@ public class IOS_TimeoutTests extends IOSElements {
 		next_button().click();
 		Thread.sleep(2000);
 
-		
 		logout_account();
 		loginAs.user(timeout_account, timeout_password);
 		dusts_tab().click();
-		
-		
-		WebElement first_friend = wait.until(ExpectedConditions.elementToBeClickable(By.name(timeout_account05)));
-		first_friend.click();
-		Thread.sleep(60000);
-		log("Testing a video message");
-		WebElement message1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/photo_view_image")));
-		Thread.sleep(60000);
-		if(!message1.isDisplayed())
-		{
+
+        name(timeout_account05).click();
+        Thread.sleep(60000);
+        log("Testing a video message");
+
+        if(!driver.findElementById("com.radicalapps.cyberdust:id/photo_view_image").isDisplayed()) {
 			System.out.println("Message deleted after 60 seconds");
 			back_button().click();
-			action().longPress(first_friend, 3000).release().perform();
+			action().longPress(name(timeout_account05), 3000).release().perform();
 			delete_dust().click();
-			
-		}
-		else
-		{	
+		} else {
 			log("[Error] Message is not deleted after 60 seconds");
-			
 		}
 	}
 	
@@ -130,6 +121,7 @@ public class IOS_TimeoutTests extends IOSElements {
 		Thread.sleep(60000);
 		WebElement message1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/photo_view_image")));
 		Thread.sleep(60000);
+
 		if(!message1.isDisplayed())
 		{
 			log("Message deleted after 60 seconds");
