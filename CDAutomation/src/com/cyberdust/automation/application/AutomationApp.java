@@ -639,7 +639,7 @@ public class AutomationApp {
 				if (testClassList.getSelectedIndex() == testClassList.getLeadSelectionIndex()
                         && testClassList.getSelectedIndex() == testClassList.getAnchorSelectionIndex()) {
 					testMethodsList.removeAllElements();
-				} 
+				}
 			
 				try {
 					List<String> calledTestMethods = com.cyberdust.automation.application.TestListener.getTestMethods(selectedTests);
@@ -648,7 +648,6 @@ public class AutomationApp {
 							testMethodsList.addElement(tests);
 						}
 					}
-					testMethodsList.addElement("\n");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -699,10 +698,14 @@ public class AutomationApp {
 				if (simpleList.contains(value)) {
 					setIcon(tSuiteIcon);
 					setFont(new Font("Arial", Font.BOLD, 11));
+
+                    if (!(testMethodsList.indexOf(value) == 0)) {
+                        setBorder(BorderFactory.createEmptyBorder(12, 0, 0, 0));
+                    }
 				}
 				
 				if (value.toString().contains("test")) {
-					label.setBorder(BorderFactory.createEmptyBorder(2,12,0,0));
+					setBorder(BorderFactory.createEmptyBorder(2,12,0,0));
 					setIcon(testIcon);
 				}
 				

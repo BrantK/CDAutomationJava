@@ -25,37 +25,37 @@ public class TestListener extends RunListener {
 		DefaultListModel<String> fileList = new DefaultListModel<>();
 		DefaultListModel<String> rawList = new FileFinder().testFilePath(myDir, fileList);
 		DefaultListModel<String> simpleList = new FileFinder().simpleFileList();
-		
-		Class<?> myClass = com.cyberdust.automation.application.TestListener.class;
-		
+        List<Class> myClassList = new ArrayList<>();
+        List<String> methodList = new ArrayList<>();
+
 		for (int i = 0; i < simpleList.size(); i++) {
 			if (selectedTests.contains(simpleList.get(i))) {
-				myClass = Class.forName((rawList.get(i).substring(rawList.get(i).indexOf("com"), rawList.get(i).length()).replace("\\", ".").replace("/", ".")));
+                myClassList.add(Class.forName((rawList.get(i).substring(rawList.get(i).indexOf("com"), rawList.get(i).length()).replace("\\", ".").replace("/", "."))));
 			}
 		}
-
-		List<String> methodList = new ArrayList<>();
-		Class<?> tClass = myClass;
-		Method[] classM = tClass.getDeclaredMethods();
 		
 		try {
-			for (int i = 0; i < classM.length; i++) {
-				String classM_New = classM[i].getName().toLowerCase();
+            for (int i = 0; i < selectedTests.size(); i++) {
+                Method[] classMethods = myClassList.get(i).getDeclaredMethods();
 
-				if (classM_New.contains("test0") || classM_New.contains("test1") || classM_New.contains("test2")) {
-					String className = classM[i].getDeclaringClass().getSimpleName().replace("Run", "").replace("_", "");
-					String classMethods = classM[i].getName();
+                for (Method classM : classMethods) {
+                    String classMLower = classM.getName().toLowerCase();
 
-					if (!methodList.contains(className)) {
-						methodList.add(className);
-					}
-					methodList.add(classMethods);
-				}
-			}
+                    if (classMLower.contains("test0") || classMLower.contains("test1") || classMLower.contains("test2")) {
+                        String className = classM.getDeclaringClass().getSimpleName().replace("Run", "").replace("_", "");
+                        String classMethodName = classM.getName();
+
+                        if (!methodList.contains(className)) {
+                            methodList.add(className);
+                        }
+                        methodList.add(classMethodName);
+                        Collections.sort(methodList.subList(methodList.indexOf(className), methodList.size()));
+                    }
+                }
+            }
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		Collections.sort(methodList);
 		return methodList;
 	}
 	
@@ -63,7 +63,8 @@ public class TestListener extends RunListener {
 		currentTest = description.getMethodName();
 	}
 	
-	public void testFailure (Failure failure) throws Exception {
+	@SuppressWarnings("ThrowableResultOfMethodCallIgnored")
+    public void testFailure (Failure failure) throws Exception {
 		testResult = failure.getDescription().getMethodName();
 		failResult = failure.getDescription().getMethodName();
 		exceptionResult = failure.getException().toString();
