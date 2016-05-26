@@ -1,39 +1,22 @@
 package com.cyberdust.automation.tests.messagePinning;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
 import com.cyberdust.automation.elements.AndroidElements;
 import com.cyberdust.automation.elements.LoginWith;
 
 public class Android_MessagePinningTest extends AndroidElements {
 
-	String text_message = "cyberdust.com";
-	
+	String text_message = "test";
 	LoginWith loginAs = new LoginWith();
-	WebElement first_friend = name(pin_account02);
-
 
 	public void test01_pinning_messages() throws Exception {
 
 		loginAs.user(pin_account01, pin_password01);
 
-		more_button().click();
-		action().press(followers()).moveTo(back_button()).release().perform();
-		tutorial().click();
-		if(tutorial_switch().getText().contains("ON"))
-		{
-			tutorial_switch().click();
-		}
-		tutorial_back_button().click();
-		back_button().click();
-		Thread.sleep(1000);
 		action_menu().click();
 		action_menu_dust().click();
 		Thread.sleep(5000);
 
-		first_friend.click();
+		name(pin_account02).click();
 		chat_room_text_box().click();
 		chat_room_text_box().sendKeys(text_message);
 		chat_room_send_button().click();
@@ -59,9 +42,8 @@ public class Android_MessagePinningTest extends AndroidElements {
 	
 	public void test02_messagePinning() throws Exception
 	{
-			
 		back_button().click();
-		first_friend.click();
+		name(pin_account02).click();
 		try {
 			Thread.sleep(1000);
 			if (pinned_message().isDisplayed()) {
@@ -71,17 +53,15 @@ public class Android_MessagePinningTest extends AndroidElements {
 			log("[Warning] Message has disappeared");
 		}
 		log("Checking if new messages appear below pinned messages");
-		WebElement first_friend = name(pin_account02);
-	
-		first_friend.click();
-		chat_room_text_box().sendKeys(text_message);
-		chat_room_send_button().click();
-		chat_room_text_box().sendKeys(text_message);
-		chat_room_send_button().click();
-		chat_room_text_box().sendKeys(text_message);
-		chat_room_send_button().click();
+
+        for (int i = 0; i < 4; i++) {
+
+            driver.getKeyboard().sendKeys("A");
+            chat_room_send_button().click();
+        }
 		
 		try {
+            waitTime(2);
 			if (tap_to_unpin_button().isDisplayed()) {
 				log("[Warning] New messages do not appear below pinned message");
 			}
@@ -90,7 +70,7 @@ public class Android_MessagePinningTest extends AndroidElements {
 		}
 		back_button().click();
 
-		first_friend.click();
+		name(pin_account02).click();
 		tap_to_unpin_button().click();
 		
 		try {
@@ -100,9 +80,11 @@ public class Android_MessagePinningTest extends AndroidElements {
 		} catch (Exception e) {
 			log("[Warning] Unable to unpin");
 		}
-		Thread.sleep(16000);
+
+		Thread.sleep(22000);
 	
 		try {
+			waitTime(2);
 			if (sent_text_dust().isDisplayed()) {
 				log("[Warning] Countdown did not resume");
 			}
@@ -112,11 +94,5 @@ public class Android_MessagePinningTest extends AndroidElements {
 	
 		back_button().click();
 		back_button().click();
-		more_button().click();
-	
-		action().press(followers()).moveTo(back_button()).release().perform();
-	
-		logout().click();
-		confirm().click();
 	}
 }

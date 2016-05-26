@@ -4,10 +4,8 @@ import com.cyberdust.automation.elements.AndroidElements;
 import com.cyberdust.automation.elements.LoginWith;
 
 public class Android_DustTest extends AndroidElements {
-
 	
 	String text_message = "cyber dust";
-
 	LoginWith loginAs = new LoginWith();
 
 	public void test01_chat_from_action_menu() throws Exception {
@@ -26,13 +24,9 @@ public class Android_DustTest extends AndroidElements {
 		} catch (Exception e) {
 			log("Unable to start a chat from floating action menu");
 		}
-
 	}
 
-	public void test02_chat_from_dust_room() throws Exception
-
-	{
-
+	public void test02_chat_from_dust_room() throws Exception {
 		back_button().click();
 		back_button().click();
 		dusts_tab().click();
@@ -42,27 +36,15 @@ public class Android_DustTest extends AndroidElements {
 		chat_room_send_button().click();
 		log("Sent a dust");
 
-		try
-
-		{
-
+		try {
 			if (sent_text_dust().isDisplayed())
 				log("Started a chat from dust room");
-
-		}
-
-		catch (Exception e) {
-
+		} catch (Exception e) {
 			log("Unable to start a chat from dust room");
-
 		}
-
 	}
 
-	public void test03_chat_from_search_bar() throws Exception
-
-	{
-
+	public void test03_chat_from_search_bar() throws Exception {
 		back_button().click();
 		more_button().click();
 		driver.swipe(screenWidth/2, screenHeight/2, screenWidth/2, screenHeight/3, 200);
@@ -77,27 +59,16 @@ public class Android_DustTest extends AndroidElements {
 		chat_room_send_button().click();
 		log("Sent a dust");
 
-		try
-
-		{
+		try {
 
 			if (sent_text_dust().isDisplayed())
 				log("Started a chat from action menu search bar");
-
-		}
-
-		catch (Exception e) {
-
+		} catch (Exception e) {
 			log("Unable to start a chat from action menu search bar");
-
 		}
-
 	}
 
-	public void test04_chat_from_search_bar() throws Exception
-
-	{
-
+	public void test04_chat_from_search_bar() throws Exception {
 		// you don't have a dust room with that person.
 		back_button().click();
 		back_button().click();
@@ -116,27 +87,16 @@ public class Android_DustTest extends AndroidElements {
 		chat_room_send_button().click();
 		log("Sent a dust");
 
-		try
-
-		{
-
+		try {
 			if (sent_text_dust().isDisplayed())
 				log("Started a chat from action menu search bar");
-
-		}
-
-		catch (Exception e) {
-
+		} catch (Exception e) {
 			log("Unable to start a chat from action menu search bar");
 
 		}
-
 	}
 
-	public void test05_chat_from_friend_list() throws Exception
-
-	{
-
+	public void test05_chat_from_friend_list() throws Exception {
 		back_button().click();
 		back_button().click();
 		back_button().click();
@@ -148,27 +108,17 @@ public class Android_DustTest extends AndroidElements {
 		chat_room_send_button().click();
 		log("Sent a dust");
 
-		try
-
-		{
-
+		try {
 			if (sent_text_dust().isDisplayed())
 				log("Started a chat from floating action menu");
-
-		}
-
-		catch (Exception e) {
+		} catch (Exception e) {
 
 			log("Unable to start a chat from floating action menu");
-
 		}
-
 	}
 
-	public void test06_chat_from_friend_list() throws Exception { // You do not
-		// have a
-		// dust room
-
+	public void test06_chat_from_friend_list() throws Exception {
+        // You do not have a dust room
 		back_button().click();
 		remove_dustroom();
 		more_button().click();
@@ -181,24 +131,15 @@ public class Android_DustTest extends AndroidElements {
 		chat_room_send_button().click();
 		log("Sent a dust");
 
-		try
-
-		{
-
+		try {
 			if (sent_text_dust().isDisplayed())
 				log("Started a chat from floating action menu");
-
-		}
-
-		catch (Exception e) {
+		} catch (Exception e) {
 			log("Unable to start a chat from floating action menu");
-
 		}
-
 	}
 
 	public void test07_chat_from_friend_list() throws Exception {
-
 		back_button().click();
 		back_button().click();
 		back_button().click();
@@ -211,27 +152,16 @@ public class Android_DustTest extends AndroidElements {
 		chat_room_send_button().click();
 		log("Sent a dust");
 
-		try
-
-		{
-
+		try {
 			if (sent_text_dust().isDisplayed())
 				log("Started a chat from floating action menu");
-
-		}
-
-		catch (Exception e) {
+		} catch (Exception e) {
 			log("Unable to start a chat from floating action menu");
-
 		}
-
 	}
 
-
-	public void test08_chat_from_friend_list() throws Exception { // You do not
-																	// have a
-																	// dust room
-
+	public void test08_chat_from_friend_list() throws Exception {
+        // You do not have a dust room
 		back_button().click();
 		remove_dustroom();
 		blasts_tab();
@@ -246,31 +176,19 @@ public class Android_DustTest extends AndroidElements {
 		chat_room_send_button().click();
 		log("Sent a dust");
 
-		try
-
-		{
-
+		try {
 			if (sent_text_dust().isDisplayed())
 				log("Started a chat from floating action menu");
-
-		}
-
-		catch (Exception e) {
+		} catch (Exception e) {
 			log("Unable to start a chat from floating action menu");
-
 		}
-
 	}
 
-	public void remove_dustroom()
-
-	{
+	public void remove_dustroom() {
 		back_button().click();
 		back_button().click();
 		dusts_tab().click();
 		friends_more_button().click();
 		delete_dust().click();
-
 	}
-
 }

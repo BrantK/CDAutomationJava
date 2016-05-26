@@ -1,5 +1,7 @@
 package com.cyberdust.automation.elements;
 
+import java.util.function.Consumer;
+
 public class LoginWith extends Drivers {
 	
 	public void user(String account, String password) {
@@ -18,13 +20,25 @@ public class LoginWith extends Drivers {
         boolean logged_out = false;
         boolean tutorial = false;
 
+        Consumer<Void> checkTutorial = (arg0) -> {
+            try {
+                android.scrollToBottom();
+                android.tutorial().click();
+                Thread.sleep(500);
+                if (driver.findElementByXPath("//*[@text='ON' and @resource-id='com.radicalapps.cyberdust:id/tutorial_settings_switch']").isDisplayed()) {
+                    driver.findElementById("com.radicalapps.cyberdust:id/tutorial_settings_switch").click();
+                }
+            } catch (Exception ignored) {}
+            android.back_button().click();
+        };
+
         try {
             android.waitTime(4);
         	if (android.login_button().isDisplayed()) {
             	logged_out = true;
         	}
         } catch (Exception ignored) {}
-        
+
         if (!logged_out) {
             try {
                 android.action_menu();
@@ -47,24 +61,22 @@ public class LoginWith extends Drivers {
                     already_logged_in = true;
             	}
             } catch (Exception ignored) {}
+            android.waitTime(20);
 
             if (tutorial) {
-                driver.swipe(screenWidth / 2, screenHeight - 20, screenWidth / 2, 20, 300);
-                android.tutorial().click();
-                driver.findElementById("com.radicalapps.cyberdust:id/tutorial_settings_switch").click();
-                android.back_button().click();
+                checkTutorial.accept(null);
             }
 
             if (already_logged_in) {
                 android.back_button().click();
             } else {
-                driver.swipe(screenWidth / 2, screenHeight - 20, screenWidth / 2, 20, 300);
+                android.scrollToBottom();
                 android.logout().click();
                 android.confirm().click();
                 logged_out = true;
             }
         }
-        
+
         if (logged_out) {
             android.waitTime(15);
         	android.login_button().click();
@@ -79,11 +91,7 @@ public class LoginWith extends Drivers {
                 android.action_menu();
                 if (driver.findElementByXPath("//android.widget.FrameLayout[@index='3']").isDisplayed()) {
                     android.more_button().click();
-                    Thread.sleep(500);
-                    driver.swipe(screenWidth / 2, screenHeight - 20, screenWidth / 2, 20, 300);
-                    android.tutorial().click();
-                    driver.findElementById("com.radicalapps.cyberdust:id/tutorial_settings_switch").click();
-                    android.back_button().click();
+                    checkTutorial.accept(null);
                     android.back_button().click();
                 }
             } catch (Exception ignored) {}

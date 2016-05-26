@@ -155,9 +155,6 @@ public class IOSElements extends Drivers {
 	public WebElement blast01() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIACollectionView[1]/UIACollectionCell[2]/UIAStaticText[1]")));
 	}
-	public WebElement blast02() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIACollectionView[1]/UIACollectionCell[3]/UIAStaticText[1]")));
-	}
 	public WebElement blast1_more_button() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIACollectionView[1]/UIACollectionCell[2]/UIAButton[1]")));
 	}

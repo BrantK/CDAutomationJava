@@ -25,9 +25,7 @@ public class ConsoleErrorOutput extends OutputStream {
 		try {
 			textPane.getStyledDocument().insertString(textPane.getDocument().getLength(), String.valueOf((char)b), style);
 			textPane.setCaretPosition(textPane.getDocument().getLength());
-		} catch (BadLocationException e) {
-			e.printStackTrace();
-		}
+		} catch (BadLocationException ignored) {}
 	}
 }
 

@@ -17,28 +17,20 @@ public class AndroidElements extends Drivers {
 	public WebDriverWait waitTime(int x) {
 		return wait = new WebDriverWait(driver, x);
 	}
-	
-	// Logs out of current account
-	public void logoutAccount() throws Exception {
-		boolean isLoggedOut;
-		try {
-			log("Checking if logged out");
-			waitTime(4);
-            sign_up_button();
-            isLoggedOut = true;
-        } catch (Exception e) {
-            isLoggedOut = false;
-        }
-		if (!isLoggedOut) {
-            more_button().click(); Thread.sleep(1000);
-            action().press(followers()).moveTo(back_button()).release().perform();
+
+    public void scrollToBottom() {
+        try {
             Thread.sleep(1000);
-            logout().click();
-            log("Logging out before starting test");
-            confirm().click();
-		}
+            driver.swipe(screenWidth / 2, screenHeight - 20, screenWidth / 2, 20, 300);
+        } catch (Exception ignored) {}
+    }
+	public void scrollToTop() throws Exception {
+        try {
+            Thread.sleep(1000);
+            driver.swipe(screenWidth / 2, screenHeight / 8, screenWidth / 2, screenHeight / 10 * 9, 300);
+        } catch (Exception ignored) {}
 	}
-	
+
 	/******************
 	 * Common elements
 	 ******************/
@@ -56,9 +48,6 @@ public class AndroidElements extends Drivers {
 	}
 	public WebElement confirm() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("android:id/button1")));
-	}
-	public WebElement cancel() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("android:id/button2")));
 	}
 	public WebElement profile_follow_button() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/add_button")));
@@ -83,18 +72,7 @@ public class AndroidElements extends Drivers {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='DUSTS']")));
 	}
 	public WebElement find_tab() {
-		more_button();//to prevent clicking find tab too early
-	    return driver.findElement(By.xpath("//*[@text='FIND']"));
-	}
-	public WebElement dust1_more_button() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.RelativeLayout[@index='0'][android.widget.ImageView[@index='2' and @resource-id='com.radicalapps.cyberdust:id/more_button']]")));
-	}
-	public WebElement new_dust() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tap_to_compose_button")));
-	}
-	public WebElement empty_dust_tab_text() throws Exception {
-		Thread.sleep(1500);
-		return driver.findElement(By.xpath("//android.widget.TextView[@resource-id='com.radicalapps.cyberdust:id/no_chats_title']"));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='FIND']")));
 	}
 	public WebElement blasts_tab() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='BLASTS']")));
@@ -113,9 +91,6 @@ public class AndroidElements extends Drivers {
 	}
 	public WebElement my_blasts_delete() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/delete_button")));
-	}
-	public WebElement delete_all_dusts() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Delete All Dusts']")));
 	}
 	public WebElement blasted_by() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/profile_button")));
@@ -136,10 +111,7 @@ public class AndroidElements extends Drivers {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/overlay_report_button")));
 	}
 	public WebElement blast01() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.FrameLayout[@index='0' and @resource-id='com.radicalapps.cyberdust:id/card_view']")));
-	}
-	public WebElement blast02() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.FrameLayout[@index='1' and @resource-id='com.radicalapps.cyberdust:id/card_view']")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.FrameLayout[@index='1' and @resource-id='com.radicalapps.cyberdust:id/username_text']")));
 	}
 	public WebElement blast_more_button() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.ImageView[@index='3' and @resource-id='com.radicalapps.cyberdust:id/more_button']")));
@@ -153,14 +125,8 @@ public class AndroidElements extends Drivers {
 	public WebElement blast_more_block() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='block user']")));
 	}
-	public WebElement blast_more_cancel() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='cancel']")));
-	}
 	public WebElement blast_lists() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Blast Lists']")));
-	}
-	public WebElement create_new_blast_list() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/create_button")));
 	}
 	public WebElement blast_list_field() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/name_edit_text")));
@@ -190,14 +156,8 @@ public class AndroidElements extends Drivers {
 	public WebElement group_three_dotted_menu() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.LinearLayout[@index='2'][android.widget.ImageButton[@index='0']]")));
 	}
-	public WebElement group1_more_button() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.RelativeLayout[@index='0'][android.widget.ImageView[@index='2' and @resource-id='com.radicalapps.cyberdust:id/more_button']]")));
-	}
 	public WebElement group1() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.FrameLayout[@index='0' and @resource-id='com.radicalapps.cyberdust:id/card_view']")));
-	}
-	public WebElement group02() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.FrameLayout[@index='1' and @resource-id='com.radicalapps.cyberdust:id/card_view']")));
 	}
 	public WebElement group_text_field() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/chat_room_fragment_text_box")));
@@ -210,9 +170,6 @@ public class AndroidElements extends Drivers {
 	}
 	public WebElement dusting_with() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/btn_chatting_triangle")));
-	}
-	public WebElement card_view() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/card_view")));
 	}
 	public WebElement more_button() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/floating_button_more")));
@@ -236,18 +193,11 @@ public class AndroidElements extends Drivers {
 		Thread.sleep(500);
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.FrameLayout[@index='4'][android.widget.ImageView[@index='1']]")));
 	}
-	public WebElement action_menu_close() throws InterruptedException {
-		Thread.sleep(500);
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.FrameLayout[@index='7'][android.widget.ImageView[@index='0']]")));
-	}
 	public WebElement dust_blast_field() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/dust_blast_text_edit_text")));
 	}
 	public WebElement photo_button() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/action_take_picture")));
-	}
-	public WebElement photo_flip() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/action_flip_camera")));
 	}
 	public WebElement photo_pen() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/pen")));
@@ -357,9 +307,6 @@ public class AndroidElements extends Drivers {
 	public WebElement username(String user) {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='" + user + "']")));
 	}
-	public WebElement mute_blast_icon() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/mute_blast_icon")));
-	}
 	public WebElement blast_Ok_button() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/spinner_button_text_view")));
 	}
@@ -376,7 +323,7 @@ public class AndroidElements extends Drivers {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/chat_room_fragment_send_button")));
 	}
 	public WebElement sent_text_dust() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("//*[@text='Tap message to pin']\"")));
+	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/chat_bubble_view_message_text")));
 	}
 	public WebElement pinned_message() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/pinned_message_text")));
@@ -393,23 +340,11 @@ public class AndroidElements extends Drivers {
 	public WebElement yes_button() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Yes']")));
 	}
-	public WebElement Friend_already_added() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Friend Already Added']")));
-	}
-    public WebElement delete_empty_rooms_button() {
-    	return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Delete Empty Rooms']")));
-    }
-    public WebElement create_group_ok_button() {
-    	return wait.until(ExpectedConditions.elementToBeClickable(By.id("spinner_button_layout")));
-    }
     public WebElement delete_all_groups() {
     	return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Delete and Leave Rooms']")));
     }
     public WebElement delete_group_button() {
     	return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='delete group']")));
-    }
-    public WebElement tutorial_button() {
-    	return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='tutorial']")));
     }
     public WebElement dust_info_text() { //text like you sent x minutes ago
     	return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/info_text")));
@@ -418,20 +353,6 @@ public class AndroidElements extends Drivers {
 	/**********************
 	 * Find Tab elements *
 	 **********************/
-	public WebElement chatter_add(int myIndex) throws Exception {
-		Thread.sleep(1000);
-		List<WebElement> first_chatter_cards_list = driver.findElements(By.xpath("//android.widget.ImageView[@index='1']"));
-		return first_chatter_cards_list.get(myIndex);
-	}
-	/*
-	public int index_generator() throws Exception {
-		List<WebElement> contact_card_array = contacts_scrollview().findElements(By.id("com.radicalapps.cyberdust:id/chatters_vertical_card_view"));
-		if((contact_card_array.size()) > 1) {
-			return 1;
-		} else {
-			return 0;
-		}
-	}*/
 	public WebElement first_chatter_add() throws Exception {
 		List<WebElement> chatter_follow_button_list = chatter_scrollview().findElements(By.id("com.radicalapps.cyberdust:id/add_chatter_icon"));
 		return chatter_follow_button_list.get(0);
@@ -513,10 +434,6 @@ public class AndroidElements extends Drivers {
 		Thread.sleep(1000);
 		return driver.findElement(By.xpath("//android.widget.TextView[@text='Business' and @index='0']"));
 	}
-	public WebElement contacts_header() throws Exception {
-		Thread.sleep(1000);
-		return driver.findElement(By.xpath("//*[@text='CONTACTS']"));
-	}
 	public WebElement first_chatter_category() throws Exception {
 		List<WebElement> first_chatter_cards_list = driver.findElements(By.xpath("//android.widget.TextView[@resource-id='com.radicalapps.cyberdust:id/chatter_topic_text']"));
 		return first_chatter_cards_list.get(0);
@@ -543,17 +460,11 @@ public class AndroidElements extends Drivers {
 		Thread.sleep(500);
         return driver.findElement(By.id("com.radicalapps.cyberdust:id/more_fragment_picture"));
     }
-    public WebElement remove_profile_picture() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("android:id/button2")));
-    }
     public WebElement change_profile_picture() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Change']")));
     }
     public WebElement camera_button() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Camera']")));
-    }
-    public WebElement profile_picture_done() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/activity_profile_pic_crop_btn")));
     }
     public WebElement enter_bio() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/more_fragment_bio")));
@@ -637,9 +548,6 @@ public class AndroidElements extends Drivers {
     public WebElement muted_blocked_users() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/more_fragment_blocked_users_row")));
     }
-    public WebElement user_guides() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/more_fragment_guide_row")));
-    }
     public WebElement tutorial() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/more_fragment_tutorial_row")));
     }
@@ -661,15 +569,9 @@ public class AndroidElements extends Drivers {
     public WebElement new_email_text_box() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/change_email_fragment_newemail_edit_text")));	
     }
-    public WebElement invalid_username() {
-    	return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Invalid username & password combination']")));
-    }
     public WebElement friends_search() {
     	return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/add_friends_fragment_search_box")));
     }
-    public WebElement chat_room_first_friend() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.ListView[@index='0'][android.widget.RelativeLayout[@index='0']]")));
-	}
     public WebElement delete_dust() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='delete dust']")));
 	}
@@ -714,12 +616,6 @@ public class AndroidElements extends Drivers {
 	}
     public WebElement add_friends_button_inBrowseFriends() {
 	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/add_friend_contacts_listitem_button")));
-	}
-    public WebElement discover_tab() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tab_discover")));
-	}
-    public WebElement chatters_tab() {
-	    return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tab_chatters")));
 	}
     public WebElement add_facebook_friends() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/add_friends_facebook_button_text")));

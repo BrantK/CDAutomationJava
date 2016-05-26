@@ -9,13 +9,13 @@ import com.cyberdust.automation.elements.Drivers;
 public class Run_TimeoutTests extends Drivers {
 	
 	@Test
-	public void test01_TimeOutTest() throws Exception {
+	public void test01_sendDusts() throws Exception {
 		log("[Start] Starting time out test");
 		try {
 			log("- Test01 -");
 
 			if (Android()) {
-				new Android_TimeoutTests().test01_video_timeout();
+				new Android_TimeoutTests().test01_send_dusts();
 			} else if (IOS()) {
 				new IOS_TimeoutTests().test01_video_timeout();
 			}
@@ -28,12 +28,12 @@ public class Run_TimeoutTests extends Drivers {
 	}
 	
 	@Test
-	public void test02_TimeOutTest() throws Exception {
+	public void test02_testTimeout() throws Exception {
 		try {
 			log("- Test02 -");
 
 			if (Android()) {
-				new Android_TimeoutTests().test02_photo_timeout();
+				new Android_TimeoutTests().test02_test_timeout();
 			} else if (IOS()) {
 				new IOS_TimeoutTests().test02_photo_timeout();
 			}

@@ -20,9 +20,7 @@ public class Android_FriendsTest extends AndroidElements {
     	}
     	waitTime(20);
 	}
-	
-	
-	
+
 	// Does a check for dusts from a specified account
 	public void checkForDustsFrom(String account) throws Exception {
     	try {
@@ -85,6 +83,7 @@ public class Android_FriendsTest extends AndroidElements {
     	OK_button().click();
     	blast_friends().click();
     	username(recipient1).click();
+		Thread.sleep(1000);
     	username(recipient2).click();
     	blast_Ok_button().click();
 	}
@@ -101,6 +100,7 @@ public class Android_FriendsTest extends AndroidElements {
     	blast_friends().click();
     	checkForFriend(checkForAccount);
     	username(recipient1).click();
+        Thread.sleep(1000);
     	username(recipient2).click();
     	blast_Ok_button().click();
     	
@@ -118,6 +118,7 @@ public class Android_FriendsTest extends AndroidElements {
     	OK_button().click();
     	blast_friends().click();
     	username(friends_account01).click();
+        Thread.sleep(1000);
     	username(friends_account02).click();
     	blast_Ok_button().click();
     }
@@ -133,6 +134,7 @@ public class Android_FriendsTest extends AndroidElements {
     	OK_button().click();
     	blast_friends().click();
     	username(friends_account01).click();
+        Thread.sleep(1000);
     	username(friends_account02).click();
     	username(friends_account03).click();
     	blast_Ok_button().click();
@@ -178,7 +180,7 @@ public class Android_FriendsTest extends AndroidElements {
     	log("Blocking account02 from Dusts tab");
     	dusts_tab().click();
     	Thread.sleep(1000);
-    	action().press((int)(screenWidth/10*9.17),(int)(screenHeight/10*1.64)).release().perform();
+        action().longPress(username(friends_account02), 3000).release().perform();
     	name("block user").click();
     	confirm().click();
     	
@@ -200,21 +202,13 @@ public class Android_FriendsTest extends AndroidElements {
     	// Block friends_account06 from More / Friends
     	more_button().click();
     	log("Blocking account06 from More/friends menu");
+		Thread.sleep(1000);
+		driver.swipe(screenWidth/2, screenHeight/2, screenWidth/2, screenHeight/3, 200);
     	friends().click();
-    	action().longPress(username(friends_account06), 2000).release().perform();
+    	action().longPress(username(friends_account06), 3000).release().perform();
     	name("block user").click();
     	confirm().click();
     	back_button().click();
-//    	Thread.sleep(500);
-//    	
-//    	// Turns off Blast Previews
-//    	driver.swipe((screenWidth/10), (screenHeight/10*7), (screenWidth/10), (screenHeight/10*3), 300);
-//		try {
-//			if (driver.findElement(By.xpath("//android.widget.Switch[@text='ON' and "
-//					+ "@resource-id='com.radicalapps.cyberdust:id/more_fragment_show_preview_switch']")).isDisplayed()) {
-//				show_blast_previews().click();
-//			}
-//		} catch (Exception e) {}
     	back_button().click();
     }
     
@@ -257,9 +251,13 @@ public class Android_FriendsTest extends AndroidElements {
     	log("Muting account01 from Dusts tab");
     	dusts_tab().click();
     	Thread.sleep(1000);
-    	action().press((int)(screenWidth/10*9.17),(int)(screenHeight/10*1.64)).release().perform();
-    	name("mute blasts").click();
-    	confirm().click();
+        try {
+            action().longPress(username(friends_account01), 3000).release().perform();
+            name("mute blasts").click();
+            confirm().click();
+        } catch (Exception e) {
+            log("Could not mute account01 from Dusts tab");
+        }
     	
     	// Mute friends_account03 from inside dust room
     	blasts_tab();
@@ -278,14 +276,17 @@ public class Android_FriendsTest extends AndroidElements {
     	log("Muting account05 from swipe view");
     	blasts_tab().click();
     	Thread.sleep(1000);
-    	driver.swipe((screenWidth/10), (screenHeight/10*6), (screenWidth/10), (screenHeight/10*3), 300);
+    	driver.swipe((screenWidth/2), (screenHeight/2), (screenWidth/2), (screenHeight/4), 400);
     	try {
     		waitTime(2);
     		username(friends_account05).click();
     	} catch (Exception e) {
-    		action().press((int)(screenWidth/10*5.17), (int)(screenHeight/10*3.11)).release().perform();
-    		waitTime(20);
+            Thread.sleep(1000);
+            driver.swipe((screenWidth/2), (screenHeight/2), (screenWidth/2), (screenHeight/2-50), 400);
+            username(friends_account05).click();
+
     	}
+        waitTime(20);
     	blasted_by().click();
     	blasted_by_mute().click();
     	confirm().click();
@@ -295,7 +296,12 @@ public class Android_FriendsTest extends AndroidElements {
     	// Mute friends_account04 from Blasts Tab
     	log("Muting account04 from Blasts tab");
     	Thread.sleep(1000);
-    	blast_more_button().click();
+        try {
+            blast_more_button().click();
+        } catch (Exception e) {
+            Thread.sleep(1000);
+            action().longPress(username(friends_account04), 3000).release().perform();
+        }
     	blast_more_mute().click();
     	confirm().click();
     	username(friends_account04).click();
@@ -305,8 +311,11 @@ public class Android_FriendsTest extends AndroidElements {
     	Thread.sleep(1000);
     	more_button().click();
     	log("Muting account06 from More/friends menu");
+        Thread.sleep(1000);
+        driver.swipe(screenWidth/2, screenHeight/2, screenWidth/2, screenHeight/3, 200);
     	friends().click();
-    	action().longPress(username(friends_account06), 2000).release().perform();
+        Thread.sleep(500);
+    	action().longPress(username(friends_account06), 3000).release().perform();
     	name("mute blasts").click();
     	confirm().click();
     	back_button().click();
@@ -341,9 +350,9 @@ public class Android_FriendsTest extends AndroidElements {
     }
     
     public void test07_unfollow_accounts() throws Exception {
-    	
+        loginAs.user(friends_account03, friends_account03);
+
     	// Unfollow friends_account04 from inside dust room
-    	blasts_tab();
     	action_menu().click();
     	Thread.sleep(500);
     	log("Unfollowing account04 from inside dust room");
@@ -355,6 +364,7 @@ public class Android_FriendsTest extends AndroidElements {
 		back_button().click();
 		
 		// Unfollow friends_account05 from swipe view
+        blasts_tab().click();
 		log("Unfollowing account05 from swipe view");
 		username(friends_account05).click();
 		blasted_by().click();
@@ -364,8 +374,10 @@ public class Android_FriendsTest extends AndroidElements {
 		// Unfollow friends_account06 from More/friends
     	more_button().click();
     	log("Unfollowing account06 from More/friends menu");
+        Thread.sleep(1000);
+        driver.swipe(screenWidth/2, screenHeight/2, screenWidth/2, screenHeight/3, 200);
     	friends().click();
-    	action().longPress(username(friends_account06), 2000).release().perform();
+    	action().longPress(username(friends_account06), 3000).release().perform();
     	name("unfollow user").click();
     	confirm().click();
     	back_button().click();
@@ -386,8 +398,7 @@ public class Android_FriendsTest extends AndroidElements {
     }
     
     public void test10_dusts_and_blasts_05() throws Exception {
-
-    	
+        loginAs.user(friends_account05, friends_password05);
     	checkForBlastsFrom(friends_account01);
     	sendDustsTo(friends_account01, friends_account02);
     	checkFriendsThenBlast(friends_account01, friends_account02, friends_account03);
@@ -412,17 +423,20 @@ public class Android_FriendsTest extends AndroidElements {
     	// Unblock friends_account02 from More -> friends
     	more_button().click();
     	log("Unblocking friends_account02 from More/friends menu");
+        Thread.sleep(1000);
+        driver.swipe(screenWidth/2, screenHeight/2, screenWidth/2, screenHeight/3, 200);
     	friends().click();
-    	action().longPress(username(friends_account02), 2000).release().perform();
+    	action().longPress(username(friends_account02), 3000).release().perform();
     	name("unblock user").click();
     	back_button().click();
     	
     	// Unblock friends_account03, 04, 05, and 06 from More/muted and blocked users
     	log("Unblocking accounts 03, 04, 05, and 06 from More/muted and blocked users");
     	Thread.sleep(500);
-    	action().press(followers()).moveTo(back_button()).release().perform();
+		driver.swipe(screenWidth / 2, screenHeight - 20, screenWidth / 2, 20, 300);
     	muted_blocked_users().click();
     	for (int i = 3; i <=6; i++) {
+            Thread.sleep(500);
     		username(friends_account01.substring(0, 11)+i).click();
     	}
     	back_button().click();
@@ -432,16 +446,19 @@ public class Android_FriendsTest extends AndroidElements {
     }
     
     public void test14_check_msg_from_muted() throws Exception {
-    	
+        boolean mutedBlastsReceived = false;
+
+        loginAs.user(friends_account02, friends_password02);
+
     	// Checks for blasts from muted users
-    	boolean mutedBlastsReceived = false;
+        blasts_tab().click();
     	waitTime(1);
     	
     	for (int i = 3; i <= 6; i++) {
     		try {
     			if (username(friends_account01.substring(0, 11)+i).isDisplayed()) {
     				mutedBlastsReceived = true;
-    				log("[Warning] Blast received from muted user friendtest2"+i+"!");
+    				log("[Warning] Blast received from muted user account0"+i+"!");
     				blast_more_button().click();
     				blast_more_delete().click();
     			}
@@ -458,7 +475,7 @@ public class Android_FriendsTest extends AndroidElements {
     	
     	try {
     		if (name(friends_account01).isDisplayed() && name(friends_account05).isDisplayed() && name(friends_account06).isDisplayed()) {
-    			action().press(name(friends_account06)).moveTo(dusts_tab()).release().perform();
+				scrollToBottom();
     			
     			if (name(friends_account04).isDisplayed() && name(friends_account03).isDisplayed()) {
     				log("Dusts successfully received from all muted users");
@@ -502,14 +519,16 @@ public class Android_FriendsTest extends AndroidElements {
     	// Unmute friends_account03 from More/friends
     	more_button().click();
     	log("Unmuting account03 from More/friends menu");
+        Thread.sleep(1000);
+        driver.swipe(screenWidth/2, screenHeight/2, screenWidth/2, screenHeight/3, 200);
     	friends().click();
-    	action().longPress(username(friends_account03), 2000).release().perform();
+    	action().longPress(username(friends_account03), 3000).release().perform();
     	name("unmute blasts").click();
     	back_button().click();
 
     	// Unmute friends_account04 from More/'muted/blocked users'
     	log("Unmuting account04 from More/muted and blocked users");
-    	action().press(followers()).moveTo(back_button()).release().perform();
+		driver.swipe(screenWidth / 2, screenHeight - 20, screenWidth / 2, 20, 300);
     	muted_blocked_users().click();
     	username(friends_account04).click();
     	back_button().click();
@@ -518,37 +537,36 @@ public class Android_FriendsTest extends AndroidElements {
     
     public void test17_unmute_account05_and_06() throws Exception {
     	dusts_tab().click();
-    	
-    	waitTime(1);
-    	try {
-    		if (name("Delete Empty Rooms").isDisplayed()) {
-    			Thread.sleep(500);
-    			driver.swipe((screenWidth/10), (screenHeight/10*3), (screenWidth/10), (screenHeight/10*8), 300);
-    		}
-    	}catch (Exception ignored) {}
+        scrollToTop();
     	waitTime(20);
-    	
     	Thread.sleep(1000);
     	
     	// Unmute friends_account06 from Dusts tab 
     	try {
 			Thread.sleep(500);
-			action().press((int)(screenWidth/10*9.17),(int)(screenHeight/10*1.64)).release().perform();
+            action().longPress(username(friends_account01), 3000).release().perform();
 			name("delete dust").click();
-	    	log("Unmuting account06 from Dusts tab");
-	    	Thread.sleep(500);
-	    	action().press((int)(screenWidth/10*9.17),(int)(screenHeight/10*1.64)).release().perform();
-	    	name("unmute blasts").click();
     	} catch (Exception e) {
-    		log("[Warning] Could not tap on dust room more menu");
+    		log("Could not delete dust from account01");
     	}
+
+		try {
+			log("Unmuting account06 from Dusts tab");
+			action().longPress(username(friends_account06), 3000).release().perform();
+			name("unmute blasts").click();
+		} catch (Exception e) {
+			log("Could not unmute account06 from Dusts tab");
+		}
     	
     	// Unmute friends_account05 from inside Dust room
-    	blasts_tab();
     	action_menu().click();
     	Thread.sleep(500);
 		log("Unmuting account05 from inside dust room");
     	action_menu_dust().click();
+        try {
+            Thread.sleep(1000);
+            driver.getKeyboard().sendKeys(friends_account05);
+        } catch (Exception ignored) {}
     	username(friends_account05).click();
     	dust_three_dotted_menu().click();
 		name("unmute blasts").click();
@@ -570,7 +588,7 @@ public class Android_FriendsTest extends AndroidElements {
     
     public void test18_add_accounts() throws Exception {
     	loginAs.user(friends_account03, friends_password03);
-    	blasts_tab();
+    	blasts_tab().click();
     	
     	try {
     		waitTime(3);
@@ -589,7 +607,8 @@ public class Android_FriendsTest extends AndroidElements {
     		waitTime(3);
     		if (name(friends_account01).isDisplayed()) {
     			log("Dust received from account01 after being unblocked");
-    			action().press((int)(screenWidth/10*9.17),(int)(screenHeight/10*1.64)).release().perform();
+                Thread.sleep(1000);
+                action().longPress(username(friends_account01), 3000).release().perform();
     			name("delete dust").click();
     		}
     	} catch (Exception e) {

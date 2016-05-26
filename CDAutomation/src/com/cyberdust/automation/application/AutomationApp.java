@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -272,7 +272,7 @@ public class AutomationApp {
 
 
         // Displays connected device //
-        Function<Void, Void> runDeviceWorker = (arg0) -> {{
+        Consumer<Void> runDeviceWorker = (arg0) -> {
             SwingWorker<Void, Void> deviceWorker = new SwingWorker<Void, Void>() {
                 DeviceReader reader = new DeviceReader();
                 public Void doInBackground() throws Exception {
@@ -289,12 +289,10 @@ public class AutomationApp {
                 }
             };
             deviceWorker.execute();
-        }
-            return null;
         };
 
 		// Highlights the currently running test //
-        Function<Void, Void> runMethodSelector = (arg0) -> {{
+        Consumer<Void> runMethodSelector = (arg0) -> {
             TestListener listener = new TestListener();
             testProgressBar.setMaximum(testMethodsList.size()-1);
             List<String> selectedTests = testClassList.getSelectedValuesList();
@@ -371,7 +369,7 @@ public class AutomationApp {
                         testClassList.setEnabled(true);
                         selectAllButton.setEnabled(true);
                         checkingDevice = true;
-                        runDeviceWorker.apply(null);
+                        runDeviceWorker.accept(null);
                         Drivers.ranSetup = false;
                         Drivers.tearDown();
                         threadCollector.cancel(true);
@@ -385,15 +383,13 @@ public class AutomationApp {
                         testClassList.setEnabled(true);
                         selectAllButton.setEnabled(true);
                         checkingDevice = true;
-                        runDeviceWorker.apply(null);
+                        runDeviceWorker.accept(null);
                         Drivers.ranSetup = false;
                         Drivers.tearDown();
                         threadCollector.cancel(true);
                     }
                 }
             }
-        }
-            return null;
         };
 
 		// Listeners //
@@ -408,7 +404,7 @@ public class AutomationApp {
 				
 				SwingWorker<Void, Void> newMethodWorker = new SwingWorker<Void, Void>() {
 					public Void doInBackground() throws Exception {
-						runMethodSelector.apply(null);
+						runMethodSelector.accept(null);
 						return null;
 					}
 				};
@@ -643,7 +639,7 @@ public class AutomationApp {
 				if (testClassList.getSelectedIndex() == testClassList.getLeadSelectionIndex()
                         && testClassList.getSelectedIndex() == testClassList.getAnchorSelectionIndex()) {
 					testMethodsList.removeAllElements();
-				} 
+				}
 			
 				try {
 					List<String> calledTestMethods = com.cyberdust.automation.application.TestListener.getTestMethods(selectedTests);
@@ -652,7 +648,6 @@ public class AutomationApp {
 							testMethodsList.addElement(tests);
 						}
 					}
-					testMethodsList.addElement("\n");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -703,10 +698,14 @@ public class AutomationApp {
 				if (simpleList.contains(value)) {
 					setIcon(tSuiteIcon);
 					setFont(new Font("Arial", Font.BOLD, 11));
+
+                    if (!(testMethodsList.indexOf(value) == 0)) {
+                        setBorder(BorderFactory.createEmptyBorder(12, 0, 0, 0));
+                    }
 				}
 				
 				if (value.toString().contains("test")) {
-					label.setBorder(BorderFactory.createEmptyBorder(2,12,0,0));
+					setBorder(BorderFactory.createEmptyBorder(2,12,0,0));
 					setIcon(testIcon);
 				}
 				
@@ -727,7 +726,7 @@ public class AutomationApp {
 		});
 
 		// Things to do on launch //
-        runDeviceWorker.apply(null);
+        runDeviceWorker.accept(null);
 
         if (IOSCheckBox.isSelected()) {
             DeviceReader.IOSOverride = true;
