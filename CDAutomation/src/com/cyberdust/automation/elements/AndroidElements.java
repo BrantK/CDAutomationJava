@@ -133,6 +133,19 @@ public class AndroidElements extends Drivers {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/reset_your_password")));
     }
 
+    /*** Login ***/
+    public WebElement loginButton() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
+    }
+    public WebElement signUpButton() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
+    }
+    public WebElement usernameField() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
+    }
+    public WebElement passwordField() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
+    }
 
 	/******************
 	 * Common elements
