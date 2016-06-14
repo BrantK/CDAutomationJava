@@ -134,17 +134,31 @@ public class AndroidElements extends Drivers {
     }
 
     /*** Login ***/
-    public WebElement loginButton() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
+    public WebElement logInText() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/login_button_text")));
     }
     public WebElement signUpButton() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/signup_button")));
     }
     public WebElement usernameField() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/login_username")));
     }
     public WebElement passwordField() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/login_password")));
+    }
+    public WebElement logInButton() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/login_button")));
+    }
+
+    /*** Misc ***/
+    public WebElement elementName(String name) {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath(("//*[@text='" + name + "']"))));
+    }
+    public WebElement homeButton() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.view.ViewGroup[0]/android.widget.ImageButton[0]")));
+    }
+    public WebElement confirmButton() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("android:id/button1")));
     }
 
 	/******************

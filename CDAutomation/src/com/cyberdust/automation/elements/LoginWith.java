@@ -1,6 +1,5 @@
 package com.cyberdust.automation.elements;
 
-import java.util.function.Consumer;
 
 public class LoginWith extends Drivers {
 	
@@ -16,88 +15,48 @@ public class LoginWith extends Drivers {
 
 	private void loginAndroid(String account, String password) {
 		AndroidElements android = new AndroidElements();
-        boolean already_logged_in = false;
-        boolean logged_out = false;
-        boolean tutorial = false;
-
-        Consumer<Void> checkTutorial = (arg0) -> {
-            try {
-                android.scrollToBottom();
-                android.tutorial().click();
-                Thread.sleep(500);
-                if (driver.findElementByXPath("//*[@text='ON' and @resource-id='com.radicalapps.cyberdust:id/tutorial_settings_switch']").isDisplayed()) {
-                    driver.findElementById("com.radicalapps.cyberdust:id/tutorial_settings_switch").click();
-                }
-            } catch (Exception ignored) {}
-            android.back_button().click();
-        };
+        boolean loggedOut = false;
 
         try {
             android.waitTime(4);
-        	if (android.login_button().isDisplayed()) {
-            	logged_out = true;
+        	if (android.logInText().isDisplayed()) {
+            	loggedOut = true;
         	}
         } catch (Exception ignored) {}
 
-        if (!logged_out) {
+        if (!loggedOut) {
             try {
-                android.action_menu();
-                if (driver.findElementByXPath("//android.widget.FrameLayout[@index='3']").isDisplayed()) {
-                    tutorial = true;
-                }
-            } catch (Exception ignored) {}
-
-            try {
-                android.more_button().click();
-            } catch (Exception ignored) {
+                android.profileTab().click();
+            } catch (Exception e) {
                 relaunch();
                 android.waitTime(15);
-                android.more_button().click();
+                android.profileTab().click();
             }
 
             try {
                 android.waitTime(2);
-            	if (android.name(account).isDisplayed()) {
-                    already_logged_in = true;
-            	}
-            } catch (Exception ignored) {}
-            android.waitTime(20);
-
-            if (tutorial) {
-                checkTutorial.accept(null);
-            }
-
-            if (already_logged_in) {
-                android.back_button().click();
-            } else {
-                android.scrollToBottom();
-                android.logout().click();
-                android.confirm().click();
-                logged_out = true;
-            }
-        }
-
-        if (logged_out) {
-            android.waitTime(15);
-        	android.login_button().click();
-        	android.login_username().sendKeys(account);
-        	android.login_password().click();
-        	android.login_password().sendKeys(password);
-        	android.login_OK().click();
-        }
-
-        if (!already_logged_in) {
-            try {
-                android.action_menu();
-                if (driver.findElementByXPath("//android.widget.FrameLayout[@index='3']").isDisplayed()) {
-                    android.more_button().click();
-                    checkTutorial.accept(null);
-                    android.back_button().click();
+                if (android.elementName(account).isDisplayed()) {
+                    android.messagesTab().click();
                 }
-            } catch (Exception ignored) {}
+            } catch (Exception e) {
+                android.waitTime(20);
+                android.settingsButton().click();
+                android.logOutRow().click();
+                android.confirmButton().click();
+                loggedOut = true;
+            }
+        }
+
+        if (loggedOut) {
+            android.waitTime(15);
+        	android.logInText().click();
+        	android.usernameField().sendKeys(account);
+        	android.passwordField().sendKeys(password);
+        	android.logInButton().click();
         }
 	}
-	
+
+    // TODO Need to update iOS
 	private void loginIOS(String account, String password) {
 		IOSElements ios = new IOSElements();
         boolean logged_out = false;
