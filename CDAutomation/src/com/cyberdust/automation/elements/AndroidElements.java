@@ -22,14 +22,117 @@ public class AndroidElements extends Drivers {
         try {
             Thread.sleep(1000);
             driver.swipe(screenWidth / 2, screenHeight - 20, screenWidth / 2, 20, 300);
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) { }
     }
 	public void scrollToTop() throws Exception {
         try {
             Thread.sleep(1000);
             driver.swipe(screenWidth / 2, screenHeight / 8, screenWidth / 2, screenHeight / 10 * 9, 300);
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) { }
 	}
+
+    /****************
+     * New Elements *
+     ***************/
+
+	/*** Home Screen ***/
+	public WebElement newButton() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
+	}
+	public WebElement messagesTab() {
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tab_icon")));
+        return aDriver().findElementByAndroidUIAutomator("new UiSelector().className(\"android.support.v7.app.ActionBar$Tab\").index(0)");
+    }
+    public WebElement contactsTab() {
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tab_icon")));
+        return aDriver().findElementByAndroidUIAutomator("new UiSelector().className(\"android.support.v7.app.ActionBar$Tab\").index(1)");
+    }
+    public WebElement connectTab() {
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tab_icon")));
+        return aDriver().findElementByAndroidUIAutomator("new UiSelector().className(\"android.support.v7.app.ActionBar$Tab\").index(2)");
+    }
+    public WebElement publicTab() {
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tab_icon")));
+        return aDriver().findElementByAndroidUIAutomator("new UiSelector().className(\"android.support.v7.app.ActionBar$Tab\").index(3)");
+    }
+    public WebElement profileTab() {
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tab_icon")));
+        return aDriver().findElementByAndroidUIAutomator("new UiSelector().className(\"android.support.v7.app.ActionBar$Tab\").index(4)");
+    }
+    public WebElement searchIcon() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
+    }
+
+    /*** Messages ***/
+    public WebElement messages() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
+    }
+
+    /*** Contacts ***/
+    public WebElement contacts() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
+    }
+
+    /*** Connect ***/
+    public WebElement connect() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
+    }
+
+    /*** Public ***/
+    public WebElement publicButton() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
+    }
+
+    /*** Profile ***/
+	public WebElement settingsButton() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/settings")));
+	}
+
+	/*** Settings ***/
+	public WebElement notificationsRow() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/notifications_row")));
+	}
+	public WebElement validateEmailRow() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/validate_email_row")));
+	}
+    public WebElement changePasswordRow() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/change_password_row")));
+    }
+    public WebElement logOutRow() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/log_out_row")));
+    }
+    public WebElement deleteAccountButton() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/delete_account_text")));
+    }
+
+    // Validate Email
+    public WebElement validateEmailButton() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/validate_email_button")));
+    }
+    public WebElement validateEmailField() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/enter_email_edit_text")));
+    }
+    public WebElement changeEmailButton() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/email_change_button")));
+    }
+
+    // Change Password
+    public WebElement changePasswordButton() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/change_password_button")));
+    }
+    public WebElement currentPasswordField() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/change_password_fragment_oldpass_edit_text")));
+    }
+    public WebElement newPasswordField() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/change_password_fragment_newpass_edit_text")));
+    }
+    public WebElement confirmPasswordField() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/change_password_fragment_newpass_confirm_edit_text")));
+    }
+    public WebElement resetPasswordButton() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/reset_your_password")));
+    }
+
 
 	/******************
 	 * Common elements
@@ -52,7 +155,7 @@ public class AndroidElements extends Drivers {
 	public WebElement profile_follow_button() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/add_button")));
 	}
-	
+
 	/*********************
 	 * Home page elements  	
 	 *********************/	
