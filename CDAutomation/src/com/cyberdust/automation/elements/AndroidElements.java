@@ -18,18 +18,35 @@ public class AndroidElements extends Drivers {
 		return wait = new WebDriverWait(driver, x);
 	}
 
+    // Scrolls to bottom of any screen
     public void scrollToBottom() {
         try {
             Thread.sleep(1000);
             driver.swipe(screenWidth / 2, screenHeight - 20, screenWidth / 2, 20, 300);
         } catch (Exception ignored) { }
     }
+
+    // Scrolls to top of any screen
 	public void scrollToTop() throws Exception {
         try {
             Thread.sleep(1000);
             driver.swipe(screenWidth / 2, screenHeight / 8, screenWidth / 2, screenHeight / 10 * 9, 300);
         } catch (Exception ignored) { }
 	}
+
+    // Sends a message to specified account, if sendNewMessage is true it will start a new message
+    public void sendMessage(String recipient, String message, boolean sendNewMessage) {
+        if (sendNewMessage) {
+            composeButton().click();
+            aDriver().pressKeyCode(4);
+            elementName(recipient).click();
+            composeCreateButton().click();
+        } else {
+            elementName(recipient).click();
+        }
+        driver.getKeyboard().sendKeys(message);
+        chatRoomSendButton().click();
+    }
 
     /****************
      * New Elements *
@@ -64,8 +81,35 @@ public class AndroidElements extends Drivers {
     }
 
     /*** Messages ***/
-    public WebElement messages() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
+    public WebElement composeButton() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/compose")));
+    }
+    public WebElement composeCreateButton() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/compose_create_button")));
+    }
+    public WebElement chatRoomTextField() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/chat_room_fragment_text_box")));
+    }
+    public WebElement chatRoomSendButton() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("chat_room_fragment_send_button")));
+    }
+    public WebElement chatRoomDustToggleButton () {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/chat_room_fragment_destruct_button")));
+    }
+    public WebElement chatRoomToggleDeleteButton() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/toggle_delete_button")));
+    }
+    public WebElement chatRoomDustAllButton() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/chat_room_fragment_dust_all_button")));
+    }
+    public WebElement chatRoomDustButton() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/chat_room_fragment_dust_button")));
+    }
+    public WebElement chatRoomSelectMessage() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/check_mark")));
+    }
+    public WebElement messageDustedText() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Message Dusted']")));
     }
 
     /*** Contacts ***/
@@ -155,7 +199,7 @@ public class AndroidElements extends Drivers {
         return wait.until(ExpectedConditions.elementToBeClickable(By.xpath(("//*[@text='" + name + "']"))));
     }
     public WebElement homeButton() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.view.ViewGroup[0]/android.widget.ImageButton[0]")));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.view.ViewGroup[@index='0']/android.widget.ImageButton[@index='0']")));
     }
     public WebElement confirmButton() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("android:id/button1")));
