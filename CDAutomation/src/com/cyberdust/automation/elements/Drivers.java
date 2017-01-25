@@ -31,13 +31,15 @@ public abstract class Drivers extends TestAccounts {
 	public int screenHeight = driver.manage().window().getSize().getHeight();
     public static boolean ranSetup = false;
     protected static boolean IOSSimulator = false;
+    private static boolean iOSSetup = false;
 
-    static void initialSetup() throws Exception {
+    public static void initialSetup() throws Exception {
         ranSetup = true;
         IOSSimulator = false;
         resetCapabilities();
 
-        if (System.getProperty("os.name").toLowerCase().contains("mac")) {
+        if (!iOSSetup && System.getProperty("os.name").toLowerCase().contains("mac")) {
+            iOSSetup = true;
             new VariableCheck().environmentVariable();
             new DeviceReader().checkDevice();
             new AppPath().findApp();

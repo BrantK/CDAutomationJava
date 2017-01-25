@@ -26,6 +26,8 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.CompoundBorder;
 
+import com.cyberdust.automation.application.ServerOutput.ConsoleErrorOutput;
+import com.cyberdust.automation.application.ServerOutput.ConsoleOutput;
 import com.cyberdust.automation.elements.DeviceReader;
 import com.cyberdust.automation.elements.Drivers;
 
@@ -94,8 +96,8 @@ public class AutomationApp {
 		myFrame.getContentPane().setLayout(null);
 		
 		// List of test files //
-		DefaultListModel<String> simpleList = new FileFinder().simpleFileList();
-		JList<String> testClassList = new JList<>(simpleList);
+		DefaultListModel<String> simpleTestList = ListHelper.getSimpleTestList();
+		JList<String> testClassList = new JList<>(simpleTestList);
 		JScrollPane testListScroll = new JScrollPane();
 		testClassList.setFont(new Font("Arial", Font.BOLD, 11));
 		testClassList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -298,6 +300,8 @@ public class AutomationApp {
             List<String> selectedTests = testClassList.getSelectedValuesList();
             boolean stopped = false;
 
+            System.err.println("******************** "+listener.runningTest());
+
             while (testMethodsList.contains(listener.runningTest())) {
                 junitOut.setSelectedValue(listener.runningTest(), true);
                 System.setOut(logOutPrintStream);
@@ -458,7 +462,7 @@ public class AutomationApp {
 		ActionListener selectAll = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				List<Integer> selectAllList = new ArrayList<>();
-				for (int i = 0; i < simpleList.size(); i++) {
+				for (int i = 0; i < simpleTestList.size(); i++) {
 					selectAllList.add(i);
 				}
 				int [] allTests = new int[selectAllList.size()];
@@ -516,7 +520,7 @@ public class AutomationApp {
         ActionListener stopTests = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (!TestListener.currentTest.isEmpty() && !TestListener.currentTest.equals("done")) {
-					new TestRunner().stopTests();
+					TestRunner.stopTests();
 					TestListener.currentTest = "done";
 					stopButton.setEnabled(false);
 				}
@@ -635,14 +639,11 @@ public class AutomationApp {
 		testClassList.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
 				List<String> selectedTests = testClassList.getSelectedValuesList();
-				
-				if (testClassList.getSelectedIndex() == testClassList.getLeadSelectionIndex()
-                        && testClassList.getSelectedIndex() == testClassList.getAnchorSelectionIndex()) {
-					testMethodsList.removeAllElements();
-				}
+
+                testMethodsList.removeAllElements();
 			
 				try {
-					List<String> calledTestMethods = com.cyberdust.automation.application.TestListener.getTestMethods(selectedTests);
+					List<String> calledTestMethods = FileFinder.getTestMethods(selectedTests);
 					for (String tests : calledTestMethods) {
 						if (selectedTests.contains(calledTestMethods.get(0)) && !testMethodsList.contains(tests)) {
 							testMethodsList.addElement(tests);
@@ -695,7 +696,7 @@ public class AutomationApp {
 				Icon passIcon = new ImageIcon(iconLocation+"pass.gif");
 				Icon failIcon = new ImageIcon(iconLocation+"fail.gif");
 				
-				if (simpleList.contains(value)) {
+				if (simpleTestList.contains(value)) {
 					setIcon(tSuiteIcon);
 					setFont(new Font("Arial", Font.BOLD, 11));
 

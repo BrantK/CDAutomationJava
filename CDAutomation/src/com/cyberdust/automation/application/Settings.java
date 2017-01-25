@@ -46,7 +46,7 @@ public class Settings {
 				e.printStackTrace();
 			}
 		}
-		
+
 		try {
 			appSettings.load(new FileInputStream(settingsFile));
 		} catch (FileNotFoundException e) {

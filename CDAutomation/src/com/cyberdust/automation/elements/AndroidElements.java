@@ -113,9 +113,15 @@ public class AndroidElements extends Drivers {
     }
 
     /*** Contacts ***/
-    public WebElement contacts() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
+    public WebElement contactsSearch() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/search")));
     }
+    public WebElement contactsProfilePhoto() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/search_profile_photo")));
+    }
+	public WebElement contactsUsername() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/search_title")));
+	}
 
     /*** Connect ***/
     public WebElement connect() {
@@ -126,11 +132,17 @@ public class AndroidElements extends Drivers {
     public WebElement publicButton() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
     }
+    public WebElement blastReplyButton() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/blast_reply_button")));
+    }
 
     /*** Profile ***/
 	public WebElement settingsButton() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/settings")));
-	}
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/settings")));
+    }
+    public WebElement profilePicture() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/profile_picture")));
+    }
 
 	/*** Settings ***/
 	public WebElement notificationsRow() {
@@ -191,7 +203,7 @@ public class AndroidElements extends Drivers {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/login_password")));
     }
     public WebElement logInButton() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/login_button")));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/login_text")));
     }
 
     /*** Misc ***/
@@ -203,6 +215,9 @@ public class AndroidElements extends Drivers {
     }
     public WebElement confirmButton() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("android:id/button1")));
+    }
+    public WebElement addToContacts() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/profile_add_button")));
     }
 
 	/******************

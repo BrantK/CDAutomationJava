@@ -1,4 +1,4 @@
-package com.cyberdust.automation.application;
+package com.cyberdust.automation.application.ServerOutput;
 
 import java.io.IOException;
 import java.io.OutputStream;
