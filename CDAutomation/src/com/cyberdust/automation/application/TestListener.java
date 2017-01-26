@@ -6,11 +6,10 @@ import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunListener;
 
 public class TestListener extends RunListener {
-	public static String currentTest;
-	public String testResult;
-	public String failResult;
-	public String passResult;
-	public static String exceptionResult;
+	private static String currentTest;
+	private static String failedTest;
+	private static String passedTest;
+	private static String thrownException;
 
 	@Override
 	public void testStarted (Description description) throws Exception {
@@ -19,35 +18,48 @@ public class TestListener extends RunListener {
 	
 	@Override
     public void testFailure (Failure failure) throws Exception {
-		testResult = failure.getDescription().getMethodName();
-		failResult = failure.getDescription().getMethodName();
-		exceptionResult = failure.getException().toString();
+		failedTest = failure.getDescription().getMethodName();
+		thrownException = failure.getException().toString();
 	}
 
 	@Override
 	public void testFinished (Description description) throws Exception {
-		if (!description.getMethodName().equals(failResult)) {
-			passResult = description.getMethodName();
+		if (!description.getMethodName().equals(failedTest)) {
+			passedTest = description.getMethodName();
 		}
 	}
 
 	@Override
 	public void testRunFinished (Result result) throws Exception {
-		currentTest = "done";
+		currentTest = null;
 	}
 	
-	public String runningTest() {
-		while (currentTest.length() == 0 || currentTest.equals("done")) {
-			System.out.flush();
+	public static String getCurrentTestWithDelay() {
+		while (currentTest == null) {
+			try {
+			    Thread.sleep(1000);
+            } catch (Exception ignored) {}
 		}
 		return currentTest;
 	}
+
+	public static String getCurrentTest() {
+	    return currentTest;
+    }
 	
-	public String failedTests() {
-		return failResult;
+	public static String getFailedTests() {
+		return failedTest;
 	}
 	
-	public String passedTests() {
-		return passResult;
+	public static String getPassedTests() {
+		return passedTest;
 	}
+
+	public static String getException() {
+	    return thrownException;
+    }
+
+    public static void nullCurrentTest() {
+	    currentTest = null;
+    }
 }

@@ -295,15 +295,13 @@ public class AutomationApp {
 
 		// Highlights the currently running test //
         Consumer<Void> runMethodSelector = (arg0) -> {
-            TestListener listener = new TestListener();
-            testProgressBar.setMaximum(testMethodsList.size()-1);
             List<String> selectedTests = testClassList.getSelectedValuesList();
-            boolean stopped = false;
+            boolean testStopped = false;
 
-            System.err.println("******************** "+listener.runningTest());
+            testProgressBar.setMaximum(testMethodsList.size()-1);
 
-            while (testMethodsList.contains(listener.runningTest())) {
-                junitOut.setSelectedValue(listener.runningTest(), true);
+            while (testMethodsList.contains(TestListener.getCurrentTestWithDelay())) {
+                junitOut.setSelectedValue(TestListener.getCurrentTestWithDelay(), true);
                 System.setOut(logOutPrintStream);
                 System.setErr(logErrPrintStream);
 
@@ -311,13 +309,13 @@ public class AutomationApp {
                 testProgressBar.setString("Test Progress");
                 testProgressBar.setValue((junitOut.getSelectedIndex()));
 
-                if (!failedTests.contains(listener.failedTests())){
-                    failedTests.add(listener.failedTests());
-                    exceptionsMap.put(listener.failedTests(), TestListener.exceptionResult);
+                if (!failedTests.contains(TestListener.getFailedTests())){
+                    failedTests.add(TestListener.getFailedTests());
+                    exceptionsMap.put(TestListener.getFailedTests(), TestListener.getException());
                 }
 
-                if (!passedTests.contains(listener.passedTests())) {
-                    passedTests.add(listener.passedTests());
+                if (!passedTests.contains(TestListener.getPassedTests())) {
+                    passedTests.add(TestListener.getPassedTests());
                 }
 
                 if (testMethodsList.contains(testClassList.getSelectedValue())) {
@@ -334,24 +332,24 @@ public class AutomationApp {
                     e.printStackTrace();
                 }
 
-                if (!stopButton.isEnabled() && !stopped) {
+                if (!stopButton.isEnabled() && !testStopped) {
                     stopButton.setEnabled(true);
-                    stopped = true;
+                    testStopped = true;
                 }
 
                 // After all tests have been completed
-                if (TestListener.currentTest.equals("done")) {
+                if (TestListener.getCurrentTest() == null) {
                     System.setOut(serverOutPrintStream);
                     System.setErr(serverErrPrintStream);
                     junitOut.clearSelection();
 
-                    if (!failedTests.contains(listener.failedTests())){
-                        failedTests.add(listener.failedTests());
-                        exceptionsMap.put(listener.failedTests(), TestListener.exceptionResult);
+                    if (!failedTests.contains(TestListener.getFailedTests())){
+                        failedTests.add(TestListener.getFailedTests());
+                        exceptionsMap.put(TestListener.getFailedTests(), TestListener.getException());
                     }
 
-                    if (!passedTests.contains(listener.passedTests())) {
-                        passedTests.add(listener.passedTests());
+                    if (!passedTests.contains(TestListener.getPassedTests())) {
+                        passedTests.add(TestListener.getPassedTests());
                     }
 
                     if (!stopButton.isEnabled()) {
@@ -399,64 +397,68 @@ public class AutomationApp {
 		// Listeners //
 		ActionListener runTest = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SwingWorker<Void, Void> newTestWorker = new SwingWorker<Void, Void>() {
-					public Void doInBackground() throws Exception {
-						TestRunner.runTests(testClassList.getSelectedValuesList());
-						return null;
-					}
-				};
-				
-				SwingWorker<Void, Void> newMethodWorker = new SwingWorker<Void, Void>() {
-					public Void doInBackground() throws Exception {
-						runMethodSelector.accept(null);
-						return null;
-					}
-				};
-				
-				if (IOSCheckBox.isSelected()) {
-					DeviceReader.IOSOverride = true;
-				}
-				
-				try {
-					newTestWorker.execute();
-					newMethodWorker.execute();
-				} catch (NullPointerException e) {
-					System.err.println("Failed to establish connection to Appium server.\n");
-					
-					try {
-						Thread.sleep(800);
-					} catch (InterruptedException e1) {
-						e1.printStackTrace();
-					}
-					
-					stopButton.setEnabled(true);
-					runButton.setEnabled(true);
-					optionsButton.setEnabled(true);
-					testClassList.setEnabled(true);
-					selectAllButton.setEnabled(true);
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-					
-				if (!testClassList.isSelectionEmpty()) {
-                    checkingDevice = false;
-					runButton.setEnabled(false);
-					stopButton.setEnabled(false);
-					optionsButton.setEnabled(false);
-					testClassList.setEnabled(false);
-					selectAllButton.setEnabled(false);
-					
-					if (executedTests.contains(testClassList.getSelectedValue())) {
-						for (int i = 0; i < testMethodsList.size(); i++) {
-							executedTests.remove(testMethodsList.get(i));
-							passedTests.remove(testMethodsList.get(i));
-							failedTests.remove(testMethodsList.get(i));
-							exceptionsMap.remove(testMethodsList.get(i));
-						}
-					}
-				}
-			}
+
+                if (testClassList.getSelectedValue() != null) {
+
+                    SwingWorker<Void, Void> newTestWorker = new SwingWorker<Void, Void>() {
+                        public Void doInBackground() throws Exception {
+                            TestRunner.runTests(testClassList.getSelectedValuesList());
+                            return null;
+                        }
+                    };
+
+                    SwingWorker<Void, Void> newMethodWorker = new SwingWorker<Void, Void>() {
+                        public Void doInBackground() throws Exception {
+                            runMethodSelector.accept(null);
+                            return null;
+                        }
+                    };
+
+                    if (IOSCheckBox.isSelected()) {
+                        DeviceReader.IOSOverride = true;
+                    }
+
+                    try {
+                        newTestWorker.execute();
+                        newMethodWorker.execute();
+                    } catch (NullPointerException e) {
+                        System.err.println("Failed to establish connection to Appium server.\n");
+
+                        try {
+                            Thread.sleep(800);
+                        } catch (InterruptedException e1) {
+                            e1.printStackTrace();
+                        }
+
+                        stopButton.setEnabled(true);
+                        runButton.setEnabled(true);
+                        optionsButton.setEnabled(true);
+                        testClassList.setEnabled(true);
+                        selectAllButton.setEnabled(true);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    if (!testClassList.isSelectionEmpty()) {
+                        checkingDevice = false;
+                        runButton.setEnabled(false);
+                        stopButton.setEnabled(false);
+                        optionsButton.setEnabled(false);
+                        testClassList.setEnabled(false);
+                        selectAllButton.setEnabled(false);
+
+                        if (executedTests.contains(testClassList.getSelectedValue())) {
+                            for (int i = 0; i < testMethodsList.size(); i++) {
+                                executedTests.remove(testMethodsList.get(i));
+                                passedTests.remove(testMethodsList.get(i));
+                                failedTests.remove(testMethodsList.get(i));
+                                exceptionsMap.remove(testMethodsList.get(i));
+                            }
+                        }
+                    }
+                }
+            }
 		};
 		
 		ActionListener selectAll = new ActionListener() {
@@ -519,9 +521,9 @@ public class AutomationApp {
 
         ActionListener stopTests = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (!TestListener.currentTest.isEmpty() && !TestListener.currentTest.equals("done")) {
+				if (TestListener.getCurrentTest() != null) {
 					TestRunner.stopTests();
-					TestListener.currentTest = "done";
+					TestListener.nullCurrentTest();
 					stopButton.setEnabled(false);
 				}
 			}
@@ -710,7 +712,7 @@ public class AutomationApp {
 					setIcon(testIcon);
 				}
 				
-				if (value.toString().equals(TestListener.currentTest)) {
+				if (value.toString().equals(TestListener.getCurrentTest())) {
 					setIcon(runningIcon);
 				}
 
