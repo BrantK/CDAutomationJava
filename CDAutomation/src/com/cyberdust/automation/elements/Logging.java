@@ -2,6 +2,7 @@ package com.cyberdust.automation.elements;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -11,7 +12,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class Logging {
 
-    public Logging(String text, String className) {
+    public Logging(String text, String className) throws IOException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yy HH:mm:ss");
         String projectPath = Paths.get("").toAbsolutePath().normalize().toString();
         String logLocation;
@@ -35,8 +36,10 @@ public class Logging {
             System.out.print(dateTime + testName + text + "\n");
         }
 
+        FileWriter myWriter = null;
+
         try {
-            FileWriter myWriter = new FileWriter(logLocation, true);
+            myWriter = new FileWriter(logLocation, true);
             myWriter.append(dateTime);
             myWriter.append(testName);
             myWriter.append(text);
@@ -44,6 +47,10 @@ public class Logging {
             myWriter.close();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            if (myWriter != null) {
+                myWriter.close();
+            }
         }
     }
 }

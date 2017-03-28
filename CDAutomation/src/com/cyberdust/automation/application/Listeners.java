@@ -9,6 +9,7 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.*;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -341,7 +342,11 @@ public class Listeners {
                         com.cyberdust.automation.elements.TestAccounts.accountSet2 = true;
                     }
                 }
-                new Settings().storeSettings();
+                try {
+                    new Settings().storeSettings();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         };
     }
@@ -376,7 +381,11 @@ public class Listeners {
                     Settings.getAppSettings().put("address", addressField.getText());
                     Settings.getAppSettings().put("port", portField.getText());
 
-                    new Settings().storeSettings();
+                    try {
+                        new Settings().storeSettings();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         };

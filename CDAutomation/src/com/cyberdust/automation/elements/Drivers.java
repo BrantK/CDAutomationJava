@@ -2,6 +2,7 @@ package com.cyberdust.automation.elements;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -37,8 +38,9 @@ public abstract class Drivers extends TestAccounts {
     private static boolean ranSetup = false;
 
     public static void initialSetup() throws Exception {
-        ranSetup = true;
         IOSSimulator = false;
+
+        setRanSetup(true);
         resetCapabilities();
 
         if (!iOSSetup && System.getProperty("os.name").toLowerCase().contains("mac")) {
@@ -163,7 +165,11 @@ public abstract class Drivers extends TestAccounts {
 	
 	// Prints text to console and to a log file in the project folder / test logs folder
     public void log(String text) {
-		new Logging(text, getClass().getSimpleName());
+        try {
+            new Logging(text, getClass().getSimpleName());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 
     public static boolean isIOSSimulator() {

@@ -11,7 +11,8 @@ public class Settings {
 	private String projectPath = Paths.get("").toAbsolutePath().normalize().toString();
 	private String settingsFile = "";
 	
-	public void storeSettings () {
+	public void storeSettings() throws IOException {
+		FileOutputStream fileOutputStream = null;
 		
 		if (System.getProperty("os.name").toLowerCase().contains("mac")) {
 			settingsFile = projectPath+"/settings.cfg";
@@ -19,17 +20,21 @@ public class Settings {
 			settingsFile = projectPath+"\\settings.cfg";
 		}
 		
-		
 		try {
-			appSettings.store(new FileOutputStream(settingsFile), null);
+			appSettings.store(fileOutputStream = new FileOutputStream(settingsFile), null);
 		} catch (FileNotFoundException e) {
 			System.err.println("No settings file found!");
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			if (fileOutputStream != null) {
+				fileOutputStream.close();
+			}
 		}
 	}
 	
-	public void loadSettings () {
+	public void loadSettings() throws IOException {
+		FileInputStream fileInputStream = null;
 		
 		if (System.getProperty("os.name").toLowerCase().contains("mac")) {
 			settingsFile = projectPath+"/settings.cfg";
@@ -46,11 +51,15 @@ public class Settings {
 		}
 
 		try {
-			appSettings.load(new FileInputStream(settingsFile));
+			appSettings.load(fileInputStream = new FileInputStream(settingsFile));
 		} catch (FileNotFoundException e) {
 			System.err.println("No settings file found!");
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			if (fileInputStream != null) {
+				fileInputStream.close();
+			}
 		}
 	}
 
