@@ -1,15 +1,13 @@
 package com.cyberdust.automation.application;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Paths;
 import java.util.Properties;
 
 public class Settings {
-	public static Properties appSettings = new Properties();
+
+	private static Properties appSettings = new Properties();
+
 	private String projectPath = Paths.get("").toAbsolutePath().normalize().toString();
 	private String settingsFile = "";
 	
@@ -55,4 +53,8 @@ public class Settings {
 			e.printStackTrace();
 		}
 	}
+
+	public static Properties getAppSettings() {
+	    return appSettings;
+    }
 }

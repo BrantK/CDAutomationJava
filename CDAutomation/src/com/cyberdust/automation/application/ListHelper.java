@@ -7,7 +7,8 @@ import java.nio.file.Paths;
  * Created by brant on 1/24/17.
  */
 public class ListHelper {
-    public static final String PROJECT_DIR = Paths.get("").toAbsolutePath().normalize().toString();
+
+    private static String projectDir = Paths.get("").toAbsolutePath().normalize().toString();
     private static DefaultListModel<String> absoluteTestPath = FileFinder.getFilePath();
 
     // Returns full file path
@@ -24,5 +25,9 @@ public class ListHelper {
         }
 
         return s;
+    }
+
+    public static String getProjectDir() {
+        return projectDir;
     }
 }

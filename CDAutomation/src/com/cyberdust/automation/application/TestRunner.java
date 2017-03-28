@@ -1,14 +1,17 @@
 package com.cyberdust.automation.application;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.DefaultListModel;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.notification.RunNotifier;
 
+import javax.swing.*;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+
 public class TestRunner {
-    public static List<String> completedTests = new ArrayList<>();
+
+    private static List<String> completedTests = new ArrayList<>();
+
 	private static DefaultListModel<String> testList = ListHelper.getAbsoluteTestList();
 	private static DefaultListModel<String> simpleTestList = ListHelper.getSimpleTestList();
 	private static JUnitCore junit;
@@ -41,7 +44,7 @@ public class TestRunner {
 		}
 	}
 	
-	public static void stopTests () {
+	public static void stopTests() {
 		try {
 			Field field = JUnitCore.class.getDeclaredField("notifier");
 			field.setAccessible(true);
@@ -51,4 +54,8 @@ public class TestRunner {
 			e.printStackTrace();
 		}
 	}
+
+	public static List<String> getCompletedTests() {
+	    return completedTests;
+    }
 }

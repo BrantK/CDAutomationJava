@@ -1,16 +1,15 @@
 package com.cyberdust.automation.application;
 
+import javax.swing.*;
 import java.io.File;
 import java.lang.reflect.Method;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.swing.DefaultListModel;
-
 public class FileFinder {
-    private static String projectDir = ListHelper.PROJECT_DIR;
+
+    private static String projectDir = ListHelper.getProjectDir();
     private static DefaultListModel<String> files = new DefaultListModel<>();
 
 	// For custom test list order, add tests here from top to bottom

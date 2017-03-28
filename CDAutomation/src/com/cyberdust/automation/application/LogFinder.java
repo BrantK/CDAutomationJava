@@ -1,16 +1,17 @@
 package com.cyberdust.automation.application;
 
-import java.awt.Desktop;
+import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.List;
-import javax.swing.DefaultListModel;
 
 public class LogFinder {
+
 	private DefaultListModel<String> testList = ListHelper.getAbsoluteTestList();
 	
 	public void openLog(List<String> selectedTests) throws Exception {
-		String projectPath = ListHelper.PROJECT_DIR;
+		String projectPath = ListHelper.getProjectDir();
 		String logLocation = "";
 		String testName;
 		String logName;

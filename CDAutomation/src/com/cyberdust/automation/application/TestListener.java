@@ -6,6 +6,7 @@ import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunListener;
 
 public class TestListener extends RunListener {
+
 	private static String currentTest;
 	private static String failedTest;
 	private static String passedTest;
