@@ -11,7 +11,7 @@ class IOS_ReblastTest extends IOSElements {
     void test01_send_video_no_loc() throws Exception {
         loginAs.user(reblast_account01, reblast_password01);
 
-        if (!IOSSimulator) {
+        if (!isIOSSimulator()) {
             for (int i = 0; i < 3; i++) {
                 action_menu().click();
                 action_menu_media().click();
@@ -26,7 +26,7 @@ class IOS_ReblastTest extends IOSElements {
     }
 
     void test02_send_video_with_loc() throws Exception {
-        if (!IOSSimulator) {
+        if (!isIOSSimulator()) {
             for (int i = 0; i < 3; i++) {
                 action_menu().click();
                 action_menu_media().click();
@@ -96,7 +96,7 @@ class IOS_ReblastTest extends IOSElements {
             action_menu().click();
             action_menu_media().click();
 
-            if (IOSSimulator) {
+            if (isIOSSimulator()) {
                 photo_gallery().click();
                 camera_roll().click();
                 camera_roll_photo1().click();
@@ -116,7 +116,7 @@ class IOS_ReblastTest extends IOSElements {
             action_menu().click();
             action_menu_media().click();
 
-            if (IOSSimulator) {
+            if (isIOSSimulator()) {
                 photo_gallery().click();
                 camera_roll().click();
                 camera_roll_photo1().click();
@@ -385,7 +385,7 @@ class IOS_ReblastTest extends IOSElements {
     }
     
     void test16_reblast_video_with_loc() throws Exception {
-        if (!IOSSimulator) {
+        if (!isIOSSimulator()) {
             username(reblast_account01).click();
 
             log("Reblasting video to all followers");
@@ -417,7 +417,7 @@ class IOS_ReblastTest extends IOSElements {
     }
 
     void test17_reblast_video_no_loc() throws Exception {
-        if (!IOSSimulator) {
+        if (!isIOSSimulator()) {
             username(reblast_account01).click();
 
             log("Reblasting video to all followers");

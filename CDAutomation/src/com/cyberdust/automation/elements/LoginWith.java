@@ -78,7 +78,7 @@ public class LoginWith extends Drivers {
 
             	}
             } catch (Exception e) {
-                driver.swipe(screenWidth / 2, screenHeight - 20, screenWidth / 2, 20, 300);
+                getDriver().swipe(screenWidth / 2, screenHeight - 20, screenWidth / 2, 20, 300);
                 ios.logout().click();
                 ios.confirm().click();
                 logged_out = true;
@@ -92,9 +92,9 @@ public class LoginWith extends Drivers {
                 Thread.sleep(500);
             } catch (InterruptedException ignored) {}
             ios.login_username().click();
-            driver.getKeyboard().sendKeys(account);
+            getDriver().getKeyboard().sendKeys(account);
             ios.login_password().click();
-            driver.getKeyboard().sendKeys(password);
+            getDriver().getKeyboard().sendKeys(password);
             ios.login_OK().click();
         }
     }

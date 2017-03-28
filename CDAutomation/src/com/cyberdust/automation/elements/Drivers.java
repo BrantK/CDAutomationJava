@@ -25,13 +25,16 @@ public abstract class Drivers extends TestAccounts {
     private static AppiumDriverLocalService service = AppiumDriverLocalService.buildDefaultService();
 	private static DesiredCapabilities capabilities = new DesiredCapabilities();
     public static AppiumDriver <WebElement> driver;
-	public static String appiumServerAddress = "127.0.0.1";
-	public static String appiumServerPort = "4723";
-	public int screenWidth = driver.manage().window().getSize().getWidth();
-	public int screenHeight = driver.manage().window().getSize().getHeight();
-    public static boolean ranSetup = false;
-    protected static boolean IOSSimulator = false;
+
+    public int screenWidth = driver.manage().window().getSize().getWidth();
+    public int screenHeight = driver.manage().window().getSize().getHeight();
+
+    private static String appiumServerAddress = "127.0.0.1";
+	private static String appiumServerPort = "4723";
+
+    private static boolean IOSSimulator = false;
     private static boolean iOSSetup = false;
+    private static boolean ranSetup = false;
 
     public static void initialSetup() throws Exception {
         ranSetup = true;
@@ -40,22 +43,23 @@ public abstract class Drivers extends TestAccounts {
 
         if (!iOSSetup && System.getProperty("os.name").toLowerCase().contains("mac")) {
             iOSSetup = true;
-            new VariableCheck().environmentVariable();
             new DeviceReader().checkDevice();
             new AppPath().findApp();
         }
 
         System.out.println("\n------ Starting Appium Server ------");
+
         service = AppiumDriverLocalService.buildService(new AppiumServiceBuilder()
                         .withAppiumJS(new File("/usr/local/lib/node_modules/appium/build/lib/main.js"))
                         .withArgument(GeneralServerFlag.LOG_NO_COLORS)
                         .withArgument(GeneralServerFlag.LOG_LEVEL, "info")
                         .withIPAddress(appiumServerAddress)
                         .usingPort(Integer.parseInt(appiumServerPort)));
+
         service.start();
 
         try {
-            if (DeviceReader.runningIOSSimulator) {
+            if (DeviceReader.isRunningIOSSimulator()) {
                 IOSSimulator = true;
                 capabilities.setCapability("platformName", "IOS");
                 capabilities.setCapability("platformVersion", "");
@@ -67,18 +71,18 @@ public abstract class Drivers extends TestAccounts {
                 driver = new IOSDriver<>(service.getUrl(), capabilities);
             }
 
-            if (DeviceReader.runningIOSDevice) {
+            if (DeviceReader.isRunningIOSDevice()) {
                 capabilities.setCapability("platformName", "IOS");
                 capabilities.setCapability("platformVersion", "");
                 capabilities.setCapability("deviceName", "iPhone");
                 capabilities.setCapability("noReset", true);
                 capabilities.setCapability("nativeInstrumentsLib", true);
                 capabilities.setCapability("bundleId", "com.mentionmobile.cyberdust");
-                capabilities.setCapability("udid", DeviceReader.IOS_UDID);
+                capabilities.setCapability("udid", DeviceReader.getIosUdid());
                 driver = new IOSDriver<>(service.getUrl(), capabilities);
             }
 
-            if (DeviceReader.runningAndroidDevice) {
+            if (DeviceReader.isRunningAndroidDevice()) {
                 capabilities.setCapability("platformName", "Android");
                 capabilities.setCapability("platformVersion", "");
                 capabilities.setCapability("deviceName", "Android");
@@ -158,40 +162,35 @@ public abstract class Drivers extends TestAccounts {
 	}
 	
 	// Prints text to console and to a log file in the project folder / test logs folder
-	@SuppressWarnings("ResultOfMethodCallIgnored")
     public void log(String text) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yy HH:mm:ss");
-		String projectPath = Paths.get("").toAbsolutePath().normalize().toString();
-		String logLocation;
-		
-		String dateTime = LocalDateTime.now().format(formatter)+" ";
-		String logName = getClass().getPackage().toString().substring(33, getClass().getPackage().toString().length());
-		String testName = ("["+getClass().getSimpleName()+"]: ").replace("Run_", "").replace("Run", "").replace("Android_", "").replace("IOS_", "");
-		
-		if (projectPath.contains("/")) {
-			new File(projectPath+"/testlogs/").mkdir();
-			logLocation = projectPath+"/testlogs/"+logName+".log";
-		} else {
-			new File(projectPath+"\\testlogs\\").mkdir();
-			logLocation = projectPath+"\\testlogs\\"+logName+".log";
-		}
-
-        if (text.toLowerCase().contains("fail") || text.toLowerCase().contains("exception")
-                || text.toLowerCase().contains("warning") || text.toLowerCase().contains("error")) {
-            System.err.print(dateTime + testName + text + "\n");
-        } else {
-            System.out.print(dateTime + testName + text + "\n");
-        }
-		
-		try {
-			FileWriter myWriter = new FileWriter(logLocation, true);
-            myWriter.append(dateTime);
-            myWriter.append(testName);
-            myWriter.append(text);
-            myWriter.append("\n");
-			myWriter.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		new Logging(text, getClass().getSimpleName());
 	}
+
+    public static boolean isIOSSimulator() {
+        return IOSSimulator;
+    }
+
+    public static String getAppiumServerAddress() {
+        return appiumServerAddress;
+    }
+
+    public static String getAppiumServerPort() {
+        return appiumServerPort;
+    }
+
+    public static AppiumDriver<WebElement> getDriver() {
+        return driver;
+    }
+
+    public static void setAppiumServerAddress(String appiumServerAddress) {
+        Drivers.appiumServerAddress = appiumServerAddress;
+    }
+
+    public static void setAppiumServerPort(String appiumServerPort) {
+        Drivers.appiumServerPort = appiumServerPort;
+    }
+
+    public static void setRanSetup(boolean ranSetup) {
+        Drivers.ranSetup = ranSetup;
+    }
 }

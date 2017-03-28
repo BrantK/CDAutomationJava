@@ -10,7 +10,7 @@ import java.util.List;
 import io.appium.java_client.TouchAction;
 
 public class AndroidElements extends Drivers {
-	
+
 	public WebDriverWait wait = new WebDriverWait(driver, 20);
 	
 	// For changing the WebDriverWait time from in a test
@@ -18,7 +18,6 @@ public class AndroidElements extends Drivers {
 		return wait = new WebDriverWait(driver, x);
 	}
 
-    // Scrolls to bottom of any screen
     public void scrollToBottom() {
         try {
             Thread.sleep(1000);
@@ -26,7 +25,6 @@ public class AndroidElements extends Drivers {
         } catch (Exception ignored) { }
     }
 
-    // Scrolls to top of any screen
 	public void scrollToTop() throws Exception {
         try {
             Thread.sleep(1000);

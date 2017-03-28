@@ -75,7 +75,7 @@ public class IOS_GroupTest extends IOSElements {
 		group_camera_button().click();
 		photo_button().click();
 
-        if (IOSSimulator) {
+        if (isIOSSimulator()) {
             log("Using gallery photo");
             name("OK").click();
             photo_gallery().click();
@@ -94,7 +94,7 @@ public class IOS_GroupTest extends IOSElements {
      
     public void test06_send_video() throws Exception {
 		// Video
-        if (!IOSSimulator) {
+        if (!isIOSSimulator()) {
             group_camera_button().click();
             video_button().click();
             action().longPress(photo_button(), 5000).release().perform();
@@ -151,10 +151,10 @@ public class IOS_GroupTest extends IOSElements {
             if (driver.findElementById("bg_bubble_left").isDisplayed()
                     && driver.findElementByXPath("//UIAApplication[1]/UIAWindow[1]/UIACollectionView[1]/UIACollectionCell[2]/UIAImage[3]").isDisplayed()) {
 
-                if (IOSSimulator) {
+                if (isIOSSimulator()) {
                     log("All group messages successfully received");
                 }
-                if (!IOSSimulator && driver.findElementById("btn_video_play").isDisplayed()){
+                if (!isIOSSimulator() && driver.findElementById("btn_video_play").isDisplayed()){
                     log("All group messages successfully received");
                 }
             }

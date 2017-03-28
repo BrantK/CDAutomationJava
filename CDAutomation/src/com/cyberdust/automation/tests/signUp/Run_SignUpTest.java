@@ -22,7 +22,7 @@ public class Run_SignUpTest extends Drivers {
 			
 		} catch (Exception e) {
 			log("[Fail] Got exception " + e);
-			driver.resetApp();
+			getDriver().resetApp();
 			throw e;
 		}
 	}
@@ -40,7 +40,7 @@ public class Run_SignUpTest extends Drivers {
 			
 		} catch (Exception e) {
 			log("[Fail] Got exception " + e);
-			driver.resetApp();
+			getDriver().resetApp();
 			throw e;
 		}
 	}
@@ -58,7 +58,7 @@ public class Run_SignUpTest extends Drivers {
 
         } catch (Exception e) {
             log("[Fail] Got exception " + e);
-            driver.resetApp();
+            getDriver().resetApp();
             throw e;
         }
     }

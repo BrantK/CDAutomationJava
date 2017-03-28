@@ -92,7 +92,7 @@ class IOS_SignUpTest extends IOSElements {
         log("Changing profile picture");
         photo_button().click();
 
-        if (IOSSimulator) {
+        if (isIOSSimulator()) {
             log("Using gallery photo");
             name("OK").click();
             photo_gallery().click();

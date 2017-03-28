@@ -28,7 +28,7 @@ public class AccountCreator extends Drivers {
             android.sign_up_button();
         } catch (Exception e) {
             android.more_button().click(); Thread.sleep(1000);
-            driver.swipe(screenWidth/2, screenHeight - 20, screenWidth/2, 20, 300);
+            getDriver().swipe(screenWidth/2, screenHeight - 20, screenWidth/2, 20, 300);
             android.logout().click();
             log("Logging out before starting test");
             android.confirm().click();
@@ -69,7 +69,7 @@ public class AccountCreator extends Drivers {
                 try {
                     android.name("Secure account").click();
                     android.phone_continue();
-                    driver.getKeyboard().sendKeys("1");
+                    getDriver().getKeyboard().sendKeys("1");
                     android.name("Continue").click();
                     Thread.sleep(1000);
 
@@ -84,7 +84,7 @@ public class AccountCreator extends Drivers {
             if (!chosePhone) {
                 try {
                     android.phone_continue();
-                    driver.getKeyboard().sendKeys("1");
+                    getDriver().getKeyboard().sendKeys("1");
                     android.name("Continue").click();
                     Thread.sleep(1000);
 
@@ -116,14 +116,14 @@ public class AccountCreator extends Drivers {
             ios.sign_up_button();
         } catch (Exception e) {
             ios.more_button().click(); Thread.sleep(1000);
-            driver.swipe(screenWidth/2, screenHeight - 20, screenWidth/2, 20, 300);
+            getDriver().swipe(screenWidth/2, screenHeight - 20, screenWidth/2, 20, 300);
             ios.logout().click();
             log("Logging out before starting test");
             ios.confirm().click();
         }
 
         ios.sign_up_button().click();
-        driver.getKeyboard().sendKeys(username);
+        getDriver().getKeyboard().sendKeys(username);
         ios.username_OK().click();
 
         for (int i = 0; i < 3; i++) {
@@ -132,7 +132,7 @@ public class AccountCreator extends Drivers {
             if (!chosePassword) {
                 try {
                     ios.password_OK().isDisplayed();
-                    driver.getKeyboard().sendKeys(password);
+                    getDriver().getKeyboard().sendKeys(password);
                     ios.password_OK().click();
                     chosePassword = true;
                 } catch (Exception ignored) {}
@@ -157,7 +157,7 @@ public class AccountCreator extends Drivers {
                 try {
                     ios.name("Secure account").click();
                     ios.phone_continue();
-                    driver.getKeyboard().sendKeys("1");
+                    getDriver().getKeyboard().sendKeys("1");
                     ios.name("Continue").click();
                     Thread.sleep(1000);
 
@@ -172,7 +172,7 @@ public class AccountCreator extends Drivers {
             if (!chosePhone) {
                 try {
                     ios.phone_continue();
-                    driver.getKeyboard().sendKeys("1");
+                    getDriver().getKeyboard().sendKeys("1");
                     ios.name("Continue").click();
                     Thread.sleep(1000);
 

@@ -81,7 +81,7 @@ class IOS_BlastTest extends IOSElements {
 		action_menu_media().click();
 		photo_button().click();
 
-        if (IOSSimulator) {
+        if (isIOSSimulator()) {
             log("Using gallery photo");
             name("OK").click();
             photo_gallery().click();
@@ -110,7 +110,7 @@ class IOS_BlastTest extends IOSElements {
 		action_menu_media().click();
 		photo_button().click();
 
-        if (IOSSimulator) {
+        if (isIOSSimulator()) {
             log("Using gallery photo");
             name("OK").click();
             photo_gallery().click();
@@ -161,7 +161,7 @@ class IOS_BlastTest extends IOSElements {
 
 	void test06_send_video_blast_01() throws Exception {
 		// Takes video, adds +username, creates blast list, then sends to that blast list
-        if (!IOSSimulator) {
+        if (!isIOSSimulator()) {
             log("Sending video to newly created blast list");
             blasts_tab();
             action_menu().click();
@@ -186,7 +186,7 @@ class IOS_BlastTest extends IOSElements {
 
 	void test07_send_video_blast_02() throws Exception {
 		// Takes video, adds URL, then sends to single friend
-        if (!IOSSimulator) {
+        if (!isIOSSimulator()) {
             log("Sending video with URL");
             blasts_tab();
             action_menu().click();
@@ -218,7 +218,7 @@ class IOS_BlastTest extends IOSElements {
 		blast_Ok_button().perform();
 
 		// Deletes blast list
-        if (!IOSSimulator) {
+        if (!isIOSSimulator()) {
             log("Deleting blast list");
             blast_lists().click();
             blast_list_expand();
@@ -254,7 +254,7 @@ class IOS_BlastTest extends IOSElements {
         log("Testing photo and video replies");
         photo_button().click();
 
-        if (IOSSimulator) {
+        if (isIOSSimulator()) {
             log("Using gallery photo");
             name("OK").click();
             photo_gallery().click();
@@ -267,7 +267,7 @@ class IOS_BlastTest extends IOSElements {
                 photo_pen().getLocation().x, photo_pen().getLocation().y + 50, 1000);
         swipe_view_photo_send().click();
 
-        if (!IOSSimulator) {
+        if (!isIOSSimulator()) {
             swipe_view_reply_media().click();
             video_button().click();
             action().longPress(photo_button(), 5000).release().perform();
@@ -280,7 +280,7 @@ class IOS_BlastTest extends IOSElements {
 
     void test10_open_video_blast() throws Exception {
         // Opens video with +username
-        if (!IOSSimulator) {
+        if (!isIOSSimulator()) {
             try {
                 Thread.sleep(3000);
                 if (driver.findElementByXPath("//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]").isDisplayed()) {
@@ -425,10 +425,10 @@ class IOS_BlastTest extends IOSElements {
 			Thread.sleep(2000);
 			if (driver.findElementById("bg_bubble_left").isDisplayed() && driver.findElementById("btn_emoji_big_word_1").isDisplayed()) {
 
-                if (IOSSimulator && driver.findElementByXPath("//UIAApplication[1]/UIAWindow[1]/UIACollectionView[1]/UIACollectionCell[4]/UIAImage[3]").isDisplayed()) {
+                if (isIOSSimulator() && driver.findElementByXPath("//UIAApplication[1]/UIAWindow[1]/UIACollectionView[1]/UIACollectionCell[4]/UIAImage[3]").isDisplayed()) {
                     log("All replies successfully received from " + blasts_account02);
                 }
-                if (!IOSSimulator && driver.findElementById("btn_video_play").isDisplayed()
+                if (!isIOSSimulator() && driver.findElementById("btn_video_play").isDisplayed()
                         && driver.findElementByXPath("//UIAApplication[1]/UIAWindow[1]/UIACollectionView[1]/UIACollectionCell[3]/UIAImage[3]").isDisplayed()){
                     log("All replies successfully received from " + blasts_account02);
                 }

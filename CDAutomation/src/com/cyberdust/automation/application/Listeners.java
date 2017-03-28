@@ -108,10 +108,10 @@ public class Listeners {
             public void actionPerformed(ActionEvent arg0) {
                 if (IOSCheckBox.isSelected()) {
                     Settings.getAppSettings().put("IOSOverride", "true");
-                    DeviceReader.IOSOverride = true;
+                    DeviceReader.setIOSOverride(true);
                 } else {
                     Settings.getAppSettings().put("IOSOverride", "false");
-                    DeviceReader.IOSOverride = false;
+                    DeviceReader.setIOSOverride(false);
                 }
             }
         };
@@ -183,7 +183,7 @@ public class Listeners {
                     };
 
                     if (IOSCheckBox.isSelected()) {
-                        DeviceReader.IOSOverride = true;
+                        DeviceReader.setIOSOverride(true);
                     }
 
                     try {
@@ -297,7 +297,7 @@ public class Listeners {
                     app.getOptionsButton().setEnabled(true);
                     testClassList.setEnabled(true);
                     app.getSelectAllButton().setEnabled(true);
-                    Drivers.ranSetup = false;
+                    Drivers.setRanSetup(false);
                     Drivers.tearDown();
                     threadCollector.cancel(true);
                 }
@@ -309,7 +309,7 @@ public class Listeners {
                     app.getOptionsButton().setEnabled(true);
                     testClassList.setEnabled(true);
                     app.getSelectAllButton().setEnabled(true);
-                    Drivers.ranSetup = false;
+                    Drivers.setRanSetup(false);
                     Drivers.tearDown();
                     threadCollector.cancel(true);
                 }
@@ -352,11 +352,11 @@ public class Listeners {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 if (addressField.getText().isEmpty()) {
-                    addressField.setText(Drivers.appiumServerAddress);
+                    addressField.setText(Drivers.getAppiumServerAddress());
                 }
 
                 if (portField.getText().isEmpty()) {
-                    portField.setText(Drivers.appiumServerPort);
+                    portField.setText(Drivers.getAppiumServerPort());
                 }
 
                 int savedSettings = JOptionPane.showOptionDialog(null, app.getGeneralSettings(), "Settings",
@@ -364,15 +364,15 @@ public class Listeners {
 
                 if (savedSettings == JOptionPane.OK_OPTION) {
                     if (addressField.getText().isEmpty()) {
-                        addressField.setText(Drivers.appiumServerAddress);
+                        addressField.setText(Drivers.getAppiumServerAddress());
                     }
 
                     if (portField.getText().isEmpty()) {
-                        portField.setText(Drivers.appiumServerPort);
+                        portField.setText(Drivers.getAppiumServerPort());
                     }
 
-                    Drivers.appiumServerAddress = addressField.getText();
-                    Drivers.appiumServerPort = portField.getText();
+                    Drivers.setAppiumServerAddress(addressField.getText());
+                    Drivers.setAppiumServerPort(portField.getText());
                     Settings.getAppSettings().put("address", addressField.getText());
                     Settings.getAppSettings().put("port", portField.getText());
 

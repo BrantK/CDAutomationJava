@@ -8,14 +8,15 @@ import java.io.InputStreamReader;
 
 public class DeviceReader {
 
-    public static boolean runningIOSSimulator;
-    public static boolean runningAndroidDevice;
-    public static boolean runningIOSDevice;
-    public static boolean IOSOverride;
+    private static boolean runningIOSSimulator;
+    private static boolean runningAndroidDevice;
+    private static boolean runningIOSDevice;
+
+    private static boolean IOSOverride;
     private static boolean checkingDevice = true;
 
     private static String connectedDevice;
-    public static String IOS_UDID;
+    private static String IOS_UDID;
 
 	public void checkDevice () throws Exception {
         boolean connectedIOS = false;
@@ -98,5 +99,33 @@ public class DeviceReader {
         };
 
         deviceWorker.execute();
+    }
+
+    public static boolean isRunningIOSSimulator() {
+        return runningIOSSimulator;
+    }
+
+    public static boolean isRunningAndroidDevice() {
+        return runningAndroidDevice;
+    }
+
+    public static boolean isRunningIOSDevice() {
+        return runningIOSDevice;
+    }
+
+    public static boolean isCheckingDevice() {
+        return checkingDevice;
+    }
+
+    public static String getConnectedDevice() {
+        return connectedDevice;
+    }
+
+    public static String getIosUdid() {
+        return IOS_UDID;
+    }
+
+    public static void setIOSOverride(boolean IOSOverride) {
+        DeviceReader.IOSOverride = IOSOverride;
     }
 }
