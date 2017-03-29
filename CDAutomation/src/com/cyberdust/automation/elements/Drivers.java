@@ -24,22 +24,19 @@ public class Drivers extends DriverActions {
     private static String appiumServerAddress = "127.0.0.1";
     private static String appiumServerPort = "4723";
 
-    private boolean IOSSimulator;
-    private boolean IOSSetup = false;
+    private static boolean IOSSimulator;
+    private static boolean IOSSetup = false;
     private static boolean ranSetup = false;
 
     @BeforeClass
-    public void setUp() throws Exception {
-        System.out.println("SETUP");
+    public static void setUp() throws Exception {
         if (!ranSetup) {
             initialSetup();
         }
     }
 
-    public void initialSetup() throws Exception {
+    public static void initialSetup() throws Exception {
         IOSSimulator = false;
-
-        System.out.println("INITIAL_SETUP");
 
         setRanSetup(true);
         resetCapabilities();
@@ -112,7 +109,7 @@ public class Drivers extends DriverActions {
         service.stop();
 	}
 
-	private void resetCapabilities() {
+	private static void resetCapabilities() {
 		capabilities.setCapability("platformName", "");
 		capabilities.setCapability("platformVersion","");
 		capabilities.setCapability("deviceName","");
@@ -125,6 +122,15 @@ public class Drivers extends DriverActions {
         }
 	}
 
+    // Prints text to console and to a log file in the project/test logs folder
+    public void log(String text) {
+        try {
+            new Logging(text, getClass());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 	public boolean isAndroid() {
 		return capabilities.getCapability("platformName").equals("Android");
 	}
@@ -133,34 +139,6 @@ public class Drivers extends DriverActions {
 		return capabilities.getCapability("platformName").equals("IOS");
 	}
 
-	public AndroidDriver<WebElement> getAndroidDriver() {
-		return (AndroidDriver<WebElement>) driver;
-	}
-
-	public IOSDriver<WebElement> getIOSDriver() {
-		return (IOSDriver<WebElement>) driver;
-	}
-
-    public void swipe(int startX, int startY, int endX, int endY, int duration) {
-        action().press(startX, startY).waitAction(duration).moveTo(endX, endY).release();
-        action().perform();
-    }
-
-	public void relaunch() {
-		driver.closeApp();
-		driver.launchApp();
-	}
-	
-	// Prints text to console and to a log file in the project folder / test logs folder
-    public void log(String text) {
-        try {
-            new Logging(text, getClass().getSimpleName());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-	}
-
-    // GETTERS and SETTERS //
     public boolean isIOSSimulator() {
         return IOSSimulator;
     }

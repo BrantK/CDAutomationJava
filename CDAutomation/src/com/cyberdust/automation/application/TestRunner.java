@@ -14,11 +14,10 @@ public class TestRunner {
 
 	private static DefaultListModel<String> testList = ListHelper.getAbsoluteTestList();
 	private static DefaultListModel<String> simpleTestList = ListHelper.getSimpleTestList();
-	private static JUnitCore junit;
-	
-	// Finds test classes with "Run" in the name and adds them to the application
+	private static JUnitCore jUnit;
+
 	public static void runTests (List<String> selectedTests) throws Exception {
-		junit = new JUnitCore();
+		jUnit = new JUnitCore();
 
 		if (!completedTests.isEmpty()) {
 			for (int i = 0; i < simpleTestList.size(); i++) {
@@ -33,15 +32,12 @@ public class TestRunner {
 
 				try {
 					Class<?> myClass = Class.forName((testList.get(i).substring(testList.get(i).indexOf("com"), testList.get(i).length()).replace("\\", ".").replace("/", ".")));
-					System.out.println(myClass.toString());
-					junit.addListener(new com.cyberdust.automation.application.TestListener());
-					junit.run(myClass);
+					jUnit.addListener(new com.cyberdust.automation.application.TestListener());
+					jUnit.run(myClass);
 					completedTests.add(simpleTestList.get(i));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-
-				System.out.println(simpleTestList.get(i));
 			}
 		}
 	}
@@ -50,7 +46,7 @@ public class TestRunner {
 		try {
 			Field field = JUnitCore.class.getDeclaredField("notifier");
 			field.setAccessible(true);
-			RunNotifier runNotifier = (RunNotifier) field.get(junit);
+			RunNotifier runNotifier = (RunNotifier) field.get(jUnit);
 			runNotifier.pleaseStop();
 		} catch (Exception e) {
 			e.printStackTrace();

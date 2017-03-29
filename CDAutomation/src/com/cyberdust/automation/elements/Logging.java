@@ -12,21 +12,37 @@ import java.time.format.DateTimeFormatter;
  */
 public class Logging {
 
-    public Logging(String text, String className) throws IOException {
+    String logLocation;
+    FileWriter fileWriter;
+    boolean logDirectoryCreated;
+
+    public Logging(String text, Class<?> mClass) throws IOException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yy HH:mm:ss");
         String projectPath = Paths.get("").toAbsolutePath().normalize().toString();
-        String logLocation;
 
         String dateTime = LocalDateTime.now().format(formatter)+" ";
-        String logName = getClass().getPackage().toString().substring(33, getClass().getPackage().toString().length());
-        String testName = ("["+className+"]: ").replace("Run_", "").replace("Run", "").replace("Android_", "").replace("IOS_", "");
+        String logName = mClass.getSimpleName().replace("Run_", "").replace("Run", "").replace("Android_", "").replace("IOS_", "");
+        String testName = ("["+mClass.getSimpleName()+"]: ").replace("Run_", "").replace("Run", "").replace("Android_", "").replace("IOS_", "");
+        //String logName = mClass.getPackage().toString().substring(33, mClass.getPackage().toString().indexOf(".")) + testName;
+
+        fileWriter = null;
 
         if (projectPath.contains("/")) {
-            new File(projectPath+"/testlogs/").mkdir();
-            logLocation = projectPath+"/testlogs/"+logName+".log";
+            File file = new File(projectPath+"/testlogs/");
+
+            if (!file.exists()) {
+                logDirectoryCreated = file.mkdir();
+            }
+
+            logLocation = projectPath + "/testlogs/" + logName + ".log";
         } else {
-            new File(projectPath+"\\testlogs\\").mkdir();
-            logLocation = projectPath+"\\testlogs\\"+logName+".log";
+            File file = new File(projectPath+"\\testlogs\\");
+
+            if (!file.exists()) {
+                logDirectoryCreated = file.mkdir();
+            }
+
+            logLocation = projectPath + "\\testlogs\\" + logName + ".log";
         }
 
         if (text.toLowerCase().contains("fail") || text.toLowerCase().contains("exception")
@@ -36,20 +52,18 @@ public class Logging {
             System.out.print(dateTime + testName + text + "\n");
         }
 
-        FileWriter myWriter = null;
-
         try {
-            myWriter = new FileWriter(logLocation, true);
-            myWriter.append(dateTime);
-            myWriter.append(testName);
-            myWriter.append(text);
-            myWriter.append("\n");
-            myWriter.close();
+            fileWriter = new FileWriter(logLocation, true);
+            fileWriter.append(dateTime);
+            fileWriter.append(testName);
+            fileWriter.append(text);
+            fileWriter.append("\n");
+            fileWriter.close();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (myWriter != null) {
-                myWriter.close();
+            if (fileWriter != null) {
+                fileWriter.close();
             }
         }
     }
