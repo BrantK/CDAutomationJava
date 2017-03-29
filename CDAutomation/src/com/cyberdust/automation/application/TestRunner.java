@@ -18,7 +18,7 @@ public class TestRunner {
 	
 	// Finds test classes with "Run" in the name and adds them to the application
 	public static void runTests (List<String> selectedTests) throws Exception {
-		JUnitCore newJUnit = new JUnitCore();
+		junit = new JUnitCore();
 
 		if (!completedTests.isEmpty()) {
 			for (int i = 0; i < simpleTestList.size(); i++) {
@@ -33,13 +33,15 @@ public class TestRunner {
 
 				try {
 					Class<?> myClass = Class.forName((testList.get(i).substring(testList.get(i).indexOf("com"), testList.get(i).length()).replace("\\", ".").replace("/", ".")));
-					newJUnit.addListener(new com.cyberdust.automation.application.TestListener());
-					junit = newJUnit;
-					newJUnit.run(myClass);
+					System.out.println(myClass.toString());
+					junit.addListener(new com.cyberdust.automation.application.TestListener());
+					junit.run(myClass);
 					completedTests.add(simpleTestList.get(i));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+
+				System.out.println(simpleTestList.get(i));
 			}
 		}
 	}

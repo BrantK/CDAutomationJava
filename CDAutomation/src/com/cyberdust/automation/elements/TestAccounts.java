@@ -1,6 +1,7 @@
 package com.cyberdust.automation.elements;
 
-public abstract class TestAccounts {
+public class TestAccounts {
+
 	public static boolean accountSet1;
 	public static boolean accountSet2;
 	
@@ -342,7 +343,7 @@ public abstract class TestAccounts {
 	/*****************
 	 * Account Set 2 *
 	 *****************/
-	
+
 	if (accountSet2) {
 		// AccountManagement //
 		acctmgnt_account01 = "acctmgnt";

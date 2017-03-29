@@ -1,5 +1,6 @@
 package com.cyberdust.automation.elements;
 
+import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -8,6 +9,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import io.appium.java_client.TouchAction;
 
 public class IOSElements extends Drivers {
+
+	public AppiumDriver driver = getDriver();
 
 	public WebDriverWait wait = new WebDriverWait(driver, 15);
 	
@@ -372,11 +375,11 @@ public class IOSElements extends Drivers {
 	}
 	public TouchAction reblast_send() throws InterruptedException {
 		Thread.sleep(800);
-        return action().press((int)(screenWidth / 1.15), (int)(screenHeight / 4.17)).release();
+        return action().press((int)(getScreenWidth() / 1.15), (int)(getScreenHeight() / 4.17)).release();
 	}
 	public TouchAction blast_Ok_button() throws InterruptedException {
         Thread.sleep(800);
-        return action().press((int)(screenWidth / 1.15), (int)(screenHeight / 3.18)).release();
+        return action().press((int)(getScreenWidth() / 1.15), (int)(getScreenHeight() / 3.18)).release();
 	}
 	public WebElement message_timer() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("bg_chat_unsent.png")));
@@ -422,11 +425,11 @@ public class IOSElements extends Drivers {
     }
     public TouchAction create_group_ok_button() throws Exception {
     	Thread.sleep(500);
-		return action().press(close_button().getLocation().getX()+5, close_button().getLocation().getY()+((int)(screenWidth/3.75))).release();
+		return action().press(close_button().getLocation().getX()+5, close_button().getLocation().getY()+((int)(getScreenWidth()/3.75))).release();
     }
 	public TouchAction add_friends_to_group_OK() throws Exception {
 		Thread.sleep(500);
-		return action().press(back_arrow().getLocation().getX()+5, back_arrow().getLocation().getY()+((int)(screenWidth/3.75))).release();
+		return action().press(back_arrow().getLocation().getX()+5, back_arrow().getLocation().getY()+((int)(getScreenWidth()/3.75))).release();
 	}
     public WebElement delete_all_groups() {
     	return wait.until(ExpectedConditions.elementToBeClickable(By.id("Delete And Leave Rooms")));

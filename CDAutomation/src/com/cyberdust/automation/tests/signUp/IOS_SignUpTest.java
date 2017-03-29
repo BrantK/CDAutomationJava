@@ -28,7 +28,7 @@ class IOS_SignUpTest extends IOSElements {
 	void test02_sign_up() throws Exception {
 		// Create new account and check if special characters can be used
 	    sign_up_button().click();
-	    driver.getKeyboard().sendKeys(signup_account);
+	    driver.getKeyboard().sendKeys(getAccount().signup_account);
         Thread.sleep(1200);
         driver.getKeyboard().sendKeys("!@//$");
 
@@ -41,12 +41,12 @@ class IOS_SignUpTest extends IOSElements {
         } catch (Exception e) {
 	        log("Could not use special characters in username");
             choose_username().clear();
-            driver.getKeyboard().sendKeys(signup_account);
+            driver.getKeyboard().sendKeys(getAccount().signup_account);
             username_OK().click();
 	    }
 
 	    waitTime(20);
-	    driver.getKeyboard().sendKeys(signup_password);
+	    driver.getKeyboard().sendKeys(getAccount().signup_password);
 	    password_OK().click();
 	}
 
@@ -129,14 +129,14 @@ class IOS_SignUpTest extends IOSElements {
     void test06_login_logout() throws Exception {
         // Logout and login test
         log("Logging out then logging in");
-        driver.swipe(screenWidth / 2, screenHeight - 20, screenWidth / 2, 20, 300);
+        swipe(getScreenWidth() / 2, getScreenHeight() - 20, getScreenWidth() / 2, 20, 300);
         logout().click();
         confirm().click();
         login_button().click();
         login_username().click();
-        driver.getKeyboard().sendKeys(signup_account.toUpperCase());
+        driver.getKeyboard().sendKeys(getAccount().signup_account.toUpperCase());
         login_password().click();
-        driver.getKeyboard().sendKeys(signup_password);
+        driver.getKeyboard().sendKeys(getAccount().signup_password);
         login_OK().click();
         log("Username is not case sensitive");
 
@@ -153,7 +153,7 @@ class IOS_SignUpTest extends IOSElements {
         }
 
         // Deletes account
-        driver.swipe(screenWidth / 2, screenHeight - 20, screenWidth / 2, 20, 300);
+        swipe(getScreenWidth() / 2, getScreenHeight() - 20, getScreenWidth() / 2, 20, 300);
         account_settings().click();
         delete_account().click();
         confirm_delete().click();

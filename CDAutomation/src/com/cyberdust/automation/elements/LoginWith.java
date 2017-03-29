@@ -4,11 +4,11 @@ package com.cyberdust.automation.elements;
 public class LoginWith extends Drivers {
 	
 	public void user(String account, String password) {
-		if (Android()) {
+		if (isAndroid()) {
 			loginAndroid(account, password);
 		}
 		
-		if (IOS()) {
+		if (isIOS()) {
 			loginIOS(account, password);
 		}
 	}
@@ -78,7 +78,7 @@ public class LoginWith extends Drivers {
 
             	}
             } catch (Exception e) {
-                getDriver().swipe(screenWidth / 2, screenHeight - 20, screenWidth / 2, 20, 300);
+                swipe(getScreenWidth() / 2, getScreenHeight() - 20, getScreenWidth() / 2, 20, 300);
                 ios.logout().click();
                 ios.confirm().click();
                 logged_out = true;

@@ -14,9 +14,9 @@ public class Run_SignUpTest extends Drivers {
 		try {
 			log("- Test01 -");
 			
-			if (Android()) {
+			if (isAndroid()) {
 				new Android_SignUpTest().test01_check_logged_out();
-			} else if (IOS()) {
+			} else if (isIOS()) {
 				new IOS_SignUpTest().test01_check_logged_out();
 			}
 			
@@ -32,9 +32,9 @@ public class Run_SignUpTest extends Drivers {
 		try {
 			log("- Test02 -");
 
-			if (Android()) {
+			if (isAndroid()) {
 				new Android_SignUpTest().test02_sign_up();
-			} else if (IOS()) {
+			} else if (isIOS()) {
 				new IOS_SignUpTest().test02_sign_up();
 			}
 			
@@ -50,9 +50,9 @@ public class Run_SignUpTest extends Drivers {
         try {
             log("- Test03 -");
 
-            if (Android()) {
+            if (isAndroid()) {
                 new Android_SignUpTest().test03_sign_up2();
-            } else if (IOS()) {
+            } else if (isIOS()) {
                 new IOS_SignUpTest().test03_sign_up2();
             }
 
@@ -68,9 +68,9 @@ public class Run_SignUpTest extends Drivers {
 		try {
 			log("- Test04 -");
 
-			if (Android()) {
+			if (isAndroid()) {
 				new Android_SignUpTest().test04_update_profile_pic();
-			} else if (IOS()) {
+			} else if (isIOS()) {
 				new IOS_SignUpTest().test04_update_profile_pic();
 			}
 			
@@ -78,10 +78,10 @@ public class Run_SignUpTest extends Drivers {
 			log("[Fail] Got exception " + e);
 			relaunch();
 
-            if (Android()) {
+            if (isAndroid()) {
                 new Android_SignUpTest().more_button().click();
             }
-            if (IOS()) {
+            if (isIOS()) {
                 new IOS_SignUpTest().more_button().click();
             }
 
@@ -94,9 +94,9 @@ public class Run_SignUpTest extends Drivers {
 		try {
 			log("- Test05 -");
 
-			if (Android()) {
+			if (isAndroid()) {
 				new Android_SignUpTest().test05_update_bio_and_website();
-			} else if (IOS()) {
+			} else if (isIOS()) {
 				new IOS_SignUpTest().test05_update_bio_and_website();
 			}
 
@@ -104,10 +104,10 @@ public class Run_SignUpTest extends Drivers {
 			log("[Fail] Got exception " + e);
 			relaunch();
 
-            if (Android()) {
+            if (isAndroid()) {
                 new Android_SignUpTest().more_button().click();
             }
-            if (IOS()) {
+            if (isIOS()) {
                 new IOS_SignUpTest().more_button().click();
             }
 
@@ -120,9 +120,9 @@ public class Run_SignUpTest extends Drivers {
 		try {
 			log("- Test06 -");
 
-			if (Android()) {
+			if (isAndroid()) {
 				new Android_SignUpTest().test06_login_logout();
-			} else if (IOS()) {
+			} else if (isIOS()) {
 				new IOS_SignUpTest().test06_login_logout();
 			}
 			

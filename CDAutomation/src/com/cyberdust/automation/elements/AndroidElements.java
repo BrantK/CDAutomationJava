@@ -1,5 +1,6 @@
 package com.cyberdust.automation.elements;
 
+import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,9 +12,10 @@ import io.appium.java_client.TouchAction;
 
 public class AndroidElements extends Drivers {
 
+	public AppiumDriver driver = getDriver();
+
 	public WebDriverWait wait = new WebDriverWait(driver, 20);
-	
-	// For changing the WebDriverWait time from in a test
+
 	public WebDriverWait waitTime(int x) {
 		return wait = new WebDriverWait(driver, x);
 	}
@@ -21,14 +23,14 @@ public class AndroidElements extends Drivers {
     public void scrollToBottom() {
         try {
             Thread.sleep(1000);
-            driver.swipe(screenWidth / 2, screenHeight - 20, screenWidth / 2, 20, 300);
+            swipe(getScreenWidth() / 2, getScreenHeight() - 20, getScreenWidth() / 2, 20, 300);
         } catch (Exception ignored) { }
     }
 
 	public void scrollToTop() throws Exception {
         try {
             Thread.sleep(1000);
-            driver.swipe(screenWidth / 2, screenHeight / 8, screenWidth / 2, screenHeight / 10 * 9, 300);
+            swipe(getScreenWidth() / 2, getScreenHeight() / 8, getScreenWidth() / 2, getScreenHeight() / 10 * 9, 300);
         } catch (Exception ignored) { }
 	}
 
@@ -36,7 +38,7 @@ public class AndroidElements extends Drivers {
     public void sendMessage(String recipient, String message, boolean sendNewMessage) {
         if (sendNewMessage) {
             composeButton().click();
-            aDriver().pressKeyCode(4);
+            getAndroidDriver().pressKeyCode(4);
             elementName(recipient).click();
             composeCreateButton().click();
         } else {
@@ -46,9 +48,9 @@ public class AndroidElements extends Drivers {
         chatRoomSendButton().click();
     }
 
-    /****************
-     * New Elements *
-     ***************/
+    /**
+     * New Elements
+     */
 
 	/*** Home Screen ***/
 	public WebElement newButton() {
@@ -56,23 +58,23 @@ public class AndroidElements extends Drivers {
 	}
 	public WebElement messagesTab() {
 		wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tab_icon")));
-        return aDriver().findElementByAndroidUIAutomator("new UiSelector().className(\"android.support.v7.app.ActionBar$Tab\").index(0)");
+        return getAndroidDriver().findElementByAndroidUIAutomator("new UiSelector().className(\"android.support.v7.app.ActionBar$Tab\").index(0)");
     }
     public WebElement contactsTab() {
         wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tab_icon")));
-        return aDriver().findElementByAndroidUIAutomator("new UiSelector().className(\"android.support.v7.app.ActionBar$Tab\").index(1)");
+        return getAndroidDriver().findElementByAndroidUIAutomator("new UiSelector().className(\"android.support.v7.app.ActionBar$Tab\").index(1)");
     }
     public WebElement connectTab() {
         wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tab_icon")));
-        return aDriver().findElementByAndroidUIAutomator("new UiSelector().className(\"android.support.v7.app.ActionBar$Tab\").index(2)");
+        return getAndroidDriver().findElementByAndroidUIAutomator("new UiSelector().className(\"android.support.v7.app.ActionBar$Tab\").index(2)");
     }
     public WebElement publicTab() {
         wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tab_icon")));
-        return aDriver().findElementByAndroidUIAutomator("new UiSelector().className(\"android.support.v7.app.ActionBar$Tab\").index(3)");
+        return getAndroidDriver().findElementByAndroidUIAutomator("new UiSelector().className(\"android.support.v7.app.ActionBar$Tab\").index(3)");
     }
     public WebElement profileTab() {
         wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tab_icon")));
-        return aDriver().findElementByAndroidUIAutomator("new UiSelector().className(\"android.support.v7.app.ActionBar$Tab\").index(4)");
+        return getAndroidDriver().findElementByAndroidUIAutomator("new UiSelector().className(\"android.support.v7.app.ActionBar$Tab\").index(4)");
     }
     public WebElement searchIcon() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));

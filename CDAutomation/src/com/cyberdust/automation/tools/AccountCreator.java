@@ -11,11 +11,11 @@ public class AccountCreator extends Drivers {
     boolean chosePhone;
 
     public void signUp(String username, String password) throws Exception {
-        if (Android()) {
+        if (isAndroid()) {
             androidSignUp(username, password);
         }
 
-        if (IOS()) {
+        if (isIOS()) {
             iOSSignUp(username, password);
         }
     }
@@ -28,7 +28,7 @@ public class AccountCreator extends Drivers {
             android.sign_up_button();
         } catch (Exception e) {
             android.more_button().click(); Thread.sleep(1000);
-            getDriver().swipe(screenWidth/2, screenHeight - 20, screenWidth/2, 20, 300);
+            swipe(getScreenWidth()/2, getScreenHeight() - 20, getScreenWidth()/2, 20, 300);
             android.logout().click();
             log("Logging out before starting test");
             android.confirm().click();
@@ -116,7 +116,7 @@ public class AccountCreator extends Drivers {
             ios.sign_up_button();
         } catch (Exception e) {
             ios.more_button().click(); Thread.sleep(1000);
-            getDriver().swipe(screenWidth/2, screenHeight - 20, screenWidth/2, 20, 300);
+            swipe(getScreenWidth()/2, getScreenHeight() - 20, getScreenWidth()/2, 20, 300);
             ios.logout().click();
             log("Logging out before starting test");
             ios.confirm().click();

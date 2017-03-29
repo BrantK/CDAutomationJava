@@ -121,7 +121,7 @@ public class DeviceReader {
         return connectedDevice;
     }
 
-    public static String getIosUdid() {
+    public static String getIOSUdid() {
         return IOS_UDID;
     }
 

@@ -24,7 +24,7 @@ class Android_SignUpTest extends AndroidElements {
         }
 		if (!isLoggedOut) {
             more_button().click(); Thread.sleep(1000);
-            driver.swipe(screenWidth/2, screenHeight - 20, screenWidth/2, 20, 300);
+            swipe(getScreenWidth()/2, getScreenHeight() - 20, getScreenWidth()/2, 20, 300);
             // try this: driver.scrollTo("Logout");
             logout().click();
             log("Logging out before starting test");
@@ -35,7 +35,7 @@ class Android_SignUpTest extends AndroidElements {
 	void test02_sign_up() throws Exception {
         // Create new account and check if special characters can be used
         sign_up_button().click();
-        pick_username().sendKeys(signup_account + "!@//$");
+        pick_username().sendKeys(getAccount().signup_account + "!@//$");
         try {
             waitTime(3);
             username_confirm().click();
@@ -44,7 +44,7 @@ class Android_SignUpTest extends AndroidElements {
             log("Could not use special characters in username");
         }
         waitTime(20);
-        pick_username().sendKeys(signup_account);
+        pick_username().sendKeys(getAccount().signup_account);
         username_confirm().click();
     }
 
@@ -115,12 +115,12 @@ class Android_SignUpTest extends AndroidElements {
     void test06_login_logout() throws Exception {
         // Logout and login test
         log("Logging out then logging in");
-        driver.swipe(screenWidth/2, screenHeight - 20, screenWidth/2, 20, 300);
+        driver.swipe(getScreenWidth()/2, getScreenHeight() - 20, getScreenWidth()/2, 20, 300);
         logout().click();
         confirm().click();
         login_button().click();
-        login_username().sendKeys(signup_account.toUpperCase());
-        login_password().sendKeys(signup_password);
+        login_username().sendKeys(getAccount().signup_account.toUpperCase());
+        login_password().sendKeys(getAccount().signup_password);
         login_OK().click();
         
         try {
@@ -132,7 +132,7 @@ class Android_SignUpTest extends AndroidElements {
         	log("[Warning] Username is case sensitive!");
         	
         	login_username().clear();
-        	login_username().sendKeys(signup_account);
+        	login_username().sendKeys(getAccount().signup_account);
         	login_OK().click();
         }
         waitTime(20);
@@ -152,7 +152,7 @@ class Android_SignUpTest extends AndroidElements {
 		// Deletes account
         waitTime(10);
         Thread.sleep(500);
-        driver.swipe(screenWidth/2, screenHeight/2, screenWidth/2, screenHeight/4, 200);
+        swipe(getScreenWidth()/2, getScreenHeight()/2, getScreenWidth()/2, getScreenHeight()/4, 200);
         account_settings().click();
         delete_account().click();
         log("Deleting account");
@@ -165,7 +165,7 @@ class Android_SignUpTest extends AndroidElements {
         if (!password) {
             try {
                 create_password().isDisplayed();
-                create_password().sendKeys(signup_password);
+                create_password().sendKeys(getAccount().signup_password);
                 password_confirm().click();
                 password = true;
             } catch (Exception ignored) {}

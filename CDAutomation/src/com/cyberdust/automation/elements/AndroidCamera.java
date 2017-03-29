@@ -14,10 +14,10 @@ public class AndroidCamera extends AndroidElements {
         } catch (Exception ignored) {}
 
         Thread.sleep(1000);
-        aDriver().pressKeyCode(27);
+        getAndroidDriver().pressKeyCode(27);
 
         Thread.sleep(1000);
-        aDriver().pressKeyCode(25);
+        getAndroidDriver().pressKeyCode(25);
 
         try {
             driver.findElementById("com.android.camera2:id/photo_video_button").click(); // Takes photo on Nexus phone
@@ -68,12 +68,12 @@ public class AndroidCamera extends AndroidElements {
                 // If none of the above works, go back to More page
                 log("Could not take a photo");
                 Thread.sleep(1000);
-                aDriver().pressKeyCode(4);
+                getAndroidDriver().pressKeyCode(4);
 
                 try {
                     profile_picture();
                 } catch (Exception g) {
-                    aDriver().pressKeyCode(4);
+                    getAndroidDriver().pressKeyCode(4);
                 }
 
                 try {
