@@ -20,7 +20,7 @@ public class LogFinder {
 			testName = testList.get(i).substring(testList.get(i).indexOf("Run"), testList.get(i).length()).replace("Run_", "").replace("Run", "");
 			
 			if (selectedTests.contains(testName)) {
-				logName = testList.get(i).substring(testList.get(i).indexOf("tests"), testList.get(i).indexOf("Run")-1).replace("/", ".").replace("\\", ".");
+				logName = testName;
 				
 				if (projectPath.contains("/")) {
 					logLocation = projectPath+"/testlogs/"+logName+".log";
@@ -48,7 +48,7 @@ public class LogFinder {
 			testName = testList.get(i).substring(testList.get(i).indexOf("Run"), testList.get(i).length()).replace("Run_", "").replace("Run", "");
 			
 			if (selectedTests.contains(testName)) {
-				logName = testList.get(i).substring(testList.get(i).indexOf("tests"), testList.get(i).indexOf("Run")-1).replace("/", ".").replace("\\", ".");
+				logName = testName;
 				
 				if (projectPath.contains("/")) {
 					logLocation = projectPath+"/testlogs/"+logName+".log";

@@ -1,4 +1,6 @@
-package com.cyberdust.automation.utils;
+package com.cyberdust.automation.application;
+
+import com.cyberdust.automation.application.AutomationApp;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -21,7 +23,7 @@ public class Logging {
         String projectPath = Paths.get("").toAbsolutePath().normalize().toString();
 
         String dateTime = LocalDateTime.now().format(formatter)+" ";
-        String logName = mClass.getSimpleName().replace("Run_", "").replace("Run", "").replace("Android_", "").replace("IOS_", "");
+        String logName = mClass.getSimpleName().replace("Run_", "").replace("Run", "");
         String testName = ("["+mClass.getSimpleName()+"]: ").replace("Run_", "").replace("Run", "").replace("Android_", "").replace("IOS_", "");
         //String logName = mClass.getPackage().toString().substring(33, mClass.getPackage().toString().indexOf(".")) + testName;
 
@@ -44,6 +46,8 @@ public class Logging {
 
             logLocation = projectPath + "\\testlogs\\" + logName + ".log";
         }
+
+        AutomationApp.getApp().getListeners().setServerOutput(false);
 
         if (text.toLowerCase().contains("fail") || text.toLowerCase().contains("exception")
                 || text.toLowerCase().contains("warning") || text.toLowerCase().contains("error")) {

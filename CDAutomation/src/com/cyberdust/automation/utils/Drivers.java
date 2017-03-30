@@ -1,5 +1,6 @@
 package com.cyberdust.automation.utils;
 
+import com.cyberdust.automation.application.Logging;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
@@ -52,7 +53,8 @@ public class Drivers extends ActionHelper {
         service = AppiumDriverLocalService.buildService(new AppiumServiceBuilder()
                         .withAppiumJS(new File("/usr/local/lib/node_modules/appium/build/lib/main.js"))
                         .withArgument(GeneralServerFlag.LOG_NO_COLORS)
-                        .withArgument(GeneralServerFlag.LOG_LEVEL, "info")
+                        .withArgument(GeneralServerFlag.LOG_LEVEL, "debug")
+                        .withArgument(GeneralServerFlag.PRE_LAUNCH)
                         .withIPAddress(appiumServerAddress)
                         .usingPort(Integer.parseInt(appiumServerPort)));
 

@@ -69,8 +69,17 @@ public class Listeners {
         serverOutPrintStream = new PrintStream(new ConsoleOutput(app.getServerOutput()));
         serverErrPrintStream = new PrintStream(new ConsoleErrorOutput(app.getServerOutput()));
 
-        System.setOut(serverOutPrintStream);
-        System.setErr(serverErrPrintStream);
+        setServerOutput(true);
+    }
+
+    public void setServerOutput(boolean server) {
+        if (server) {
+            System.setOut(serverOutPrintStream);
+            System.setErr(serverErrPrintStream);
+        } else {
+            System.setOut(logOutPrintStream);
+            System.setErr(logErrPrintStream);
+        }
     }
 
     public ActionListener clearServerOutput() {
@@ -126,7 +135,7 @@ public class Listeners {
             public void actionPerformed(ActionEvent arg0) {
                 List<String> selectedTests = testClassList.getSelectedValuesList();
                 try {
-                    new com.cyberdust.automation.application.LogFinder().openLog(selectedTests);
+                    new LogFinder().openLog(selectedTests);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -141,7 +150,7 @@ public class Listeners {
             public void actionPerformed(ActionEvent arg0) {
                 List<String> selectedTests = testClassList.getSelectedValuesList();
                 try {
-                    new com.cyberdust.automation.application.LogFinder().clearLog(selectedTests);
+                    new LogFinder().clearLog(selectedTests);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -170,16 +179,16 @@ public class Listeners {
             public void actionPerformed(ActionEvent arg0) {
                 if (testClassList.getSelectedValue() != null) {
 
-                    SwingWorker<Void, Void> newTestWorker = new SwingWorker<Void, Void>() {
+                    SwingWorker<Void, Void> newMethodWorker = new SwingWorker<Void, Void>() {
                         public Void doInBackground() throws Exception {
-                            TestRunner.runTests(testClassList.getSelectedValuesList());
+                            runMethodSelector();
                             return null;
                         }
                     };
 
-                    SwingWorker<Void, Void> newMethodWorker = new SwingWorker<Void, Void>() {
+                    SwingWorker<Void, Void> newTestWorker = new SwingWorker<Void, Void>() {
                         public Void doInBackground() throws Exception {
-                            runMethodSelector();
+                            TestRunner.runTests(testClassList.getSelectedValuesList());
                             return null;
                         }
                     };
@@ -230,8 +239,6 @@ public class Listeners {
 
         while (testMethodsList.contains(TestListener.getCurrentTestWithDelay())) {
             jUnitOut.setSelectedValue(TestListener.getCurrentTestWithDelay(), true);
-            System.setOut(logOutPrintStream);
-            System.setErr(logErrPrintStream);
 
             testProgressBar.setStringPainted(true);
             testProgressBar.setString("Test Progress");
@@ -267,10 +274,9 @@ public class Listeners {
 
             // After all tests have been completed
             if (TestListener.getCurrentTest() == null) {
-                System.setOut(serverOutPrintStream);
-                System.setErr(serverErrPrintStream);
-
                 jUnitOut.clearSelection();
+
+                setServerOutput(true);
 
                 if (!failedTests.contains(TestListener.getFailedTests())){
                     failedTests.add(TestListener.getFailedTests());

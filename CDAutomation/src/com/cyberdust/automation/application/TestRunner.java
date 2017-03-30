@@ -28,11 +28,11 @@ public class TestRunner {
 		for (int i = 0; i < simpleTestList.size(); i++) {
 			
 			if (selectedTests.contains(simpleTestList.get(i))) {
-				System.out.println("[Test] Starting "+ simpleTestList.get(i));
+				System.out.println("Starting "+ simpleTestList.get(i));
 
 				try {
 					Class<?> myClass = Class.forName((testList.get(i).substring(testList.get(i).indexOf("com"), testList.get(i).length()).replace("\\", ".").replace("/", ".")));
-					jUnit.addListener(new com.cyberdust.automation.application.TestListener());
+					jUnit.addListener(new TestListener());
 					jUnit.run(myClass);
 					completedTests.add(simpleTestList.get(i));
 				} catch (Exception e) {

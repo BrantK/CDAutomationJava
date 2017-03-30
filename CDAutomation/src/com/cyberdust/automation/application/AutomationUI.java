@@ -269,6 +269,10 @@ public class AutomationUI {
     }
 
     // Getters //
+    public Listeners getListeners() {
+	    return listeners;
+    }
+
     public DefaultListModel<String> getTestMethodsList() {
 	    return testMethodsList;
     }
