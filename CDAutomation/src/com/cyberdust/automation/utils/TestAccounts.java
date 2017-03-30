@@ -1,4 +1,4 @@
-package com.cyberdust.automation.elements;
+package com.cyberdust.automation.utils;
 
 public class TestAccounts {
 

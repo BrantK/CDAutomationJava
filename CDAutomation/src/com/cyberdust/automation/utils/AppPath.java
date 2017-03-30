@@ -1,4 +1,4 @@
-package com.cyberdust.automation.elements;
+package com.cyberdust.automation.utils;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

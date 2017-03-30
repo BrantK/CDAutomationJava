@@ -3,7 +3,7 @@ package com.cyberdust.automation.tools;
 import com.cyberdust.automation.elements.IOSElements;
 import org.junit.*;
 
-public class IOS_AutoBlast extends IOSElements {
+public class IOSAutoBlast extends IOSElements {
 	String blast_recipient = "bktest02";
 	String blast_type = "text, photo";  // Use photo, video, text, or a combination of the 3
 	String blast_text = "Test";  // Only works for text blasts

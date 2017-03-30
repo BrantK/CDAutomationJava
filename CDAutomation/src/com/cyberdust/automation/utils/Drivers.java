@@ -1,4 +1,4 @@
-package com.cyberdust.automation.elements;
+package com.cyberdust.automation.utils;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
@@ -15,7 +15,7 @@ import org.openqa.selenium.remote.UnreachableBrowserException;
 import java.io.File;
 import java.io.IOException;
 
-public class Drivers extends DriverActions {
+public class Drivers extends ActionHelper {
 
     private static AppiumDriverLocalService service = AppiumDriverLocalService.buildDefaultService();
     private static DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -129,6 +129,10 @@ public class Drivers extends DriverActions {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void log(Exception e) {
+        log("[Fail] got exception " + e);
     }
 
 	public boolean isAndroid() {

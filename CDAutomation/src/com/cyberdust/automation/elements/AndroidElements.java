@@ -1,5 +1,6 @@
 package com.cyberdust.automation.elements;
 
+import com.cyberdust.automation.utils.Drivers;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -34,115 +35,50 @@ public class AndroidElements extends Drivers {
         } catch (Exception ignored) { }
 	}
 
-    // Sends a message to specified account, if sendNewMessage is true it will start a new message
-    public void sendMessage(String recipient, String message, boolean sendNewMessage) {
-        if (sendNewMessage) {
-            composeButton().click();
-            getAndroidDriver().pressKeyCode(4);
-            elementName(recipient).click();
-            composeCreateButton().click();
-        } else {
-            elementName(recipient).click();
-        }
-        driver.getKeyboard().sendKeys(message);
-        chatRoomSendButton().click();
-    }
-
-    /**
-     * New Elements
-     */
-
-	/*** Home Screen ***/
+	//Template
 	public WebElement newButton() {
 		return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
 	}
-	public WebElement messagesTab() {
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tab_icon")));
-        return getAndroidDriver().findElementByAndroidUIAutomator("new UiSelector().className(\"android.support.v7.app.ActionBar$Tab\").index(0)");
-    }
-    public WebElement contactsTab() {
-        wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tab_icon")));
-        return getAndroidDriver().findElementByAndroidUIAutomator("new UiSelector().className(\"android.support.v7.app.ActionBar$Tab\").index(1)");
-    }
-    public WebElement connectTab() {
-        wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tab_icon")));
-        return getAndroidDriver().findElementByAndroidUIAutomator("new UiSelector().className(\"android.support.v7.app.ActionBar$Tab\").index(2)");
-    }
-    public WebElement publicTab() {
-        wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tab_icon")));
-        return getAndroidDriver().findElementByAndroidUIAutomator("new UiSelector().className(\"android.support.v7.app.ActionBar$Tab\").index(3)");
-    }
-    public WebElement profileTab() {
-        wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tab_icon")));
-        return getAndroidDriver().findElementByAndroidUIAutomator("new UiSelector().className(\"android.support.v7.app.ActionBar$Tab\").index(4)");
-    }
-    public WebElement searchIcon() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
-    }
 
-    /*** Messages ***/
-    public WebElement composeButton() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/compose")));
-    }
-    public WebElement composeCreateButton() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/compose_create_button")));
-    }
-    public WebElement chatRoomTextField() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/chat_room_fragment_text_box")));
-    }
-    public WebElement chatRoomSendButton() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("chat_room_fragment_send_button")));
-    }
-    public WebElement chatRoomDustToggleButton () {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/chat_room_fragment_destruct_button")));
-    }
-    public WebElement chatRoomToggleDeleteButton() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/toggle_delete_button")));
-    }
-    public WebElement chatRoomDustAllButton() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/chat_room_fragment_dust_all_button")));
-    }
-    public WebElement chatRoomDustButton() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/chat_room_fragment_dust_button")));
-    }
-    public WebElement chatRoomSelectMessage() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/check_mark")));
-    }
-    public WebElement messageDustedText() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='Message Dusted']")));
-    }
-
-    /*** Contacts ***/
-    public WebElement contactsSearch() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/search")));
-    }
-    public WebElement contactsProfilePhoto() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/search_profile_photo")));
-    }
-	public WebElement contactsUsername() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/search_title")));
+    /**
+     * Onboarding
+     */
+    public WebElement loginButton() {
+    	return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/login_button")));
 	}
 
-    /*** Connect ***/
-    public WebElement connect() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
+	/**
+	 * Homescreen
+	 */
+	public WebElement homeTab() {
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tab_layout")));
+        return getAndroidDriver().findElementByAndroidUIAutomator("new UiSelector().className(\"android.support.v7.app.ActionBar$Tab\").index(0)");
     }
+    public WebElement notificationsTab() {
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tab_layout")));
+        return getAndroidDriver().findElementByAndroidUIAutomator("new UiSelector().className(\"android.support.v7.app.ActionBar$Tab\").index(1)");
+    }
+    public WebElement messagesTab() {
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tab_layout")));
+        return getAndroidDriver().findElementByAndroidUIAutomator("new UiSelector().className(\"android.support.v7.app.ActionBar$Tab\").index(2)");
+    }
+    public WebElement profileTab() {
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/tab_layout")));
+        return getAndroidDriver().findElementByAndroidUIAutomator("new UiSelector().className(\"android.support.v7.app.ActionBar$Tab\").index(3)");
+    }
+    public WebElement searchIcon() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/action_search")));
+    }
+	public WebElement composeIcon() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/action_compose")));
+	}
 
-    /*** Public ***/
-    public WebElement publicButton() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
-    }
-    public WebElement blastReplyButton() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/blast_reply_button")));
-    }
-
-    /*** Profile ***/
-	public WebElement settingsButton() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/settings")));
-    }
-    public WebElement profilePicture() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/profile_picture")));
-    }
+	/**
+	 * Profile
+	 */
+	public WebElement settingsIcon() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/action_settings")));
+	}
 
 	/*** Settings ***/
 	public WebElement notificationsRow() {
@@ -189,30 +125,11 @@ public class AndroidElements extends Drivers {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/reset_your_password")));
     }
 
-    /*** Login ***/
-    public WebElement logInText() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/login_button_text")));
-    }
-    public WebElement signUpButton() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/signup_button")));
-    }
-    public WebElement usernameField() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/login_username")));
-    }
-    public WebElement passwordField() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/login_password")));
-    }
-    public WebElement logInButton() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("com.radicalapps.cyberdust:id/login_text")));
-    }
-
     /*** Misc ***/
     public WebElement elementName(String name) {
         return wait.until(ExpectedConditions.elementToBeClickable(By.xpath(("//*[@text='" + name + "']"))));
     }
-    public WebElement homeButton() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.view.ViewGroup[@index='0']/android.widget.ImageButton[@index='0']")));
-    }
+
     public WebElement confirmButton() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("android:id/button1")));
     }

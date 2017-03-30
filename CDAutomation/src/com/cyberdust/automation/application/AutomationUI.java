@@ -1,6 +1,6 @@
 package com.cyberdust.automation.application;
 
-import com.cyberdust.automation.elements.DeviceReader;
+import com.cyberdust.automation.utils.DeviceReader;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;

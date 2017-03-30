@@ -2,8 +2,9 @@ package com.cyberdust.automation.application;
 
 import com.cyberdust.automation.application.ServerOutput.ConsoleErrorOutput;
 import com.cyberdust.automation.application.ServerOutput.ConsoleOutput;
-import com.cyberdust.automation.elements.DeviceReader;
-import com.cyberdust.automation.elements.Drivers;
+import com.cyberdust.automation.utils.DeviceReader;
+import com.cyberdust.automation.utils.Drivers;
+import com.cyberdust.automation.utils.TestAccounts;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -332,14 +333,14 @@ public class Listeners {
                 if (savedOptions == JOptionPane.OK_OPTION) {
                     if (accountSettings.getSelectedItem().toString().contains("1")) {
                         Settings.getAppSettings().put("accountset", "1");
-                        com.cyberdust.automation.elements.TestAccounts.accountSet2 = false;
-                        com.cyberdust.automation.elements.TestAccounts.accountSet1 = true;
+                        TestAccounts.accountSet2 = false;
+                        TestAccounts.accountSet1 = true;
                     }
 
                     if (accountSettings.getSelectedItem().toString().contains("2")) {
                         Settings.getAppSettings().put("accountset", "2");
-                        com.cyberdust.automation.elements.TestAccounts.accountSet1 = false;
-                        com.cyberdust.automation.elements.TestAccounts.accountSet2 = true;
+                        TestAccounts.accountSet1 = false;
+                        TestAccounts.accountSet2 = true;
                     }
                 }
                 try {

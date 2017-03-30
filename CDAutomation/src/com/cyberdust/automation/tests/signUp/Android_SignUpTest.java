@@ -1,6 +1,6 @@
 package com.cyberdust.automation.tests.signUp;
 
-import com.cyberdust.automation.elements.AndroidCamera;
+import com.cyberdust.automation.utils.AndroidCamera;
 import com.cyberdust.automation.elements.AndroidElements;
 
 class Android_SignUpTest extends AndroidElements {

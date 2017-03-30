@@ -1,4 +1,6 @@
-package com.cyberdust.automation.elements;
+package com.cyberdust.automation.utils;
+
+import com.cyberdust.automation.elements.AndroidElements;
 
 public class AndroidAlbum extends AndroidElements {
 	
