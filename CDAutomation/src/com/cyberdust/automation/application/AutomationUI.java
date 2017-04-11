@@ -67,7 +67,7 @@ public class AutomationUI {
 		testListScroll.setViewportView(testClassList);
 		testListScroll.setBounds(10, 10, 180, 200);
 		testListScroll.setBorder(new CompoundBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null),
-                new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Tests",
+                new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "AndroidTest",
                         TitledBorder.LEADING, TitledBorder.TOP, null, new Color(128, 128, 128))));
 		myFrame.getContentPane().add(testListScroll);
 		
@@ -258,7 +258,6 @@ public class AutomationUI {
 
     public void disableButtons() {
         runButton.setEnabled(false);
-        stopButton.setEnabled(false);
         optionsButton.setEnabled(false);
         testClassList.setEnabled(false);
         selectAllButton.setEnabled(false);

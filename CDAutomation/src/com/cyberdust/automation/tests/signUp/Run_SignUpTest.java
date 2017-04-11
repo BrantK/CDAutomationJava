@@ -79,7 +79,7 @@ public class Run_SignUpTest extends Drivers {
 			relaunch();
 
             if (isAndroid()) {
-                new Android_SignUpTest().more_button().click();
+                new Android_SignUpTest().settingsIcon().click();
             }
             if (isIOS()) {
                 new IOS_SignUpTest().more_button().click();
@@ -105,7 +105,7 @@ public class Run_SignUpTest extends Drivers {
 			relaunch();
 
             if (isAndroid()) {
-                new Android_SignUpTest().more_button().click();
+                new Android_SignUpTest().settingsIcon().click();
             }
             if (isIOS()) {
                 new IOS_SignUpTest().more_button().click();

@@ -167,6 +167,9 @@ public class Listeners {
                     TestRunner.stopTests();
                     TestListener.nullCurrentTest();
                     app.getStopButton().setEnabled(false);
+                } else {
+                    Drivers.tearDown();
+                    app.enableButtons();
                 }
             }
         };

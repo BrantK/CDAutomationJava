@@ -107,8 +107,13 @@ public class Drivers extends ActionHelper {
     }
 
 	public static void tearDown() {
-        driver.quit();
-        service.stop();
+        if (driver != null) {
+            driver.quit();
+        }
+
+        if (service != null) {
+            service.stop();
+        }
 	}
 
 	private static void resetCapabilities() {

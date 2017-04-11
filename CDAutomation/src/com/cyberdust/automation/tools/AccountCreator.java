@@ -23,89 +23,89 @@ public class AccountCreator extends Drivers {
 	void androidSignUp(String username, String password) throws Exception {
         AndroidElements android = new AndroidElements();
 
-        try {
-            android.waitTime(4);
-            android.sign_up_button();
-        } catch (Exception e) {
-            android.more_button().click(); Thread.sleep(1000);
-            swipe(getScreenWidth()/2, getScreenHeight() - 20, getScreenWidth()/2, 20, 300);
-            android.logout().click();
-            log("Logging out before starting test");
-            android.confirm().click();
-        }
-
-		android.sign_up_button().click();
-		android.pick_username().sendKeys(username);
-		android.username_confirm().click();
-
-		for (int i = 0; i < 3; i++) {
-            android.waitTime(1);
-
-            if (!chosePassword) {
-                try {
-                    android.create_password().isDisplayed();
-                    android.create_password().sendKeys(password);
-                    android.password_confirm().click();
-                    chosePassword = true;
-                } catch (Exception ignored) {}
-            }
-
-            if (!choseBirthday) {
-                try {
-                    android.birthday_confirm().click();
-                    choseBirthday = true;
-                    Thread.sleep(5000);
-                } catch (Exception ignored) {}
-            }
-
-            if (!choseEmail) {
-                try {
-                    android.skip_button().click();
-                    choseEmail = true;
-                } catch (Exception ignored) {}
-            }
-
-            if (!chosePhone) {
-                try {
-                    android.name("Secure account").click();
-                    android.phone_continue();
-                    getDriver().getKeyboard().sendKeys("1");
-                    android.name("Continue").click();
-                    Thread.sleep(1000);
-
-                    for (int j = 0; j < 4; j++) {
-                        action().press(android.phone_continue().getLocation().x+20, android.phone_continue().getLocation().y+20).release().perform();
-                    }
-
-                    android.name("Dismiss").click();
-                } catch (Exception ignored) {}
-            }
-
-            if (!chosePhone) {
-                try {
-                    android.phone_continue();
-                    getDriver().getKeyboard().sendKeys("1");
-                    android.name("Continue").click();
-                    Thread.sleep(1000);
-
-                    for (int j = 0; j < 4; j++) {
-                        action().press(android.phone_continue().getLocation().x+20, android.phone_continue().getLocation().y+20).release().perform();
-                    }
-
-                    android.name("Dismiss").click();
-                    chosePhone = true;
-                } catch (Exception ignored) {}
-            }
-		}
-
-		try {
-			android.waitTime(2);
-			if (android.name("Allow").isDisplayed()) {
-				android.name("Allow").click();
-			}
-		} catch (Exception ignored) {}
-
-		android.tutorial_close().click();
+//        try {
+//            android.waitTime(4);
+//            android.sign_up_button();
+//        } catch (Exception e) {
+//            android.more_button().click(); Thread.sleep(1000);
+//            swipe(getScreenWidth()/2, getScreenHeight() - 20, getScreenWidth()/2, 20, 300);
+//            android.logout().click();
+//            log("Logging out before starting test");
+//            android.confirm().click();
+//        }
+//
+//		android.sign_up_button().click();
+//		android.pick_username().sendKeys(username);
+//		android.username_confirm().click();
+//
+//		for (int i = 0; i < 3; i++) {
+//            android.waitTime(1);
+//
+//            if (!chosePassword) {
+//                try {
+//                    android.create_password().isDisplayed();
+//                    android.create_password().sendKeys(password);
+//                    android.password_confirm().click();
+//                    chosePassword = true;
+//                } catch (Exception ignored) {}
+//            }
+//
+//            if (!choseBirthday) {
+//                try {
+//                    android.birthday_confirm().click();
+//                    choseBirthday = true;
+//                    Thread.sleep(5000);
+//                } catch (Exception ignored) {}
+//            }
+//
+//            if (!choseEmail) {
+//                try {
+//                    android.skip_button().click();
+//                    choseEmail = true;
+//                } catch (Exception ignored) {}
+//            }
+//
+//            if (!chosePhone) {
+//                try {
+//                    android.name("Secure account").click();
+//                    android.phone_continue();
+//                    getDriver().getKeyboard().sendKeys("1");
+//                    android.name("Continue").click();
+//                    Thread.sleep(1000);
+//
+//                    for (int j = 0; j < 4; j++) {
+//                        action().press(android.phone_continue().getLocation().x+20, android.phone_continue().getLocation().y+20).release().perform();
+//                    }
+//
+//                    android.name("Dismiss").click();
+//                } catch (Exception ignored) {}
+//            }
+//
+//            if (!chosePhone) {
+//                try {
+//                    android.phone_continue();
+//                    getDriver().getKeyboard().sendKeys("1");
+//                    android.name("Continue").click();
+//                    Thread.sleep(1000);
+//
+//                    for (int j = 0; j < 4; j++) {
+//                        action().press(android.phone_continue().getLocation().x+20, android.phone_continue().getLocation().y+20).release().perform();
+//                    }
+//
+//                    android.name("Dismiss").click();
+//                    chosePhone = true;
+//                } catch (Exception ignored) {}
+//            }
+//		}
+//
+//		try {
+//			android.waitTime(2);
+//			if (android.name("Allow").isDisplayed()) {
+//				android.name("Allow").click();
+//			}
+//		} catch (Exception ignored) {}
+//
+//		android.tutorial_close().click();
 	}
 //TODO finish ios sign up
     void iOSSignUp(String username, String password) throws Exception {

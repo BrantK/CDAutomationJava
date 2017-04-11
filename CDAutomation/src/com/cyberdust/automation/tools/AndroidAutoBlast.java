@@ -13,32 +13,32 @@ public class AndroidAutoBlast extends AndroidElements {
 	TouchAction action = new TouchAction(driver);
 	
     public void photo_blast() throws Exception {
-        action_menu().click();
-        action_menu_media().click();
-        photo_button().click();
-        next_button().click();
-        blast_friends().click();
-        username(blast_recipient).click();
-        blast_Ok_button().click();
+//        action_menu().click();
+//        action_menu_media().click();
+//        photo_button().click();
+//        next_button().click();
+//        blast_friends().click();
+//        username(blast_recipient).click();
+//        blast_Ok_button().click();
     }
     public void video_blast() throws Exception {
-        action_menu().click();
-        action_menu_media().click();
-        video_button().click();
-        action.longPress(photo_button(), 5000).release().perform();
-        next_button().click();
-        blast_friends().click();
-        username(blast_recipient).click();
-        blast_Ok_button().click();
+//        action_menu().click();
+//        action_menu_media().click();
+//        video_button().click();
+//        action.longPress(photo_button(), 5000).release().perform();
+//        next_button().click();
+//        blast_friends().click();
+//        username(blast_recipient).click();
+//        blast_Ok_button().click();
     }
     public void text_blast() throws Exception {
-        action_menu().click();
-        action_menu_text().click();
-        dust_blast_field().sendKeys(blast_text);
-        OK_button().click();
-        blast_friends().click();
-        username(blast_recipient).click();
-        blast_Ok_button().click();
+//        action_menu().click();
+//        action_menu_text().click();
+//        dust_blast_field().sendKeys(blast_text);
+//        OK_button().click();
+//        blast_friends().click();
+//        username(blast_recipient).click();
+//        blast_Ok_button().click();
     }
     @Test
     public void autoblast() throws Exception {

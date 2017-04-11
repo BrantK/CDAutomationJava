@@ -11,7 +11,7 @@ public class AndroidAlbum extends AndroidElements {
 		// Tries to select a photo from the gallery
 		waitTime(2);
 		try {
-			name("Photos").click();
+			elementName("Photos").click();
 			Thread.sleep(2000);// Note 4
 			action().press((sw/10), (sh/10*3)).release().perform();
 		} catch (Exception e) {

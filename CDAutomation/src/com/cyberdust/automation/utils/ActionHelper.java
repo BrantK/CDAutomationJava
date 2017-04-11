@@ -17,7 +17,7 @@ public class ActionHelper {
         return new TouchAction(driver);
     }
 
-    public TestAccounts getAccount() {
+    public TestAccounts account() {
         return new TestAccounts();
     }
 
@@ -27,8 +27,15 @@ public class ActionHelper {
     }
 
     public void swipe(int startX, int startY, int endX, int endY, int duration) {
-        action().press(startX, startY).waitAction(duration).moveTo(endX, endY).release();
-        action().perform();
+        action().press(startX, startY).waitAction(duration).moveTo(endX, endY).release().perform();
+    }
+
+    public void sleep(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public AndroidDriver<WebElement> getAndroidDriver() {

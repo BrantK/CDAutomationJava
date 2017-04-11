@@ -28,7 +28,7 @@ class IOS_SignUpTest extends IOSElements {
 	void test02_sign_up() throws Exception {
 		// Create new account and check if special characters can be used
 	    sign_up_button().click();
-	    driver.getKeyboard().sendKeys(getAccount().signup_account);
+	    driver.getKeyboard().sendKeys(account().signup_account);
         Thread.sleep(1200);
         driver.getKeyboard().sendKeys("!@//$");
 
@@ -41,12 +41,12 @@ class IOS_SignUpTest extends IOSElements {
         } catch (Exception e) {
 	        log("Could not use special characters in username");
             choose_username().clear();
-            driver.getKeyboard().sendKeys(getAccount().signup_account);
+            driver.getKeyboard().sendKeys(account().signup_account);
             username_OK().click();
 	    }
 
 	    waitTime(20);
-	    driver.getKeyboard().sendKeys(getAccount().signup_password);
+	    driver.getKeyboard().sendKeys(account().signup_password);
 	    password_OK().click();
 	}
 
@@ -134,9 +134,9 @@ class IOS_SignUpTest extends IOSElements {
         confirm().click();
         login_button().click();
         login_username().click();
-        driver.getKeyboard().sendKeys(getAccount().signup_account.toUpperCase());
+        driver.getKeyboard().sendKeys(account().signup_account.toUpperCase());
         login_password().click();
-        driver.getKeyboard().sendKeys(getAccount().signup_password);
+        driver.getKeyboard().sendKeys(account().signup_password);
         login_OK().click();
         log("Username is not case sensitive");
 
