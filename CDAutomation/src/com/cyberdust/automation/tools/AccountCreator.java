@@ -24,7 +24,7 @@ public class AccountCreator extends Drivers {
         AndroidElements android = new AndroidElements();
 
 //        try {
-//            android.waitTime(4);
+//            android.setWaitTime(4);
 //            android.sign_up_button();
 //        } catch (Exception e) {
 //            android.more_button().click(); Thread.sleep(1000);
@@ -39,7 +39,7 @@ public class AccountCreator extends Drivers {
 //		android.username_confirm().click();
 //
 //		for (int i = 0; i < 3; i++) {
-//            android.waitTime(1);
+//            android.setWaitTime(1);
 //
 //            if (!chosePassword) {
 //                try {
@@ -99,7 +99,7 @@ public class AccountCreator extends Drivers {
 //		}
 //
 //		try {
-//			android.waitTime(2);
+//			android.setWaitTime(2);
 //			if (android.name("Allow").isDisplayed()) {
 //				android.name("Allow").click();
 //			}

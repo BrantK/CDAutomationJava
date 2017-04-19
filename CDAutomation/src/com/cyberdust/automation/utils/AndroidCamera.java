@@ -9,7 +9,7 @@ public class AndroidCamera extends AndroidElements {
 		boolean photo_taken = false;
 //
 //        try {
-//            waitTime(2);
+//            setWaitTime(2);
 //            if (profile_picture().isDisplayed()) {
 //                log("[Warning] Camera failed to open");
 //            }
@@ -55,13 +55,13 @@ public class AndroidCamera extends AndroidElements {
 //        } catch (Exception ignored) {}
 //
 //        try {
-//            waitTime(2);
+//            setWaitTime(2);
 //            profile_picture();
 //            photo_taken = true;
 //            Thread.sleep(2000);
 //        } catch (Exception e){
 //            try {
-//                waitTime(2);
+//                setWaitTime(2);
 //                OK_button().click();
 //                photo_taken = true;
 //                Thread.sleep(2000);
@@ -81,7 +81,7 @@ public class AndroidCamera extends AndroidElements {
 //                try {
 //                    profile_picture();
 //                } catch (Exception h) {
-//                    waitTime(15);
+//                    setWaitTime(15);
 //                    relaunch();
 //                    more_button().click();
 //                }

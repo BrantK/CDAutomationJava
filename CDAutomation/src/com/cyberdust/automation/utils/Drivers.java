@@ -68,7 +68,7 @@ public class Drivers extends ActionHelper {
                 capabilities.setCapability("deviceName", "=iPhone 6 (");
                 capabilities.setCapability("noReset", true);
                 capabilities.setCapability("nativeInstrumentsLib", true);
-                capabilities.setCapability("bundleId", "com.mentionmobile.cyberdust");
+                capabilities.setCapability("bundleId", Constants.IOS_BUNDLE_ID);
                 capabilities.setCapability("app", AppPath.localAppPath);
                 driver = new IOSDriver<>(service.getUrl(), capabilities);
             }
@@ -79,7 +79,7 @@ public class Drivers extends ActionHelper {
                 capabilities.setCapability("deviceName", "iPhone");
                 capabilities.setCapability("noReset", true);
                 capabilities.setCapability("nativeInstrumentsLib", true);
-                capabilities.setCapability("bundleId", "com.mentionmobile.cyberdust");
+                capabilities.setCapability("bundleId", Constants.IOS_BUNDLE_ID);
                 capabilities.setCapability("udid", DeviceReader.getIOSUdid());
                 driver = new IOSDriver<>(service.getUrl(), capabilities);
             }
@@ -89,8 +89,8 @@ public class Drivers extends ActionHelper {
                 capabilities.setCapability("platformVersion", "");
                 capabilities.setCapability("deviceName", "Android");
                 capabilities.setCapability("noReset", true);
-                capabilities.setCapability("appPackage", "com.radicalapps.cyberdust");
-                capabilities.setCapability("appActivity", "com.radicalapps.cyberdust.activities.LauncherActivity");
+                capabilities.setCapability("appPackage", Constants.ANDROID_BUNDLE_ID);
+                capabilities.setCapability("appActivity", Constants.ANDROID_APP_ACTIVITY);
                 driver = new AndroidDriver<>(service.getUrl(), capabilities);
             }
 

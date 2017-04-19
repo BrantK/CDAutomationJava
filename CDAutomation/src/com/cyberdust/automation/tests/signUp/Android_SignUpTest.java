@@ -16,7 +16,7 @@ class Android_SignUpTest extends AndroidElements {
 		boolean isLoggedOut;
 		try {
 			log("Checking if logged out");
-			waitTime(4);
+			setWaitTime(4);
             signUpButton();
             isLoggedOut = true;
         } catch (Exception e) {
@@ -38,13 +38,13 @@ class Android_SignUpTest extends AndroidElements {
         signUpButton().click();
         displayNameField().sendKeys(account().signup_account + "!@//$");
         try {
-            waitTime(3);
+            setWaitTime(3);
             letsGoButton().click();
             log("Special characters used in username");
         } catch (Exception e) {
             log("Could not use special characters in username");
         }
-        waitTime(20);
+        setWaitTime(20);
         displayNameField().sendKeys(account().signup_account);
         letsGoButton().click();
     }
@@ -55,7 +55,7 @@ class Android_SignUpTest extends AndroidElements {
 //        }
 //
 //        try {
-//            waitTime(5);
+//            setWaitTime(5);
 //            dusts_tab().isDisplayed();
 //            log("Dusts tab");
 //        } catch (Exception e) {
@@ -63,7 +63,7 @@ class Android_SignUpTest extends AndroidElements {
 //        }
 //
 //        try {
-//            waitTime(2);
+//            setWaitTime(2);
 //            if (name("Allow").isDisplayed()) {
 //                name("Allow").click();
 //            }
@@ -78,13 +78,13 @@ class Android_SignUpTest extends AndroidElements {
 //        profile_picture().click();
 //        name("Change").click();
 //        try {
-//            waitTime(1);
+//            setWaitTime(1);
 //            if (name("Allow").isDisplayed()) {
 //                name("Allow").click();
 //                name("Allow").click();
 //            }
 //        } catch (Exception ignored) {}
-//        waitTime(10);
+//        setWaitTime(10);
 //        log("Changing profile picture");
 //        camera_button().click(); Thread.sleep(3000);
 //        androidCamera.takePhoto();
@@ -125,7 +125,7 @@ class Android_SignUpTest extends AndroidElements {
 //        login_OK().click();
 //
 //        try {
-//        	waitTime(8);
+//        	setWaitTime(8);
 //        	if (blasts_tab().isDisplayed()) {
 //        		log("Username is not case sensitive");
 //        	}
@@ -136,13 +136,13 @@ class Android_SignUpTest extends AndroidElements {
 //        	login_username().sendKeys(account().signup_account);
 //        	login_OK().click();
 //        }
-//        waitTime(20);
+//        setWaitTime(20);
 //
 //        more_button().click(); Thread.sleep(1000);
 //
 //		// Checks if bio and website saved after logging out
 //		try {
-//			waitTime(2);
+//			setWaitTime(2);
 //			name("My awesome test bio").isDisplayed();
 //			name("www.cyberdust.com").isDisplayed();
 //
@@ -151,7 +151,7 @@ class Android_SignUpTest extends AndroidElements {
 //		}
 //
 //		// Deletes account
-//        waitTime(10);
+//        setWaitTime(10);
 //        Thread.sleep(500);
 //        swipe(getScreenWidth()/2, getScreenHeight()/2, getScreenWidth()/2, getScreenHeight()/4, 200);
 //        account_settings().click();
@@ -161,7 +161,7 @@ class Android_SignUpTest extends AndroidElements {
 	}
 
     void dynamicOnBoardingCheck() throws Exception {
-//        waitTime(1);
+//        setWaitTime(1);
 //
 //        if (!password) {
 //            try {

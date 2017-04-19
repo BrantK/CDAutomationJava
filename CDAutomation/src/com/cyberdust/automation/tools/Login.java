@@ -24,7 +24,7 @@ public class Login extends Drivers {
         boolean loggedIn = false;
 
         try {
-            android.waitTime(5);
+            android.setWaitTime(5);
             android.loginButton().click();
 
             //TODO Continue login process

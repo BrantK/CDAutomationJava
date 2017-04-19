@@ -11,29 +11,10 @@ public class AndroidElements extends Drivers {
 
 	public AppiumDriver driver = getDriver();
 
-	public WebDriverWait wait = new WebDriverWait(driver, 20);
+	private WebDriverWait wait = new WebDriverWait(driver, 20);
 
-	public WebDriverWait waitTime(int time) {
+	public WebDriverWait setWaitTime(int time) {
 		return wait = new WebDriverWait(driver, time);
-	}
-
-    public void scrollToBottom() {
-        try {
-            Thread.sleep(1000);
-            swipe(getScreenWidth() / 2, getScreenHeight() - getScreenHeight() / 10, getScreenWidth() / 2, getScreenHeight() / 10, 500);
-        } catch (Exception ignored) { }
-    }
-
-	public void scrollToTop() {
-        try {
-            Thread.sleep(1000);
-            swipe(getScreenWidth() / 2, getScreenHeight() / 10, getScreenWidth() / 2, getScreenHeight() - getScreenHeight() / 10, 500);
-        } catch (Exception ignored) { }
-	}
-
-	//Template
-	public WebElement newButton() {
-		return wait.until(ExpectedConditions.elementToBeClickable(By.id("")));
 	}
 
     /**
@@ -59,7 +40,6 @@ public class AndroidElements extends Drivers {
     /**
      * Onboarding
      */
-
 
     //Splash screen
     public WebElement loginButton() {

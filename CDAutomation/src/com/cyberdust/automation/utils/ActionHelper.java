@@ -30,6 +30,16 @@ public class ActionHelper {
         action().press(startX, startY).waitAction(duration).moveTo(endX, endY).release().perform();
     }
 
+    public void scrollToBottom() {
+        sleep(1000);
+        swipe(getScreenWidth() / 2, getScreenHeight() - getScreenHeight() / 10, getScreenWidth() / 2, getScreenHeight() / 10, 500);
+    }
+
+    public void scrollToTop() {
+        sleep(1000);
+        swipe(getScreenWidth() / 2, getScreenHeight() / 10, getScreenWidth() / 2, getScreenHeight() - getScreenHeight() / 10, 500);
+    }
+
     public void sleep(int ms) {
         try {
             Thread.sleep(ms);

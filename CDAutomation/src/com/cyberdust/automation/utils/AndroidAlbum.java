@@ -9,7 +9,7 @@ public class AndroidAlbum extends AndroidElements {
 	
 	public void selectPhoto() throws Exception {
 		// Tries to select a photo from the gallery
-		waitTime(2);
+		setWaitTime(2);
 		try {
 			elementName("Photos").click();
 			Thread.sleep(2000);// Note 4
